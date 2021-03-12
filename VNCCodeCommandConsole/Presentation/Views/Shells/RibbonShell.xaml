@@ -1,0 +1,24 @@
+﻿<Window 
+    x:Class="VNCCodeCommandConsole.Presentation.Views.RibbonShell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+    
+    xmlns:infra="clr-namespace:VNCCodeCommandConsole.Core"    
+    xmlns:prism="http://prismlibrary.com/"
+
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    Title="{Binding Title}"
+    d:DesignHeight="800" d:DesignWidth="1200"
+ >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static infra:RegionNames.RibbonRegion}" />
+        <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static infra:RegionNames.MainRegion}" />
+    </Grid>
+</Window>

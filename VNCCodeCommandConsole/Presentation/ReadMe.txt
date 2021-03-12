@@ -1,0 +1,7 @@
+﻿VNCCodeCommandConsole\Presentation\
+VNCCodeCommandConsole\Presentation\Converters\
+VNCCodeCommandConsole\Presentation\ModelWrappers\
+VNCCodeCommandConsole\Presentation\ViewModels\
+VNCCodeCommandConsole\Presentation\Views\
+
+Notes for using this template
