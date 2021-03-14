@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:Class="VNCCodeCommandConsole.Resources.Xaml.Button_Styles"
+                    xmlns:local="clr-namespace:VNCCodeCommandConsole.Resources.Xaml">
+
+    <Style x:Key="SyntaxQueryButton" TargetType="{x:Type Button}" >
+        <!--<EventSetter Event="Button.Click" Handler="DisplayUserControlFromTag" />-->
+        <!--<Setter Property="Margin" Value="5" />-->
+        <Setter Property="FontSize" Value="16" />
+        <!--<Setter Property="FontFamily" Value="Arial" />-->
+        <Setter Property="Foreground" Value="Green" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+    </Style>
+
+    <Style x:Key="SyntaxRewriterButton" TargetType="{x:Type Button}" >
+        <!--<EventSetter Event="Button.Click" Handler="DisplayUserControlFromTag" />-->
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Foreground" Value="Red" />
+        <Setter Property="Background" Value="DarkGray" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+
+</ResourceDictionary>

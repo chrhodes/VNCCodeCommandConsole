@@ -169,8 +169,8 @@ namespace VNCCodeCommandConsole
 
             // TODO(crhodes)
             // Pick the shell to start with.
-            return Container.Resolve<Shell>();
-            // return Container.Resolve<RibbonShell>();
+            //return Container.Resolve<Shell>();
+            return Container.Resolve<RibbonShell>();
 
             // NOTE(crhodes)
             // The type of view to load into the shell is handled in VNCCodeCommandConsoleModule.cs
@@ -216,6 +216,137 @@ namespace VNCCodeCommandConsole
         #endregion
 
         #region Event Handlers
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+
+            long startTicks = Log.APPLICATION_START("Enter", Common.LOG_APPNAME);
+
+            try
+            {
+                // HACK(crhodes)
+                // Commented all this out for now.
+
+                //AppDomain.CurrentDomain.UnhandledException +=
+                //              new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+
+                //Common.CurrentUser = new WindowsPrincipal(WindowsIdentity.GetCurrent());
+
+                //if (Data.Config.ADBypass)
+                //{
+                //    Common.IsAdministrator = true;
+                //    Common.IsBetaUser = true;
+                //}
+                //else
+                //{
+                //    if (!Data.Config.AD_Users_AllowAll)
+                //    {
+
+                //        bool isAuthorizedUser = VNC.ActiveDirectory.Helper.CheckGroupMembership(
+                //            //"maward", 
+                //            Common.CurrentUser.Identity.Name,
+                //            Data.Config.ADGroup_Users,
+                //            Data.Config.AD_Domain);
+
+                //        if (!isAuthorizedUser)
+                //        {
+                //            MessageBox.Show(string.Format("You must be a member of {0}\\{1} to run this application.",
+                //                Data.Config.AD_Domain, Data.Config.ADGroup_Users));
+                //            return;
+                //        }
+                //    }
+
+                //    Common.IsAdministrator = VNC.ActiveDirectory.Helper.CheckDirectGroupMembership(
+                //        Common.CurrentUser.Identity.Name,
+                //        Data.Config.ADGroup_Administrators,
+                //        Data.Config.AD_Domain);
+
+                //    Common.IsBetaUser = VNC.ActiveDirectory.Helper.CheckDirectGroupMembership(
+                //        Common.CurrentUser.Identity.Name,
+                //        Data.Config.ADGroup_BetaUsers,
+                //        Data.Config.AD_Domain);
+
+                //    Common.IsDeveloper = Common.CurrentUser.Identity.Name.Contains("crhodes") ? true : false;
+
+                //    // Next lines are for testing UI only.  Comment out for normal operation.
+                //    //Common.IsAdministrator = false;   
+                //    //Common.IsBetaUser = false; 
+                //    //Common.IsDeveloper = false;
+                //}
+
+                // Cannot do here as the Common.ApplicationDataSet has not been loaded.  Need to move here or do later.
+                // For now this is in DXRibbonWindowMain();
+
+                //var eventMessage = "Started";
+                //SQLInformation.Helper.IndicateApplicationUsage(LOG_APPNAME, DateTime.Now, currentUser.Identity.Name, eventMessage);
+
+                // Launch the main window.
+
+
+
+                // TODO(crhodes)
+                // Would be cool to start this with a Window specified in the App.Config file
+
+                //User_Interface.Windows.SplashScreen _window1 = new User_Interface.Windows.SplashScreen();
+
+
+                // HACK(crhodes)
+                // COmmented this out for now
+
+                //User_Interface.Windows.DXRibbonWindowMain _window1 = new User_Interface.Windows.DXRibbonWindowMain();
+
+                //User_Interface.Windows.About _window1 = new User_Interface.Windows.About();
+
+                //String windowArgs = string.Empty;
+                // Check for arguments; if there are some build the path to the package out of the args.
+                //if (args.Args.Length > 0 && args.Args[0] != null)
+                //{
+                //    for (int i = 0; i < args.Args.Length; ++i)
+                //    {
+                //        windowArgs = args.Args[i];
+                //        switch (i)
+                //        {
+                //            case 0: // Patient Id
+                //                //patientId = windowArgs;
+                //                break;
+                //        }
+                //    }
+                //}
+
+                // HACK(crhodes)
+                // Commented this out for now
+
+                //_window1.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.InnerException.ToString());
+            }
+
+            Log.APPLICATION_START("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
+        {
+            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_APPNAME );
+
+            Log.APPLICATION_END("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_APPNAME);
+
+            Log.APPLICATION_END("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        private void Application_Deactivated(object sender, EventArgs e)
+        {
+            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_APPNAME);
+
+            Log.APPLICATION_END("Exit", Common.LOG_APPNAME, startTicks);
+        }
 
         private void Application_DispatcherUnhandledException(object sender,
             System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

@@ -25,55 +25,87 @@
 >
     <!--xmlns:infra="clr-namespace:$customAPPLICATON$.Core;assembly=$customAPPLICATON$.Core"-->
 
-    <dxlc:LayoutControl
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch"
-        Background="Transparent"
-        Name="lc_Root"
-        Orientation="Vertical">
+    <dxlc:LayoutControl Name="lc_Root"                          
+                      Orientation="Vertical"
+                      Background="Transparent"
+                      VerticalAlignment="Stretch"
+                      DataContext="">
+
         <dxlc:LayoutControl.AvailableItems>
+
             <!-- Add things that are optionally displayable-->
-            <dxdo:LayoutPanel x:Name="lp_OptStuff1" Caption="Optional Stuff1">
+
+            <dxdo:LayoutPanel x:Name="lp_OptStuff1" Caption="Optional Stuff1" >
                 <StackPanel>
                     <Label Content="lp_OptStuff1 Goes Here" />
                     <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
                 </StackPanel>
             </dxdo:LayoutPanel>
-            <dxdo:LayoutPanel x:Name="lp_OptStuff2" Caption="Optional Stuff2">
+
+            <dxdo:LayoutPanel x:Name="lp_OptStuff2" Caption="Optional Stuff2" >
                 <StackPanel>
                     <Label Content="lp_OptStuff2 Goes Here" />
                     <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
                 </StackPanel>
             </dxdo:LayoutPanel>
+
         </dxlc:LayoutControl.AvailableItems>
-        
-        <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
-            <Label Content="lg_Header Stuff Goes Here" />
+
+        <dxlc:LayoutGroup Name="lg_Header"
+                        VerticalAlignment="Top">
+            <!--<Label Content="lg_Header Stuff Goes Here" />-->
         </dxlc:LayoutGroup>
-        
-        <dxlc:LayoutGroup Name="lg_Body">
+
+        <dxlc:LayoutGroup Name="lg_Body" >
+
             <!-- Use this if you want a LayoutManager -->
-            <dxdo:DockLayoutManager
-                dx:StyleManager.ApplyApplicationTheme="True"
-                FontSize="12"
-                Name="lg_Body_dlm">
-                <dxdo:LayoutGroup Name="lg_Body_dlm_lg">
-                    <dxdo:LayoutPanel
-                        MaxHeight="1200"
-                        FontSize="12"
-                        ItemHeight="400"
-                        Name="lg_Body_dlm_lg_lpRoot">
+
+            <dxdo:DockLayoutManager 
+                Name="lg_Body_dlm" dx:StyleManager.ApplyApplicationTheme="True" FontSize="12" >
+
+                <dxdo:LayoutGroup Name="lg_Body_dlm_lg"  AllowClose="False" AllowFloat="False" AllowDock="False"  >
+                    <!--<dxdo:LayoutPanel Name="lg_Body_dlm_lg_lpRoot" MaxHeight="1200" FontSize="12"-->
+
+                    <dxdo:TabbedGroup ItemWidth="300" Name="tg_Left">
+
+                        <dxdo:LayoutPanel Name="lp_CommandsFindVBSyntax" Caption="Find VB Syntax"
+                                          AllowFloat="False" AllowClose="False" AllowDock="False" AllowHide="False"
+                                          Style="{StaticResource FixedLayoutPanelMedium}" >
+
+                            <TextBlock Text="TODO: uiuc:wucCommandsFindVBSyntax" />
+                            <!--<uiuc:wucCommandsFindVBSyntax x:Name="wucCommandsFindVBSyntax" />-->
+
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel Name="lp_CommandsFindCSSyntax" Caption="Find CS Syntax"
+                                          AllowFloat="False" AllowClose="False" 
+                                          AllowDock="False" AllowHide="False"
+                                          Style="{StaticResource FixedLayoutPanelMedium}" >
+
+                            <TextBlock Text="TODO: pv:FindCSSyntax" />
+                            <!--<pv:FindCSSyntax x:Name="FindCSSyntax" />-->
+
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Find" Caption="Find Stuff" 
+                                          Style="{StaticResource FixedLayoutPanelMedium}">
+
+                            <TextBlock Text="TODO: uiuc:wucCommandsFind" />
+                            <!--<uiuc:wucCommandsFind x:Name="wucCommandsFind" />-->
+
+                        </dxdo:LayoutPanel>
+
+                    </dxdo:TabbedGroup>
+
+                    <dxdo:LayoutPanel Name="lg_Body_dlm_lg_lpRoot" FontSize="12" 
+                                      AllowFloat="False" AllowClose="False" AllowDock="False" AllowHide="False"  >
+
                         <dxlc:LayoutControl
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Background="Transparent"
-                            Orientation="Vertical"
-                            StretchContentVertically="True">
-                            <!-- This makes content stretch to bottom -->
-                            <dxlc:LayoutGroup
-                                Name="groupContainer"
-                                Orientation="Vertical"
-                                View="Tabs">
+                            Orientation="Vertical" StretchContentVertically="True" Background="Transparent" >
+
+                            <dxlc:LayoutGroup Name="groupContainer"
+                                              Orientation="Vertical" View="Tabs"  >
+
                                 <dxlc:LayoutGroup.GroupBoxStyle>
                                     <Style TargetType="dxlc:GroupBox">
                                         <Setter Property="Background" Value="Transparent" />
@@ -84,76 +116,294 @@
                                     </Style>
                                 </dxlc:LayoutGroup.GroupBoxStyle>
 
-                                <!-- Individual LayoutGroups go here (if you use tabs or groups)-->
-                                
-                                <dxlc:LayoutGroup Header="Cat" >
-                                    <Grid>
-                                        <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatMainRegion}" />
-                                    </Grid>
-                                    <!--<Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="200"/>
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
-                                        <ContentControl Grid.Column="0" 
-                                                        prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatNavigationRegion}" />
-                                        <ContentControl Grid.Column="1" 
-                                                        prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatDetailRegion}" />
-                                    </Grid>-->
+                                <!-- Individual LayoutGroups go here (if you want tabs or groups)-->
+
+                                <dxlc:LayoutGroup  Header="Sources" x:Name="lg_CodeExplorerContext"  >
+
+                                    <!--<dxlc:LayoutItem>-->
+                                    <TextBlock Text="TODO: uiuc:wucCodeExplorerContext" />
+                                    <!--<uiuc:wucCodeExplorerContext x:Name="wucCodeExplorerContext" />-->
+                                    <!--</dxlc:LayoutItem>-->
+
                                 </dxlc:LayoutGroup>
-                                
-                                <!-- <dxlc:LayoutGroup Header="TYPE" > -->
-                                    <!-- <Grid> -->
-                                        <!-- <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TYPEMainRegion}" /> -->
-                                    <!-- </Grid> -->
-                                    <!-- <Grid> -->
-                                        <!-- <Grid.ColumnDefinitions> -->
-                                            <!-- <ColumnDefinition Width="200"/> -->
-                                            <!-- <ColumnDefinition /> -->
-                                        <!-- </Grid.ColumnDefinitions> -->
-                                        <!-- <ContentControl Grid.Column="0"  -->
-                                                        <!-- prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatNavigationRegion}" /> -->
-                                        <!-- <ContentControl Grid.Column="1"  -->
-                                                        <!-- prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatDetailRegion}" /> -->
-                                    <!-- </Grid> -->
-                                <!-- </dxlc:LayoutGroup> -->
+
+                                <dxlc:LayoutGroup Header="SourceCode" Name="lg_SourceCode">
+                                    <dxe:TextEdit x:Name="teSourceCode" 
+                                                      FontFamily="Consolas" 
+                                                      VerticalAlignment="Stretch"
+                                                      VerticalContentAlignment="Stretch"                                                     
+                                                      VerticalScrollBarVisibility="Auto"
+                                                  TextWrapping="Wrap"
+                                                      HorizontalScrollBarVisibility="Auto"/>
+                                    <!--<dxlc:LayoutItem >
+
+                                    </dxlc:LayoutItem>-->
+
+                                </dxlc:LayoutGroup>
+
+                                <dxlc:LayoutGroup Header="Summary" Name="lg_Summary">
+                                    <dxe:TextEdit x:Name="teSummary"
+                                                      FontFamily="Consolas"
+                                                      VerticalAlignment="Stretch"
+                                                      VerticalContentAlignment="Stretch"                                                      
+                                                      VerticalScrollBarVisibility="Auto"
+                                                      HorizontalScrollBarVisibility="Auto"   />
+                                    <!--<dxlc:LayoutItem>
+                                                   
+                                    </dxlc:LayoutItem>-->
+
+                                </dxlc:LayoutGroup>
+
+                                <dxlc:LayoutGroup Header="Summary CRC ToString" Name="lg_CRCToString">
+                                    <dxe:TextEdit x:Name="teSummaryCRCToString"
+                                                      FontFamily="Consolas"
+                                                      VerticalAlignment="Stretch"
+                                                      VerticalContentAlignment="Stretch"                                                      
+                                                      VerticalScrollBarVisibility="Auto"
+                                                      HorizontalScrollBarVisibility="Auto"   />
+                                    <!--<dxlc:LayoutItem>
+                                                   
+                                    </dxlc:LayoutItem>-->
+
+                                </dxlc:LayoutGroup>
+
+                                <dxlc:LayoutGroup Header="Summary CRC ToFullString" Name="lg_CRCToFullString">
+                                    <dxe:TextEdit x:Name="teSummaryCRCToFullString"
+                                                      FontFamily="Consolas"
+                                                      VerticalAlignment="Stretch"
+                                                      VerticalContentAlignment="Stretch"                                                      
+                                                      VerticalScrollBarVisibility="Auto"
+                                                      HorizontalScrollBarVisibility="Auto"   />
+                                    <!--<dxlc:LayoutItem>
+                                                   
+                                    </dxlc:LayoutItem>-->
+
+                                </dxlc:LayoutGroup>
+
+                                <dxlc:LayoutGroup Header="SyntaxTree" Name="lg_SyntaxTree" >
+                                    <dxe:TextEdit x:Name="teSyntaxTree"
+                                                      FontFamily="Consolas"
+                                                      VerticalAlignment="Stretch"
+                                                      VerticalContentAlignment="Stretch"                                                      
+                                                      VerticalScrollBarVisibility="Auto"
+                                                      HorizontalScrollBarVisibility="Auto"/>
+                                    <!--<dxlc:LayoutItem  >
+
+                                    </dxlc:LayoutItem>-->
+
+                                </dxlc:LayoutGroup>
+
+                                <dxlc:LayoutGroup Header="SyntaxNode" Name="lg_SyntaxNode" >
+                                    <dxe:TextEdit x:Name="teSyntaxNode"
+                                                      FontFamily="Consolas"
+                                                      VerticalAlignment="Stretch"
+                                                      VerticalContentAlignment="Stretch"                                                      
+                                                      VerticalScrollBarVisibility="Auto"
+                                                      HorizontalScrollBarVisibility="Auto"/>
+                                    <!--<dxlc:LayoutItem  >
+
+                                    </dxlc:LayoutItem>-->
+
+                                </dxlc:LayoutGroup>
+
+                                <dxlc:LayoutGroup Header="SyntaxToken" Name="lg_SyntaxToken" >
+                                    <dxe:TextEdit x:Name="teSyntaxToken"
+                                                      FontFamily="Consolas"
+                                                      VerticalAlignment="Stretch"
+                                                      VerticalContentAlignment="Stretch"                                                      
+                                                      VerticalScrollBarVisibility="Auto"
+                                                      HorizontalScrollBarVisibility="Auto"/>
+                                    <!--<dxlc:LayoutItem  >
+
+                                    </dxlc:LayoutItem>-->
+
+                                </dxlc:LayoutGroup>
+
+                                <dxlc:LayoutGroup Header="SyntaxTrivia" Name="lg_SyntaxTrivia" >
+                                    <dxe:TextEdit x:Name="teSyntaxTrivia"
+                                                      FontFamily="Consolas"
+                                                      VerticalAlignment="Stretch"
+                                                      VerticalContentAlignment="Stretch"                                                      
+                                                      VerticalScrollBarVisibility="Auto"
+                                                      HorizontalScrollBarVisibility="Auto"/>
+                                    <!--<dxlc:LayoutItem  >
+
+                                    </dxlc:LayoutItem>-->
+
+                                </dxlc:LayoutGroup>
+
+                                <dxlc:LayoutGroup Header="SyntaxStructuredTrivia" Name="lg_SyntaxStructuredTrivia" >
+                                    <dxe:TextEdit x:Name="teSyntaxStructuredTrivia"
+                                                      FontFamily="Consolas"
+                                                      VerticalAlignment="Stretch"
+                                                      VerticalContentAlignment="Stretch"                                                      
+                                                      VerticalScrollBarVisibility="Auto"
+                                                      HorizontalScrollBarVisibility="Auto"/>
+                                    <!--<dxlc:LayoutItem  >
+
+                                    </dxlc:LayoutItem>-->
+
+                                </dxlc:LayoutGroup>
+
+                                <dxlc:LayoutGroup Header="Workspace" Name="lg_Workspace">
+                                    <dxe:TextEdit x:Name="teWorkspace"
+                                                      FontFamily="Consolas"
+                                                      VerticalAlignment="Stretch"
+                                                      VerticalContentAlignment="Stretch"                                                      
+                                                      VerticalScrollBarVisibility="Auto"
+                                                      HorizontalScrollBarVisibility="Auto"   />
+                                    <!--<dxlc:LayoutItem>
+                                                   
+                                    </dxlc:LayoutItem>-->
+
+                                </dxlc:LayoutGroup>
 
                             </dxlc:LayoutGroup>
+
                         </dxlc:LayoutControl>
+
                     </dxdo:LayoutPanel>
+
+                    <dxdo:TabbedGroup Name="tg_Right" ItemWidth="250">
+
+                        <dxdo:LayoutPanel Name="lp_OutputOptions" Caption="Configuration Options"
+                                          AllowFloat="True" AllowClose="True" AllowDock="True" AllowHide="True" 
+                                          Style="{StaticResource FixedLayoutPanelNarrow}">
+
+                            <TextBlock Text="TODO: uiuc:wucConfigurationOptions" />
+                            <!--<uiuc:wucConfigurationOptions x:Name="configurationOptions" />-->
+
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Workspace" Caption="Workspace Info" >
+
+                            <TextBlock Text="TODO: uiuc:wucCommandsWorkspace" />
+                            <!--<uiuc:wucCommandsWorkspace x:Name="wucCommandsWorkspace" />-->
+
+                        </dxdo:LayoutPanel>
+
+                    </dxdo:TabbedGroup>
+
                 </dxdo:LayoutGroup>
 
                 <dxdo:DockLayoutManager.AutoHideGroups>
 
-                    <dxdo:AutoHideGroup DockType="Left">
-                        <dxdo:LayoutPanel
-                            x:Name="lp_LeftStuff"
-                            Caption="Left Stuff"
-                            ItemWidth="150">
-                            <StackPanel>
-                                <Label Content="lp_LeftStuff Goes Here" />
-                                <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
-                            </StackPanel>
+                    <dxdo:AutoHideGroup DockType="Left" ItemWidth="250" >
+
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Rewrite" Caption="Rewrite Stuff" 
+                                           Style="{StaticResource FixedLayoutPanelMedium}" >
+
+                            <TextBlock Text="TODO: uiuc:wucCommandsRewrite" />
+                            <!--<uiuc:wucCommandsRewrite x:Name="wucCommandsRewrite" />-->
+
                         </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Remove" Caption="Remove Stuff"
+                                          Style="{StaticResource FixedLayoutPanelMedium}" >
+
+                            <TextBlock Text="TODO: uiuc:wucCommandsRemove" />
+                            <!--<uiuc:wucCommandsRemove x:Name="wucCommandsRemove" />-->
+
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Add" Caption="Add Stuff"
+                                          Style="{StaticResource FixedLayoutPanelMedium}" >
+
+                            <TextBlock Text="TODO: uiuc:wucCommandsAdd" />
+                            <!--<uiuc:wucCommandsAdd x:Name="wucCommandsAdd" />-->
+
+                        </dxdo:LayoutPanel>
+
                     </dxdo:AutoHideGroup>
 
+                    <!--<dxdo:AutoHideGroup DockType="Top">
+                        -->
+                    <!--<dxdo:LayoutPanel x:Name="lp_TopStuff" Caption="CodeExplorer Content" >
+                            <uiuc:wucCodeExplorerContext x:Name="wucCodeExplorerContext2" />
+                        </dxdo:LayoutPanel>-->
+                    <!--
+                    </dxdo:AutoHideGroup>-->
+
                     <dxdo:AutoHideGroup DockType="Right">
-                        <dxdo:LayoutPanel x:Name="lp_RightStuff" Caption="Right Stuff">
-                            <StackPanel>
-                                <Label Content="lp_RightStuff Goes Here" />
-                                <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
-                            </StackPanel>
+
+                        <!--<dxdo:LayoutPanel x:Name="lp_OutputOptions" Caption="Output Options" ItemWidth="200">
+
+                            -->
+                        <!--<uiuc:wucOutputOptions x:Name="configurationOptions" />-->
+                        <!--
+
+                        </dxdo:LayoutPanel>-->
+
+                        <!--<dxdo:LayoutPanel x:Name="lp_Commands_Workspace" Caption="Workspace Info" 
+                                          ItemWidth="300">
+
+                            <uiuc:wucCommandsWorkspace x:Name="wucCommandsWorkspace" />
+
+                        </dxdo:LayoutPanel>-->
+
+                        <dxdo:LayoutPanel x:Name="lp_Commands" Caption="Commands" 
+                                         ItemWidth="300" >
+
+                            <TextBlock Text="TODO: uiuc:wucCommands" />
+                            <!--<uiuc:wucCommands x:Name="wucCommands" />-->
+
                         </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Parse" Caption="Parse" 
+                                          ItemWidth="300" MinWidth="275" MaxWidth="325">
+
+                            <TextBlock Text="TODO: uiuc:wucCommandsParse" />
+                            <!--<uiuc:wucCommandsParse x:Name="wucCommandsParse" />-->
+
+                        </dxdo:LayoutPanel>
+
+                        <!--<dxdo:LayoutPanel x:Name="lp_Commands_Workspace" Caption="Workspace" 
+                                          ItemWidth="300">
+
+                            <uiuc:wucCommandsWorkspace x:Name="wucCommandsWorkspace" />
+                            
+                        </dxdo:LayoutPanel>-->
+
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Quality" Caption="Quality" 
+                                          ItemWidth="300" MinWidth="275" MaxWidth="325">
+
+                            <TextBlock Text="TODO: uiuc:wucCommandsQuality" />
+                            <!--<uiuc:wucCommandsQuality x:Name="wucCommandsQuality" />-->
+
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Design" Caption="Design" 
+                                          ItemWidth="300" MinWidth="275" MaxWidth="325">
+
+                            <TextBlock Text="TODO: uiuc:wucCommandsDesign" />
+                            <!--<uiuc:wucCommandsDesign x:Name="wucCommandsDesign" />-->
+
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Performance" Caption="Performance" 
+                                          ItemWidth="300" MinWidth="275" MaxWidth="325">
+
+                            <TextBlock Text="TODO: uiuc:wucCommandsPerformance" />
+                            <!--<uiuc:wucCommandsPerformance x:Name="wucCommandsPerformance" />-->
+
+                        </dxdo:LayoutPanel>
+
+                    </dxdo:AutoHideGroup>
+
+                    <dxdo:AutoHideGroup DockType="Bottom">
+
                     </dxdo:AutoHideGroup>
 
                 </dxdo:DockLayoutManager.AutoHideGroups>
 
             </dxdo:DockLayoutManager>
 
+            <!--  Use this if you have simple Content -->
+
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer" Orientation="Vertical">
-            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.StatusBarRegion}" />
+        <dxlc:LayoutGroup Name="lg_Footer"
+                        VerticalAlignment="Top">
             <Label Content="lg_Footer Stuff Goes Here" />
         </dxlc:LayoutGroup>
 

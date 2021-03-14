@@ -1,0 +1,83 @@
+﻿<ResourceDictionary      
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"    
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"     
+    xmlns:local="clr-namespace:VNCCodeCommandConsole"
+    xmlns:d="http://schemas.microsoft.com/expression/interactivedesigner/2006" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" >
+
+    <Style x:Key="DocLayoutManagerStyle">
+        <Setter Property="dxdo:DockLayoutManager.AutoHideExpandMode" Value="MouseDown" />
+        <!--<Setter Property="dxdo:DockLayoutManager.ToolTip" Value="DLM ToolTip" />-->
+    </Style>
+        
+    <Style x:Key="AdminAutoHideSize">
+        <Setter Property="dxdo:AutoHideGroup.AutoHideSize" Value="200,200" />
+    </Style>
+
+    <Style x:Key="AutoHideGroup_Left" BasedOn="{StaticResource AdminAutoHideSize}">
+        <!--<Setter Property="dxdo:AutoHideGroup.AutoHideSize" Value="125,125" />-->
+        <Setter Property="dxdo:AutoHideGroup.DockType" Value="Left" />
+        <Setter Property="dxdo:AutoHideGroup.AutoHideSpeed" Value="{Binding Path=(local:Common.AutoHideGroupSpeed)}" />
+        <!--<Setter Property="dxdo:AutoHideGroup.AutoHideSpeed" Value="{Binding Source={x:Static local:Common.AutoHideGroupSpeed}}" />-->
+        <Setter Property="dxdo:AutoHideGroup.ToolTip" Value="AHG Left ToolTip" />
+    </Style>
+
+    <Style x:Key="AutoHideGroup_Top">
+        <Setter Property="dxdo:AutoHideGroup.AutoHideSize" Value="125,125" />
+        <Setter Property="dxdo:AutoHideGroup.DockType" Value="Top" />
+        <Setter Property="dxdo:AutoHideGroup.AutoHideSpeed" Value="250" />
+    </Style>
+
+    <Style x:Key="AutoHideGroup_Right">
+        <Setter Property="dxdo:AutoHideGroup.AutoHideSize" Value="125,125" />
+        <Setter Property="dxdo:AutoHideGroup.DockType" Value="Right" />
+        <Setter Property="dxdo:AutoHideGroup.AutoHideSpeed" Value="250" />
+    </Style>
+
+    <Style x:Key="AutoHideGroup_Bottom">
+        <Setter Property="dxdo:AutoHideGroup.AutoHideSize" Value="125,125" />
+        <Setter Property="dxdo:AutoHideGroup.DockType" Value="Bottom" />
+        <Setter Property="dxdo:AutoHideGroup.AutoHideSpeed" Value="250" />
+    </Style>
+    
+    <Style x:Key="AdminAutoHideGroup">
+        <Setter Property="dxdo:AutoHideGroup.AutoHideSize" Value="125,125" />
+        <Setter Property="dxdo:AutoHideGroup.DockType" Value="Bottom" />
+        <Setter Property="dxdo:AutoHideGroup.AutoHideSpeed" Value="250" />
+    </Style>
+
+    <Style x:Key="AutoHideGroup_Save">
+        <Setter Property="dxdo:AutoHideGroup.AllowClose" Value="False" />
+        <Setter Property="dxdo:AutoHideGroup.AutoHideSize" Value="125,125" />
+        <Setter Property="dxdo:AutoHideGroup.DockType" Value="Top" />
+        <Setter Property="dxdo:AutoHideGroup.AutoHideSpeed" Value="200" />
+    </Style>
+
+    <!--<ControlTemplate x:Key="AutoHideGroups" >
+
+        <Grid>
+
+            <dxdo:AutoHideGroup Name="ahg_Left"
+                                Style="{StaticResource AutoHideGroup_Left}"  >
+
+            </dxdo:AutoHideGroup>
+
+            <dxdo:AutoHideGroup x:Name="ahg_Top" 
+                                Style="{StaticResource AutoHideGroup_Top}"  >
+
+            </dxdo:AutoHideGroup>
+
+            <dxdo:AutoHideGroup x:Name="ahg_Right" Style="{StaticResource AutoHideGroup_Right}" />
+
+            <dxdo:AutoHideGroup x:Name="ahg_Bottom" Style="{StaticResource AutoHideGroup_Bottom}" />
+
+        </Grid>
+
+    </ControlTemplate>-->
+    
+</ResourceDictionary>

@@ -1,0 +1,1214 @@
+﻿<ResourceDictionary    
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"    
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"         
+    xmlns:local="clr-namespace:VNCCodeCommandConsole"
+    xmlns:d="http://schemas.microsoft.com/expression/interactivedesigner/2006" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" >
+
+    <Style x:Key="Header_ActiveEndDate" >
+        <Setter Property="dxg:GridColumn.Header" Value="Active End" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+    
+    <Style x:Key="Header_ActiveEndTimeOfDay" >
+        <Setter Property="dxg:GridColumn.Header" Value="End Time Of Day" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+    
+    <Style x:Key="Header_ActiveStartDate" >
+        <Setter Property="dxg:GridColumn.Header" Value="Active Start" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+
+    <Style x:Key="Header_ActiveStartTimeOfDay" >
+        <Setter Property="dxg:GridColumn.Header" Value="Start Time Of Day" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+
+    <Style x:Key="Header_ADDomain" >
+        <Setter Property="dxg:GridColumn.Header" Value="AD Domain" />
+        <Setter Property="dxg:GridColumn.Width" Value="190" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_ADDomainName" >
+        <Setter Property="dxg:GridColumn.Header" Value="AD Domain" />
+        <Setter Property="dxg:GridColumn.Width" Value="190" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_ADDomain_ID" >
+        <Setter Property="dxg:GridColumn.Header" Value="AD Domain ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+
+    <Style x:Key="Header_AlertType">
+        <Setter Property="dxg:GridColumn.Header" Value="AlertType" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_AvailableSpace">
+        <Setter Property="dxg:GridColumn.Header" Value="Avail Space" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_BrowserStartMode" >
+        <Setter Property="dxg:GridColumn.Header" Value="Browser StartMode" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_BytesReadFromDisk" >
+        <Setter Property="dxg:GridColumn.Header" Value="Bytes Read" />
+        <Setter Property="dxg:GridColumn.Width" Value="85" />
+    </Style>
+
+    <Style x:Key="Header_BytesWrittenToDisk">
+        <Setter Property="dxg:GridColumn.Header" Value="Bytes Written" />
+        <Setter Property="dxg:GridColumn.Width" Value="85" />
+    </Style>
+
+    <Style x:Key="Header_Catalog">
+        <Setter Property="dxg:GridColumn.Header" Value="Catalog" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_Category">
+        <Setter Property="dxg:GridColumn.Header" Value="Category" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_CategoryName">
+        <Setter Property="dxg:GridColumn.Header" Value="Category Name" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_CategoryType">
+        <Setter Property="dxg:GridColumn.Header" Value="Category Type" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_CodeName">
+        <Setter Property="dxg:GridColumn.Header" Value="CodeName" />
+        <Setter Property="dxg:GridColumn.Width" Value="120" />
+    </Style>
+
+    <Style x:Key="Header_Collation">
+        <Setter Property="dxg:GridColumn.Header" Value="Collation" />
+        <Setter Property="dxg:GridColumn.Width" Value="150" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_CountResetDate">
+        <Setter Property="dxg:GridColumn.Header" Value="Count Reset" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+    
+    <Style x:Key="Header_CreateDate">
+        <Setter Property="dxg:GridColumn.Header" Value="Created" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+
+    <Style x:Key="Header_CredentialID">
+        <Setter Property="dxg:GridColumn.Header" Value="Credential ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+
+    <Style x:Key="Header_CredentialIdentity">
+        <Setter Property="dxg:GridColumn.Header" Value="Credential Identity" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+    
+    <Style x:Key="Header_CredentialName">
+        <Setter Property="dxg:GridColumn.Header" Value="Credential Name" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_CurrentRunRetryAttempt">
+        <Setter Property="dxg:GridColumn.Header" Value="Current Run Retry" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_CurrentRunStatus">
+        <Setter Property="dxg:GridColumn.Header" Value="Current Run Status" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_DataAccess">
+        <Setter Property="dxg:GridColumn.Header" Value="Data Access" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+    
+    <Style x:Key="Header_Database_ID">
+        <Setter Property="dxg:GridColumn.Header" Value="Database ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+
+    <Style x:Key="Header_DataBaseGuid">
+        <Setter Property="dxg:GridColumn.Header" Value="Database GUID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+
+    <Style x:Key="Header_DatabaseName">
+        <Setter Property="dxg:GridColumn.Header" Value="Database" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_DatabaseUserName">
+        <Setter Property="dxg:GridColumn.Header" Value="Database User" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+    
+    <Style x:Key="Header_DataSource">
+        <Setter Property="dxg:GridColumn.Header" Value="Data Source" />
+        <Setter Property="dxg:GridColumn.Width" Value="120" />
+    </Style>
+    
+    <Style x:Key="Header_DateCreated">
+        <Setter Property="dxg:GridColumn.Header" Value="Created" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+    
+    <Style x:Key="Header_DataSpaceUsage">
+        <Setter Property="dxg:GridColumn.Header" Value="Data Space (MB)" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+
+    <Style x:Key="Header_DataSpaceUsed">
+        <Setter Property="dxg:GridColumn.Header" Value="Data Space (MB)" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+
+    <Style x:Key="Header_DataType">
+        <Setter Property="dxg:GridColumn.Header" Value="Data Type" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+    
+    <Style x:Key="Header_DateLastModified">
+        <Setter Property="dxg:GridColumn.Header" Value="Last Modified" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+
+    <Style x:Key="Header_DBDataFile_ID">
+        <Setter Property="dxg:GridColumn.Header" Value="DBDataFile ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+    
+    <Style x:Key="Header_DBLogFile_ID">
+        <Setter Property="dxg:GridColumn.Header" Value="DBLogFile ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+
+    <Style x:Key="Header_DBTable_ID">
+        <Setter Property="dxg:GridColumn.Header" Value="DBTable ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+    
+    <Style x:Key="Header_DBView_ID">
+        <Setter Property="dxg:GridColumn.Header" Value="DBView ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+
+    <Style x:Key="Header_DC_HostName">
+        <Setter Property="dxg:GridColumn.Header" Value="Domain Controller" />
+        <Setter Property="dxg:GridColumn.Width" Value="120" />
+    </Style>
+
+    <Style x:Key="Header_DefaultDatabase">
+        <Setter Property="dxg:GridColumn.Header" Value="Default DB" />
+        <Setter Property="dxg:GridColumn.Width" Value="120" />
+    </Style>
+
+    <Style x:Key="Header_DefaultDatabaseExpandMask">
+        <Setter Property="dxg:GridColumn.Header" Value="Database ExpandMask" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+    
+    <Style x:Key="Header_DefaultFileGroup">
+        <Setter Property="dxg:GridColumn.Header" Value="Default FileGroup" />
+        <Setter Property="dxg:GridColumn.Width" Value="110" />
+    </Style>
+
+    <Style x:Key="Header_DefaultInstanceExpandMask">
+        <Setter Property="dxg:GridColumn.Header" Value="Instance ExpandMask" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+    
+    <Style x:Key="Header_DefaultJobServerExpandMask">
+        <Setter Property="dxg:GridColumn.Header" Value="JobServer ExpandMask" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+    
+    <Style x:Key="Header_Description">
+        <Setter Property="dxg:GridColumn.Header" Value="Description" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+    
+    <Style x:Key="Header_Edition" >
+        <Setter Property="dxg:GridColumn.Header" Value="Edition" />
+        <Setter Property="dxg:GridColumn.Width" Value="110" />
+    </Style>
+
+    <Style x:Key="Header_EmailAddress" >
+        <Setter Property="dxg:GridColumn.Header" Value="Edition" />
+        <Setter Property="dxg:GridColumn.Width" Value="110" />
+    </Style>
+
+    <Style x:Key="Header_Enabled" >
+        <Setter Property="dxg:GridColumn.Header" Value="Enabled" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_EnlistDate" >
+        <Setter Property="dxg:GridColumn.Header" Value="Enlist Date" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+    
+    <Style x:Key="Header_EngineEdition" >
+        <Setter Property="dxg:GridColumn.Header" Value="Engine Edition" />
+        <Setter Property="dxg:GridColumn.Width" Value="110" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_Environment" >
+        <Setter Property="dxg:GridColumn.Header" Value="Environment" />
+        <Setter Property="dxg:GridColumn.Width" Value="115" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_EnvironmentName" >
+        <Setter Property="dxg:GridColumn.Header" Value="Environment" />
+        <Setter Property="dxg:GridColumn.Width" Value="115" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_ErrorLogFile">
+        <Setter Property="dxg:GridColumn.Header" Value="ErrorLog" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+    
+    <Style x:Key="Header_FileGroup">
+        <Setter Property="dxg:GridColumn.Header" Value="FileGroup" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_FileGroup_ID">
+        <Setter Property="dxg:GridColumn.Header" Value="FileGroup ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+    
+    <Style x:Key="Header_FileName">
+        <Setter Property="dxg:GridColumn.Header" Value="FileName" />
+        <Setter Property="dxg:GridColumn.Width" Value="250" />
+    </Style>
+
+    <Style x:Key="Header_FrequencyInterval" >
+        <Setter Property="dxg:GridColumn.Header" Value="Interval" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_FrequencyRecurrenceFactor" >
+        <Setter Property="dxg:GridColumn.Header" Value="Recurence Factor" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_FrequencyRelativeIntervals" >
+        <Setter Property="dxg:GridColumn.Header" Value="Relative Intervals" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_FrequencySubDayInterval" >
+        <Setter Property="dxg:GridColumn.Header" Value="SubDay Interval" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_FrequencySubDayTypes" >
+        <Setter Property="dxg:GridColumn.Header" Value="SubDay Types" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_FrequencyTypes" >
+        <Setter Property="dxg:GridColumn.Header" Value="Frequency Types" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_Growth" >
+        <Setter Property="dxg:GridColumn.Header" Value="Growth" />
+        <Setter Property="dxg:GridColumn.Width" Value="60" />
+    </Style>
+
+    <Style x:Key="Header_GrowthType" >
+        <Setter Property="dxg:GridColumn.Header" Value="Growth Type" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_HasDBAccess">
+        <Setter Property="dxg:GridColumn.Header" Value="Has DBAccess" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_HasIndex">
+        <Setter Property="dxg:GridColumn.Header" Value="Has Index" />
+        <Setter Property="dxg:GridColumn.Width" Value="65" />
+    </Style>
+
+    <Style x:Key="Header_HasSchedule">
+        <Setter Property="dxg:GridColumn.Header" Value="Has Schedule" />
+        <Setter Property="dxg:GridColumn.Width" Value="60" />
+    </Style>
+
+    <Style x:Key="Header_HasServer">
+        <Setter Property="dxg:GridColumn.Header" Value="Has Server" />
+        <Setter Property="dxg:GridColumn.Width" Value="60" />
+    </Style>
+
+    <Style x:Key="Header_HasStep">
+        <Setter Property="dxg:GridColumn.Header" Value="Has Step" />
+        <Setter Property="dxg:GridColumn.Width" Value="60" />
+    </Style>
+    
+    <Style x:Key="Header_HostLoginName">
+        <Setter Property="dxg:GridColumn.Header" Value="Host Login" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+
+    <Style x:Key="Header_ID">
+        <Setter Property="dxg:GridColumn.Header" Value="ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+
+    <Style x:Key="Header_ID_Database">
+        <Setter Property="dxg:GridColumn.Header" Value="Database ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+
+    <Style x:Key="Header_ID_DataFile">
+        <Setter Property="dxg:GridColumn.Header" Value="DataFile ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+
+    <Style x:Key="Header_ID_DB">
+        <Setter Property="dxg:GridColumn.Header" Value="DB ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+
+    <Style x:Key="Header_ID_JobSchedule">
+        <Setter Property="dxg:GridColumn.Header" Value="Job Schedule ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+
+    <Style x:Key="Header_ID_LinkedServer">
+        <Setter Property="dxg:GridColumn.Header" Value="LinkedServer ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+    
+    <Style x:Key="Header_ID_Login">
+        <Setter Property="dxg:GridColumn.Header" Value="Login ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+
+    <Style x:Key="Header_ID_Operator">
+        <Setter Property="dxg:GridColumn.Header" Value="Login ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+    
+    <Style x:Key="Header_ID_ProxyAccount">
+        <Setter Property="dxg:GridColumn.Header" Value="ProxyAccount ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+    
+    <Style x:Key="Header_ID_TargetServer">
+        <Setter Property="dxg:GridColumn.Header" Value="TargetServer ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+    
+    <Style x:Key="Header_Identity">
+        <Setter Property="dxg:GridColumn.Header" Value="Identity" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+    
+    <Style x:Key="Header_IndexSpaceUsage">
+        <Setter Property="dxg:GridColumn.Header" Value="Index Space (MB)" />
+        <Setter Property="dxg:GridColumn.Width" Value="110" />
+    </Style>
+
+    <Style x:Key="Header_Instance_ID">
+        <Setter Property="dxg:GridColumn.Header" Value="Instance ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+
+    <Style x:Key="Header_IPAddress" >
+        <Setter Property="dxg:GridColumn.Header" Value="IP Address" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+
+    <Style x:Key="Header_IPBase">
+        <Setter Property="dxg:GridColumn.Header" Value="IP Base" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_IPMask">
+        <Setter Property="dxg:GridColumn.Header" Value="IP Mask" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_IsClustered" >
+        <Setter Property="dxg:GridColumn.Header" Value="Clustered" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_IsEnabled" >
+        <Setter Property="dxg:GridColumn.Header" Value="Enabled" />
+        <Setter Property="dxg:GridColumn.Width" Value="60" />
+    </Style>
+    
+    <Style x:Key="Header_IsFixedRole" >
+        <Setter Property="dxg:GridColumn.Header" Value="Fixed Role" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_IsForeignKey" >
+        <Setter Property="dxg:GridColumn.Header" Value="Foreign Key" />
+        <Setter Property="dxg:GridColumn.Width" Value="75" />
+    </Style>
+    
+    <Style x:Key="Header_IsMonitored" >
+        <Setter Property="dxg:GridColumn.Header" Value="Monitored" />
+        <Setter Property="dxg:GridColumn.Width" Value="50" />
+    </Style>
+
+    <Style x:Key="Header_IsMonitored_Instance" >
+        <Setter Property="dxg:GridColumn.Header" Value="Monitored Instance" />
+        <Setter Property="dxg:GridColumn.Width" Value="50" />
+    </Style>
+
+    <Style x:Key="Header_IsPrimaryFile" >
+        <Setter Property="dxg:GridColumn.Header" Value="Is Primary" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_IsPromotionofDistributuedTransactionsForRPC" >
+        <Setter Property="dxg:GridColumn.Header" Value="Is Promo of Dist Trans for RPC" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+    
+    <Style x:Key="Header_IsSystemObject" >
+        <Setter Property="dxg:GridColumn.Header" Value="System Object" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_JobID" >
+        <Setter Property="dxg:GridColumn.Header" Value="Job ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="140" />
+    </Style>
+
+    <Style x:Key="Header_JobCount" >
+        <Setter Property="dxg:GridColumn.Header" Value="Job Count" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+    
+    <Style x:Key="Header_JobName" >
+        <Setter Property="dxg:GridColumn.Header" Value="Job" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+       
+    <Style x:Key="Header_JobServer_ID" >
+        <Setter Property="dxg:GridColumn.Header" Value="JobServer ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+
+    <Style x:Key="Header_JobType" >
+        <Setter Property="dxg:GridColumn.Header" Value="JobType" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_JSJob_ID" >
+        <Setter Property="dxg:GridColumn.Header" Value="Job ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+    
+    <Style x:Key="Header_LastBackupDate" >
+        <Setter Property="dxg:GridColumn.Header" Value="Last Backup" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+
+    <Style x:Key="Header_LastDifferentialBackupDate" >
+        <Setter Property="dxg:GridColumn.Header" Value="Last Differential Backup" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+    
+    <Style x:Key="Header_LastLogBackupDate" >
+        <Setter Property="dxg:GridColumn.Header" Value="Last Log Backup" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+
+    <Style x:Key="Header_LastNetSendDate" >
+        <Setter Property="dxg:GridColumn.Header" Value="Last Net Send" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+    
+    <Style x:Key="Header_LastOccurrenceDate" >
+        <Setter Property="dxg:GridColumn.Header" Value="Last Occurance" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+
+    <Style x:Key="Header_LastPagerDate" >
+        <Setter Property="dxg:GridColumn.Header" Value="Last Pager" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+    
+    <Style x:Key="Header_LastPollDate" >
+        <Setter Property="dxg:GridColumn.Header" Value="Last Poll" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+
+    <Style x:Key="Header_LastResponseDate" >
+        <Setter Property="dxg:GridColumn.Header" Value="Last Response" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+
+    <Style x:Key="Header_LastRunDate" >
+        <Setter Property="dxg:GridColumn.Header" Value="Last Run" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+
+    <Style x:Key="Header_LastRunDuration" >
+        <Setter Property="dxg:GridColumn.Header" Value="Last Run Duration" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+    
+    <Style x:Key="Header_LastRunOutcome" >
+        <Setter Property="dxg:GridColumn.Header" Value="Last Outcome" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_LastRunRetries" >
+        <Setter Property="dxg:GridColumn.Header" Value="Last Retries" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+    
+    <Style x:Key="Header_LocalTime" >
+        <Setter Property="dxg:GridColumn.Header" Value="LocalTime" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_Location" >
+        <Setter Property="dxg:GridColumn.Header" Value="Location" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+    
+    <Style x:Key="Header_Login" >
+        <Setter Property="dxg:GridColumn.Header" Value="Login" />
+        <Setter Property="dxg:GridColumn.Width" Value="120" />
+    </Style>
+
+    <Style x:Key="Header_LoginType" >
+        <Setter Property="dxg:GridColumn.Header" Value="Login Type" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_MaximumHistoryRows">
+        <Setter Property="dxg:GridColumn.Header" Value="Max History Rows" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_MaximumJobHistoryRows">
+        <Setter Property="dxg:GridColumn.Header" Value="Max Job History Rows" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+    
+    <Style x:Key="Header_MaxSize">
+        <Setter Property="dxg:GridColumn.Header" Value="Max Size (MB)" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_MethodName">
+        <Setter Property="dxg:GridColumn.Header" Value="Method" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_MsxAccountCredentialName">
+        <Setter Property="dxg:GridColumn.Header" Value="Msx Account Credential" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_MsxAccountName">
+        <Setter Property="dxg:GridColumn.Header" Value="Msx Account" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_MsxServerName">
+        <Setter Property="dxg:GridColumn.Header" Value="Msx Server" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_Name_Column">
+        <Setter Property="dxg:GridColumn.Header" Value="Column" />
+        <Setter Property="dxg:GridColumn.Width" Value="160" />
+    </Style>
+    
+    <Style x:Key="Header_Name_Database">
+        <Setter Property="dxg:GridColumn.Header" Value="Database" />
+        <Setter Property="dxg:GridColumn.Width" Value="180" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />
+    </Style>
+
+    <Style x:Key="Header_Name_DataFile">
+        <Setter Property="dxg:GridColumn.Header" Value="Data File" />
+        <Setter Property="dxg:GridColumn.Width" Value="160" />        
+    </Style>
+   
+    <Style x:Key="Header_Name_FileGroup" >
+        <Setter Property="dxg:GridColumn.Header" Value="FileGroup" />
+        <Setter Property="dxg:GridColumn.Width" Value="110" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+       
+    <Style x:Key="Header_Name_Instance">
+        <Setter Property="dxg:GridColumn.Header" Value="Instance" />
+        <Setter Property="dxg:GridColumn.Width" Value="180" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+   
+    <Style x:Key="Header_Name_JobSchedule">
+        <Setter Property="dxg:GridColumn.Header" Value="Job Schedule" />
+        <Setter Property="dxg:GridColumn.Width" Value="150" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_Name_JobServer">
+        <Setter Property="dxg:GridColumn.Header" Value="Job Server" />
+        <Setter Property="dxg:GridColumn.Width" Value="150" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_Name_JSAlertCategory">
+        <Setter Property="dxg:GridColumn.Header" Value="AlertCategory" />
+        <Setter Property="dxg:GridColumn.Width" Value="150" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_Name_JSAlert">
+        <Setter Property="dxg:GridColumn.Header" Value="Alert" />
+        <Setter Property="dxg:GridColumn.Width" Value="150" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_Name_JSJobCategory">
+        <Setter Property="dxg:GridColumn.Header" Value="Job Category" />
+        <Setter Property="dxg:GridColumn.Width" Value="160" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_Name_JSJob">
+        <Setter Property="dxg:GridColumn.Header" Value="Job" />
+        <Setter Property="dxg:GridColumn.Width" Value="150" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_Name_JSJobStep">
+        <Setter Property="dxg:GridColumn.Header" Value="Job Step" />
+        <Setter Property="dxg:GridColumn.Width" Value="150" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_Name_JSOperator">
+        <Setter Property="dxg:GridColumn.Header" Value="Operator" />
+        <Setter Property="dxg:GridColumn.Width" Value="150" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_Name_JSOperatorCategory">
+        <Setter Property="dxg:GridColumn.Header" Value="Operator Category" />
+        <Setter Property="dxg:GridColumn.Width" Value="150" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_Name_JSProxyAccount">
+        <Setter Property="dxg:GridColumn.Header" Value="Proxy Account" />
+        <Setter Property="dxg:GridColumn.Width" Value="150" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_Name_JSSharedSchedule">
+        <Setter Property="dxg:GridColumn.Header" Value="SharedSchedule" />
+        <Setter Property="dxg:GridColumn.Width" Value="150" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_Name_JSTargetServer">
+        <Setter Property="dxg:GridColumn.Header" Value="TargetServer" />
+        <Setter Property="dxg:GridColumn.Width" Value="150" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_Name_JSTargetServerGroups">
+        <Setter Property="dxg:GridColumn.Header" Value="TargetServer Group" />
+        <Setter Property="dxg:GridColumn.Width" Value="140" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_Name_LinkedServer">
+        <Setter Property="dxg:GridColumn.Header" Value="Linked Server" />
+        <Setter Property="dxg:GridColumn.Width" Value="150" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_Name_LogFile">
+        <Setter Property="dxg:GridColumn.Header" Value="Log File" />
+        <Setter Property="dxg:GridColumn.Width" Value="150" />
+    </Style>
+
+    <Style x:Key="Header_Name_Login">
+        <Setter Property="dxg:GridColumn.Header" Value="Login" />
+        <Setter Property="dxg:GridColumn.Width" Value="180" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+   
+    <Style x:Key="Header_Name_Role">
+        <Setter Property="dxg:GridColumn.Header" Value="DBRole" />
+        <Setter Property="dxg:GridColumn.Width" Value="200" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_Name_ServerRole">
+        <Setter Property="dxg:GridColumn.Header" Value="ServerRole" />
+        <Setter Property="dxg:GridColumn.Width" Value="120" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_Name_StoredProcedure">
+        <Setter Property="dxg:GridColumn.Header" Value="Stored Procedure" />
+        <Setter Property="dxg:GridColumn.Width" Value="200" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_Name_Table">
+        <Setter Property="dxg:GridColumn.Header" Value="Table" />
+        <Setter Property="dxg:GridColumn.Width" Value="175" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_Name_Trigger">
+        <Setter Property="dxg:GridColumn.Header" Value="Trigger" />
+        <Setter Property="dxg:GridColumn.Width" Value="170" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_Name_User">
+        <Setter Property="dxg:GridColumn.Header" Value="User" />
+        <Setter Property="dxg:GridColumn.Width" Value="190" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_Name_UserDefinedFunction">
+        <Setter Property="dxg:GridColumn.Header" Value="User Defined Function" />
+        <Setter Property="dxg:GridColumn.Width" Value="170" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_Name_View">
+        <Setter Property="dxg:GridColumn.Header" Value="View" />
+        <Setter Property="dxg:GridColumn.Width" Value="170" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_NetName">
+        <Setter Property="dxg:GridColumn.Header" Value="Server" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_NetSendAddress">
+        <Setter Property="dxg:GridColumn.Header" Value="Net Send Address" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_NextRunDate">
+        <Setter Property="dxg:GridColumn.Header" Value="Next Run" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+
+    <Style x:Key="Header_NextScheduleRunId">
+        <Setter Property="dxg:GridColumn.Header" Value="Next Schedule Run ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+
+    <Style x:Key="Header_Notes">
+        <Setter Property="dxg:GridColumn.Header" Value="Notes" />
+        <Setter Property="dxg:GridColumn.Width" Value="200" />
+    </Style>
+
+    <Style x:Key="Header_NotFound">
+        <Setter Property="dxg:GridColumn.Header" Value="Missing" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+    
+    <Style x:Key="Header_NotificationMessage">
+        <Setter Property="dxg:GridColumn.Header" Value="Notification Message" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_Nullable">
+        <Setter Property="dxg:GridColumn.Header" Value="Nullable" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_NumberOfDiskReads" >
+        <Setter Property="dxg:GridColumn.Header" Value="# Reads" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_NumberOfDiskWrites">
+        <Setter Property="dxg:GridColumn.Header" Value="# Writes" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_OccurrenceCount" >
+        <Setter Property="dxg:GridColumn.Header" Value="Occurrence Count" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_OperatorsEmail" >
+        <Setter Property="dxg:GridColumn.Header" Value="Operator Email" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_OriginatorsEmail" >
+        <Setter Property="dxg:GridColumn.Header" Value="Originator Email" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+    
+    <Style x:Key="Header_OSVersion" >
+        <Setter Property="dxg:GridColumn.Header" Value="OS Version" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_Owner" >
+        <Setter Property="dxg:GridColumn.Header" Value="Owner" />
+        <Setter Property="dxg:GridColumn.Width" Value="175" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_OwnerLoginName" >
+        <Setter Property="dxg:GridColumn.Header" Value="Owner Login" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_PagerAddress" >
+        <Setter Property="dxg:GridColumn.Header" Value="Pager Address" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_PagerDays" >
+        <Setter Property="dxg:GridColumn.Header" Value="Pager Days" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+    
+    <Style x:Key="Header_PendingInstructions" >
+        <Setter Property="dxg:GridColumn.Header" Value="PendingInstructions" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+    
+    <Style x:Key="Header_PerfMonMode" >
+        <Setter Property="dxg:GridColumn.Header" Value="PerfMon Mode" />
+        <Setter Property="dxg:GridColumn.Width" Value="85" />
+    </Style>
+    
+    <Style x:Key="Header_PhysicalMemory" >
+        <Setter Property="dxg:GridColumn.Header" Value="Memory (GB)" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_Platform" >
+        <Setter Property="dxg:GridColumn.Header" Value="Platform" />
+        <Setter Property="dxg:GridColumn.Width" Value="85" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_PollingInterval" >
+        <Setter Property="dxg:GridColumn.Header" Value="Polling Interval" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_Port">
+        <Setter Property="dxg:GridColumn.Header" Value="Port" />
+        <Setter Property="dxg:GridColumn.Width" Value="40" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_Product" >
+        <Setter Property="dxg:GridColumn.Header" Value="Product" />
+        <Setter Property="dxg:GridColumn.Width" Value="120" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_ProductName" >
+        <Setter Property="dxg:GridColumn.Header" Value="Product Name" />
+        <Setter Property="dxg:GridColumn.Width" Value="120" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+    
+    <Style x:Key="Header_Processors" >
+        <Setter Property="dxg:GridColumn.Header" Value="Processors" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_ProductLevel" >
+        <Setter Property="dxg:GridColumn.Header" Value="Level" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_ProviderName" >
+        <Setter Property="dxg:GridColumn.Header" Value="Provider Name" />
+        <Setter Property="dxg:GridColumn.Width" Value="120" />
+    </Style>
+
+    <Style x:Key="Header_ProviderString" >
+        <Setter Property="dxg:GridColumn.Header" Value="Provider String" />
+        <Setter Property="dxg:GridColumn.Width" Value="120" />
+    </Style>
+
+    <Style x:Key="Header_ProxyName" >
+        <Setter Property="dxg:GridColumn.Header" Value="Proxy" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+    
+    <Style x:Key="Header_Publisher" >
+        <Setter Property="dxg:GridColumn.Header" Value="Publisher" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_RecoveryModel" >
+        <Setter Property="dxg:GridColumn.Header" Value="Recovery Model" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+    
+    <Style x:Key="Header_RowCount" >
+        <Setter Property="dxg:GridColumn.Header" Value="Rows" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_RTM" >
+        <Setter Property="dxg:GridColumn.Header" Value="RTM" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+    
+    <Style x:Key="Header_SaturdayPagerEndTime" >
+        <Setter Property="dxg:GridColumn.Header" Value="Saturday Pager End" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_SaturdayPagerStartTime" >
+        <Setter Property="dxg:GridColumn.Header" Value="Saturday Pager Start" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+    
+    <Style x:Key="Header_SecurityZone" >
+        <Setter Property="dxg:GridColumn.Header" Value="Zone" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+        <Setter Property="dxg:GridColumn.FilterPopupMode" Value="CheckedList" />        
+    </Style>
+
+    <Style x:Key="Header_Server" >
+        <Setter Property="dxg:GridColumn.Header" Value="Server" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>    
+    <Style x:Key="Header_Server_ID" >
+        <Setter Property="dxg:GridColumn.Header" Value="Server ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+    
+    <Style x:Key="Header_ServiceAccount" >
+        <Setter Property="dxg:GridColumn.Header" Value="Service Account" />
+        <Setter Property="dxg:GridColumn.Width" Value="150" />
+    </Style>
+
+    <Style x:Key="Header_ServiceInstanceId" >
+        <Setter Property="dxg:GridColumn.Header" Value="Service Instance" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+    
+    <Style x:Key="Header_ServiceName" >
+        <Setter Property="dxg:GridColumn.Header" Value="Service Name" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+
+    <Style x:Key="Header_Severity">
+        <Setter Property="dxg:GridColumn.Header" Value="Severity" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_Size">
+        <Setter Property="dxg:GridColumn.Header" Value="Size (MB)" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_Size_File">
+        <Setter Property="dxg:GridColumn.Header" Value="Size (KB)" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_SnapShotDate">
+        <Setter Property="dxg:GridColumn.Header" Value="SnapShot Date" />
+        <Setter Property="dxg:GridColumn.Width" Value="145" />
+    </Style>
+
+    <Style x:Key="Header_SnapShotDuration">
+        <Setter Property="dxg:GridColumn.Header" Value="SS Duration" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_SnapShotError">
+        <Setter Property="dxg:GridColumn.Header" Value="SS Error" />
+        <Setter Property="dxg:GridColumn.Width" Value="160" />
+    </Style>
+
+    <Style x:Key="Header_SP1" >
+        <Setter Property="dxg:GridColumn.Header" Value="SP1" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_SP2" >
+        <Setter Property="dxg:GridColumn.Header" Value="SP2" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_SP3" >
+        <Setter Property="dxg:GridColumn.Header" Value="SP3" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_SP4" >
+        <Setter Property="dxg:GridColumn.Header" Value="SP4" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_SpaceAvailable">
+        <Setter Property="dxg:GridColumn.Header" Value="Space Avail (MB)" />
+        <Setter Property="dxg:GridColumn.Width" Value="100" />
+    </Style>
+
+    <Style x:Key="Header_StartStepID">
+        <Setter Property="dxg:GridColumn.Header" Value="Start Step" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_State">
+        <Setter Property="dxg:GridColumn.Header" Value="State" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_Status">
+        <Setter Property="dxg:GridColumn.Header" Value="Status" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_StoredProcedure_ID">
+        <Setter Property="dxg:GridColumn.Header" Value="StoredProcedure ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+
+    <Style x:Key="Header_SundayPagerEndTime" >
+        <Setter Property="dxg:GridColumn.Header" Value="Sunday Pager End" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_SundayPagerStartTime" >
+        <Setter Property="dxg:GridColumn.Header" Value="Sunday Pager Start" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+    
+    <Style x:Key="Header_Table_ID">
+        <Setter Property="dxg:GridColumn.Header" Value="Table ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="235" />
+    </Style>
+    
+    <Style x:Key="Header_TextBody">
+        <Setter Property="dxg:GridColumn.Header" Value="Body" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_TextHeader">
+        <Setter Property="dxg:GridColumn.Header" Value="Header" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_Total_DataSpaceUsage">
+        <Setter Property="dxg:GridColumn.Header" Value="Total DataSpace (GB)" />
+        <Setter Property="dxg:GridColumn.Width" Value="125" />
+    </Style>
+
+    <Style x:Key="Header_Total_IndexSpaceUsage">
+        <Setter Property="dxg:GridColumn.Header" Value="Total IndexSpace (GB)" />
+        <Setter Property="dxg:GridColumn.Width" Value="125" />
+    </Style>
+
+    <Style x:Key="Header_Total_Size">
+        <Setter Property="dxg:GridColumn.Header" Value="Total Size (GB)" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_Total_SpaceAvailable">
+        <Setter Property="dxg:GridColumn.Header" Value="Total Available (GB)" />
+        <Setter Property="dxg:GridColumn.Width" Value="120" />
+    </Style>
+    
+    <Style x:Key="Header_UsedSpace">
+        <Setter Property="dxg:GridColumn.Header" Value="Used Space (MB)" />
+        <Setter Property="dxg:GridColumn.Width" Value="90" />
+    </Style>
+
+    <Style x:Key="Header_Version">
+        <Setter Property="dxg:GridColumn.Header" Value="Version" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_VersionNumber">
+        <Setter Property="dxg:GridColumn.Header" Value="Version" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+
+    <Style x:Key="Header_View_ID">
+        <Setter Property="dxg:GridColumn.Header" Value="View ID" />
+        <Setter Property="dxg:GridColumn.Width" Value="80" />
+    </Style>
+    
+    <Style x:Key="Header_VolumeFreeSpace">
+        <Setter Property="dxg:GridColumn.Header" Value="Volume Free Space (MB)" />
+        <Setter Property="dxg:GridColumn.Width" Value="120" />
+    </Style>
+
+    <Style x:Key="Header_WeekdayPagerEndTime" >
+        <Setter Property="dxg:GridColumn.Header" Value="Weekday Pager End" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_WeekdayPagerStartTime" >
+        <Setter Property="dxg:GridColumn.Header" Value="Weekday Pager Start" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_WmiEventNamespace" >
+        <Setter Property="dxg:GridColumn.Header" Value="Wmi Event Namespace" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+
+    <Style x:Key="Header_WmiEventQuery" >
+        <Setter Property="dxg:GridColumn.Header" Value="Wmi Event Query" />
+        <Setter Property="dxg:GridColumn.Width" Value="70" />
+    </Style>
+    
+</ResourceDictionary>
