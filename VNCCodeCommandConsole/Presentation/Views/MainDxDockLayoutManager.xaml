@@ -58,13 +58,10 @@
 
         <dxlc:LayoutGroup Name="lg_Body" >
 
-            <!-- Use this if you want a LayoutManager -->
-
             <dxdo:DockLayoutManager 
                 Name="lg_Body_dlm" dx:StyleManager.ApplyApplicationTheme="True" FontSize="12" >
 
                 <dxdo:LayoutGroup Name="lg_Body_dlm_lg"  AllowClose="False" AllowFloat="False" AllowDock="False"  >
-                    <!--<dxdo:LayoutPanel Name="lg_Body_dlm_lg_lpRoot" MaxHeight="1200" FontSize="12"-->
 
                     <dxdo:TabbedGroup ItemWidth="300" Name="tg_Left">
 
@@ -72,8 +69,9 @@
                                           AllowFloat="False" AllowClose="False" AllowDock="False" AllowHide="False"
                                           Style="{StaticResource FixedLayoutPanelMedium}" >
 
-                            <TextBlock Text="TODO: uiuc:wucCommandsFindVBSyntax" />
                             <!--<uiuc:wucCommandsFindVBSyntax x:Name="wucCommandsFindVBSyntax" />-->
+                            <!--<TextBlock Text="TODO: uiuc:wucCommandsFindVBSyntax" />-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CombinedMainRegion}" />
 
                         </dxdo:LayoutPanel>
 
@@ -81,17 +79,19 @@
                                           AllowFloat="False" AllowClose="False" 
                                           AllowDock="False" AllowHide="False"
                                           Style="{StaticResource FixedLayoutPanelMedium}" >
-
-                            <TextBlock Text="TODO: pv:FindCSSyntax" />
+                            
                             <!--<pv:FindCSSyntax x:Name="FindCSSyntax" />-->
+                            <!--<TextBlock Text="TODO: pv:FindCSSyntax" />-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CombinedMainRegion}" />
 
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel x:Name="lp_Commands_Find" Caption="Find Stuff" 
                                           Style="{StaticResource FixedLayoutPanelMedium}">
 
-                            <TextBlock Text="TODO: uiuc:wucCommandsFind" />
                             <!--<uiuc:wucCommandsFind x:Name="wucCommandsFind" />-->
+                            <!--<TextBlock Text="TODO: uiuc:wucCommandsFind" />-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CombinedMainRegion}" />
 
                         </dxdo:LayoutPanel>
 
@@ -120,10 +120,9 @@
 
                                 <dxlc:LayoutGroup  Header="Sources" x:Name="lg_CodeExplorerContext"  >
 
-                                    <!--<dxlc:LayoutItem>-->
-                                    <TextBlock Text="TODO: uiuc:wucCodeExplorerContext" />
                                     <!--<uiuc:wucCodeExplorerContext x:Name="wucCodeExplorerContext" />-->
-                                    <!--</dxlc:LayoutItem>-->
+                                    <!--<TextBlock Text="TODO: uiuc:wucCodeExplorerContext" />-->
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CombinedMainRegion}" />
 
                                 </dxlc:LayoutGroup>
 
@@ -135,9 +134,6 @@
                                                       VerticalScrollBarVisibility="Auto"
                                                   TextWrapping="Wrap"
                                                       HorizontalScrollBarVisibility="Auto"/>
-                                    <!--<dxlc:LayoutItem >
-
-                                    </dxlc:LayoutItem>-->
 
                                 </dxlc:LayoutGroup>
 
@@ -148,9 +144,6 @@
                                                       VerticalContentAlignment="Stretch"                                                      
                                                       VerticalScrollBarVisibility="Auto"
                                                       HorizontalScrollBarVisibility="Auto"   />
-                                    <!--<dxlc:LayoutItem>
-                                                   
-                                    </dxlc:LayoutItem>-->
 
                                 </dxlc:LayoutGroup>
 
@@ -161,10 +154,6 @@
                                                       VerticalContentAlignment="Stretch"                                                      
                                                       VerticalScrollBarVisibility="Auto"
                                                       HorizontalScrollBarVisibility="Auto"   />
-                                    <!--<dxlc:LayoutItem>
-                                                   
-                                    </dxlc:LayoutItem>-->
-
                                 </dxlc:LayoutGroup>
 
                                 <dxlc:LayoutGroup Header="Summary CRC ToFullString" Name="lg_CRCToFullString">
@@ -174,9 +163,6 @@
                                                       VerticalContentAlignment="Stretch"                                                      
                                                       VerticalScrollBarVisibility="Auto"
                                                       HorizontalScrollBarVisibility="Auto"   />
-                                    <!--<dxlc:LayoutItem>
-                                                   
-                                    </dxlc:LayoutItem>-->
 
                                 </dxlc:LayoutGroup>
 
@@ -187,9 +173,6 @@
                                                       VerticalContentAlignment="Stretch"                                                      
                                                       VerticalScrollBarVisibility="Auto"
                                                       HorizontalScrollBarVisibility="Auto"/>
-                                    <!--<dxlc:LayoutItem  >
-
-                                    </dxlc:LayoutItem>-->
 
                                 </dxlc:LayoutGroup>
 
@@ -200,9 +183,6 @@
                                                       VerticalContentAlignment="Stretch"                                                      
                                                       VerticalScrollBarVisibility="Auto"
                                                       HorizontalScrollBarVisibility="Auto"/>
-                                    <!--<dxlc:LayoutItem  >
-
-                                    </dxlc:LayoutItem>-->
 
                                 </dxlc:LayoutGroup>
 
@@ -213,9 +193,6 @@
                                                       VerticalContentAlignment="Stretch"                                                      
                                                       VerticalScrollBarVisibility="Auto"
                                                       HorizontalScrollBarVisibility="Auto"/>
-                                    <!--<dxlc:LayoutItem  >
-
-                                    </dxlc:LayoutItem>-->
 
                                 </dxlc:LayoutGroup>
 
@@ -226,9 +203,6 @@
                                                       VerticalContentAlignment="Stretch"                                                      
                                                       VerticalScrollBarVisibility="Auto"
                                                       HorizontalScrollBarVisibility="Auto"/>
-                                    <!--<dxlc:LayoutItem  >
-
-                                    </dxlc:LayoutItem>-->
 
                                 </dxlc:LayoutGroup>
 
@@ -239,9 +213,6 @@
                                                       VerticalContentAlignment="Stretch"                                                      
                                                       VerticalScrollBarVisibility="Auto"
                                                       HorizontalScrollBarVisibility="Auto"/>
-                                    <!--<dxlc:LayoutItem  >
-
-                                    </dxlc:LayoutItem>-->
 
                                 </dxlc:LayoutGroup>
 
@@ -252,9 +223,6 @@
                                                       VerticalContentAlignment="Stretch"                                                      
                                                       VerticalScrollBarVisibility="Auto"
                                                       HorizontalScrollBarVisibility="Auto"   />
-                                    <!--<dxlc:LayoutItem>
-                                                   
-                                    </dxlc:LayoutItem>-->
 
                                 </dxlc:LayoutGroup>
 
@@ -270,15 +238,18 @@
                                           AllowFloat="True" AllowClose="True" AllowDock="True" AllowHide="True" 
                                           Style="{StaticResource FixedLayoutPanelNarrow}">
 
-                            <TextBlock Text="TODO: uiuc:wucConfigurationOptions" />
                             <!--<uiuc:wucConfigurationOptions x:Name="configurationOptions" />-->
+                            <!--<TextBlock Text="TODO: uiuc:wucConfigurationOptions" />-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CombinedMainRegion}" />
+
 
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel x:Name="lp_Commands_Workspace" Caption="Workspace Info" >
 
-                            <TextBlock Text="TODO: uiuc:wucCommandsWorkspace" />
                             <!--<uiuc:wucCommandsWorkspace x:Name="wucCommandsWorkspace" />-->
+                            <!--<TextBlock Text="TODO: uiuc:wucCommandsWorkspace" />-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CombinedMainRegion}" />
 
                         </dxdo:LayoutPanel>
 
@@ -293,24 +264,27 @@
                         <dxdo:LayoutPanel x:Name="lp_Commands_Rewrite" Caption="Rewrite Stuff" 
                                            Style="{StaticResource FixedLayoutPanelMedium}" >
 
-                            <TextBlock Text="TODO: uiuc:wucCommandsRewrite" />
                             <!--<uiuc:wucCommandsRewrite x:Name="wucCommandsRewrite" />-->
+                            <!--<TextBlock Text="TODO: uiuc:wucCommandsRewrite" />-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CombinedMainRegion}" />
 
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel x:Name="lp_Commands_Remove" Caption="Remove Stuff"
                                           Style="{StaticResource FixedLayoutPanelMedium}" >
 
-                            <TextBlock Text="TODO: uiuc:wucCommandsRemove" />
                             <!--<uiuc:wucCommandsRemove x:Name="wucCommandsRemove" />-->
+                            <!--<TextBlock Text="TODO: uiuc:wucCommandsRemove" />-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CombinedMainRegion}" />
 
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel x:Name="lp_Commands_Add" Caption="Add Stuff"
                                           Style="{StaticResource FixedLayoutPanelMedium}" >
 
-                            <TextBlock Text="TODO: uiuc:wucCommandsAdd" />
                             <!--<uiuc:wucCommandsAdd x:Name="wucCommandsAdd" />-->
+                            <!--<TextBlock Text="TODO: uiuc:wucCommandsAdd" />-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CombinedMainRegion}" />
 
                         </dxdo:LayoutPanel>
 
@@ -344,16 +318,18 @@
                         <dxdo:LayoutPanel x:Name="lp_Commands" Caption="Commands" 
                                          ItemWidth="300" >
 
-                            <TextBlock Text="TODO: uiuc:wucCommands" />
                             <!--<uiuc:wucCommands x:Name="wucCommands" />-->
+                            <!--<TextBlock Text="TODO: uiuc:wucCommands" />-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CombinedMainRegion}" />
 
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel x:Name="lp_Commands_Parse" Caption="Parse" 
                                           ItemWidth="300" MinWidth="275" MaxWidth="325">
 
-                            <TextBlock Text="TODO: uiuc:wucCommandsParse" />
                             <!--<uiuc:wucCommandsParse x:Name="wucCommandsParse" />-->
+                            <!--<TextBlock Text="TODO: uiuc:wucCommandsParse" />-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CombinedMainRegion}" />
 
                         </dxdo:LayoutPanel>
 
@@ -367,24 +343,28 @@
                         <dxdo:LayoutPanel x:Name="lp_Commands_Quality" Caption="Quality" 
                                           ItemWidth="300" MinWidth="275" MaxWidth="325">
 
-                            <TextBlock Text="TODO: uiuc:wucCommandsQuality" />
                             <!--<uiuc:wucCommandsQuality x:Name="wucCommandsQuality" />-->
+                            <!--<TextBlock Text="TODO: uiuc:wucCommandsQuality" />-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CombinedMainRegion}" />
 
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel x:Name="lp_Commands_Design" Caption="Design" 
                                           ItemWidth="300" MinWidth="275" MaxWidth="325">
 
-                            <TextBlock Text="TODO: uiuc:wucCommandsDesign" />
+
                             <!--<uiuc:wucCommandsDesign x:Name="wucCommandsDesign" />-->
+                            <!--<TextBlock Text="TODO: uiuc:wucCommandsDesign" />-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CombinedMainRegion}" />
 
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel x:Name="lp_Commands_Performance" Caption="Performance" 
                                           ItemWidth="300" MinWidth="275" MaxWidth="325">
 
-                            <TextBlock Text="TODO: uiuc:wucCommandsPerformance" />
                             <!--<uiuc:wucCommandsPerformance x:Name="wucCommandsPerformance" />-->
+                            <!--<TextBlock Text="TODO: uiuc:wucCommandsPerformance" />-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CombinedMainRegion}" />
 
                         </dxdo:LayoutPanel>
 
@@ -397,8 +377,6 @@
                 </dxdo:DockLayoutManager.AutoHideGroups>
 
             </dxdo:DockLayoutManager>
-
-            <!--  Use this if you have simple Content -->
 
         </dxlc:LayoutGroup>
 
