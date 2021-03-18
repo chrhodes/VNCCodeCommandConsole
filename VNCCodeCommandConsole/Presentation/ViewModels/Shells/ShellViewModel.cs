@@ -24,9 +24,9 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         public ShellViewModel()
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         //public ShellViewModel(I customerDataService)

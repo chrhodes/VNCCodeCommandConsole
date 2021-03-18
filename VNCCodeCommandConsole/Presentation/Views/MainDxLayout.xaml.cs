@@ -14,14 +14,14 @@ namespace VNCCodeCommandConsole.Presentation.Views
 
         public MainDxLayout(MainDxLayoutViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InitializeComponent();
 
             _viewModel = viewModel;
             DataContext = _viewModel;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
     }
 }

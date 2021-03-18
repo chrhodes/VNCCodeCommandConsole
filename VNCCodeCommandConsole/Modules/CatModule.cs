@@ -23,18 +23,18 @@ namespace VNCCodeCommandConsole
 
         public CatModule(IRegionManager regionManager)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _regionManager = regionManager;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 02
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             containerRegistry.Register<ICatMainViewModel, CatMainViewModel>();
             containerRegistry.RegisterSingleton<ICatMain, CatMain>();
@@ -48,14 +48,14 @@ namespace VNCCodeCommandConsole
             containerRegistry.RegisterSingleton<ICatLookupDataService, CatLookupDataService>();
             containerRegistry.Register<ICatDataService, CatDataService>();
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 03
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             // NOTE(crhodes)
             // using typeof(TYPE) calls constructor
@@ -68,7 +68,7 @@ namespace VNCCodeCommandConsole
             _regionManager.RegisterViewWithRegion(RegionNames.CatNavigationRegion, typeof(ICatNavigation));
             _regionManager.RegisterViewWithRegion(RegionNames.CatDetailRegion, typeof(ICatDetail));
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
     }
 }

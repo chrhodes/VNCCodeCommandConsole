@@ -11,7 +11,7 @@ namespace VNCCodeCommandConsole.Presentation.Views
 
         public CatMain(ViewModels.ICatMainViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
@@ -19,16 +19,16 @@ namespace VNCCodeCommandConsole.Presentation.Views
             ViewModel = viewModel;
             Loaded += UserControl_Loaded;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Int64 startTicks = Log.EVENT_HANDLER("(CatMain) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT_HANDLER("(CatMain) Enter", Common.LOG_CATEGORY);
 
             await ((ViewModels.ICatMainViewModel)ViewModel).LoadAsync();
 
-            Log.EVENT_HANDLER("(CatMain) Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT_HANDLER("(CatMain) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #region IInstanceCount

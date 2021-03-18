@@ -28,18 +28,18 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _ToyDataService = ToyDataService;
 
             InitializeViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
 
@@ -49,7 +49,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             AddCommand = new DelegateCommand(AddExecute);
             RemoveCommand = new DelegateCommand(RemoveExecute, RemoveCanExecute);
 
-            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -91,11 +91,11 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         // private async void OpenDetailView(OpenDetailViewEventArgs args)
         // {
-        // Int64 startTicks = Log.EVENT("(ToyDetailViewModel) Enter", Common.LOG_APPNAME);
+        // Int64 startTicks = Log.EVENT("(ToyDetailViewModel) Enter", Common.LOG_CATEGORY);
 
         // await LoadAsync(args.Id);
 
-        // Log.EVENT("(ToyDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
+        // Log.EVENT("(ToyDetailViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         // }
 
         #endregion
@@ -104,7 +104,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         public override async Task LoadAsync(int id)
         {
-            Int64 startTicks = Log.VIEWMODEL("(ToyDetailViewModel) Enter Id:({id})", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("(ToyDetailViewModel) Enter Id:({id})", Common.LOG_CATEGORY);
 
             Id = id;
 
@@ -124,7 +124,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 Toys.Add(wrapper);
             }
 
-            Log.VIEWMODEL("(ToyDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("(ToyDetailViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         void Wrapper_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -153,9 +153,9 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         protected override async void DeleteExecute()
         {
-            Int64 startTicks = Log.VIEWMODEL($"(ToyDetailViewModel) Enter Id:({SelectedToy.Id})", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL($"(ToyDetailViewModel) Enter Id:({SelectedToy.Id})", Common.LOG_CATEGORY);
 
-            Log.VIEWMODEL("(ToyDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("(ToyDetailViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         protected override bool SaveCanExecute()
@@ -165,7 +165,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         protected override async void SaveExecute()
         {
-            Int64 startTicks = Log.VIEWMODEL($"(ToyDetailViewModel) Enter Id:({SelectedToy.Id})", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL($"(ToyDetailViewModel) Enter Id:({SelectedToy.Id})", Common.LOG_CATEGORY);
 
             try
             {
@@ -188,7 +188,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 await LoadAsync(Id);
             }
 
-            Log.VIEWMODEL("(ToyDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("(ToyDetailViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -197,7 +197,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         void AddExecute()
         {
-            Int64 startTicks = Log.VIEWMODEL("(ToyDetailViewModel) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("(ToyDetailViewModel) Enter", Common.LOG_CATEGORY);
 
             var wrapper = new ToyWrapper(new Domain.Toy());
             wrapper.PropertyChanged += Wrapper_PropertyChanged;
@@ -207,12 +207,12 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
             wrapper.Name = "";  // Trigger the validation
 
-            Log.VIEWMODEL("(ToyDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("(ToyDetailViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private async void RemoveExecute()
         {
-            Int64 startTicks = Log.VIEWMODEL("(ToyDetailViewModel) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("(ToyDetailViewModel) Enter", Common.LOG_CATEGORY);
 
             var isReferenced =
                 await _ToyDataService.IsReferencedByCatAsync(SelectedToy.Id);
@@ -233,7 +233,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
 
-            Log.VIEWMODEL("(ToyDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("(ToyDetailViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         bool RemoveCanExecute()

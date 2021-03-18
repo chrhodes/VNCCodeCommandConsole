@@ -14,7 +14,7 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
         
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:infra="clr-namespace:VNCCodeCommandConsole.Core"
+    xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"  
     xmlns:prism="http://prismlibrary.com/"
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"    
     
@@ -54,13 +54,13 @@
 
             <dxlc:LayoutGroup Header="Combined">
                 <!--<Grid>-->
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CombinedMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CombinedMainRegion}" />
                 <!--</Grid>-->
             </dxlc:LayoutGroup>
             
             <dxlc:LayoutGroup Header="Cat" >
                 <Grid>
-                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatMainRegion}" />
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CatMainRegion}" />
                 </Grid>
             </dxlc:LayoutGroup>
 
@@ -69,7 +69,7 @@
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer" Orientation="Vertical">
-            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.StatusBarRegion}" />
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatusBarRegion}" />
             <Label Content="lg_Footer Stuff Goes Here" />
         </dxlc:LayoutGroup>
 

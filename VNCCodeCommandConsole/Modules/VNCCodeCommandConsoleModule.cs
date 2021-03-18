@@ -23,18 +23,18 @@ namespace VNCCodeCommandConsole
 
         public VNCCodeCommandConsoleModule(IRegionManager regionManager)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _regionManager = regionManager;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 02
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // This is where you pick the style of what gets loaded in the Shell.
@@ -73,14 +73,14 @@ namespace VNCCodeCommandConsole
             //containerRegistry.Register<IProgrammingLanguageLookupDataService, LookupDataService>();
             //containerRegistry.Register<IMeetingLookupDataService, LookupDataService>();
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 03
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             _regionManager.RegisterViewWithRegion(RegionNames.RibbonRegion, typeof(IRibbon));
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(IMain));
@@ -95,7 +95,7 @@ namespace VNCCodeCommandConsole
 
             _regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(IViewABC));
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
     }
 }

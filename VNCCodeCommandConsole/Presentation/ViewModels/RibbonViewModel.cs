@@ -23,26 +23,26 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // Save constructor parameters here
 
             InitializeViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
 
             // TODO(crhodes)
             //
 
-            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion

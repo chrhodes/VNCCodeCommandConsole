@@ -29,7 +29,7 @@ namespace VNCCodeCommandConsole.Persistence.Data
 
         public VNCCodeCommandConsoleDbContext() : base("VNCCodeCommandConsole_DB")
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<VNCCodeCommandConsoleDbContext, Configuration>());
 
             // There are four database initialization strategies
@@ -55,12 +55,12 @@ namespace VNCCodeCommandConsole.Persistence.Data
 
             // Release builds and Dependency Injection use lambda's.  Use special handling.
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_CATEGORY);
 
             try
             {
@@ -74,7 +74,7 @@ namespace VNCCodeCommandConsole.Persistence.Data
             }
             catch (InvalidOperationException ex)
             {
-                Log.Error(ex, Common.LOG_APPNAME);
+                Log.Error(ex, Common.LOG_CATEGORY);
                 // Ignore
             }
 
@@ -100,12 +100,12 @@ namespace VNCCodeCommandConsole.Persistence.Data
             //modelBuilder.Configurations.Add(new FriendConfiguration());
 
             // Alternatively can use DataAnnotations on model class.
-            Log.PERSISTENCE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.PERSISTENCE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public override int SaveChanges()
         {
-            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_CATEGORY);
 
             try
             {
@@ -157,7 +157,7 @@ namespace VNCCodeCommandConsole.Persistence.Data
                     history.IsDirty = false;
                 }
 
-                Log.PERSISTENCE($"(VNCCodeCommandConsoleDbContext) Exit ({result})", Common.LOG_APPNAME, startTicks);
+                Log.PERSISTENCE($"(VNCCodeCommandConsoleDbContext) Exit ({result})", Common.LOG_CATEGORY, startTicks);
 
                 return result;
 
@@ -217,7 +217,7 @@ namespace VNCCodeCommandConsole.Persistence.Data
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_APPNAME);
+                Log.Error(ex, Common.LOG_CATEGORY);
                 throw (ex);
             }
 
@@ -225,7 +225,7 @@ namespace VNCCodeCommandConsole.Persistence.Data
 
         public override async Task<int> SaveChangesAsync()
         {
-            Int64 startTicks = Log.PERSISTENCE("(VNCCodeCommandConsoleDbContext) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.PERSISTENCE("(VNCCodeCommandConsoleDbContext) Enter", Common.LOG_CATEGORY);
 
             int result = -1;
 
@@ -279,7 +279,7 @@ namespace VNCCodeCommandConsole.Persistence.Data
                     history.IsDirty = false;
                 }
 
-                Log.PERSISTENCE($"(VNCCodeCommandConsoleDbContext) Exit ({result})", Common.LOG_APPNAME, startTicks);
+                Log.PERSISTENCE($"(VNCCodeCommandConsoleDbContext) Exit ({result})", Common.LOG_CATEGORY, startTicks);
 
                 return result;
             }
@@ -341,7 +341,7 @@ namespace VNCCodeCommandConsole.Persistence.Data
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_APPNAME);
+                Log.Error(ex, Common.LOG_CATEGORY);
                 throw (ex);
             }
 

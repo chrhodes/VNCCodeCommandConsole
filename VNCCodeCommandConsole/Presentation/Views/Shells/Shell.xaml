@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     mc:Ignorable="d" 
     
-    xmlns:infra="clr-namespace:VNCCodeCommandConsole.Core"    
+    xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"    
     xmlns:prism="http://prismlibrary.com/"
 
     prism:ViewModelLocator.AutoWireViewModel="True"
@@ -14,6 +14,6 @@
     d:DesignHeight="800" d:DesignWidth="1200"
  >
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.MainRegion}" />
+        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" />
     </Grid>
 </Window>

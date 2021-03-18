@@ -18,9 +18,9 @@ namespace VNCCodeCommandConsole.DomainServices
         public CatDataService(VNCCodeCommandConsoleDbContext context)
             : base(context)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -49,24 +49,24 @@ namespace VNCCodeCommandConsole.DomainServices
 
         public override async Task<Cat> FindByIdAsync(int id)
         {
-            Int64 startTicks = Log.DOMAINSERVICES("(CatDataService) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.DOMAINSERVICES("(CatDataService) Enter", Common.LOG_CATEGORY);
 
             var result = await Context.CatsSet
                 .Include(f => f.PhoneNumbers)
                 .SingleAsync(f => f.Id == id);
 
-            Log.DOMAINSERVICES("(CatDataService) Exit", Common.LOG_APPNAME, startTicks);
+            Log.DOMAINSERVICES("(CatDataService) Exit", Common.LOG_CATEGORY, startTicks);
 
             return result;
         }
 
         public void RemovePhoneNumber(CatPhoneNumber model)
         {
-            Int64 startTicks = Log.DOMAINSERVICES("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.DOMAINSERVICES("Enter", Common.LOG_CATEGORY);
 
             Context.CatPhoneNumbersSet.Remove(model);
 
-            Log.DOMAINSERVICES("Exit", Common.LOG_APPNAME, startTicks);
+            Log.DOMAINSERVICES("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
 

@@ -18,11 +18,11 @@ namespace VNCCodeCommandConsole.DomainServices
 
         public CatLookupDataService(Func<VNCCodeCommandConsoleDbContext> context)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _contextCreator = context;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -52,7 +52,7 @@ namespace VNCCodeCommandConsole.DomainServices
 
         public async Task<IEnumerable<LookupItem>> GetCatLookupAsync()
         {
-            Int64 startTicks = Log.DOMAINSERVICES("(CatLookupDataService) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.DOMAINSERVICES("(CatLookupDataService) Enter", Common.LOG_CATEGORY);
 
             IEnumerable<LookupItem> result;
 
@@ -68,7 +68,7 @@ namespace VNCCodeCommandConsole.DomainServices
                   .ToListAsync();
             }
 
-            Log.DOMAINSERVICES("(CatLookupDataService) Exit", Common.LOG_APPNAME, startTicks);
+            Log.DOMAINSERVICES("(CatLookupDataService) Exit", Common.LOG_CATEGORY, startTicks);
 
             return result;
         }

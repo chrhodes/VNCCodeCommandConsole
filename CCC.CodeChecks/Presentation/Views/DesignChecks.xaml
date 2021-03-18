@@ -1,0 +1,30 @@
+﻿<vncmvvm:ViewBase
+    x:Class="CCC.CodeChecks.Presentation.Views.DesignChecks"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://www.codeplex.com/prism"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:local="clr-namespace:CCC.CodeChecks.Presentation.Views"
+    
+    xmlns:views="clr-namespace:CCC.CodeChecks.Presentation.Views"
+    xmlns:viewModels="clr-namespace:CCC.CodeChecks.Presentation.ViewModels"
+    
+    xmlns:core="clr-namespace:VNCCodeCommandConsole.Core"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    
+    mc:Ignorable="d"
+    d:DesignHeight="100" d:DesignWidth="200"
+>
+    <!--xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"-->
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="DesignChecks" />
+            <TextBlock Text="{Binding Message}" />
+        </StackPanel>
+
+    </Grid>
+    
+</vncmvvm:ViewBase>

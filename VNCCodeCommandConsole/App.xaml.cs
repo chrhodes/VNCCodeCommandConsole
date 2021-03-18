@@ -2,6 +2,10 @@
 using System.Threading;
 using System.Windows;
 
+using CCC.CodeChecks;
+using CCC.FindSyntax;
+using CCC.ModifySyntax;
+
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -25,31 +29,31 @@ namespace VNCCodeCommandConsole
             // and the first few log messages are missed.
             // NB.  All are properly recored in the log file.
 
-            Int64 startTicks = Log.APPLICATION_START("App()", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_START("App()", Common.LOG_CATEGORY);
 
             Thread.Sleep(250);
 
-            Log.APPLICATION_START(String.Format("Exit"), Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_START(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
         // 01
 
         protected override void ConfigureViewModelLocator()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.ConfigureViewModelLocator();
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 02
 
         protected override IContainerExtension CreateContainerExtension()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
 
             return base.CreateContainerExtension();
         }
@@ -58,9 +62,9 @@ namespace VNCCodeCommandConsole
 
         protected override IModuleCatalog CreateModuleCatalog()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
 
             return base.CreateModuleCatalog();
         }
@@ -69,18 +73,18 @@ namespace VNCCodeCommandConsole
 
         protected override void RegisterRequiredTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.RegisterRequiredTypes(containerRegistry);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 05
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             //containerRegistry.RegisterSingleton<ICustomerDataService, CustomerDataServiceMock>();
             //containerRegistry.RegisterSingleton<IMaterialDataService, MaterialDataServiceMock>();
@@ -97,18 +101,18 @@ namespace VNCCodeCommandConsole
 
             // Add the new UI elements
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 06 - Removed in Prism 8.0
 
         //protected override void ContainerLocator()
         //{
-        //    Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+        //    Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
         //    base.ConfigureServiceLocator();
 
-        //    Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+        //    Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         //}
 
         // 07 - Configure the catalog of modules
@@ -116,56 +120,59 @@ namespace VNCCodeCommandConsole
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             //NOTE(crhodes)
             // Order matters here.  Application depends on types in Cat
             moduleCatalog.AddModule(typeof(CatModule));
+            moduleCatalog.AddModule(typeof(CodeChecksModule));
+            moduleCatalog.AddModule(typeof(FindSyntaxModule));
+            moduleCatalog.AddModule(typeof(ModifySyntaxModule));
             moduleCatalog.AddModule(typeof(VNCCodeCommandConsoleModule));
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 08
 
         protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.ConfigureRegionAdapterMappings(regionAdapterMappings);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 09
 
         protected override void ConfigureDefaultRegionBehaviors(IRegionBehaviorFactory regionBehaviors)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.ConfigureDefaultRegionBehaviors(regionBehaviors);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 10
 
         protected override void RegisterFrameworkExceptionTypes()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.RegisterFrameworkExceptionTypes();
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 11
 
         protected override Window CreateShell()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
 
             // TODO(crhodes)
             // Pick the shell to start with.
@@ -180,22 +187,22 @@ namespace VNCCodeCommandConsole
 
         protected override void InitializeShell(Window shell)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.InitializeShell(shell);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 13
 
         protected override void InitializeModules()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.InitializeModules();
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -220,7 +227,7 @@ namespace VNCCodeCommandConsole
         private void Application_Startup(object sender, StartupEventArgs e)
         {
 
-            long startTicks = Log.APPLICATION_START("Enter", Common.LOG_APPNAME);
+            long startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
 
             try
             {
@@ -278,7 +285,7 @@ namespace VNCCodeCommandConsole
                 // For now this is in DXRibbonWindowMain();
 
                 //var eventMessage = "Started";
-                //SQLInformation.Helper.IndicateApplicationUsage(LOG_APPNAME, DateTime.Now, currentUser.Identity.Name, eventMessage);
+                //SQLInformation.Helper.IndicateApplicationUsage(LOG_CATEGORY, DateTime.Now, currentUser.Identity.Name, eventMessage);
 
                 // Launch the main window.
 
@@ -324,35 +331,35 @@ namespace VNCCodeCommandConsole
                 MessageBox.Show(ex.InnerException.ToString());
             }
 
-            Log.APPLICATION_START("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
         {
-            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_APPNAME );
+            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY );
 
-            Log.APPLICATION_END("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_APPNAME);
+            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY);
 
-            Log.APPLICATION_END("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void Application_Deactivated(object sender, EventArgs e)
         {
-            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_APPNAME);
+            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY);
 
-            Log.APPLICATION_END("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void Application_DispatcherUnhandledException(object sender,
             System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             Log.Error("Unexpected error occurred. Please inform the admin."
-              + Environment.NewLine + e.Exception.Message, Common.LOG_APPNAME);
+              + Environment.NewLine + e.Exception.Message, Common.LOG_CATEGORY);
 
             MessageBox.Show("Unexpected error occurred. Please inform the admin."
               + Environment.NewLine + e.Exception.Message, "Unexpected error");

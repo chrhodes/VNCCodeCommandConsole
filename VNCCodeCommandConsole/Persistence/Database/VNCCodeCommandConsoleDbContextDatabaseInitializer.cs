@@ -9,11 +9,11 @@ namespace VNCCodeCommandConsole.Persistence.Data
     {
         protected override void Seed(VNCCodeCommandConsoleDbContext context)
         {
-            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_CATEGORY);
 
             base.Seed(context);
 
-            Log.PERSISTENCE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.PERSISTENCE("Exit", Common.LOG_CATEGORY, startTicks);
         }
     }
 }
