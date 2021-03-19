@@ -40,6 +40,9 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             // TODO(crhodes)
             //
 
+            SayHelloCommand = new DelegateCommand(
+                SayHello, SayHelloCanExecute);
+
             Message = "FindCSSyntaxViewModel says hello";
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
@@ -60,6 +63,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
         #region Fields and Properties
 
         private string _message;
+
+        public ICommand SayHelloCommand { get; private set; }
 
         public string Message
         {
@@ -92,6 +97,19 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         #region Private Methods
 
+        private bool SayHelloCanExecute()
+        {
+            return true;
+        }
+
+        void SayHello()
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            Message = "Hello";
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
         #endregion
 

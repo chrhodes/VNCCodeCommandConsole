@@ -23,7 +23,8 @@ namespace VNCCodeCommandConsole.Core
         public static string FindVBSyntaxRegion = "FindVBSyntaxRegion";
         public static string FindCSSyntaxRegion = "FindCSSyntaxRegion";
 
-        public static string FindRegion = "FindRegion";
+        public static string FindCSCustomRegion = "FindCSCustomRegion";
+        public static string FindVBCustomRegion = "FindVBCustomRegion";
 
         public static string CodeExplorerContextRegion = "CodeExplorerContextRegion";
 
@@ -42,6 +43,12 @@ namespace VNCCodeCommandConsole.Core
 
         public static string CommandsRegion = "CommandsRegion";
         public static string CommandsParseRegion = "CommandsParseRegion";
+
+        public static string SyntaxParserRegion = "SyntaxParserRegion";
+
+        public static string SyntaxWalkerRegion = "SyntaxWalkerRegion";
+
+        public static string WorkspaceExplorerRegion = "WorkspaceExplorerRegion";
 
         // TODO(crhodes)
         // Should we have CS/VB regions?

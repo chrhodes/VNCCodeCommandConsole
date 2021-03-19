@@ -67,6 +67,21 @@ namespace VNCCodeCommandConsole
             containerRegistry.Register<IViewABCViewModel, ViewABCViewModel>();
             containerRegistry.Register<IViewABC, ViewABC>();
 
+            containerRegistry.Register<ICodeExplorerContextViewModel, CodeExplorerContextViewModel>();
+            containerRegistry.Register<ICodeExplorerContext, CodeExplorerContext>();
+
+            containerRegistry.Register<ISyntaxWalkerViewModel, SyntaxWalkerViewModel>();
+            containerRegistry.Register<ISyntaxWalker, SyntaxWalker>();
+
+            containerRegistry.Register<ISyntaxParserViewModel, SyntaxParserViewModel>();
+            containerRegistry.Register<ISyntaxParser, SyntaxParser>();
+
+            containerRegistry.Register<IWorkspaceExplorerViewModel, WorkspaceExplorerViewModel>();
+            containerRegistry.Register<IWorkspaceExplorer, WorkspaceExplorer>();
+
+            containerRegistry.Register<IConfigurationOptionsViewModel, ConfigurationOptionsViewModel>();
+            containerRegistry.Register<IConfigurationOptions, ConfigurationOptions>();
+
             // Figure out how to use one Type
 
             //containerRegistry.Register<IFriendLookupDataService, LookupDataService>();
@@ -90,6 +105,14 @@ namespace VNCCodeCommandConsole
 
             // These load into CombinedMain.xaml
             _regionManager.RegisterViewWithRegion(RegionNames.CombinedNavigationRegion, typeof(ICombinedNavigation));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.ConfigurationOptionsRegion, typeof(IConfigurationOptions));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.SyntaxParserRegion, typeof(ISyntaxParser));
+            _regionManager.RegisterViewWithRegion(RegionNames.SyntaxWalkerRegion, typeof(ISyntaxWalker));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkspaceExplorerRegion, typeof(IWorkspaceExplorer));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.CodeExplorerContextRegion, typeof(ICodeExplorerContext));
 
             // This is for Main and AutoWireViewModel demo
 

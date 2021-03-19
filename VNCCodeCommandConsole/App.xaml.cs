@@ -29,9 +29,13 @@ namespace VNCCodeCommandConsole
             // and the first few log messages are missed.
             // NB.  All are properly recored in the log file.
 
-            Int64 startTicks = Log.APPLICATION_START("App()", Common.LOG_CATEGORY);
+            Int64 startTicks = Log.APPLICATION_START("Initialize SignalR", Common.LOG_CATEGORY);
 
-            Thread.Sleep(250);
+            Thread.Sleep(150);
+
+            Log.APPLICATION_START("App()", Common.LOG_CATEGORY, startTicks);
+
+
 
             Log.APPLICATION_START(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }

@@ -12,7 +12,7 @@
     xmlns:views="clr-namespace:CCC.CodeChecks.Presentation.Views"
     xmlns:viewModels="clr-namespace:CCC.CodeChecks.Presentation.ViewModels"
     
-    xmlns:core="clr-namespace:VNCCodeCommandConsole.Core"
+    xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"
     prism:ViewModelLocator.AutoWireViewModel="True"
     
     mc:Ignorable="d"
@@ -21,10 +21,11 @@
     <!--xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"-->
     <Grid>
         <StackPanel>
-            <TextBlock Text="QualityChecks" />
+            <TextBlock Text="Quality Checks" />
             <TextBlock Text="{Binding Message}" />
+            <Button Content="Say Hello" 
+                    Command="{Binding SayHelloCommand}" />
         </StackPanel>
-
     </Grid>
     
 </vncmvvm:ViewBase>

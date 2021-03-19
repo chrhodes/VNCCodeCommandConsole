@@ -14,7 +14,7 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
         
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:infra="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"
+    xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"  
       
@@ -23,7 +23,7 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     d:DesignHeight="200" d:DesignWidth="300"         
 >
-    <!--xmlns:infra="clr-namespace:$customAPPLICATON$.Core;assembly=$customAPPLICATON$.Core"-->
+    <!--xmlns:core="clr-namespace:$customAPPLICATON$.Core;assembly=$customAPPLICATON$.Core"-->
 
     <dxlc:LayoutControl Name="lc_Root"                          
                       Orientation="Vertical"
@@ -71,7 +71,7 @@
 
                             <!--<uiuc:wucCommandsFindVBSyntax x:Name="wucCommandsFindVBSyntax" />-->
                             <!--<TextBlock Text="TODO: uiuc:wucCommandsFindVBSyntax" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FindVBSyntaxRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.FindVBSyntaxRegion}" />
 
                         </dxdo:LayoutPanel>
 
@@ -82,18 +82,18 @@
                             
                             <!--<pv:FindCSSyntax x:Name="FindCSSyntax" />-->
                             <!--<TextBlock Text="TODO: pv:FindCSSyntax" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FindCSSyntaxRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.FindCSSyntaxRegion}" />
 
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel x:Name="lp_Commands_Find" Caption="Find Stuff" 
+                        <!--<dxdo:LayoutPanel x:Name="lp_Commands_Find" Caption="Find Stuff" 
                                           Style="{StaticResource FixedLayoutPanelMedium}">
 
-                            <!--<uiuc:wucCommandsFind x:Name="wucCommandsFind" />-->
-                            <!--<TextBlock Text="TODO: uiuc:wucCommandsFind" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FindRegion}" />
+                            --><!--<uiuc:wucCommandsFind x:Name="wucCommandsFind" />-->
+                            <!--<TextBlock Text="TODO: uiuc:wucCommandsFind" />--><!--
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.FindRegion}" />
 
-                        </dxdo:LayoutPanel>
+                        </dxdo:LayoutPanel>-->
 
                     </dxdo:TabbedGroup>
 
@@ -122,7 +122,7 @@
 
                                     <!--<uiuc:wucCodeExplorerContext x:Name="wucCodeExplorerContext" />-->
                                     <!--<TextBlock Text="TODO: uiuc:wucCodeExplorerContext" />-->
-                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CodeExplorerContextRegion}" />
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CodeExplorerContextRegion}" />
 
                                 </dxlc:LayoutGroup>
 
@@ -132,7 +132,7 @@
                                                       VerticalAlignment="Stretch"
                                                       VerticalContentAlignment="Stretch"                                                     
                                                       VerticalScrollBarVisibility="Auto"
-                                                  TextWrapping="Wrap"
+                                                        TextWrapping="Wrap"
                                                       HorizontalScrollBarVisibility="Auto"/>
 
                                 </dxlc:LayoutGroup>
@@ -240,16 +240,16 @@
 
                             <!--<uiuc:wucConfigurationOptions x:Name="configurationOptions" />-->
                             <!--<TextBlock Text="TODO: uiuc:wucConfigurationOptions" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ConfigurationOptionsRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ConfigurationOptionsRegion}" />
 
 
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel x:Name="lp_Commands_Workspace" Caption="Workspace Info" >
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Workspace" Caption="Workspace Explorer" >
 
                             <!--<uiuc:wucCommandsWorkspace x:Name="wucCommandsWorkspace" />-->
                             <!--<TextBlock Text="TODO: uiuc:wucCommandsWorkspace" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandsWorkspaceRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.WorkspaceExplorerRegion}" />
 
                         </dxdo:LayoutPanel>
 
@@ -261,57 +261,57 @@
 
                     <dxdo:AutoHideGroup DockType="Left" ItemWidth="250" >
 
-                        <dxdo:LayoutPanel x:Name="lp_Commands_Add" Caption="AddVB Stuff"
+                        <dxdo:LayoutPanel x:Name="lp_Commands_AddVB" Caption="AddVB Stuff"
                                           Style="{StaticResource FixedLayoutPanelMedium}" >
 
                             <!--<uiuc:wucCommandsAdd x:Name="wucCommandsAdd" />-->
                             <!--<TextBlock Text="TODO: uiuc:wucCommandsAdd" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.AddVBSyntaxRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AddVBSyntaxRegion}" />
 
                         </dxdo:LayoutPanel>
                         
-                        <dxdo:LayoutPanel x:Name="lp_Commands_Rewrite" Caption="RewriteVB Stuff" 
+                        <dxdo:LayoutPanel x:Name="lp_Commands_RewriteVB" Caption="RewriteVB Stuff" 
                                            Style="{StaticResource FixedLayoutPanelMedium}" >
 
                             <!--<uiuc:wucCommandsRewrite x:Name="wucCommandsRewrite" />-->
                             <!--<TextBlock Text="TODO: uiuc:wucCommandsRewrite" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.RewriteVBSyntaxRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RewriteVBSyntaxRegion}" />
 
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel x:Name="lp_Commands_Remove" Caption="RemoveVB Stuff"
+                        <dxdo:LayoutPanel x:Name="lp_Commands_RemoveVB" Caption="RemoveVB Stuff"
                                           Style="{StaticResource FixedLayoutPanelMedium}" >
 
                             <!--<uiuc:wucCommandsRemove x:Name="wucCommandsRemove" />-->
                             <!--<TextBlock Text="TODO: uiuc:wucCommandsRemove" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.RemoveVBSyntaxRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RemoveVBSyntaxRegion}" />
 
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel x:Name="lp_Commands_Add" Caption="AddCS Stuff"
+                        <dxdo:LayoutPanel x:Name="lp_Commands_AddCS" Caption="AddCS Stuff"
                                           Style="{StaticResource FixedLayoutPanelMedium}" >
 
                             <!--<uiuc:wucCommandsAdd x:Name="wucCommandsAdd" />-->
                             <!--<TextBlock Text="TODO: uiuc:wucCommandsAdd" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.AddCSSyntaxRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AddCSSyntaxRegion}" />
 
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel x:Name="lp_Commands_Rewrite" Caption="RewriteCS Stuff" 
+                        <dxdo:LayoutPanel x:Name="lp_Commands_RewriteCS" Caption="RewriteCS Stuff" 
                                            Style="{StaticResource FixedLayoutPanelMedium}" >
 
                             <!--<uiuc:wucCommandsRewrite x:Name="wucCommandsRewrite" />-->
                             <!--<TextBlock Text="TODO: uiuc:wucCommandsRewrite" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.RewriteCSSyntaxRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RewriteCSSyntaxRegion}" />
 
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel x:Name="lp_Commands_Remove" Caption="RemoveCS Stuff"
+                        <dxdo:LayoutPanel x:Name="lp_Commands_RemoveCS" Caption="RemoveCS Stuff"
                                           Style="{StaticResource FixedLayoutPanelMedium}" >
 
                             <!--<uiuc:wucCommandsRemove x:Name="wucCommandsRemove" />-->
                             <!--<TextBlock Text="TODO: uiuc:wucCommandsRemove" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.RemoveCSSyntaxRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RemoveCSSyntaxRegion}" />
 
                         </dxdo:LayoutPanel>
 
@@ -344,21 +344,21 @@
 
                         </dxdo:LayoutPanel>-->
 
-                        <dxdo:LayoutPanel x:Name="lp_Commands" Caption="Commands" 
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Walk" Caption="Syntax Walker" 
                                          ItemWidth="300" >
 
                             <!--<uiuc:wucCommands x:Name="wucCommands" />-->
                             <!--<TextBlock Text="TODO: uiuc:wucCommands" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandsRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.SyntaxWalkerRegion}" />
 
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel x:Name="lp_Commands_Parse" Caption="Parse" 
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Parse" Caption="Syntax Parser" 
                                           ItemWidth="300" MinWidth="275" MaxWidth="325">
 
                             <!--<uiuc:wucCommandsParse x:Name="wucCommandsParse" />-->
                             <!--<TextBlock Text="TODO: uiuc:wucCommandsParse" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandsParseRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.SyntaxParserRegion}" />
 
                         </dxdo:LayoutPanel>
 
@@ -374,7 +374,7 @@
 
                             <!--<uiuc:wucCommandsQuality x:Name="wucCommandsQuality" />-->
                             <!--<TextBlock Text="TODO: uiuc:wucCommandsQuality" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.QualityChecksRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.QualityChecksRegion}" />
 
                         </dxdo:LayoutPanel>
 
@@ -384,7 +384,7 @@
 
                             <!--<uiuc:wucCommandsDesign x:Name="wucCommandsDesign" />-->
                             <!--<TextBlock Text="TODO: uiuc:wucCommandsDesign" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.DesignChecksRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.DesignChecksRegion}" />
 
                         </dxdo:LayoutPanel>
 
@@ -393,7 +393,7 @@
 
                             <!--<uiuc:wucCommandsPerformance x:Name="wucCommandsPerformance" />-->
                             <!--<TextBlock Text="TODO: uiuc:wucCommandsPerformance" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.PerformanceChecksRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PerformanceChecksRegion}" />
 
                         </dxdo:LayoutPanel>
 

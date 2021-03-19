@@ -40,6 +40,9 @@ namespace CCC.CodeChecks.Presentation.ViewModels
             // TODO(crhodes)
             //
 
+            SayHelloCommand = new DelegateCommand(
+                SayHello, SayHelloCanExecute);
+
             Message = "DesignChecksViewModel says hello";
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
@@ -58,6 +61,8 @@ namespace CCC.CodeChecks.Presentation.ViewModels
         #endregion
 
         #region Fields and Properties
+
+        public ICommand SayHelloCommand { get; private set; }
 
         private string _message;
 
@@ -92,6 +97,19 @@ namespace CCC.CodeChecks.Presentation.ViewModels
 
         #region Private Methods
 
+        private bool SayHelloCanExecute()
+        {
+            return true;
+        }
+
+        void SayHello()
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            Message = "Hello";
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
         #endregion
 

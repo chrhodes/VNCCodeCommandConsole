@@ -42,6 +42,11 @@ namespace CCC.FindSyntax
             containerRegistry.Register<FindVBSyntaxViewModel>();
             containerRegistry.Register<FindVBSyntax>();
 
+            containerRegistry.Register<FindCSCustomViewModel>();
+            containerRegistry.Register<FindCSCustom>();
+
+            containerRegistry.Register<FindVBCustomViewModel>();
+            containerRegistry.Register<FindVBCustom>();
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -59,6 +64,9 @@ namespace CCC.FindSyntax
             //this loads CatMain into the Shell loaded in CreateShell() in App.Xaml.cs
             _regionManager.RegisterViewWithRegion(RegionNames.FindCSSyntaxRegion, typeof(FindCSSyntax));
             _regionManager.RegisterViewWithRegion(RegionNames.FindVBSyntaxRegion, typeof(FindVBSyntax));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.FindCSCustomRegion, typeof(FindCSCustom));
+            _regionManager.RegisterViewWithRegion(RegionNames.FindVBCustomRegion, typeof(FindVBCustom));
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }

@@ -12,7 +12,7 @@
     xmlns:views="clr-namespace:CCC.ModifySyntax.Presentation.Views"
     xmlns:viewModels="clr-namespace:CCC.ModifySyntax.Presentation.ViewModels"
     
-    xmlns:core="clr-namespace:VNCCodeCommandConsole.Core"
+    xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"
     prism:ViewModelLocator.AutoWireViewModel="True"
     
     mc:Ignorable="d"
@@ -23,6 +23,8 @@
         <StackPanel>
             <TextBlock Text="RemoveCSSyntax" />
             <TextBlock Text="{Binding Message}" />
+            <Button Content="Say Hello" 
+                    Command="{Binding SayHelloCommand}" />            
         </StackPanel>
 
     </Grid>
