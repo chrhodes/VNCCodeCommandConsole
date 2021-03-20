@@ -6,24 +6,288 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"     
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"   
+    
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     xmlns:local="clr-namespace:VNCCodeCommandConsole.Presentation.Views"
     
+    xmlns:converters="clr-namespace:VNCCodeCommandConsole.Presentation.Converters"    
     xmlns:views="clr-namespace:VNCCodeCommandConsole.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCCodeCommandConsole.Presentation.ViewModels"
 	
+    xmlns:ui="clr-namespace:VNCCodeCommandConsole.User_Interface" 
+    xmlns:uiuc="clr-namespace:VNCCodeCommandConsole.User_Interface.User_Controls"
+    
     xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"
     
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d"
+ 
     d:DesignHeight="450" d:DesignWidth="800"
 >
-    <Grid>
+    <UserControl.Resources>
+        <DataTemplate x:Key="comboBoxTemplateSolution">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="{Binding Path=Attribute[Name].Value}" />
+                <Label Content=" - " />
+                <Label Content="{Binding Path=Attribute[SourcePath].Value}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="dataTemplate">
+            <StackPanel>
+                <Label Content="{Binding XPath=@Name}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="dataTemplate3">
+            <StackPanel>
+                <Label Content="{Binding Name}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <converters:SolutionConverter x:Key="solutionConverter" />
+        <converters:ProjectConverter x:Key="projectConverter" />
+        <converters:SourceFileConverter x:Key="sourceFileConverter" />        
+    </UserControl.Resources>
+    
+    <!--<Grid>
         <StackPanel>
             <TextBlock Text="CodeExplorerContext" />
             <TextBlock Text="{Binding Message}" />
             <Button Content="Say Hello" 
                     Command="{Binding SayHelloCommand}" />
         </StackPanel>
-    </Grid>
+    </Grid>-->
+
+    <dxlc:LayoutControl Name="lc_Root" 
+                      Orientation="Vertical"
+                      Background="Transparent" >
+
+        <dxlc:LayoutGroup Name="lg_Body" >
+
+            <dxlc:LayoutControl x:Name="layoutItems" 
+                                Orientation="Vertical" >
+
+                <dxlc:LayoutItem             
+                    Label="CodeExplorer Context" 
+                    LabelPosition="Top"/>
+
+                <dxlc:LayoutGroup Header="Select Branch" 
+                                  View="GroupBox"
+                                  Orientation="Vertical" 
+                                  IsCollapsed="False" IsCollapsible="True">
+
+                    <dxlc:LayoutItem>
+                        <!--<uiuc:wucSourceBranch_Picker x:Name="wucSourceBranch_Picker" 
+                                                     ControlChanged="wucSourceBranch_Picker_ControlChanged" />-->
+                        <dxe:ComboBoxEdit 
+                            ItemsSource="{Binding Branches}"  
+                            ItemTemplate="{StaticResource comboBoxTemplateSolution}"
+                            EditValue="{ Binding
+                                Path=SelectedBranch,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged }" >
+                            <dxe:ComboBoxEdit.StyleSettings>
+                                <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
+                                <!--<dxe:CheckedComboBoxStyleSettings/>-->
+                                <dxe:RadioComboBoxStyleSettings/>
+                                <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
+                                <!--<dxe:TokenComboBoxStyleSettings/>-->
+                            </dxe:ComboBoxEdit.StyleSettings>
+                        </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Select Solution File" 
+                                 LabelPosition="Top">
+
+                        <!--<dxe:ComboBoxEdit x:Name="cbeSolutionFile"
+                                          DisplayTextConverter="{StaticResource solutionConverter}"
+                                          EditValueChanged="cbeSolutionFile_EditValueChanged">
+                            <dxe:ComboBoxEdit.StyleSettings>
+                                <dxe:CheckedComboBoxStyleSettings />
+                            </dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:ComboBoxEdit.EditTemplate>
+                                <ControlTemplate>
+                                    <TextBox Text="{Binding EditValue}" />
+                                </ControlTemplate>
+                            </dxe:ComboBoxEdit.EditTemplate>
+                            <dxe:ComboBoxEdit.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding Path=Attribute[Name].Value}" />
+                                        <Label Content=" - " />
+                                        <Label Content="{Binding Path=Attribute[FileName].Value}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </dxe:ComboBoxEdit.ItemTemplate>
+                        </dxe:ComboBoxEdit>-->
+
+                        <dxe:ComboBoxEdit 
+                            ItemsSource="{Binding SolutionFiles}"                                   
+                            EditValue="{ Binding
+                                Path=SelectedSolution,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged,
+                                Converter={StaticResource solutionConverter} }">
+                            <dxe:ComboBoxEdit.StyleSettings>
+                                <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
+                                <!--<dxe:CheckedComboBoxStyleSettings/>-->
+                                <dxe:RadioComboBoxStyleSettings/>
+                                <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
+                                <!--<dxe:TokenComboBoxStyleSettings/>-->
+                            </dxe:ComboBoxEdit.StyleSettings>
+                        </dxe:ComboBoxEdit>
+
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Select Project File" 
+                                 LabelPosition="Top">
+                        
+                        <!--<dxe:ComboBoxEdit x:Name="cbeProjectFile" 
+                                          DisplayTextConverter="{StaticResource projectConverter}"
+                                          EditValueChanged="cbeProjectFile_EditValueChanged">
+                            <dxe:ComboBoxEdit.StyleSettings>
+                                <dxe:CheckedComboBoxStyleSettings />
+                            </dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:ComboBoxEdit.EditTemplate>
+                                <ControlTemplate>
+                                    <TextBox Text="{Binding EditValue}" />
+                                </ControlTemplate>
+                            </dxe:ComboBoxEdit.EditTemplate>
+                            <dxe:ComboBoxEdit.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding Path=Attribute[Name].Value}" />
+                                        <Label Content=" - " />
+                                        <Label Content="{Binding Path=Attribute[FileName].Value}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </dxe:ComboBoxEdit.ItemTemplate>
+                        </dxe:ComboBoxEdit>-->
+
+                        <dxe:ComboBoxEdit 
+                            ItemsSource="{Binding ProjectFiles}"                                   
+                            EditValue="{ Binding
+                                Path=SelectedProject,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged,
+                                Converter={StaticResource projectConverter} }">
+                            <dxe:ComboBoxEdit.StyleSettings>
+                                <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
+                                <!--<dxe:CheckedComboBoxStyleSettings/>-->
+                                <dxe:RadioComboBoxStyleSettings/>
+                                <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
+                                <!--<dxe:TokenComboBoxStyleSettings/>-->
+                            </dxe:ComboBoxEdit.StyleSettings>
+                        </dxe:ComboBoxEdit>
+
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Select Source File" 
+                                 LabelPosition="Top">
+                        
+                        <!--<dxe:ComboBoxEdit x:Name="cbeSourceFile" 
+                                          DisplayTextConverter="{StaticResource sourceFileConverter}"
+                                          EditValueChanged="cbeSourceFile_EditValueChanged">
+                            <dxe:ComboBoxEdit.EditTemplate>
+                                <ControlTemplate>
+                                    <TextBox Text="{Binding EditValue}" />
+                                </ControlTemplate>
+                            </dxe:ComboBoxEdit.EditTemplate>
+                            <dxe:ComboBoxEdit.StyleSettings>
+                                <dxe:CheckedComboBoxStyleSettings />
+                            </dxe:ComboBoxEdit.StyleSettings>
+                        </dxe:ComboBoxEdit>-->
+
+                        <dxe:ComboBoxEdit
+                            ItemsSource="{Binding SourceFiles}"                                   
+                            EditValue="{ Binding
+                                Path=SelectedSourceFile,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged,
+                                Converter={StaticResource sourceFileConverter} }">
+                            <dxe:ComboBoxEdit.StyleSettings>
+                                <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
+                                <!--<dxe:CheckedComboBoxStyleSettings/>-->
+                                <dxe:RadioComboBoxStyleSettings/>
+                                <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
+                                <!--<dxe:TokenComboBoxStyleSettings/>-->
+                            </dxe:ComboBoxEdit.StyleSettings>
+                        </dxe:ComboBoxEdit>
+
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Browse for Source File" 
+                                     LabelPosition="Top">
+
+                        <StackPanel Orientation="Horizontal" >
+                            <dxlc:LayoutItem>
+                                <Button 
+                            		Command="{Binding BrowseForFileCommand }"
+                            		Content="{Binding BrowseForFileContent, FallbackValue='BrowseForFile' }"
+                            		ToolTip="{Binding BrowseForFileToolTip, FallbackValue='BrowseForFile ToolTip' }" />
+                            </dxlc:LayoutItem>
+                            
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding ClearFileCommand }"
+                        		Content="{Binding ClearFileContent, FallbackValue='ClearFile' }"
+                        		ToolTip="{Binding ClearFileToolTip, FallbackValue='ClearFile ToolTip' }" />
+                        </dxlc:LayoutItem>
+                        
+                            <!--<Button Content="Browse" Click="btnBrowseForFile_Click"/>
+
+                            <Button Content="Clear File" Click="btnClearFile_Click"/>-->
+                        </StackPanel>
+
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="Repository"  LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding Repository}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Branch"  LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding Branch}" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutItem Label="RepositoryPath" LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding RepositoryPath}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutItem Label="SolutionFile"  LabelPosition="Top">
+                    <dxe:TextEdit Text="{Binding SolutionFile}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="ProjectFile"  LabelPosition="Top">
+                    <dxe:TextEdit Text="{Binding ProjectFile}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="SourcePath"  LabelPosition="Top">
+                    <dxe:TextEdit Text="{Binding SourcePath}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="SourceFile"  LabelPosition="Top">
+                    <dxe:TextEdit Text="{Binding SourceFile}" />
+                </dxlc:LayoutItem>
+
+                <TextBlock Text="{Binding Message}" />
+            </dxlc:LayoutControl>
+
+        </dxlc:LayoutGroup>
+
+    </dxlc:LayoutControl>
+
 </vncmvvm:ViewBase>

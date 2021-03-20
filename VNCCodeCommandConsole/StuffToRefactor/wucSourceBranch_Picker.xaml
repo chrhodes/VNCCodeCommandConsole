@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="VNCCodeCommandConsole.User_Interface.User_Controls.wucSourceBranch_Picker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:debug="clr-namespaceSystem.Diagnostics;assembly=WindowsBase"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"  
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:ui="clr-namespace:VNCCodeCommandConsole.User_Interface" 
+    xmlns:converters="clr-namespace:VNCCodeCommandConsole.Presentation.Converters"               
+    mc:Ignorable="d"
+    >
+    <!--d:DesignHeight="300" d:DesignWidth="300"-->
+    <UserControl.Resources>
+        <DataTemplate x:Key="comboBoxTemplate">
+            <StackPanel>
+                <Label Content="{Binding XPath=@Name}" />
+                <!--<Label Content="{Binding XPath=@Repository}" />-->
+                <Label Content="{Binding XPath=@SourcePath}" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    <dxlc:LayoutControl x:Name="layoutItems" Orientation="Vertical" Background="#FFFFFF" Padding="0" >
+
+        <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Repository Branch" >
+
+            <dxlc:LayoutGroup.DataContext>
+                <XmlDataProvider x:Name="comboBox"
+                             XPath="//SourceBranches/Branch"
+                             IsAsynchronous="False"
+                             IsInitialLoadEnabled="True" />
+                <!--<XmlDataProvider x:Name="comboBox" 
+                             XPath="//XXX/yyy"
+                             IsAsynchronous="False"
+                             IsInitialLoadEnabled="True"
+                             debug:PresentationTraceSources.TraceLevel="High" />-->
+            </dxlc:LayoutGroup.DataContext>
+
+            <dxlc:LayoutItem>
+                <dxe:ComboBoxEdit HorizontalAlignment="Stretch"
+                      ItemsSource="{Binding}"                        
+                      ItemTemplate="{StaticResource comboBoxTemplate}" 
+                      EditValueChanged="ComboBoxEdit_EditValueChanged">
+                    <dxe:ComboBoxEdit.Resources>
+                        <converters:RepositoryConverter x:Key="converter" />
+                    </dxe:ComboBoxEdit.Resources>
+                    <dxe:ComboBoxEdit.EditTemplate>
+                        <ControlTemplate>
+                            <TextBox Text="{Binding EditValue, Converter={StaticResource converter}}" />
+                        </ControlTemplate>
+                    </dxe:ComboBoxEdit.EditTemplate>
+                </dxe:ComboBoxEdit>
+            </dxlc:LayoutItem>
+            
+            <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                <Button Click="Reload_Click" ToolTip="Load New Config File" Content="..."/>
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>  
+        
+    </dxlc:LayoutControl>
+    
+</UserControl>
