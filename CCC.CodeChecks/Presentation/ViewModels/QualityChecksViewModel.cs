@@ -14,7 +14,7 @@ using VNC.Core.Services;
 
 namespace CCC.CodeChecks.Presentation.ViewModels
 {
-    public class QualityChecksViewModel : EventViewModelBase
+    public class QualityChecksViewModel : EventViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
@@ -36,6 +36,8 @@ namespace CCC.CodeChecks.Presentation.ViewModels
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            InstanceCountVM++;
 
             // TODO(crhodes)
             //
@@ -113,5 +115,16 @@ namespace CCC.CodeChecks.Presentation.ViewModels
 
         #endregion
 
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
+        }
+
+        #endregion IInstanceCount
     }
 }

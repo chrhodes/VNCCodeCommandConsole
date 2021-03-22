@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+using CCC.CodeChecks.Presentation.Views;
+
 using Prism.Commands;
 using Prism.Events;
 
@@ -14,7 +16,7 @@ using VNC.Core.Services;
 
 namespace CCC.CodeChecks.Presentation.ViewModels
 {
-    public class DesignChecksViewModel : EventViewModelBase
+    public class DesignChecksViewModel : EventViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
@@ -36,6 +38,8 @@ namespace CCC.CodeChecks.Presentation.ViewModels
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            InstanceCountVM++;
 
             // TODO(crhodes)
             //
@@ -113,5 +117,17 @@ namespace CCC.CodeChecks.Presentation.ViewModels
 
         #endregion
 
+
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
+        }
+
+        #endregion IInstanceCount
     }
 }

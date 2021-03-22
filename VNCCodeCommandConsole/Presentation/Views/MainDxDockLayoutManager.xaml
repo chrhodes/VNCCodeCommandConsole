@@ -1,5 +1,6 @@
 ﻿<vncmvvm:ViewBase
     x:Class="VNCCodeCommandConsole.Presentation.Views.MainDxDockLayoutManager"
+    x:Name="thisMainDxDockLayoutManager"    
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -118,7 +119,7 @@
 
                                 <!-- Individual LayoutGroups go here (if you want tabs or groups)-->
 
-                                <dxlc:LayoutGroup  Header="Sources" x:Name="lg_CodeExplorerContext"  >
+                                <dxlc:LayoutGroup  Header="Code Context" x:Name="lg_CodeExplorerContext"  >
 
                                     <!--<uiuc:wucCodeExplorerContext x:Name="wucCodeExplorerContext" />-->
                                     <!--<TextBlock Text="TODO: uiuc:wucCodeExplorerContext" />-->
@@ -126,7 +127,7 @@
 
                                 </dxlc:LayoutGroup>
 
-                                <dxlc:LayoutGroup Header="SourceCode" Name="lg_SourceCode">
+                                <dxlc:LayoutGroup Header="Source Code" Name="lg_SourceCode">
                                     <dxe:TextEdit x:Name="teSourceCode" 
                                                       FontFamily="Consolas" 
                                                       VerticalAlignment="Stretch"
@@ -315,8 +316,6 @@
 
                         </dxdo:LayoutPanel>
 
-
-
                     </dxdo:AutoHideGroup>
 
                     <!--<dxdo:AutoHideGroup DockType="Top">
@@ -413,7 +412,21 @@
                         VerticalAlignment="Top">
             <Label Content="lg_Footer Stuff Goes Here" />
         </dxlc:LayoutGroup>
-
+        
+        <dxlc:LayoutGroup 
+        	Orientation="Vertical" VerticalAlignment="Bottom" >
+            <StackPanel Orientation="Horizontal" >
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="V:" />
+                    <Label Content="{Binding ElementName=thisMainDxDockLayoutManager, Path=InstanceCountV}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="VM:" />
+                    <Label Content="{Binding InstanceCountVM}" />
+                </StackPanel>
+            </StackPanel>
+        </dxlc:LayoutGroup>
+        
     </dxlc:LayoutControl>
 
 </vncmvvm:ViewBase>

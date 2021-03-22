@@ -47,6 +47,10 @@ namespace VNCCodeCommandConsole
             // Pick one of these for the MainRegion
             // Use Main to see the AutoWireViewModel in action.
 
+            //containerRegistry.Register<IMainViewModel, MainViewModel>();            
+            //containerRegistry.Register<IMainDxLayout, MainDxLayoutViewModel>();
+            containerRegistry.Register<IMainDxDockLayoutManagerViewModel, MainDxDockLayoutManagerViewModel>();
+
             //containerRegistry.Register<IMain, Main>();            
             //containerRegistry.Register<IMain, MainDxLayout>();
             containerRegistry.Register<IMain, MainDxDockLayoutManager>();

@@ -5,7 +5,7 @@ using VNC.Core.Mvvm;
 
 namespace VNCCodeCommandConsole.Presentation.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase, IInstanceCountVM
     {
 
         private string _title = "VNCCodeCommandConsole - MainWindow";
@@ -113,5 +113,18 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
         //{
         //    await NavigationViewModel.LoadAsync();
         //}
+
+
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
+        }
+
+        #endregion
     }
 }

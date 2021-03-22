@@ -14,7 +14,7 @@ using VNC.Core.Services;
 
 namespace CCC.ModifySyntax.Presentation.ViewModels
 {
-    public class AddCSSyntaxViewModel : EventViewModelBase
+    public class AddCSSyntaxViewModel : EventViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
@@ -37,6 +37,7 @@ namespace CCC.ModifySyntax.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
+            InstanceCountVM++;
             // TODO(crhodes)
             //
 
@@ -112,6 +113,19 @@ namespace CCC.ModifySyntax.Presentation.ViewModels
         }
 
         #endregion
+
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
+        }
+
+        #endregion
+
 
     }
 }

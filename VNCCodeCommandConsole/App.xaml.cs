@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Windows;
 
@@ -29,15 +30,13 @@ namespace VNCCodeCommandConsole
             // and the first few log messages are missed.
             // NB.  All are properly recored in the log file.
 
-            Int64 startTicks = Log.APPLICATION_START("Initialize SignalR", Common.LOG_CATEGORY);
+            Int64 startTicks = Log.CONSTRUCTOR("Initialize SignalR", Common.LOG_CATEGORY);
 
             Thread.Sleep(150);
 
-            Log.APPLICATION_START("App()", Common.LOG_CATEGORY, startTicks);
+            Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY, startTicks);
 
-
-
-            Log.APPLICATION_START(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 01
@@ -235,6 +234,8 @@ namespace VNCCodeCommandConsole
 
             try
             {
+
+                VerifyApplicationPrerequisites();
                 // HACK(crhodes)
                 // Commented all this out for now.
 
@@ -336,6 +337,19 @@ namespace VNCCodeCommandConsole
             }
 
             Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+        
+        private void VerifyApplicationPrerequisites()
+        {
+            if (! File.Exists(Common.cCONFIG_FILE))
+            {
+                throw new FileNotFoundException($"Cannot find {Common.cCONFIG_FILE} - Aborting");
+            }
+            else
+            {
+                // TODO(crhodes)
+                // Maybe some basic checks that file valid, contains what we need, etc.
+            }
         }
 
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)

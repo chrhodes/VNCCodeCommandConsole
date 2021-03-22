@@ -9,7 +9,7 @@ namespace VNCCodeCommandConsole
 {
     public class Common
     {
-        public const string PROJECT_NAME = "VNCCodeCommandConsole";
+        public const string APPLICATION_NAME = "VNCCodeCommandConsole";
         public const string LOG_CATEGORY = "VNCCodeCommandConsole";
 
         public const string cCONFIG_FILE = @"C:\temp\VNCCodeCommandConsole_Config.xml";

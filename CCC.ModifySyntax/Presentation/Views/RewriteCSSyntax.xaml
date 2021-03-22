@@ -1,5 +1,6 @@
 ﻿<vncmvvm:ViewBase
     x:Class="CCC.ModifySyntax.Presentation.Views.RewriteCSSyntax"
+    x:Name="thisRewriteCSSyntax"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:prism="http://www.codeplex.com/prism"
@@ -20,12 +21,28 @@
 >
     <!--xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"-->
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
         <StackPanel>
             <TextBlock Text="RewriteCSSyntax" />
             <TextBlock Text="{Binding Message}" />
             <Button Content="Say Hello" 
                     Command="{Binding SayHelloCommand}" />            
         </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" >
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="V:" />
+                <Label Content="{Binding ElementName=thisRewriteCSSyntax, Path=InstanceCountV}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="VM:" />
+                <Label Content="{Binding InstanceCountVM}" />
+            </StackPanel>
+        </StackPanel>        
 
     </Grid>
     

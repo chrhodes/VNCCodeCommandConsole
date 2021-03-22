@@ -14,7 +14,7 @@ using VNC.Core.Services;
 
 namespace CCC.FindSyntax.Presentation.ViewModels
 {
-    public class FindCSSyntaxViewModel : EventViewModelBase
+    public class FindCSSyntaxViewModel : EventViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
@@ -36,6 +36,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            InstanceCountVM++;
 
             // TODO(crhodes)
             //
@@ -109,6 +111,18 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             Message = "Hello";
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
         }
 
         #endregion

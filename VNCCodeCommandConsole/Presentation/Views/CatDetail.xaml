@@ -1,6 +1,6 @@
 ﻿<vncmvvm:ViewBase
     x:Class="VNCCodeCommandConsole.Presentation.Views.CatDetail"
-    x:Name="ucCatDetail"
+    x:Name="thisCatDetail"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -147,7 +147,7 @@
         <StackPanel Grid.Row="3" Orientation="Horizontal" >
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="V:" />
-                <Label Content="{Binding ElementName=ucCatDetail, Path=InstanceCountV}" />
+                <Label Content="{Binding ElementName=thisCatDetail, Path=InstanceCountV}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="VM:" />

@@ -8,7 +8,7 @@ using VNCCodeCommandConsole.Presentation.ViewModels;
 
 namespace VNCCodeCommandConsole.Presentation.Views
 {
-    public partial class MainDxLayout : ViewBase, IMain
+    public partial class MainDxLayout : ViewBase, IMain, IInstanceCountV
     {
         public MainDxLayoutViewModel _viewModel;
 
@@ -16,6 +16,7 @@ namespace VNCCodeCommandConsole.Presentation.Views
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
+            InstanceCountV++;
             InitializeComponent();
 
             _viewModel = viewModel;
@@ -23,5 +24,18 @@ namespace VNCCodeCommandConsole.Presentation.Views
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
+        #region IInstanceCount
+
+        private static int _instanceCountV;
+
+        public int InstanceCountV
+        {
+            get => _instanceCountV;
+            set => _instanceCountV = value;
+        }
+
+        #endregion
+
     }
 }

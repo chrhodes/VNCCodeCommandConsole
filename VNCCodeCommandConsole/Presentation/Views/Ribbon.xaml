@@ -1,5 +1,6 @@
 ﻿<vncmvvm:ViewBase
     x:Class="VNCCodeCommandConsole.Presentation.Views.Ribbon"
+    x:Name="thisRibbon"    
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:prism="http://www.codeplex.com/prism"
@@ -39,6 +40,10 @@
     </UserControl.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>        
         <!--<TextBlock Text="Ribbon" HorizontalAlignment="Center"  VerticalAlignment="Center"/>-->
 
         <dxb:BarManager CreateStandardLayout="True">
@@ -392,7 +397,17 @@
             </dxlc:LayoutControl>-->
 
         </dxb:BarManager>
-        
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <StackPanel  Orientation="Horizontal" Margin="5">
+                <Label Content="V:" />
+                <Label Content="{Binding ElementName=thisRibbon, Path=InstanceCountV}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="VM:" />
+                <Label Content="{Binding InstanceCountVM}" />
+            </StackPanel>
+        </StackPanel>
     </Grid>
     
 </vncmvvm:ViewBase>

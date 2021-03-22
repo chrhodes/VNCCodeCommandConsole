@@ -21,7 +21,7 @@ namespace VNCCodeCommandConsole.Presentation.Views
 
         public CodeExplorerContext(ViewModels.ICodeExplorerContextViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();

@@ -1,5 +1,6 @@
 ﻿<vncmvvm:ViewBase
     x:Class="VNCCodeCommandConsole.Presentation.Views.CodeExplorerContext"
+    x:Name="thisCodeExplorerContext"    
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:prism="http://www.codeplex.com/prism"
@@ -286,6 +287,20 @@
                 <TextBlock Text="{Binding Message}" />
             </dxlc:LayoutControl>
 
+        </dxlc:LayoutGroup>
+        
+        <dxlc:LayoutGroup 
+        	Orientation="Vertical"  VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal" >
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="V:" />
+                    <Label Content="{Binding ElementName=thisCodeExplorerContext, Path=InstanceCountV}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="VM:" />
+                    <Label Content="{Binding InstanceCountVM}" />
+                </StackPanel>
+            </StackPanel>
         </dxlc:LayoutGroup>
 
     </dxlc:LayoutControl>

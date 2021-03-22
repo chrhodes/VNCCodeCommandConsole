@@ -16,10 +16,10 @@
   </PropertyGroup>
   
   <ItemGroup>
-   <PackageReference Include="DevExpress.Wpf.Core" Version="20.2.3" />
-   <PackageReference Include="DevExpress.Wpf.Grid" Version="20.2.3" />
-   <PackageReference Include="DevExpress.Wpf.Layout" Version="20.2.3" />
-   <PackageReference Include="DevExpress.Wpf.Navigation" Version="20.2.3" />
+   <PackageReference Include="DevExpress.Wpf.Core" Version="20.2.5" />
+   <PackageReference Include="DevExpress.Wpf.Grid" Version="20.2.5" />
+   <PackageReference Include="DevExpress.Wpf.Layout" Version="20.2.5" />
+   <PackageReference Include="DevExpress.Wpf.Navigation" Version="20.2.5" />
    <PackageReference Include="EntityFramework" Version="6.4.4" />
    <PackageReference Include="Prism.Unity" Version="8.0.0.1909" />
    <PackageReference Include="VNC.Core" Version="1.0.0" />

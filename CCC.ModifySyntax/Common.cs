@@ -9,7 +9,7 @@ namespace CCC.ModifySyntax
 {
     public class Common
     {
-        public const string PROJECT_NAME = "VNCCodeCommandConsole";
+        public const string APPLICATION_NAME = "VNCCodeCommandConsole";
         public const string LOG_CATEGORY = "CCC_ModifySyntax";
     }
 }

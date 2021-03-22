@@ -5,7 +5,7 @@ using VNC.Core.Mvvm;
 
 namespace VNCCodeCommandConsole.Presentation.ViewModels
 {
-    public class MainDxDockLayoutManagerViewModel : ViewModelBase
+    public class MainDxDockLayoutManagerViewModel : ViewModelBase, IMainDxDockLayoutManagerViewModel, IInstanceCountVM
     {
         private string _title = "VNCCodeCommandConsole - MainWindowDxDockLayoutManager";
 
@@ -145,6 +145,18 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
         //        Materials.Add(material);
         //    }
         //}
+
+        #endregion
+
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
+        }
 
         #endregion
 

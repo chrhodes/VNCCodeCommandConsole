@@ -1,5 +1,6 @@
 ﻿<vncmvvm:ViewBase
     x:Class="VNCCodeCommandConsole.Presentation.Views.ViewABC"
+    x:Name="thisViewABC"    
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:prism="http://www.codeplex.com/prism"
@@ -11,19 +12,35 @@
     
     xmlns:views="clr-namespace:VNCCodeCommandConsole.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCCodeCommandConsole.Presentation.ViewModels"
-    xmlns:infra="clr-namespace:VNCCodeCommandConsole.Core"
+    xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
 >
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
         <StackPanel>
             <TextBlock Text="ViewABC" />
             <TextBlock Text="{Binding Message}" />
             <views:ViewA />
             <views:ViewB />
             <views:ViewC />
+
+            <StackPanel Grid.Row="1">
+                <StackPanel  Orientation="Horizontal" >
+                    <Label Content="V:" />
+                    <Label Content="{Binding ElementName=thisViewABC, Path=InstanceCountV}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="VM:" />
+                    <Label Content="{Binding InstanceCountVM}" />
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
 
     </Grid>

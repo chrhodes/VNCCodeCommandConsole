@@ -1,5 +1,6 @@
 ﻿<vncmvvm:ViewBase
     x:Class="VNCCodeCommandConsole.Presentation.Views.CombinedMain"
+    x:Name="thisCombinedMain"    
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:prism="http://www.codeplex.com/prism"
@@ -39,6 +40,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
+            <RowDefinition Height="Auto" />            
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
@@ -79,5 +81,16 @@
                 </DataTemplate>
             </TabControl.ItemTemplate>
         </TabControl>
+
+        <StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" >
+                <Label Content="V:" />
+                <Label Content="{Binding ElementName=thisCombinedMain, Path=InstanceCountV}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="VM:" />
+                <Label Content="{Binding InstanceCountVM}" />
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </vncmvvm:ViewBase>
