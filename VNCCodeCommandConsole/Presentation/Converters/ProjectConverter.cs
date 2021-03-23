@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows.Data;
 using System.Xml.Linq;
 
@@ -14,13 +12,14 @@ namespace VNCCodeCommandConsole.Presentation.Converters
         {
             if (value != null)
             {
-                XElement e = (XElement)value;
-                string result = e.Attribute("FileName").Value;
-                if (result == "")
-                {
-                    result = e.Attribute("Name").Value;
-                }
-                return result;
+                return value;
+                //XElement e = (XElement)value;
+                //string result = e.Attribute("FileName").Value;
+                //if (result == "")
+                //{
+                //    result = e.Attribute("Name").Value;
+                //}
+                //return result;
                 //return "Convert value is not null";
                 //List<object> collection = value as List<object>;
                 //if (collection.Count == 0)
@@ -38,19 +37,35 @@ namespace VNCCodeCommandConsole.Presentation.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return value;
-            //if (value != null)
-            //{
-            //    return "ConvertBack value is not null";
-            //    //List<object> collection = value as List<object>;
-            //    //if (collection.Count == 0)
-            //    //    return "no selection";
+            if (value != null)
+            {
+                ObservableCollection<XElement> collection = new ObservableCollection<XElement>();
 
-            //    //if (collection.Contains("Su") && collection.Contains("Sa"))
-            //    //    return "Weekends";
-            //    //else return "Week days";
-            //}
-            //else return "ConvertBack value is null";
+                foreach (var item in (value as List<Object>))
+                {
+                    if (item as string != "")
+                    {
+                        collection.Add(XElement.Parse(item.ToString()));
+                    }
+                }
+
+                //ObservableCollection<XElement> collection = value as ObservableCollection<XElement>;
+
+                //return (System.Collections.Generic.List<Object>)value;
+                //return "ConvertBack value is not null";
+                //List<object> collection = value as List<object>;
+                //if (collection is null)
+                //    return "no selection";
+
+                //if (collection.Contains("Su") && collection.Contains("Sa"))
+                //    return "Weekends";
+                //else return "Week days";
+                return collection;
+            }
+            else
+            {
+                return "ConvertBack value is null";
+            }
         }
         
     }

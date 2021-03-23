@@ -7,7 +7,11 @@ using System.Windows.Markup;
 
 namespace VNCCodeCommandConsole.Presentation.Converters
 {
-    public class SelectedItemsConverter : MarkupExtension, IValueConverter
+    
+    /// <summary>
+    /// Converts to and from a MultiItem Select ComboBox Control
+    /// </summary>
+    public class SelectedItemsToListofStringConverter : MarkupExtension, IValueConverter
     {
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -17,27 +21,26 @@ namespace VNCCodeCommandConsole.Presentation.Converters
         object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null)
+            {
                 return new List<object>((IEnumerable<string>)value);
+            }
 
             return null;
         }
-        //object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        //{
-        //    ObservableCollection<string> result = new ObservableCollection<string>();
-        //    var enumerable = (List<object>)value;
-        //    if (enumerable != null)
-        //        foreach (object item in enumerable)
-        //            result.Add((string)item);
-        //    return result;
-        //}
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             List<string> result = new List<string>();
             var enumerable = (List<object>)value;
+
             if (enumerable != null)
+            {
                 foreach (object item in enumerable)
+                {
                     result.Add((string)item);
+                }
+            }
+
             return result;
         }
     }

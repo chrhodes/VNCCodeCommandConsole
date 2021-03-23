@@ -21,6 +21,7 @@ namespace CCC.CodeChecks.Presentation.Views
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        //public DesignChecks(ViewModels.DesignChecksViewModel viewModel)
         public DesignChecks(ViewModels.IDesignChecksViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);

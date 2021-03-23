@@ -35,6 +35,8 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
+            InstanceCountVM++;
+
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 

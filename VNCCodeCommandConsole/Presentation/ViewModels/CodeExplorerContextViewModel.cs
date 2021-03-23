@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Xml;
 using System.Xml.Linq;
@@ -57,11 +58,14 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
-            Branches = new System.Collections.ObjectModel.ObservableCollection<XElement>();
-            SolutionFiles = new System.Collections.ObjectModel.ObservableCollection<string>();
-            ProjectFiles = new System.Collections.ObjectModel.ObservableCollection<string>();
+            Branches = new ObservableCollection<XElement>();
+            SolutionFiles = new ObservableCollection<XElement>();
+            ProjectFiles = new ObservableCollection<XElement>();
+            SourceFiles = new ObservableCollection<XElement>();
 
-            SolutionFiles = new System.Collections.ObjectModel.ObservableCollection<string>();
+            SelectedSolutionFiles = new ObservableCollection<XElement>();
+            SelectedProjectFiles = new ObservableCollection<XElement>();
+            SelectedSourceFiles = new ObservableCollection<XElement>();
 
             XmlTextReader xtr = new XmlTextReader(Common.cCONFIG_FILE);
 
@@ -85,7 +89,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         private string _selectedSourceFile;
         private string _selectedProject;
-        private string _selectedSolution;
+
         private string _branch;
         private string _message;
         private string _projectFile;
@@ -193,7 +197,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             }
         }
 
-        public System.Collections.ObjectModel.ObservableCollection<XElement> Branches { get; set; }
+        public ObservableCollection<XElement> Branches { get; set; }
 
         private XElement _selectedBranch;
 
@@ -207,21 +211,42 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 _selectedBranch = value;
 
                 SolutionFiles.Clear();
+                ProjectFiles.Clear();
+                SourceFiles.Clear();
 
                 var solutions = _selectedBranch.Descendants("Solution");
 
-                foreach (var solution in solutions.Elements())
-                {
-                    SolutionFiles.Add(solution.Attribute("Name").Value);
-                }
+                SolutionFiles.AddRange(solutions);
 
                 OnPropertyChanged();
             }
         }
         
-        public System.Collections.ObjectModel.ObservableCollection<string> SolutionFiles { get; set; }
+        public ObservableCollection<XElement> SolutionFiles { get; set; }
 
-        public string SelectedSolution
+        ObservableCollection<XElement> _selectedSolutionFiles;
+
+        public ObservableCollection<XElement> SelectedSolutionFiles
+        { 
+            get => _selectedSolutionFiles;
+            set
+            {
+                if (_selectedSolutionFiles == value)
+                    return;
+                _selectedSolutionFiles = value;
+
+                ProjectFiles.Clear();
+
+                var projects = _selectedSolutionFiles.Descendants("Project");
+                ProjectFiles.AddRange(projects);
+
+                OnPropertyChanged();
+            }
+        }
+
+        private XElement _selectedSolution;
+
+        public XElement SelectedSolution
         {
             get => _selectedSolution;
             set
@@ -229,12 +254,32 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 if (_selectedSolution == value)
                     return;
                 _selectedSolution = value;
+
                 OnPropertyChanged();
             }
         }
 
-        public System.Collections.ObjectModel.ObservableCollection<string> ProjectFiles { get; set; }
+        public ObservableCollection<XElement> ProjectFiles { get; set; }
 
+        ObservableCollection<XElement> _selectedProjectFiles;
+
+        public ObservableCollection<XElement> SelectedProjectFiles
+        {
+            get => _selectedProjectFiles;
+            set
+            {
+                if (_selectedProjectFiles == value)
+                    return;
+                _selectedProjectFiles = value;
+
+                // TODO(crhodes)
+                // What now, get list of Source Files?
+                var sourceFiles = _selectedSolutionFiles.Descendants("SourceFile");
+                SourceFiles.AddRange(sourceFiles);
+
+                OnPropertyChanged();
+            }
+        }
 
         public string SelectedProject
         {
@@ -248,9 +293,23 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             }
         }
 
-        public System.Collections.ObjectModel.ObservableCollection<string> SourceFiles { get; set; }
+        public ObservableCollection<XElement> SourceFiles { get; set; }
 
-        
+        ObservableCollection<XElement> _selectedSourceFiles;
+
+        public ObservableCollection<XElement> SelectedSourceFiles
+        {
+            get => _selectedSourceFiles;
+            set
+            {
+                if (_selectedSourceFiles == value)
+                    return;
+                _selectedSourceFiles = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         public string SelectedSourceFile
         {
             get => _selectedSourceFile;

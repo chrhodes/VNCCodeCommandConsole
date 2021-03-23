@@ -11,6 +11,7 @@ using VNC;
 using VNCCodeCommandConsole.Core;
 using CCC.CodeChecks.Presentation.ViewModels;
 using CCC.CodeChecks.Presentation.Views;
+using CCC.CodeChecks.VB.Presentation.Views;
 
 namespace CCC.CodeChecks
 {
@@ -35,8 +36,11 @@ namespace CCC.CodeChecks
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            containerRegistry.Register<DesignChecksViewModel>();
-            containerRegistry.Register<DesignChecks>();
+            //containerRegistry.Register<DesignChecksViewModel>();
+            containerRegistry.Register<IDesignChecksViewModel, DesignChecksViewModel>();
+
+            //containerRegistry.Register<DesignChecks>();
+            containerRegistry.Register<IDesignChecks, DesignChecks>();
 
             containerRegistry.Register<PerformanceChecksViewModel>();
             containerRegistry.Register<PerformanceChecks>();
@@ -57,7 +61,7 @@ namespace CCC.CodeChecks
             // using typeof(TYPE) calls constructor
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
-            _regionManager.RegisterViewWithRegion(RegionNames.DesignChecksRegion, typeof(DesignChecks));
+            _regionManager.RegisterViewWithRegion(RegionNames.DesignChecksRegion, typeof(IDesignChecks));
             _regionManager.RegisterViewWithRegion(RegionNames.PerformanceChecksRegion, typeof(PerformanceChecks));
             _regionManager.RegisterViewWithRegion(RegionNames.QualityChecksRegion, typeof(QualityChecks));
 

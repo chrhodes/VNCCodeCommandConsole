@@ -24,7 +24,7 @@
     xmlns:views="clr-namespace:VNCCodeCommandConsole.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCCodeCommandConsole.Presentation.ViewModels"
     xmlns:infra="clr-namespace:VNCCodeCommandConsole.Core"
-    prism:ViewModelLocator.AutoWireViewModel="True"
+    prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
     d:DesignHeight="100" d:DesignWidth="800"
 >

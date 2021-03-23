@@ -21,7 +21,7 @@
       
     xmlns:local="clr-namespace:VNCCodeCommandConsole.Presentation.Views"
     
-    prism:ViewModelLocator.AutoWireViewModel="True"
+    prism:ViewModelLocator.AutoWireViewModel="False"
     d:DesignHeight="200" d:DesignWidth="300"         
 >
     <!--xmlns:core="clr-namespace:$customAPPLICATON$.Core;assembly=$customAPPLICATON$.Core"-->
@@ -30,7 +30,7 @@
                       Orientation="Vertical"
                       Background="Transparent"
                       VerticalAlignment="Stretch"
-                      DataContext="">
+                      HorizontalAlignment="Stretch">
 
         <dxlc:LayoutControl.AvailableItems>
 
@@ -54,7 +54,7 @@
 
         <dxlc:LayoutGroup Name="lg_Header"
                         VerticalAlignment="Top">
-            <!--<Label Content="lg_Header Stuff Goes Here" />-->
+            <Label Content="lg_Header Stuff Goes Here" />
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Name="lg_Body" >

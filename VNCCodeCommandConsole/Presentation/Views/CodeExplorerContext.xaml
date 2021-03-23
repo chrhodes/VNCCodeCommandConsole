@@ -27,7 +27,7 @@
     
     xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"
     
-    prism:ViewModelLocator.AutoWireViewModel="True"
+    prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
  
     d:DesignHeight="450" d:DesignWidth="800"
@@ -55,7 +55,8 @@
 
         <converters:SolutionConverter x:Key="solutionConverter" />
         <converters:ProjectConverter x:Key="projectConverter" />
-        <converters:SourceFileConverter x:Key="sourceFileConverter" />        
+        <converters:SourceFileConverter x:Key="sourceFileConverter" />
+        <converters:SelectedItemsToListofStringConverter x:Key="selectedItemsToListofStringConverter" />
     </UserControl.Resources>
     
     <!--<Grid>
@@ -76,16 +77,13 @@
             <dxlc:LayoutControl x:Name="layoutItems" 
                                 Orientation="Vertical" >
 
-                <dxlc:LayoutItem             
-                    Label="CodeExplorer Context" 
-                    LabelPosition="Top"/>
-
-                <dxlc:LayoutGroup Header="Select Branch" 
+                <dxlc:LayoutGroup Header="CodeExplorer Context" 
                                   View="GroupBox"
                                   Orientation="Vertical" 
                                   IsCollapsed="False" IsCollapsible="True">
 
-                    <dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Select Branch"
+                                     LabelPosition="Top">
                         <!--<uiuc:wucSourceBranch_Picker x:Name="wucSourceBranch_Picker" 
                                                      ControlChanged="wucSourceBranch_Picker_ControlChanged" />-->
                         <dxe:ComboBoxEdit 
@@ -108,9 +106,10 @@
                     <dxlc:LayoutItem Label="Select Solution File" 
                                  LabelPosition="Top">
 
-                        <!--<dxe:ComboBoxEdit x:Name="cbeSolutionFile"
-                                          DisplayTextConverter="{StaticResource solutionConverter}"
-                                          EditValueChanged="cbeSolutionFile_EditValueChanged">
+                        <!--This is the code behind approach.  It works-->
+                        <!--<dxe:ComboBoxEdit x:Name="cbeSolutionFiles"
+                            ItemsSource="{Binding SolutionFiles}"                                           
+                            EditValueChanged="cbeSolutionFile_EditValueChanged">
                             <dxe:ComboBoxEdit.StyleSettings>
                                 <dxe:CheckedComboBoxStyleSettings />
                             </dxe:ComboBoxEdit.StyleSettings>
@@ -131,16 +130,18 @@
                         </dxe:ComboBoxEdit>-->
 
                         <dxe:ComboBoxEdit 
-                            ItemsSource="{Binding SolutionFiles}"                                   
+                            x:Name="cbeSolutionFiles"
+                            ItemsSource="{Binding SolutionFiles}"
+                            ItemTemplate="{StaticResource comboBoxTemplateSolution}"                            
                             EditValue="{ Binding
-                                Path=SelectedSolution,
+                                Path=SelectedSolutionFiles,
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged,
-                                Converter={StaticResource solutionConverter} }">
+                                Converter={StaticResource solutionConverter }}">
                             <dxe:ComboBoxEdit.StyleSettings>
                                 <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
-                                <!--<dxe:CheckedComboBoxStyleSettings/>-->
-                                <dxe:RadioComboBoxStyleSettings/>
+                                <dxe:CheckedComboBoxStyleSettings/>
+                                <!--<dxe:RadioComboBoxStyleSettings/>-->
                                 <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
                                 <!--<dxe:TokenComboBoxStyleSettings/>-->
                             </dxe:ComboBoxEdit.StyleSettings>
@@ -173,17 +174,19 @@
                             </dxe:ComboBoxEdit.ItemTemplate>
                         </dxe:ComboBoxEdit>-->
 
-                        <dxe:ComboBoxEdit 
-                            ItemsSource="{Binding ProjectFiles}"                                   
+                        <dxe:ComboBoxEdit
+                            x:Name="cbeProjectFiles"
+                            ItemsSource="{Binding ProjectFiles}"
+                            ItemTemplate="{StaticResource comboBoxTemplateSolution}"                              
                             EditValue="{ Binding
-                                Path=SelectedProject,
+                                Path=SelectedProjectFiles,
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged,
-                                Converter={StaticResource projectConverter} }">
+                                Converter={StaticResource projectConverter }}">
                             <dxe:ComboBoxEdit.StyleSettings>
                                 <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
-                                <!--<dxe:CheckedComboBoxStyleSettings/>-->
-                                <dxe:RadioComboBoxStyleSettings/>
+                                <dxe:CheckedComboBoxStyleSettings/>
+                                <!--<dxe:RadioComboBoxStyleSettings/>-->
                                 <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
                                 <!--<dxe:TokenComboBoxStyleSettings/>-->
                             </dxe:ComboBoxEdit.StyleSettings>
@@ -208,16 +211,17 @@
                         </dxe:ComboBoxEdit>-->
 
                         <dxe:ComboBoxEdit
+                            x:Name="cbeSourceFiles"
                             ItemsSource="{Binding SourceFiles}"                                   
                             EditValue="{ Binding
-                                Path=SelectedSourceFile,
+                                Path=SelectedSourceFiles,
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged,
                                 Converter={StaticResource sourceFileConverter} }">
                             <dxe:ComboBoxEdit.StyleSettings>
                                 <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
-                                <!--<dxe:CheckedComboBoxStyleSettings/>-->
-                                <dxe:RadioComboBoxStyleSettings/>
+                                <dxe:CheckedComboBoxStyleSettings/>
+                                <!--<dxe:RadioComboBoxStyleSettings/>-->
                                 <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
                                 <!--<dxe:TokenComboBoxStyleSettings/>-->
                             </dxe:ComboBoxEdit.StyleSettings>

@@ -16,7 +16,7 @@ using VNC.Core.Services;
 
 namespace CCC.CodeChecks.Presentation.ViewModels
 {
-    public class DesignChecksViewModel : EventViewModelBase, IInstanceCountVM
+    public class DesignChecksViewModel : EventViewModelBase, IDesignChecksViewModel, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
