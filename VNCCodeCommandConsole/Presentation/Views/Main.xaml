@@ -12,6 +12,7 @@
 
     prism:ViewModelLocator.AutoWireViewModel="True"
     d:DesignHeight="200" d:DesignWidth="300"
+    d:DesignStyle="{StaticResource vncDesignStyle}"
  >
     <Grid>
         <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" />

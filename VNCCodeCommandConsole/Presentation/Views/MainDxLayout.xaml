@@ -22,7 +22,8 @@
     xmlns:local="clr-namespace:VNCCodeCommandConsole.Presentation.Views"
 
     prism:ViewModelLocator.AutoWireViewModel="True"
-    d:DesignHeight="200" d:DesignWidth="300"         
+    d:DesignHeight="200" d:DesignWidth="300"    
+    d:DesignStyle="{StaticResource vncDesignStyle}"
 >
     <!--xmlns:infra="clr-namespace:$customAPPLICATON$.Core;assembly=$customAPPLICATON$.Core"-->
 

@@ -20,6 +20,11 @@
     <SolidColorBrush x:Key="FriendMeetingDetailBackground" Color="#F0C040" />
     <SolidColorBrush x:Key="FriendDetailBackground" Color="#F0E040" />
 
+    <!-- This is used to make the design experience better -->
+    <Style x:Key="vncDesignStyle" TargetType="UserControl">
+        <Setter Property="Background" Value="White" />
+    </Style>
+    
     <Style TargetType="TextBox">
         <Setter Property="Validation.ErrorTemplate"> 
             <Setter.Value>

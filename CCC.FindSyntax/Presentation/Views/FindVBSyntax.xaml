@@ -27,6 +27,7 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     
     mc:Ignorable="d"
+    d:DesignStyle="{StaticResource vncDesignStyle}"
 >
     <!--xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"-->
 

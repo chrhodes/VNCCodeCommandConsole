@@ -10,6 +10,7 @@
     
     mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="800"
+    d:DesignStyle="{StaticResource vncDesignStyle}"
 >
     <UserControl.Resources>
         <Style x:Key="NavigationItemContainerStyle" TargetType="ContentPresenter">

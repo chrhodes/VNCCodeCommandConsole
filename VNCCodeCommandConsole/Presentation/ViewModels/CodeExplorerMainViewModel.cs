@@ -59,14 +59,17 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         //public IMaterialDataService _materialDataService { get; set; }
         public CodeExplorerMainViewModel(
-            ConfigurationOptionsViewModel configurationOptionsViewModel,
+            IConfigurationOptionsViewModel configurationOptionsViewModel,
             CodeExplorerContextViewModel codeExplorerContextViewModel,
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
-            _configurationOptionsViewModel = configurationOptionsViewModel;
+            // HACK(crhodes)
+            // Should add what we need to IConfigurationOptionsViewModel
+
+            _configurationOptionsViewModel = (ConfigurationOptionsViewModel)configurationOptionsViewModel;
             _codeExplorerContextViewModel = codeExplorerContextViewModel;
             InitializeViewModel();
 
@@ -136,7 +139,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
                         VNCCA.SearchTreeCommandConfiguration searchTreeCommandConfiguration = new VNCCA.SearchTreeCommandConfiguration();
 
-                        searchTreeCommandConfiguration.ConfigurationOptions = _configurationOptionsViewModel.GetSyntaxConfigurationOptions();
+                        searchTreeCommandConfiguration.ConfigurationOptions = _configurationOptionsViewModel.CodeAnalysisOptions.Model;
 
                         searchTreeCommandConfiguration.Results = sbFileResults;
                         searchTreeCommandConfiguration.SyntaxTree = tree;

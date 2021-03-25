@@ -44,6 +44,9 @@ namespace VNCCodeCommandConsole
             containerRegistry.RegisterSingleton<IRibbonViewModel, RibbonViewModel>();
             containerRegistry.RegisterSingleton<IRibbon, Ribbon>();
 
+            //containerRegistry.RegisterSingleton<IConfigurationOptionsViewModel, ConfigurationOptionsViewModel>();
+            //containerRegistry.RegisterSingleton<IConfigurationOptions, ConfigurationOptions>();
+
             // Pick one of these for the MainRegion
             // Use Main to see the AutoWireViewModel in action.
 
@@ -83,8 +86,10 @@ namespace VNCCodeCommandConsole
             containerRegistry.Register<IWorkspaceExplorerViewModel, WorkspaceExplorerViewModel>();
             containerRegistry.Register<IWorkspaceExplorer, WorkspaceExplorer>();
 
-            containerRegistry.Register<IConfigurationOptionsViewModel, ConfigurationOptionsViewModel>();
-            containerRegistry.Register<IConfigurationOptions, ConfigurationOptions>();
+            containerRegistry.RegisterSingleton<IConfigurationOptionsViewModel, ConfigurationOptionsViewModel>();
+            containerRegistry.RegisterSingleton<IConfigurationOptions, ConfigurationOptions>();
+
+
 
             // Figure out how to use one Type
 

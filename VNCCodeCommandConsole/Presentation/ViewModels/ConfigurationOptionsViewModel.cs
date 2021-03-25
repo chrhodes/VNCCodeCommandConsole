@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 using Prism.Commands;
 using Prism.Events;
 
 using VNC;
-using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
+using VNCCodeCommandConsole.Presentation.ModelWrappers;
+
 using VNCCA = VNC.CodeAnalysis;
-using VNCSW = VNC.CodeAnalysis.SyntaxWalkers;
 
 namespace VNCCodeCommandConsole.Presentation.ViewModels
 {
     public class ConfigurationOptionsViewModel : EventViewModelBase, IConfigurationOptionsViewModel, IInstanceCountVM
     {
-
         #region Constructors, Initialization, and Load
 
         public ConfigurationOptionsViewModel(
@@ -42,70 +38,48 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
             InstanceCountVM++;
 
-            // TODO(crhodes)
-            //
+            CodeAnalysisOptions = new CodeAnalysisOptionsWrapper(
+                new VNCCA.CodeAnalysisOptions());
 
-            SayHelloCommand = new DelegateCommand(
-                SayHello, SayHelloCanExecute);
-
-            Message = "ConfigurationOptionsViewModel says hello";
+            // NOTE(crhodes)
+            // 
+            CodeAnalysisOptions.AllTypes = true;
+            DisplayContext = false;
+            DisplaySummaryMinimum = 1;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        #endregion
-
-        #region Enums
-
-
-        #endregion
-
-        #region Structures
-
-
-        #endregion
+        #endregion Constructors, Initialization, and Load
 
         #region Fields and Properties
 
-        public ICommand SayHelloCommand { get; private set; }
+        
+        private CodeAnalysisOptionsWrapper _codeAnalysisOptions;
 
-        private bool _displayCRC32;
-        private int _displaySummaryMinimum;
-        private bool _displaySummary = true;
-        private bool _displayResults = true;
         private bool _alwaysDisplayFileName;
+        private bool _displayCRC32;
+        private bool _displayContext;
+        private bool _displayResults = true;
+        private bool _displaySummary = true;
+        private int _displaySummaryMinimum;
         private bool _listImpactedFilesOnly;
-        private string _message;
 
-        public string Message
+        public CodeAnalysisOptionsWrapper CodeAnalysisOptions
         {
-            get => _message;
+            get { return _codeAnalysisOptions; }
             set
             {
-                if (_message == value)
+                if (_codeAnalysisOptions == value)
                     return;
-                _message = value;
+                _codeAnalysisOptions = value;
                 OnPropertyChanged();
             }
         }
-
-
-        public bool ListImpactedFilesOnly
-        {
-            get => _listImpactedFilesOnly;
-            set
-            {
-                if (_listImpactedFilesOnly == value)
-                    return;
-                _listImpactedFilesOnly = value;
-                OnPropertyChanged();
-            }
-        }
-
 
         public bool AlwaysDisplayFileName
         {
-            get => _alwaysDisplayFileName;
+            get { return _alwaysDisplayFileName; }
             set
             {
                 if (_alwaysDisplayFileName == value)
@@ -114,7 +88,18 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
+  
+        public bool DisplayContext
+        {
+            get { return _displayContext; }
+            set
+            {
+                if (_displayContext == value)
+                    return;
+                _displayContext = value;
+                OnPropertyChanged();
+            }
+        }
 
         public bool DisplayResults
         {
@@ -128,7 +113,6 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             }
         }
 
-
         public bool DisplaySummary
         {
             get => _displaySummary;
@@ -141,7 +125,6 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             }
         }
 
-
         public int DisplaySummaryMinimum
         {
             get => _displaySummaryMinimum;
@@ -153,11 +136,10 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
         
         public bool DisplayCRC32
         {
-            get => _displayCRC32;
+            get { return _displayCRC32; }
             set
             {
                 if (_displayCRC32 == value)
@@ -167,121 +149,27 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             }
         }
         
+        public bool ListImpactedFilesOnly
+        {
+            get => _listImpactedFilesOnly;
+            set
+            {
+                if (_listImpactedFilesOnly == value)
+                    return;
+                _listImpactedFilesOnly = value;
+                OnPropertyChanged();
+            }
+        }
 
-
-
-
-        #endregion
-
-        #region Event Handlers
-
-
-
-        #endregion
+        #endregion Fields and Properties
 
         #region Public Methods
 
-        public VNC.CodeAnalysis.SyntaxConfigurationOptions GetSyntaxConfigurationOptions()
-        {
-            VNC.CodeAnalysis.SyntaxConfigurationOptions configurationOptions = new VNCCA.SyntaxConfigurationOptions();
-
-            // TODO(crhodes)
-            // Bind all this to new Properties in VM
-
-            //var foo = lbeSyntaxWalkerDepth.EditValue;
-            //var bar = lbeAdditionalNodes.EditValue;
-
-            //switch (lbeSyntaxWalkerDepth.EditValue)
-            //{
-            //    case "Node":
-            //        configurationOptions.SyntaxWalkerDepth = Microsoft.CodeAnalysis.SyntaxWalkerDepth.Node;
-            //        break;
-
-            //    case "Token":
-            //        configurationOptions.SyntaxWalkerDepth = Microsoft.CodeAnalysis.SyntaxWalkerDepth.Token;
-            //        break;
-
-            //    case "Trivia":
-            //        configurationOptions.SyntaxWalkerDepth = Microsoft.CodeAnalysis.SyntaxWalkerDepth.Trivia;
-            //        break;
-
-            //    case "StructureTrivia":
-            //        configurationOptions.SyntaxWalkerDepth = Microsoft.CodeAnalysis.SyntaxWalkerDepth.StructuredTrivia;
-            //        break;
-            //}
-
-            //configurationOptions.AdditionalNodeAnalysis = (VNCCA.SyntaxNode.AdditionalNodes)lbeAdditionalNodes.EditValue;
-
-            //configurationOptions.DisplayNodeKind = (bool)ceDisplay_NodeKind.IsChecked;
-            //configurationOptions.DisplayNodeValue = (bool)ceDisplay_NodeValue.IsChecked;
-            ////configurationOptions.DisplayFormattedOutput = (bool)ceDisplay_FormattedOutput.IsChecked;
-
-            //configurationOptions.DisplayNodeParent = (bool)ceDisplay_NodeParent.IsChecked;
-
-            //configurationOptions.DisplayStatementBlock = (bool)ceDisplay_StatementBlock.IsChecked;
-            //configurationOptions.IncludeStatementBlockInCRC = (bool)ceIncludeStatementBlockInCRC.IsChecked;
-
-            //configurationOptions.SourceLocation = (bool)ceDisplaySourceLocation.IsChecked;
-            //configurationOptions.CRC32 = (bool)ceDisplayCRC32.IsChecked;
-            //configurationOptions.ReplaceCRLF = (bool)ceReplaceCRLF.IsChecked;
-
-            //configurationOptions.ClassOrModuleName = (bool)ceDisplayClassOrModuleName.IsChecked;
-            //configurationOptions.MethodName = (bool)ceDisplayMethodName.IsChecked;
-
-            //configurationOptions.ContainingMethodBlock = (bool)ceDisplayContainingMethodBlock.IsChecked;
-            //configurationOptions.ContainingBlock = (bool)ceDisplayContainingBlock.IsChecked;
-
-            //configurationOptions.InTryBlock = (bool)ceInTryBlock.IsChecked;
-            //configurationOptions.InWhileBlock = (bool)ceInWhileBlock.IsChecked;
-            //configurationOptions.InForBlock = (bool)ceInForBlock.IsChecked;
-            //configurationOptions.InIfBlock = (bool)ceInIfBlock.IsChecked;
-
-            //configurationOptions.AllTypes = (bool)ceAllTypes.IsChecked;
-
-            //configurationOptions.Byte = (bool)ceIsByte.IsChecked;
-            //configurationOptions.Boolean = (bool)ceIsBoolean.IsChecked;
-            //configurationOptions.Date = (bool)ceIsDate.IsChecked;
-            //configurationOptions.DataTable = (bool)ceIsDataTable.IsChecked;
-            //configurationOptions.DateTime = (bool)ceIsDateTime.IsChecked;
-            //configurationOptions.Int16 = (bool)ceIsInt16.IsChecked;
-            //configurationOptions.Int32 = (bool)ceIsInt32.IsChecked;
-            //configurationOptions.Integer = (bool)ceIsInteger.IsChecked;
-            //configurationOptions.Long = (bool)ceIsLong.IsChecked;
-            //configurationOptions.Single = (bool)ceIsSingle.IsChecked;
-            //configurationOptions.String = (bool)ceIsString.IsChecked;
-
-            //configurationOptions.OtherTypes = (bool)ceOtherTypes.IsChecked;
-
-            //configurationOptions.AddFileSuffix = (bool)ceAddFileSuffix.IsChecked;
-            //configurationOptions.FileSuffix = teFileSuffix.Text;
-
-            return configurationOptions;
-        }
-
-        #endregion
-
-        #region Protected Methods
-
-
-        #endregion
+        #endregion Public Methods
 
         #region Private Methods
 
-        private bool SayHelloCanExecute()
-        {
-            return true;
-        }
-
-        private void SayHello()
-        {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            Message = "Hello";
-
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        #endregion
+        #endregion Private Methods
 
         #region IInstanceCount
 
@@ -293,6 +181,6 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             set => _instanceCountVM = value;
         }
 
-        #endregion
+        #endregion IInstanceCount
     }
 }

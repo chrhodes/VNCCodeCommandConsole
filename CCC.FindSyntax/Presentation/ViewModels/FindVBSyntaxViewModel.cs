@@ -90,7 +90,6 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
-
         public string ImportsStatementRegEx
         {
             get => _importsStatementRegEx;
@@ -115,11 +114,9 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
-
         #endregion
 
         #region Event Handlers
-
 
         #endregion
 

@@ -18,6 +18,7 @@
     
     mc:Ignorable="d"
     d:DesignHeight="100" d:DesignWidth="200"
+    d:DesignStyle="{StaticResource vncDesignStyle}"
 >
     <!--xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"-->
     

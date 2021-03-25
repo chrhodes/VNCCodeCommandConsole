@@ -22,7 +22,8 @@
     xmlns:local="clr-namespace:VNCCodeCommandConsole.Presentation.Views"
     
     prism:ViewModelLocator.AutoWireViewModel="False"
-    d:DesignHeight="200" d:DesignWidth="300"         
+    d:DesignHeight="200" d:DesignWidth="300"      
+    d:DesignStyle="{StaticResource vncDesignStyle}"
 >
     <!--xmlns:core="clr-namespace:$customAPPLICATON$.Core;assembly=$customAPPLICATON$.Core"-->
 
@@ -62,7 +63,7 @@
             <dxdo:DockLayoutManager 
                 Name="lg_Body_dlm" dx:StyleManager.ApplyApplicationTheme="True" FontSize="12" >
 
-                <dxdo:LayoutGroup Name="lg_Body_dlm_lg"  AllowClose="False" AllowFloat="False" AllowDock="False"  >
+                <dxdo:LayoutGroup Name="lg_Body_dlm_lg"  AllowClose="False" AllowFloat="False" AllowDock="False" >
 
                     <dxdo:TabbedGroup ItemWidth="300" Name="tg_Left">
 
@@ -249,17 +250,11 @@
                                           AllowFloat="True" AllowClose="True" AllowDock="True" AllowHide="True" 
                                           Style="{StaticResource FixedLayoutPanelNarrow}">
 
-                            <!--<uiuc:wucConfigurationOptions x:Name="configurationOptions" />-->
-                            <!--<TextBlock Text="TODO: uiuc:wucConfigurationOptions" />-->
                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ConfigurationOptionsRegion}" />
-
-
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel x:Name="lp_Commands_Workspace" Caption="Workspace Explorer" >
 
-                            <!--<uiuc:wucCommandsWorkspace x:Name="wucCommandsWorkspace" />-->
-                            <!--<TextBlock Text="TODO: uiuc:wucCommandsWorkspace" />-->
                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.WorkspaceExplorerRegion}" />
 
                         </dxdo:LayoutPanel>
