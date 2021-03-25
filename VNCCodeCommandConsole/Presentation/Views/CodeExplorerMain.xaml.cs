@@ -8,11 +8,11 @@ using VNCCodeCommandConsole.Presentation.ViewModels;
 
 namespace VNCCodeCommandConsole.Presentation.Views
 {
-    public partial class MainDxDockLayoutManager : ViewBase, IMain, IInstanceCountV
+    public partial class CodeExplorerMain : ViewBase, IMain, IInstanceCountV
     {
-        public IMainDxDockLayoutManagerViewModel _viewModel;
+        public ICodeExplorerMainViewModel _viewModel;
 
-        public MainDxDockLayoutManager(IMainDxDockLayoutManagerViewModel viewModel)
+        public CodeExplorerMain(ICodeExplorerMainViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()})", Common.LOG_CATEGORY);
 

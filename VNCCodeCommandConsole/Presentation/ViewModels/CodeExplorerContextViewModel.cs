@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using System.Xml;
 using System.Xml.Linq;
@@ -404,6 +408,125 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         #endregion Event Handlers
 
+
+        public string GetFilePath(XElement sourceFileElement)
+        {
+            string fileName = sourceFileElement.Attribute("FileName").Value;
+            string folderPath = sourceFileElement.Attribute("FolderPath").Value;
+            string filePath = (folderPath != "" ? folderPath + "\\" : "") + fileName;
+
+            return filePath;
+        }
+
+        /// <summary>
+        /// Returns list of files to process based on selections
+        /// </summary>
+        /// <returns></returns>
+        public List<String> GetFilesToProcess()
+        {
+            long startTicks = Log.PRESENTATION("Enter", Common.LOG_CATEGORY);
+
+            List<String> filesToProcess = new List<string>();
+
+            // HACK(crhodes)
+            // Just hard code a couple of files for now till we sort through this
+
+            filesToProcess.Add(@"C:\Temp\AML.vb");
+            filesToProcess.Add(@"C:\Temp\AppConfig.vb");
+
+            //// This  method returns a list of files to process.
+            //// If a specific SourceFile is specified, return it
+            ////
+            //// If multiple SolutionFiles are selected, the user must select
+            ////  one or more project files.  Handle as multiple project files
+            ////
+            //// If multiple ProjectFiles are selected, 
+            ////  Loop across <Project> elements 
+            ////      and add files from project
+            ////      and add files listed in <Project> elements
+            ////
+            //// If a ProjectFile is available, use it to get the list of files
+            //// Otherwise return the files selected in cbeSourceFiles.
+
+            //string solutionFullPath = SolutionFile;
+            //string projectFullPath = ProjectFile;
+
+            //if (SourceFile != "")
+            //{
+            //    // TODO(crhodes)
+            //    // Add check for existence
+            //    filesToProcess.Add(SourceFile);
+            //}
+            //else if (SelectedProjectFiles.Count > 1)
+            //{
+            //    foreach (XElement projectElement in SelectedProjectFiles)
+            //    {
+            //        string fileName = projectElement.Attribute("FileName").Value;
+            //        string folderPath = projectElement.Attribute("FolderPath").Value;
+            //        string sourcePath = RepositoryPath + "\\" + folderPath;
+            //        string projectPath = "";
+
+            //        projectPath = fileName != "" ? sourcePath + "\\" + fileName : "";
+
+            //        if (projectPath == "")
+            //        {
+            //            // No project file exists, so look across all the SourceFile elements
+
+            //            foreach (XElement sourceFile in projectElement.Elements("SourceFile"))
+            //            {
+            //                // NB. The file names are added manually so we don't have to exclude any.
+            //                string fileFullPath = sourcePath + "\\" + GetFilePath(sourceFile);
+
+            //                filesToProcess.Add(fileFullPath);
+            //            }
+            //        }
+            //        else
+            //        {
+            //            filesToProcess.AddRange(VNC.CodeAnalysis.Workspace.Helper.GetSourceFilesToProcessFromVSProject(projectPath));
+            //        }
+            //    }
+            //}
+            //else if (projectFullPath != "")
+            //{
+            //    filesToProcess = VNC.CodeAnalysis.Workspace.Helper.GetSourceFilesToProcessFromVSProject(projectFullPath);
+            //}
+            //else if (SelectedSourceFiles.Count > 0)
+            //{
+            //    string sourcePath = SourcePath;
+
+            //    foreach (XElement sourceFile in SelectedSourceFiles)
+            //    {
+            //        string fileFullPath = sourcePath + "\\" + GetFilePath(sourceFile);
+
+            //        filesToProcess.Add(fileFullPath);
+            //    }
+            //}
+
+            //var filesToCheck = filesToProcess.ToList();
+
+            //foreach (string filePath in filesToCheck)
+            //{
+            //    if (!File.Exists(filePath))
+            //    {
+            //        FileInfo fileInfo = new FileInfo(filePath);
+
+            //        if (!Directory.Exists(fileInfo.DirectoryName))
+            //        {
+            //            MessageBox.Show(string.Format("Directory\n\n{0}\n\ndoes not exist", fileInfo.DirectoryName), "Check Path or Config File");
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show(string.Format("File\n\n{0}\nin\n\n{1}\n\ndoes not exist", fileInfo.Name, fileInfo.DirectoryName), "Check Path or Config File");
+            //        }
+
+            //        filesToProcess.Remove(filePath);
+            //    }
+            //}
+
+            Log.PRESENTATION($"End: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
+
+            return filesToProcess;
+        }
         #region Private Methods
 
         private void SayHello()

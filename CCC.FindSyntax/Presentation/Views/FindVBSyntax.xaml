@@ -6,7 +6,17 @@
     xmlns:prism="http://www.codeplex.com/prism"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-
+    
+    xmlns:cb="clr-namespace:CalcBinding;assembly=CalcBinding" 
+    
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"     
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     xmlns:local="clr-namespace:CCC.FindSyntax.Presentation.Views"
     
@@ -17,10 +27,51 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     
     mc:Ignorable="d"
-    d:DesignHeight="100" d:DesignWidth="200"
 >
     <!--xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"-->
-    <Grid>
+
+    <dxlc:LayoutControl Orientation="Vertical" MinWidth="300">
+        <dxlc:LayoutGroup Header="Find ImportsStatement Syntax" 
+        	View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit x:Name="ceImportsStatementUseRegEx" Content="Use Regular Expressions"
+                                       IsChecked="{Binding ImportsStatementUseRegEx}"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Imports">
+                        <dxe:TextEdit x:Name="teImportsStatementRegEx" 
+                                      Text="{Binding ImportsStatementRegEx}"                                      
+                                      IsEnabled="{cb:Binding 
+                                            ElementName=ceImportsStatementUseRegEx, 
+                                            Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+
+                <Button Content="ImportsStatement Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding ImportsStatementWalkerCommand}" 
+                        Tag="ImportsStatementWalker" />
+            </dxlc:LayoutItem>
+            <TextBlock Text="{Binding Message}" />
+
+        </dxlc:LayoutGroup>
+
+    </dxlc:LayoutControl>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -43,6 +94,6 @@
                 <Label Content="{Binding InstanceCountVM}" />
             </StackPanel>
         </StackPanel>
-    </Grid>
+    </Grid>-->
     
 </vncmvvm:ViewBase>

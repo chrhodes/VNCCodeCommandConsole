@@ -15,6 +15,7 @@
   </PropertyGroup>
   
   <ItemGroup>
+   <PackageReference Include="CalcBinding" Version="2.5.2" />
    <PackageReference Include="DevExpress.Wpf.Core" Version="20.2.5" />
    <PackageReference Include="DevExpress.Wpf.Grid" Version="20.2.5" />
    <PackageReference Include="DevExpress.Wpf.Layout" Version="20.2.5" />
@@ -25,6 +26,7 @@
    </ItemGroup>
    
   <ItemGroup>
+    <ProjectReference Include="..\..\VNC\VNC.CodeAnalysis\VNC.CodeAnalysis\VNC.CodeAnalysis.csproj" />
     <ProjectReference Include="..\VNCCodeCommandConsole.Core\VNCCodeCommandConsole.Core.csproj" />
   </ItemGroup>
   

@@ -10,5 +10,9 @@
     <PackageReference Include="Prism.Core" Version="8.0.0.1909" />
     <PackageReference Include="VNC.Core" Version="1.0.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\VNC\VNC.CodeAnalysis\VNC.CodeAnalysis\VNC.CodeAnalysis.csproj" />
+  </ItemGroup>
   
 </Project>
