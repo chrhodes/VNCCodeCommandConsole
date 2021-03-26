@@ -7,6 +7,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 
+    xmlns:cb="clr-namespace:CalcBinding;assembly=CalcBinding" 
+    
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"     
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     xmlns:local="clr-namespace:CCC.FindSyntax.Presentation.Views"
     
@@ -17,34 +27,66 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     
     mc:Ignorable="d"
-    d:DesignHeight="100" d:DesignWidth="200"
     d:DesignStyle="{StaticResource vncDesignStyle}"
 >
     <!--xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"-->
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        
-        <StackPanel>
-            <TextBlock Text="FindCSSyntax" />
-            <TextBlock Text="{Binding Message}" />
-            <Button Content="Say Hello" 
-                    Command="{Binding SayHelloCommand}" />
-        </StackPanel>
+    <UserControl.Resources>
 
+    </UserControl.Resources>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" >
+    <!-- NOTE(crhodes)
+     Put in LayoutControl to get vertical scrolling
+    -->
+    <dxlc:LayoutControl Orientation="Vertical" MinWidth="300">
+
+        <dxlc:LayoutGroup Header="Find UsingDirective Syntax" 
+        	View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       x:Name="ceUsingDirectiveUseRegEx"
+                                       IsChecked="{Binding UsingDirectiveUseRegEx}"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Using">
+                        <dxe:TextEdit Text="{Binding UsingDirectiveRegEx}"                                      
+                                      IsEnabled="{cb:Binding 
+                                            ElementName=ceUsingDirectiveUseRegEx, 
+                                            Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+
+                <Button Content="UsingDirective Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding UsingDirectiveWalkerCommand}" 
+                        Tag="UsingStatementWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+    </dxlc:LayoutControl>
+
+    <!--<StackPanel Grid.Row="2" Orientation="Horizontal" >
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="V:" />
-                <Label Content="{Binding ElementName=thisFindCSSyntax, Path=InstanceCountV}" />
+                <Label Content="{Binding ElementName=thisFindVBSyntax, Path=InstanceCountV}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="VM:" />
                 <Label Content="{Binding InstanceCountVM}" />
             </StackPanel>
-        </StackPanel>
-    </Grid>
-    
+        </StackPanel>-->
 </vncmvvm:ViewBase>

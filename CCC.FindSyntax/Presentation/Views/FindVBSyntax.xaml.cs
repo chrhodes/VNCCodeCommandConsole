@@ -41,5 +41,15 @@ namespace CCC.FindSyntax.Presentation.Views
         }
 
         #endregion
+
+        private void ceShowMethodBlock_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
+        {
+
+        }
+
+        private void ceShowClassBlock_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
+        {
+
+        }
     }
 }

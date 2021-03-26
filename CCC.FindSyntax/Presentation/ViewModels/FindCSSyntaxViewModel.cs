@@ -1,16 +1,18 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
+using System.Text;
 
 using Prism.Commands;
 using Prism.Events;
 
 using VNC;
-using VNC.Core.Events;
+using VNC.CodeAnalysis;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
+
+using VNCCodeCommandConsole.Core.Events;
+
+using VNCCA = VNC.CodeAnalysis;
+using VNCSW = VNC.CodeAnalysis.SyntaxWalkers;
 
 namespace CCC.FindSyntax.Presentation.ViewModels
 {
@@ -39,13 +41,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             InstanceCountVM++;
 
-            // TODO(crhodes)
-            //
-
-            SayHelloCommand = new DelegateCommand(
-                SayHello, SayHelloCanExecute);
-
-            Message = "FindCSSyntaxViewModel says hello";
+            UsingDirectiveWalkerCommand = new DelegateCommand(
+                UsingDirectiveWalkerExecute, UsingDirectiveWalkerCanExecute);
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -64,18 +61,29 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _message;
+        private bool _usingDirectiveUseRegEx;
+        private string _usingDirectiveRegEx = ".*";
 
-        public ICommand SayHelloCommand { get; private set; }
-
-        public string Message
+        public string UsingDirectiveRegEx
         {
-            get => _message;
+            get => _usingDirectiveRegEx;
             set
             {
-                if (_message == value)
+                if (_usingDirectiveRegEx == value)
                     return;
-                _message = value;
+                _usingDirectiveRegEx = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool UsingDirectiveUseRegEx
+        {
+            get => _usingDirectiveUseRegEx;
+            set
+            {
+                if (_usingDirectiveUseRegEx == value)
+                    return;
+                _usingDirectiveUseRegEx = value;
                 OnPropertyChanged();
             }
         }
@@ -99,19 +107,42 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         #region Private Methods
 
-        private bool SayHelloCanExecute()
+        #region UsingStatementWalker
+
+        public DelegateCommand UsingDirectiveWalkerCommand { get; set; }
+
+
+        public void UsingDirectiveWalkerExecute()
         {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<InvokeCSSyntaxWalkerEvent>().Publish(DisplayUsingDirectiveWalkerCS);
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool UsingDirectiveWalkerCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
             return true;
         }
 
-        void SayHello()
+        private StringBuilder DisplayUsingDirectiveWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
         {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
-            Message = "Hello";
+            var walker = new VNCSW.CS.UsingDirective();
 
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+            commandConfiguration.UseRegEx = UsingDirectiveUseRegEx;
+            commandConfiguration.RegEx = UsingDirectiveRegEx;
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
         }
+
+        #endregion
 
         #endregion
 

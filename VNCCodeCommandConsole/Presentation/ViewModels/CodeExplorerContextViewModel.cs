@@ -434,6 +434,9 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             filesToProcess.Add(@"C:\Temp\AML.vb");
             filesToProcess.Add(@"C:\Temp\AppConfig.vb");
 
+            filesToProcess.Add(@"C:\Temp\VB.cs");
+            filesToProcess.Add(@"C:\Temp\CS.cs");
+
             //// This  method returns a list of files to process.
             //// If a specific SourceFile is specified, return it
             ////

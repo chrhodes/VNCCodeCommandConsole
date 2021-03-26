@@ -30,8 +30,15 @@
     d:DesignStyle="{StaticResource vncDesignStyle}"
 >
     <!--xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"-->
+    <UserControl.Resources>
 
+    </UserControl.Resources>
+    
+    <!-- NOTE(crhodes)
+     Put in LayoutControl to get vertical scrolling
+    -->
     <dxlc:LayoutControl Orientation="Vertical" MinWidth="300">
+        
         <dxlc:LayoutGroup Header="Find ImportsStatement Syntax" 
         	View="GroupBox"
             Orientation="Vertical"
@@ -43,13 +50,12 @@
                 <dxlc:LayoutGroup
                 	Orientation="Vertical">
                     <dxlc:LayoutItem>
-                        <dxe:CheckEdit x:Name="ceImportsStatementUseRegEx" Content="Use Regular Expressions"
+                        <dxe:CheckEdit Content="Use Regular Expressions"
                                        IsChecked="{Binding ImportsStatementUseRegEx}"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Imports">
-                        <dxe:TextEdit x:Name="teImportsStatementRegEx" 
-                                      Text="{Binding ImportsStatementRegEx}"                                      
+                        <dxe:TextEdit Text="{Binding ImportsStatementRegEx}"                                      
                                       IsEnabled="{cb:Binding 
                                             ElementName=ceImportsStatementUseRegEx, 
                                             Path=IsChecked, Mode=OneWay}"
@@ -67,25 +73,1041 @@
                         Command="{Binding ImportsStatementWalkerCommand}" 
                         Tag="ImportsStatementWalker" />
             </dxlc:LayoutItem>
-            <TextBlock Text="{Binding Message}" />
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find Namespace Syntax" 
+        	View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Namespaces">
+                        <dxe:TextEdit x:Name="teNamespaceStatementRegEx" Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceNamespaceStatementUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="NamespaceStatement Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding NamespaceStatementWalkerCommand}" 
+                        Tag="NamespaceStatementWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find ClassStatement Syntax" 
+        	View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Classes">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceClassStatementUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <dxe:CheckEdit Content="Show Class Block" IsChecked="False"
+                               EditValueChanged="ceShowClassBlock_EditValueChanged"/>
+            </dxlc:LayoutItem>
+
+            <!-- TODO(crhodes)
+             THis needs work
+            -->
+            <dxlc:LayoutItem>
+                <!--<Button  Style="{StaticResource SyntaxQueryButton}"
+                         Click="btnClassStatementWalker_Click">
+                    <TextBlock x:Name="teWalk_ClassStatement"
+                                   TextWrapping="Wrap" 
+                                   TextAlignment="Center">ClassStatement Walker</TextBlock>
+                </Button>
+                <Button Content="NamespaceStatement Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding NamespaceStatementWalkerCommand}" 
+                        Tag="NamespaceStatementWalker" />-->                
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find ModuleStatement Syntax" 
+        	View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Modules">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceModuleStatementUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <dxe:CheckEdit Content="Show Module Block" IsChecked="False" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem>
+                <Button Content="ModuleStatement Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding ModuleStatementWalkerCommand}" 
+                        Tag="ModuleStatementWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find FieldDeclaration Syntax" 
+        	View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Fields">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceFieldDeclarationUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                    <dx:GroupFrame Header="FieldDeclaration Location" VerticalAlignment="Top">
+                        <dxe:ListBoxEdit Name="lbeFieldDeclarationLocation" 
+                             ValueMember="Content" 
+                             SelectedIndex="0"                                                         
+                             ShowBorder="False" Background="{x:Null}">
+                            <dxe:ListBoxEdit.StyleSettings>
+                                <dxe:RadioListBoxEditStyleSettings />
+                            </dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical" />
+                                </ItemsPanelTemplate>
+                            </dxe:ListBoxEdit.ItemsPanel>
+                            <dxe:ListBoxEdit.Items>
+                                <dxe:ListBoxEditItem Content="Class" />
+                                <dxe:ListBoxEditItem Content="Module" />
+                                <dxe:ListBoxEditItem Content="Structure" />
+                            </dxe:ListBoxEdit.Items>
+                        </dxe:ListBoxEdit>
+                    </dx:GroupFrame>
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="FieldDeclaration Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding FieldDeclarationWalkerCommand}" 
+                        Tag="FieldDeclarationWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find PropertyStatement Syntax" 
+        	View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Properties">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=cePropertyStatementUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <dxe:CheckEdit x:Name="ceShowPropertyBlock" Content="Show Property Block" IsChecked="False" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem>
+                <Button Content="PropertyStatement Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding PropertyStatementWalkerCommand}" 
+                        Tag="PropertyStatementWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find StructureBlock Syntax" 
+        	View="GroupBox" Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True"                          >
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Structures">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceStructuresUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit x:Name="ceStructureShowFields" 
+                                   Content="ShowFields" 
+                                   IsChecked="True"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutGroup
+                    	Orientation="Vertical"
+                        Visibility="{cb:Binding ElementName=ceStructureShowFields, Path=IsChecked}" >
+
+                        <dxlc:LayoutItem>
+                            <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Fields" >
+                            <dxe:TextEdit Text=".*" 
+                                    IsEnabled="{cb:Binding ElementName=ceStructureFieldsUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                    ToolTip="Supports Regular Expressions"/>
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="FindStructureBlock Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding FindStructureBlockWalkerCommand}" 
+                        Tag="FindStructureBlockWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find MethodBlock Syntax" 
+        	View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Methods">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceMethodBlockUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup
+            	Orientation="Vertical">
+                <!--<dxlc:LayoutItem>
+                    <dxe:CheckEdit x:Name="ceShowMethodParameters" Content="Show Method Parameters" IsChecked="False" />
+                </dxlc:LayoutItem>-->
+
+                <!--<dxlc:LayoutItem>
+                    <dxe:CheckEdit x:Name="ceShowMethodBlock2" Content="Show Method Block" IsChecked="False" />
+                </dxlc:LayoutItem>-->
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="MethodBlock Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding MethodBlockWalkerCommand}" 
+                        Tag="MethodBlockWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find MethodStatement Syntax" 
+        	View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Methods">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceMethodStatementUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+                <!--<dxlc:LayoutItem>
+                    <dxe:CheckEdit x:Name="ceShowMethodParameters" Content="Show Method Parameters" IsChecked="False" />
+                </dxlc:LayoutItem>-->
+
+                <dxlc:LayoutItem>
+                    <dxe:CheckEdit x:Name="ceShowMethodBlock"
+                                   Content="Show Method Block" IsChecked="False"
+                                   EditValueChanged="ceShowMethodBlock_EditValueChanged"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
+            <!-- TODO(crhodes)
+             This needs work
+            -->
+            <dxlc:LayoutItem>
+                <!--<Button  Style="{StaticResource SyntaxQueryButton}"
+                         Click="btnMethodStatementWalker_Click">
+                    <TextBlock x:Name="teWalk_MethodStatement"
+                                   TextWrapping="Wrap" 
+                                   TextAlignment="Center">MethodStatement Walker</TextBlock>
+                </Button>
+                <Button Content="MethodStatement Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding MethodStatementCommand}" 
+                        Tag="MethodStatementWalker" />-->                
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find HandlesClause Syntax" 
+            View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Identifier">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceHandlesClauseUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="HandlesClause Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding HandlesClauseWalkerCommand}" 
+                        Tag="HandlesClauseWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find ParameterList Syntax" 
+        	View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Parameters">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceParameterListUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="ParameterList Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding ParameterListWalkerCommand}" 
+                        Tag="ParameterListWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find LocalDeclarationStatement Syntax" 
+        	View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	    Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                           IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Local Variables">
+                        <dxe:TextEdit Text=".*"
+                                          IsEnabled="{cb:Binding ElementName=ceLocalDeclarationStatementUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                          ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="LocalDelcarationStatement Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding LocalDelcarationStatementWalkerCommand}" 
+                        Tag="LocalDelcarationStatementWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find MultiLineLambdaExpression Syntax" 
+            View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Identifier">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceMultiLineLambdaExpressionUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="MultiLineLambdaExpression Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding MultiLineLambdaExpressionWalkerCommand}" 
+                        Tag="MultiLineLambdaExpressionWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find SingleLineLambdaExpression Syntax" 
+            View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Identifier">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceSingleLineLambdaExpressionUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="SingleLineLambdaExpression Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding SingleLineLambdaExpressionWalkerCommand}" 
+                        Tag="SingleLineLambdaExpressionWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find ExpressionStatement Syntax" 
+            View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Identifier">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceExpressionStatementUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="ExpressionStatement Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding ExpressionStatementWalkerCommand}" 
+                        Tag="ExpressionStatementWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find InvocationExpression Syntax" 
+            View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Identifier">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceInvocationExpressionUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="InvocationExpression Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding InvocationExpressionWalkerCommand}" 
+                        Tag="InvocationExpressionWalker" />
+            </dxlc:LayoutItem>
+
+            <!--<dxlc:LayoutGroup  Header="Manual Loop"
+                               View="GroupBox"
+                               IsCollapsible="True" IsCollapsed="True"
+                               Orientation="Vertical">
+
+                <dxe:CheckEdit x:Name="ceIncludeTrivia" Content="Include Trivia" IsChecked="True" VerticalAlignment="Top" />
+
+                <dx:GroupFrame Header="SyntaxWalkerDepth" VerticalAlignment="Top">
+                    <dxe:ComboBoxEdit Name="lbeSyntaxWalkerDepth" VerticalAlignment="Top"
+                                     ItemsSource="{Binding Source={vxe:EnumBindingSource {x:Type vcasn:WalkerDepth}}}"                                                                     
+                                     SelectedIndex="0"                                                         
+                                     ShowBorder="False" Background="{x:Null}">
+                    </dxe:ComboBoxEdit>
+                </dx:GroupFrame>
+
+                <dx:GroupFrame Header="Node Retrieval" VerticalAlignment="Top">
+                    <dxe:ComboBoxEdit Name="lbeNodes" VerticalAlignment="Top"
+                                     ItemsSource="{Binding Source={vxe:EnumBindingSource {x:Type vcasn:AdditionalNodes}}}"                                                                     
+                                     SelectedIndex="0"                                                         
+                                     ShowBorder="False" Background="{x:Null}">
+                    </dxe:ComboBoxEdit>
+                </dx:GroupFrame>
+
+                <dxlc:LayoutItem>
+                    <Button Content="InvocationExpression"
+                            Style="{StaticResource SyntaxQueryButton}"
+                            Click="btnInvocation_Click"/>
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>-->
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find MemberAccessExpression Syntax" 
+        	View="GroupBox" Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Assignments">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceMemberAccessExpressionUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="MemberAccessExpression Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding MemberAccessExpressionWalkerCommand}" 
+                        Tag="MemberAccessExpressionWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find ArgumentList Syntax" 
+        	View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Arguments">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceArgumentListUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="ArgumentList Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding ArgumentListWalkerCommand}" 
+                        Tag="ArgumentListWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find VariableDeclarator Syntax" 
+        	View="GroupBox" Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Variables">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceVariableDeclaratorUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="VariableDeclarator Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding VariableDeclaratorWalkerCommand}" 
+                        Tag="VariableDeclaratorWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find ObjectCreationExpression Syntax" 
+        	View="GroupBox" Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Assignments">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceObjectCreationExpressionUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="ObjectCreationExpression Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding ObjectCreationExpressionWalkerCommand}" 
+                        Tag="ObjectCreationExpressionWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find AssignmentStatement Syntax" 
+        	View="GroupBox" Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutGroup
+                    	Orientation="Horizontal">
+                        <dxlc:LayoutItem>
+                            <dxe:CheckEdit Content="Match Left Side"
+                                       IsChecked="True"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
+                            <dxe:CheckEdit x:Name="ceAssignmentStatementMatchRight" Content="Match Right Side"
+                                       IsChecked="True"/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutItem Label="Assignments">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceAssignmentStatementUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="AssignmentStatement Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding AssignmentStatementWalkerCommand}" 
+                        Tag="AssignmentStatementWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find BinaryExpression Syntax" 
+        	View="GroupBox" Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Assignments">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceBinaryExpressionUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="BinaryExpression Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding BinaryExpressionWalkerCommand}" 
+                        Tag="BinaryExpressionWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find AsNewClause Syntax" 
+        	View="GroupBox" Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="AsClause">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceAsNewClauseUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="AsNewClause Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding AsNewClauseWalkerCommand}" 
+                        Tag="AsNewClauseWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find SimpleAsClause Syntax" 
+        	View="GroupBox" Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="AsClause">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceSimpleAsClauseUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="SimpleAsClause Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding SimpleAsClauseWalkerCommand}" 
+                        Tag="SimpleAsClauseWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find StopOrEndStatement Syntax" 
+        	View="GroupBox" Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutItem>
+                <Button Content="StopOrEndStatement Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding StopOrEndStatementWalkerCommand}" 
+                        Tag="StopOrEndStatementWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find SyntaxNodes" 
+        	View="GroupBox" Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Nodes">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceSyntaxNodeUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="SyntaxNode Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding SyntaxNodeWalkerCommand}" 
+                        Tag="SyntaxNodeWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find SyntaxTokens" 
+        	View="GroupBox" Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Tokens">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceSyntaxTokenUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <Button Content="SyntaxToken Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding SyntaxTokenWalkerCommand}" 
+                        Tag="SyntaxTokenWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Find SyntaxTrivia" 
+        	View="GroupBox" Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       IsChecked="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Trivia">
+                        <dxe:TextEdit Text=".*"
+                                      IsEnabled="{cb:Binding ElementName=ceSyntaxTriviaUseRegEx, Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <!--<Button Content="SyntaxTrivia Walker"
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Click="btnSyntaxTriviaWalker_Click"/>-->
+                <Button Content="ImportsStatement Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding SyntaxTriviaWalkerCommand}" 
+                        Tag="SyntaxTriviaWalker" />                
+            </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
 
     </dxlc:LayoutControl>
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        
-        <StackPanel>
-            <TextBlock Text="FindVBSyntax" />
-            <TextBlock Text="{Binding Message}" />
-            <Button Content="Say Hello" 
-                    Command="{Binding SayHelloCommand}" />
-        </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" >
+        <!--<StackPanel Grid.Row="2" Orientation="Horizontal" >
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="V:" />
                 <Label Content="{Binding ElementName=thisFindVBSyntax, Path=InstanceCountV}" />
@@ -94,7 +1116,6 @@
                 <Label Content="VM:" />
                 <Label Content="{Binding InstanceCountVM}" />
             </StackPanel>
-        </StackPanel>
-    </Grid>-->
+        </StackPanel>-->
     
 </vncmvvm:ViewBase>

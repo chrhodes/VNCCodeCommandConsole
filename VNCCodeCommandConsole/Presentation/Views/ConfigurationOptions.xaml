@@ -37,7 +37,11 @@
 
     </UserControl.Resources>
 
-    <dxlc:LayoutGroup MinWidth="200"  Orientation="Vertical">
+    <!-- NOTE(crhodes)
+     Put in LayoutControl to get vertical scrolling
+    -->
+    
+    <dxlc:LayoutControl Orientation="Vertical" MinWidth="200">
 
         <dxlc:LayoutGroup Header="CodeAnalysis Options" 
         	View="GroupBox" Orientation="Vertical"
@@ -330,6 +334,6 @@
 
         </dxlc:LayoutGroup>
 
-    </dxlc:LayoutGroup>
+    </dxlc:LayoutControl>
 
 </vncmvvm:ViewBase>
