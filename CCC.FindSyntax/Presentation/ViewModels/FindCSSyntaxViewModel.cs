@@ -44,6 +44,9 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             UsingDirectiveWalkerCommand = new DelegateCommand(
                 UsingDirectiveWalkerExecute, UsingDirectiveWalkerCanExecute);
 
+            NamespaceDeclarationWalkerCommand = new DelegateCommand(
+                NamespaceDeclarationWalkerExecute, NamespaceDeclarationWalkerCanExecute);
+
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -61,6 +64,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         #region Fields and Properties
 
+        private string _namespaceDeclarationRegEx;
+        private bool _namespaceDeclarationUseRegEx;
         private bool _usingDirectiveUseRegEx;
         private string _usingDirectiveRegEx = ".*";
 
@@ -88,6 +93,33 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
+        
+        public string NamespaceDeclarationRegEx
+        {
+            get => _namespaceDeclarationRegEx;
+            set
+            {
+                if (_namespaceDeclarationRegEx == value)
+                    return;
+                _namespaceDeclarationRegEx = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        public bool NamespaceDeclarationUseRegEx
+        {
+            get => _namespaceDeclarationUseRegEx;
+            set
+            {
+                if (_namespaceDeclarationUseRegEx == value)
+                    return;
+                _namespaceDeclarationUseRegEx = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
         #endregion
 
         #region Event Handlers
@@ -106,6 +138,42 @@ namespace CCC.FindSyntax.Presentation.ViewModels
         #endregion
 
         #region Private Methods
+
+        #region NamespaceDeclaration Walker
+
+        public DelegateCommand NamespaceDeclarationWalkerCommand { get; set; }
+
+        public void NamespaceDeclarationWalkerExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<InvokeCSSyntaxWalkerEvent>().Publish(DisplayNamespaceDeclarationWalkerCS);
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool NamespaceDeclarationWalkerCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        private StringBuilder DisplayNamespaceDeclarationWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            var walker = new VNCSW.CS.NamespaceDeclaration();
+
+            commandConfiguration.UseRegEx = NamespaceDeclarationUseRegEx;
+            commandConfiguration.RegEx = NamespaceDeclarationRegEx;
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
+        #endregion
 
         #region UsingStatementWalker
 
@@ -143,6 +211,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
         }
 
         #endregion
+
 
         #endregion
 

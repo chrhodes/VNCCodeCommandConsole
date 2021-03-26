@@ -77,6 +77,44 @@
 
         </dxlc:LayoutGroup>
 
+        <dxlc:LayoutGroup Header="Find NamespaceDeclaration Syntax" 
+        	View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       x:Name="ceNamespaceDeclarationUseRegEx"
+                                       IsChecked="{Binding NamespaceDeclarationUseRegEx}"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Using">
+                        <dxe:TextEdit Text="{Binding NamespaceDeclarationRegEx}"                                      
+                                      IsEnabled="{cb:Binding 
+                                            ElementName=ceNamespaceDeclarationUseRegEx, 
+                                            Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+
+                <Button Content="NamespaceDeclaration Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding NamespaceDeclarationWalkerCommand}" 
+                        Tag="NamespaceDeclarationWalker" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
     </dxlc:LayoutControl>
 
     <!--<StackPanel Grid.Row="2" Orientation="Horizontal" >
