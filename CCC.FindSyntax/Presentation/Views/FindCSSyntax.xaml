@@ -115,6 +115,120 @@
 
         </dxlc:LayoutGroup>
 
+        <dxlc:LayoutGroup Header="Find ClassDeclaration Syntax" 
+        	View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+        
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+        
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       x:Name="ceClassDeclarationUseRegEx"
+                                       IsChecked="{Binding ClassDeclarationUseRegEx}"/>
+                    </dxlc:LayoutItem>
+        
+                    <dxlc:LayoutItem Label="Using">
+                        <dxe:TextEdit Text="{Binding ClassDeclarationRegEx}"                                      
+                                      IsEnabled="{cb:Binding 
+                                            ElementName=ceClassDeclarationUseRegEx, 
+                                            Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+        
+                </dxlc:LayoutGroup>
+        
+            </dxlc:LayoutGroup>
+        
+            <dxlc:LayoutItem>
+        
+                <Button Content="ClassDeclaration Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding ClassDeclarationWalkerCommand}" 
+                        Tag="ClassDeclarationWalker" />
+            </dxlc:LayoutItem>
+        
+        </dxlc:LayoutGroup>
+        
+        <dxlc:LayoutGroup Header="Find FieldDeclaration Syntax" 
+        	View="GroupBox"
+            Orientation="Vertical"
+            IsCollapsible="True" IsCollapsed="True">
+        
+            <dxlc:LayoutGroup
+            	Orientation="Horizontal">
+        
+                <dxlc:LayoutGroup
+                	Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Use Regular Expressions"
+                                       x:Name="ceFieldDeclarationUseRegEx"
+                                       IsChecked="{Binding FieldDeclarationUseRegEx}"/>
+                    </dxlc:LayoutItem>
+        
+                    <dxlc:LayoutItem Label="Using">
+                        <dxe:TextEdit Text="{Binding FieldDeclarationRegEx}"                                      
+                                      IsEnabled="{cb:Binding 
+                                            ElementName=ceFieldDeclarationUseRegEx, 
+                                            Path=IsChecked, Mode=OneWay}"
+                                      ToolTip="Supports Regular Expressions"/>
+                    </dxlc:LayoutItem>
+
+                    <dx:GroupFrame Header="FieldDeclaration Location" VerticalAlignment="Top">
+                        <dxe:ListBoxEdit Name="lbeFieldDeclarationLocation" 
+                             ValueMember="Content" 
+                             SelectedIndex="0"                                                         
+                             ShowBorder="False" Background="{x:Null}"
+                             EditValue="{ Binding 
+                                Path=DeclarationLocation,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged}">
+                            <dxe:ListBoxEdit.StyleSettings>
+                                <dxe:RadioListBoxEditStyleSettings />
+                            </dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical" />
+                                </ItemsPanelTemplate>
+                            </dxe:ListBoxEdit.ItemsPanel>
+                            <dxe:ListBoxEdit.Items>
+                                <dxe:ListBoxEditItem Content="Class" />
+                                <dxe:ListBoxEditItem Content="Structure" />
+                            </dxe:ListBoxEdit.Items>
+                        </dxe:ListBoxEdit>
+                    </dx:GroupFrame>
+
+                    <!--<dxe:ComboBoxEdit
+                        ItemsSource="{ Binding TeamProjects }"
+                        EditValue="{ Binding 
+                            Path=Options.TeamProjects,
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource SelectedItemsToListOfStringConverter} }" >
+                        <dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:CheckedComboBoxStyleSettings />
+                        </dxe:ComboBoxEdit.StyleSettings>
+                    </dxe:ComboBoxEdit>-->
+                </dxlc:LayoutGroup>
+        
+            </dxlc:LayoutGroup>
+        
+            <dxlc:LayoutItem>
+        
+                <Button Content="FieldDeclaration Walker" 
+                        Style="{StaticResource SyntaxQueryButton}"
+                        Command="{Binding FieldDeclarationWalkerCommand}" 
+                        Tag="FieldDeclarationWalker" />
+            </dxlc:LayoutItem>
+        
+        </dxlc:LayoutGroup>
+        
+        <!-- Now go to ViewModel in the InitializeViewModel() and use
+        CSWalker
+        -->
     </dxlc:LayoutControl>
 
     <!--<StackPanel Grid.Row="2" Orientation="Horizontal" >

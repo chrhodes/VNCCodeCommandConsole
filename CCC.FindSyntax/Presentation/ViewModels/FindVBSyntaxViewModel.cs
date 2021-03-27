@@ -336,7 +336,6 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         #endregion
 
-
         StringBuilder DisplayStopOrEndStatementVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);

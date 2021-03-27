@@ -431,11 +431,13 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             // HACK(crhodes)
             // Just hard code a couple of files for now till we sort through this
 
-            filesToProcess.Add(@"C:\Temp\AML.vb");
-            filesToProcess.Add(@"C:\Temp\AppConfig.vb");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AML.vb");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AppConfig.vb");
 
-            filesToProcess.Add(@"C:\Temp\VB.cs");
-            filesToProcess.Add(@"C:\Temp\CS.cs");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VB.cs");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\CS.cs");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCCSSyntaxWalkerBase.cs");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCVBSyntaxWalkerBase.cs");
 
             //// This  method returns a list of files to process.
             //// If a specific SourceFile is specified, return it
