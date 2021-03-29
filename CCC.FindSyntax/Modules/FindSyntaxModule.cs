@@ -36,6 +36,9 @@ namespace CCC.FindSyntax
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
+            containerRegistry.Register<RegExSyntaxWalkerViewModel>();
+            containerRegistry.Register<RegExSyntaxWalker>();
+
             containerRegistry.Register<FindCSSyntaxViewModel>();
             containerRegistry.Register<FindCSSyntax>();
 

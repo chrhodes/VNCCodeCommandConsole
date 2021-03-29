@@ -408,7 +408,6 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         #endregion Event Handlers
 
-
         public string GetFilePath(XElement sourceFileElement)
         {
             string fileName = sourceFileElement.Attribute("FileName").Value;
@@ -417,6 +416,9 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
             return filePath;
         }
+
+        // TODO(crhodes)
+        // This should be calling a DOMAIN/APPLICATION Service
 
         /// <summary>
         /// Returns list of files to process based on selections
@@ -433,6 +435,11 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
             filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AML.vb");
             filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AppConfig.vb");
+
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE1.vb");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE2.vb");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE3.vb");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE4.vb");
 
             filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VB.cs");
             filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\CS.cs");

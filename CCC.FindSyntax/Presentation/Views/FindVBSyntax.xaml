@@ -76,10 +76,14 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Header="Find Namespace Syntax" 
+        <views:RegExSyntaxWalker x:Name="cImportsStatement" 
+                                 Background="LightBlue" VerticalAlignment="Top"
+                                 RegEx="{Binding ImportsStatementRegEx2, Mode=TwoWay}"/>
+
+        <dxlc:LayoutGroup Header="Find NamespaceStatement Syntax" 
         	View="GroupBox"
             Orientation="Vertical"
-            IsCollapsible="True" IsCollapsed="True">
+            IsCollapsible="True" IsCollapsed="False">
 
             <dxlc:LayoutGroup
             	Orientation="Horizontal">

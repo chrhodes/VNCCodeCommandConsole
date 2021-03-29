@@ -14,6 +14,10 @@ namespace CCC.FindSyntax.Presentation.Views
 
             _instanceCountV++;
             InitializeComponent();
+            var foo = cImportsStatement;
+            var bar = cImportsStatement.DataContext;
+            //cImportsStatement.TheButton.Command = bar.            
+            //(cImportsStatement.DataContext) = "FooBar";
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }

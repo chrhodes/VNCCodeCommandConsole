@@ -44,17 +44,20 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             ImportsStatementWalkerCommand = new DelegateCommand(
                 ImportsStatementWalkerExecute, ImportsStatementWalkerCanExecute);
 
+            NamespaceStatementWalkerCommand = new DelegateCommand(
+                NamespaceStatementWalkerExecute, NamespaceStatementWalkerCanExecute);
+
+            ModuleStatementWalkerCommand = new DelegateCommand(
+                ModuleStatementWalkerExecute, ModuleStatementWalkerCanExecute);
+
+            SyntaxWalkerCommand = new DelegateCommand(
+    WalkerExecute, WalkerCanExecute);
+
             // TODO(crhodes)
             // Either add the methods or write something reflective on the tag
             // to call the correct method.
             //
             // Longer term see if can make the ones that just support RegEx and UseRegEx simpler.
-
-            //NamespaceStatementWalkerCommand = new DelegateCommand(
-            //    NamespaceStatementWalkerExecute, NamespaceStatementWalkerCanExecute);
-
-            //ModuleStatementWalkerCommand = new DelegateCommand(
-            //    ModuleStatementWalkerExecute, ModuleStatementWalkerCanExecute);
 
             //FieldDeclarationWalkerCommand = new DelegateCommand(
             //    FieldDeclarationWalkerExecute, FieldDeclarationWalkerCanExecute);
@@ -128,21 +131,48 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        #endregion
+    #endregion
 
-        #region Enums
-
-
-        #endregion
-
-        #region Structures
+    #region Enums
 
 
-        #endregion
+    #endregion
 
-        #region Fields and Properties
+    #region Structures
 
-        private bool _importsStatementUseRegEx;
+
+    #endregion
+
+    #region Fields and Properties
+
+    private string _namespaceStatementRegEx;
+    private bool _namespaceStatementUseRegEx;
+
+    public string NamespaceStatementRegEx
+    {
+        get => _namespaceStatementRegEx;
+        set
+        {
+            if (_namespaceStatementRegEx == value)
+                return;
+            _namespaceStatementRegEx = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public bool NamespaceStatementUseRegEx
+    {
+        get => _namespaceStatementUseRegEx;
+        set
+        {
+            if (_namespaceStatementUseRegEx == value)
+                return;
+            _namespaceStatementUseRegEx = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _importsStatementUseRegEx;
         private string _importsStatementRegEx = ".*";
 
         public string ImportsStatementRegEx
@@ -169,7 +199,48 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
-        private bool _expressionStatementUseRegEx;
+        private string _importsStatementRegEx2 = "99";
+
+        public string ImportsStatementRegEx2
+        {
+            get => _importsStatementRegEx2;
+            set
+            {
+                if (_importsStatementRegEx2 == value)
+                    return;
+                _importsStatementRegEx2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _moduleStatementRegEx;
+    private bool _moduleStatementUseRegEx;
+
+    public string ModuleStatementRegEx
+    {
+        get => _moduleStatementRegEx;
+        set
+        {
+            if (_moduleStatementRegEx == value)
+                return;
+            _moduleStatementRegEx = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public bool ModuleStatementUseRegEx
+    {
+        get => _moduleStatementUseRegEx;
+        set
+        {
+            if (_moduleStatementUseRegEx == value)
+                return;
+            _moduleStatementUseRegEx = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _expressionStatementUseRegEx;
         private string _expressionStatementRegEx = ".*";
 
         public string ExpressionStatementRegEx
@@ -223,6 +294,19 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
+        private string _message = "Initial Message";
+        public string Message
+        {
+            get => _message;
+            set
+            {
+                if (_message == value)
+                    return;
+                _message = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Event Handlers
@@ -241,36 +325,47 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         #region Private Methods
 
+        public DelegateCommand SyntaxWalkerCommand { get; set; }
+
+        public void WalkerExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            //Helper.ProcessOperation(DisplayImportsStatementWalkerVB, CodeExplorer, CodeExplorerContext, CodeExplorer.configurationOptions);
+
+            Message = $"Time is {DateTime.Now}";
+            var foo = ImportsStatementRegEx2;
+
+            //EventAggregator.GetEvent<InvokeVBSyntaxWalkerEvent>().Publish(SearchTreeCommand);
+
+            //EventAggregator.GetEvent<SyntaxWalkerResultEvent>().Publish("Syntax Walker Result from ImportsStatementWalker");
+
+            // If using events to tell something else to act
+
+            //    EventAggregator.GetEvent<ImportsStatementWalkerEvent>().Publish(
+            //        new ImportsStatementWalkerEventArgs()
+            //        {
+            //             Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //             Project = _contextMainViewModel.Context.SelectedProject,
+            //             Team = _contextMainViewModel.Context.SelectedTeam
+            //        });
+
+            // Put this in places that listen for event and create method ImportsStatementWalker
+            // EventAggregator.GetEvent<ImportsStatementWalkerEvent>().Subscribe(ImportsStatementWalker);
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool WalkerCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
         #region ImportsStatementWalker Command
 
         public DelegateCommand ImportsStatementWalkerCommand { get; set; }
-        public DelegateCommand NamespaceStatementWalkerCommand { get; set; }
-        public DelegateCommand ModuleStatementWalkerCommand { get; set; }
-        public DelegateCommand FieldDeclarationWalkerCommand { get; set; }
-        public DelegateCommand PropertyStatementWalkerCommand { get; set; }
-        public DelegateCommand FindStructureBlockWalkerCommand { get; set; }
-        public DelegateCommand MethodBlockWalkerCommand { get; set; }
-        public DelegateCommand HandlesClauseWalkerCommand { get; set; }
-        public DelegateCommand ParameterListWalkerCommand { get; set; }
-        public DelegateCommand LocalDelcarationStatementWalkerCommand { get; set; }
-        public DelegateCommand MultiLineLambdaExpressionWalkerCommand { get; set; }
-        public DelegateCommand SingleLineLambdaExpressionWalkerCommand { get; set; }
-        public DelegateCommand ExpressionStatementWalkerCommand { get; set; }
-        public DelegateCommand InvocationExpressionWalkerCommand { get; set; }
-        public DelegateCommand MemberAccessExpressionWalkerCommand { get; set; }
-        public DelegateCommand ArgumentListWalkerCommand { get; set; }
-        public DelegateCommand VariableDeclaratorWalkerCommand { get; set; }
-        public DelegateCommand ObjectCreationExpressionWalkerCommand { get; set; }
-        public DelegateCommand AssignmentStatementWalkerCommand { get; set; }
-        public DelegateCommand BinaryExpressionWalkerCommand { get; set; }
-        public DelegateCommand AsNewClauseWalkerCommand { get; set; }
-        public DelegateCommand SimpleAsClauseWalkerCommand { get; set; }
-        public DelegateCommand StopOrEndStatementWalkerCommand { get; set; }
-        public DelegateCommand SyntaxNodeWalkerCommand { get; set; }
-        public DelegateCommand SyntaxTokenWalkerCommand { get; set; }
-        public DelegateCommand SyntaxTriviaWalkerCommand { get; set; }
-
-
 
         public string ImportsStatementWalkerContent { get; set; } = "ImportsStatementWalker";
         public string ImportsStatementWalkerToolTip { get; set; } = "ImportsStatementWalker ToolTip";
@@ -289,6 +384,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             //Helper.ProcessOperation(DisplayImportsStatementWalkerVB, CodeExplorer, CodeExplorerContext, CodeExplorer.configurationOptions);
 
+            var foo = ImportsStatementRegEx2;
             EventAggregator.GetEvent<InvokeVBSyntaxWalkerEvent>().Publish(DisplayImportsStatementWalkerVB);
 
             //EventAggregator.GetEvent<SyntaxWalkerResultEvent>().Publish("Syntax Walker Result from ImportsStatementWalker");
@@ -318,6 +414,78 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         #endregion
 
+        #region NamespaceStatement Walker
+
+        public DelegateCommand NamespaceStatementWalkerCommand { get; set; }
+
+        public void NamespaceStatementWalkerExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<InvokeVBSyntaxWalkerEvent>().Publish(DisplayNamespaceStatementWalkerVB);
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool NamespaceStatementWalkerCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        private StringBuilder DisplayNamespaceStatementWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            var walker = new VNCSW.VB.NamespaceStatement();
+
+            commandConfiguration.UseRegEx = NamespaceStatementUseRegEx;
+            commandConfiguration.RegEx = NamespaceStatementRegEx;
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
+        #endregion
+
+        #region ModuleStatement Walker
+
+        public DelegateCommand ModuleStatementWalkerCommand { get; set; }
+
+        public void ModuleStatementWalkerExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<InvokeVBSyntaxWalkerEvent>().Publish(DisplayModuleStatementWalkerVB);
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool ModuleStatementWalkerCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        private StringBuilder DisplayModuleStatementWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            var walker = new VNCSW.VB.ModuleStatement();
+
+            commandConfiguration.UseRegEx = ModuleStatementUseRegEx;
+            commandConfiguration.RegEx = ModuleStatementRegEx;
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
+        #endregion
+
         #region THIS IS GOOD
 
         private StringBuilder DisplayImportsStatementWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
@@ -327,6 +495,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             var walker = new VNCSW.VB.ImportsStatement();
 
             commandConfiguration.UseRegEx = ImportsStatementUseRegEx;
+            commandConfiguration.RegEx = ImportsStatementRegEx;
+
             commandConfiguration.RegEx = ImportsStatementRegEx;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
