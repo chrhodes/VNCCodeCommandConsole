@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Text;
 
 using Prism.Commands;
@@ -10,6 +11,8 @@ using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
 using VNCCodeCommandConsole.Core.Events;
+
+using static VNC.CodeAnalysis.Types;
 
 using VNCCA = VNC.CodeAnalysis;
 using VNCSW = VNC.CodeAnalysis.SyntaxWalkers;
@@ -176,7 +179,10 @@ namespace CCC.FindSyntax.Presentation.ViewModels
         // This does not work.  Needs to be a property.
         //WalkerPattern ImportsStatementWalker = new WalkerPattern();
 
-        private WalkerPattern _importsStatementWalker = new WalkerPattern("Find ImportsStatement Syntax", "ImportsStatement Walker");
+        private WalkerPattern _importsStatementWalker = new WalkerPattern(
+            controlHeader: "Find ImportsStatement Syntax",
+            buttonContent: "ImportsStatement Walker",
+            commandParameter: "ImportsStatementWalker");
 
         public WalkerPattern ImportsStatementWalker
         {
@@ -345,32 +351,32 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         public DelegateCommand<string> SyntaxWalkerCommand { get; set; }
 
-        public void WalkerExecute(string tag)
+        public void WalkerExecute(string walkerPropertyName)
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            //Helper.ProcessOperation(DisplayImportsStatementWalkerVB, CodeExplorer, CodeExplorerContext, CodeExplorer.configurationOptions);
+            // NOTE(crhodes)
+            // Use walkerPropertyName and Reflection on this class
+            // to find the method to pass.  This allows us to have one method
+            // to handle all the walkers that use the RegExSyntaxWalker
 
-            //Message = $"FVB-VM-WE {DateTime.Now.ToLongTimeString()} RegEx2:({ImportsStatementRegEx2}) tag:({tag})";
+            // First get the CommandParameter property value
+            // from the WalkerPattern property that correspondes to the walkerPropertyName
 
-            EventAggregator.GetEvent<InvokeVBSyntaxWalkerEvent>().Publish(DisplayImportsStatementWalkerVB);
-            Message = tag;
-            //EventAggregator.GetEvent<InvokeVBSyntaxWalkerEvent>().Publish(SearchTreeCommand);
+            PropertyInfo walkerPropertyInfo = this.GetType().GetProperty(walkerPropertyName);
+            var walkerProperty = walkerPropertyInfo.GetValue(this);
+            var commandParameter = ((WalkerPattern)walkerProperty).CommandParameter;
 
-            //EventAggregator.GetEvent<SyntaxWalkerResultEvent>().Publish("Syntax Walker Result from ImportsStatementWalker");
+            Message = commandParameter;
 
-            // If using events to tell something else to act
+            // Second use the commandParameter to find the appropriate Method
+            // to pass as a delegate in the published event
 
-            //    EventAggregator.GetEvent<ImportsStatementWalkerEvent>().Publish(
-            //        new ImportsStatementWalkerEventArgs()
-            //        {
-            //             Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //             Project = _contextMainViewModel.Context.SelectedProject,
-            //             Team = _contextMainViewModel.Context.SelectedTeam
-            //        });
+            var methodName = $"Display{commandParameter}VB";
 
-            // Put this in places that listen for event and create method ImportsStatementWalker
-            // EventAggregator.GetEvent<ImportsStatementWalkerEvent>().Subscribe(ImportsStatementWalker);
+            MethodInfo displayWalkerMethod = this.GetType().GetMethod(methodName);
+            SearchTreeCommand walkerMethodDelegate = (SearchTreeCommand)displayWalkerMethod.CreateDelegate(typeof(SearchTreeCommand), this);
+            EventAggregator.GetEvent<InvokeVBSyntaxWalkerEvent>().Publish(walkerMethodDelegate);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -507,7 +513,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         #region THIS IS GOOD
 
-        private StringBuilder DisplayImportsStatementWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
+        public StringBuilder DisplayImportsStatementWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 

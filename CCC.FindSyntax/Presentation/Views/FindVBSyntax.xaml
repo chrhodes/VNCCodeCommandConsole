@@ -88,10 +88,9 @@
                                  Background="LightBlue" VerticalAlignment="Top"
                                  ControlHeader="{Binding ImportsStatementWalker.ControlHeader, Mode=TwoWay}"
                                  ButtonContent="{Binding ImportsStatementWalker.ButtonContent, Mode=TwoWay}"
+                                 CommandParameter="{Binding ImportsStatementWalker.CommandParameter, Mode=TwoWay}"
                                  RegEx="{Binding ImportsStatementWalker.RegEx, Mode=TwoWay}"
                                  UseRegEx="{Binding ImportsStatementWalker.UseRegEx, Mode=TwoWay}"/>
-        
-        
 
         <dxlc:LayoutItem Label="Message">
             <dxe:TextEdit 

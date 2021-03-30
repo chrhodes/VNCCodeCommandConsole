@@ -33,11 +33,12 @@
             x:Name="lgRegularExpression"
                 Orientation="Vertical">
             <dxlc:LayoutItem>
-                <dxe:CheckEdit x:Name="ceUseRegEx" Content="Use Regular Expressions"
-                                    IsChecked="{Binding UseRegEx}"/>
+                <dxe:CheckEdit  Content="Use Regular Expressions"
+                                x:Name="ceUseRegEx"
+                                IsChecked="{Binding UseRegEx}"/>
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem Label="RexEx2">
+            <dxlc:LayoutItem Label="RexEx">
                 <dxe:TextEdit Text="{Binding RegEx, Mode=TwoWay}"                                      
                                 IsEnabled="{cb:Binding 
                                         ElementName=ceUseRegEx, 
@@ -52,8 +53,7 @@
             <Button Content="DEFAULT BUTTON" x:Name="btnButton"
                         Style="{StaticResource SyntaxQueryButton}"
                         Command="{Binding SyntaxWalkerCommand}" 
-                        CommandParameter="ImportsStatementWalker"
-                        Tag="ImportsStatementWalker" />
+                        CommandParameter="DEFAULTWALKER" />
         </dxlc:LayoutItem>
         
         <!--<dxlc:LayoutItem Label="Message">

@@ -42,12 +42,14 @@ namespace CCC.FindSyntax.Presentation.Views
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         string _message = "RESW-V-InitialMessage";
+
 
         public string Message
         {
@@ -182,7 +184,7 @@ namespace CCC.FindSyntax.Presentation.Views
         }
 
         public static readonly DependencyProperty ButtonContentProperty = DependencyProperty.Register(
-            "ButtonContent", typeof(string), typeof(RegExSyntaxWalker), 
+            "ButtonContent", typeof(string), typeof(RegExSyntaxWalker),
             new PropertyMetadata("DEFAULT BUTTON", new PropertyChangedCallback(OnButtonContentChanged)));
 
         private static void OnButtonContentChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
@@ -195,7 +197,6 @@ namespace CCC.FindSyntax.Presentation.Views
         protected virtual void OnButtonContentChanged(string oldValue, string newValue)
         {
             btnButton.Content = newValue;
-            btnButton.CommandParameter = newValue + "99";
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
 
@@ -205,6 +206,30 @@ namespace CCC.FindSyntax.Presentation.Views
             get => (string)GetValue(ButtonContentProperty);
             set => SetValue(ButtonContentProperty, value);
         }
+
+        public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register(
+            "CommandParameter", typeof(string), typeof(RegExSyntaxWalker), 
+            new PropertyMetadata("DEFAULTWALKER", new PropertyChangedCallback(OnCommandParameterChanged)));
+
+        private static void OnCommandParameterChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RegExSyntaxWalker regExSyntaxWalker = o as RegExSyntaxWalker;
+            if (regExSyntaxWalker != null)
+                regExSyntaxWalker.OnCommandParameterChanged((string)e.OldValue, (string)e.NewValue);
+        }
+
+        protected virtual void OnCommandParameterChanged(string oldValue, string newValue)
+        {
+            btnButton.CommandParameter = newValue;
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+        public string CommandParameter
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (string)GetValue(CommandParameterProperty);
+            set => SetValue(CommandParameterProperty, value);
+        }
+
         #region IInstanceCount
 
         private static int _instanceCountV;
