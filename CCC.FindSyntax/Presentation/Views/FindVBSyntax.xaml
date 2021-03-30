@@ -38,31 +38,39 @@
      Put in LayoutControl to get vertical scrolling
     -->
     <dxlc:LayoutControl Orientation="Vertical" MinWidth="300">
-        
+
         <dxlc:LayoutGroup Header="Find ImportsStatement Syntax" 
         	View="GroupBox"
             Orientation="Vertical"
             IsCollapsible="True" IsCollapsed="True">
 
             <dxlc:LayoutGroup
-            	Orientation="Horizontal">
+                Orientation="Vertical">
+                <!--<dxlc:LayoutItem>
+                    <dxe:CheckEdit Content="Use Regular Expressions"
+                                    IsChecked="{Binding ImportsStatementUseRegEx}"/>
+                </dxlc:LayoutItem>
 
-                <dxlc:LayoutGroup
-                	Orientation="Vertical">
-                    <dxlc:LayoutItem>
-                        <dxe:CheckEdit Content="Use Regular Expressions"
-                                       IsChecked="{Binding ImportsStatementUseRegEx}"/>
-                    </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Imports">
+                    <dxe:TextEdit Text="{Binding ImportsStatementRegEx}"                                      
+                                    IsEnabled="{cb:Binding 
+                                        ElementName=ceImportsStatementUseRegEx, 
+                                        Path=IsChecked, Mode=OneWay}"
+                                    ToolTip="Supports Regular Expressions"/>
+                </dxlc:LayoutItem>-->
 
-                    <dxlc:LayoutItem Label="Imports">
-                        <dxe:TextEdit Text="{Binding ImportsStatementRegEx}"                                      
-                                      IsEnabled="{cb:Binding 
-                                            ElementName=ceImportsStatementUseRegEx, 
-                                            Path=IsChecked, Mode=OneWay}"
-                                      ToolTip="Supports Regular Expressions"/>
-                    </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+                    <dxe:CheckEdit Content="Use Regular Expressions"
+                                    IsChecked="{Binding ImportsStatementWalker.UseRegEx}"/>
+                </dxlc:LayoutItem>
 
-                </dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="Imports">
+                    <dxe:TextEdit Text="{Binding ImportsStatementWalker.RegEx}"                                      
+                                    IsEnabled="{cb:Binding 
+                                        ElementName=ceImportsStatementUseRegEx, 
+                                        Path=IsChecked, Mode=OneWay}"
+                                    ToolTip="Supports Regular Expressions"/>
+                </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
 
@@ -78,15 +86,32 @@
 
         <views:RegExSyntaxWalker x:Name="cImportsStatement" 
                                  Background="LightBlue" VerticalAlignment="Top"
-                                 RegEx="{Binding ImportsStatementRegEx2, Mode=TwoWay}"/>
+                                 ControlHeader="{Binding ImportsStatementWalker.ControlHeader, Mode=TwoWay}"
+                                 ButtonContent="{Binding ImportsStatementWalker.ButtonContent, Mode=TwoWay}"
+                                 RegEx="{Binding ImportsStatementWalker.RegEx, Mode=TwoWay}"
+                                 UseRegEx="{Binding ImportsStatementWalker.UseRegEx, Mode=TwoWay}"/>
+        
+        
+
+        <dxlc:LayoutItem Label="Message">
+            <dxe:TextEdit 
+                Text="{Binding Message}" TextWrapping="Wrap">
+            </dxe:TextEdit>
+        </dxlc:LayoutItem>
+
+        <!--<dxlc:LayoutItem Label="ImportsStatementRegEx2">
+            <dxe:TextEdit
+        		Text="{Binding ImportsStatementRegEx2}" TextWrapping="Wrap">
+            </dxe:TextEdit>
+        </dxlc:LayoutItem>-->
 
         <dxlc:LayoutGroup Header="Find NamespaceStatement Syntax" 
         	View="GroupBox"
             Orientation="Vertical"
             IsCollapsible="True" IsCollapsed="False">
 
-            <dxlc:LayoutGroup
-            	Orientation="Horizontal">
+            <!--<dxlc:LayoutGroup
+            	Orientation="Horizontal">-->
 
                 <dxlc:LayoutGroup
                 	Orientation="Vertical">
@@ -103,7 +128,7 @@
 
                 </dxlc:LayoutGroup>
 
-            </dxlc:LayoutGroup>
+            <!--</dxlc:LayoutGroup>-->
 
             <dxlc:LayoutItem>
                 <Button Content="NamespaceStatement Walker" 

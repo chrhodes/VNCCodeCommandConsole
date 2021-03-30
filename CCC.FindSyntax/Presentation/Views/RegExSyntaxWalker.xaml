@@ -19,51 +19,49 @@
 
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     
-   
     d:DesignStyle="{StaticResource vncDesignStyle}"    
 >
     <!--DataContext="{Binding RelativeSource={RelativeSource Self}}"-->
 
-    <dxlc:LayoutGroup Header="{Binding Header}" 
+    <dxlc:LayoutGroup Header="DEFAULT HEADER" 
+            x:Name="lgHeader"
         	View="GroupBox"
             Orientation="Vertical"
             IsCollapsible="True" IsCollapsed="False">
 
         <dxlc:LayoutGroup
-            	Orientation="Horizontal">
+            x:Name="lgRegularExpression"
+                Orientation="Vertical">
+            <dxlc:LayoutItem>
+                <dxe:CheckEdit x:Name="ceUseRegEx" Content="Use Regular Expressions"
+                                    IsChecked="{Binding UseRegEx}"/>
+            </dxlc:LayoutItem>
 
-            <dxlc:LayoutGroup
-                	Orientation="Vertical">
-                <dxlc:LayoutItem>
-                    <dxe:CheckEdit x:Name="ceUseRegEx" Content="Use Regular Expressions"
-                                       IsChecked="{Binding UseRegEx}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="RexEx">
-                    <dxe:TextEdit Text="{Binding RegEx, Mode=TwoWay}"                                      
-                                  IsEnabled="{cb:Binding 
-                                            ElementName=ceUseRegEx, 
-                                            Path=IsChecked, Mode=OneWay}"
-                                  ToolTip="Supports Regular Expressions"/>
-                </dxlc:LayoutItem>
-
-            </dxlc:LayoutGroup>
+            <dxlc:LayoutItem Label="RexEx2">
+                <dxe:TextEdit Text="{Binding RegEx, Mode=TwoWay}"                                      
+                                IsEnabled="{cb:Binding 
+                                        ElementName=ceUseRegEx, 
+                                        Path=IsChecked, Mode=OneWay}"
+                                ToolTip="Supports Regular Expressions"/>
+            </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutItem>
 
-            <Button Content="ImportsStatement Walker" x:Name="MyButton"
+            <Button Content="DEFAULT BUTTON" x:Name="btnButton"
                         Style="{StaticResource SyntaxQueryButton}"
                         Command="{Binding SyntaxWalkerCommand}" 
+                        CommandParameter="ImportsStatementWalker"
                         Tag="ImportsStatementWalker" />
         </dxlc:LayoutItem>
         
-        <dxlc:LayoutItem Label="Message">
+        <!--<dxlc:LayoutItem Label="Message">
             <dxe:TextEdit
-        		Text="{Binding Message}">
+        		Text="{Binding Message}" TextWrapping="Wrap">
             </dxe:TextEdit>
-        </dxlc:LayoutItem>
+        </dxlc:LayoutItem>-->
         
     </dxlc:LayoutGroup>
+    
 </vncmvvm:ViewBase>

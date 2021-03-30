@@ -76,7 +76,6 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         #region Fields and Properties
 
-
         private string _declarationLocation;
         private string _usingDirectiveRegEx = ".*";
         private bool _usingDirectiveUseRegEx;
@@ -244,8 +243,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             var walker = new VNCSW.CS.ClassDeclaration();
 
-            commandConfiguration.UseRegEx = ClassDeclarationUseRegEx;
-            commandConfiguration.RegEx = ClassDeclarationRegEx;
+            commandConfiguration.WalkerPattern.UseRegEx = ClassDeclarationUseRegEx;
+            commandConfiguration.WalkerPattern.RegEx = ClassDeclarationRegEx;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 
@@ -288,8 +287,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             var walker = new VNCSW.CS.FieldDeclaration(fieldDeclarationLocation);
 
-            commandConfiguration.UseRegEx = FieldDeclarationUseRegEx;
-            commandConfiguration.RegEx = FieldDeclarationRegEx;
+            commandConfiguration.WalkerPattern.UseRegEx = FieldDeclarationUseRegEx;
+            commandConfiguration.WalkerPattern.RegEx = FieldDeclarationRegEx;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 
@@ -325,8 +324,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             var walker = new VNCSW.CS.NamespaceDeclaration();
 
-            commandConfiguration.UseRegEx = NamespaceDeclarationUseRegEx;
-            commandConfiguration.RegEx = NamespaceDeclarationRegEx;
+            commandConfiguration.WalkerPattern.UseRegEx = NamespaceDeclarationUseRegEx;
+            commandConfiguration.WalkerPattern.RegEx = NamespaceDeclarationRegEx;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 
@@ -362,8 +361,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             var walker = new VNCSW.CS.UsingDirective();
 
-            commandConfiguration.UseRegEx = UsingDirectiveUseRegEx;
-            commandConfiguration.RegEx = UsingDirectiveRegEx;
+            commandConfiguration.WalkerPattern.UseRegEx = UsingDirectiveUseRegEx;
+            commandConfiguration.WalkerPattern.RegEx = UsingDirectiveRegEx;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 

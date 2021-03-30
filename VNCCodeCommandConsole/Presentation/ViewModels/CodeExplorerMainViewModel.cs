@@ -84,8 +84,8 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             InstanceCountVM++;
 
             EventAggregator.GetEvent<SyntaxWalkerResultEvent>().Subscribe(DisplayResults);
-            EventAggregator.GetEvent<InvokeCSSyntaxWalkerEvent>().Subscribe(ProcessCSOperation);
-            EventAggregator.GetEvent<InvokeVBSyntaxWalkerEvent>().Subscribe(ProcessVBOperation);
+            EventAggregator.GetEvent<InvokeCSSyntaxWalkerEvent>().Subscribe(ProcessOperationCS);
+            EventAggregator.GetEvent<InvokeVBSyntaxWalkerEvent>().Subscribe(ProcessOperationVB);
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -95,7 +95,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             Summary = obj;
         }
 
-        public void ProcessVBOperation(VNCCA.Types.SearchTreeCommand searchTreeCommand)
+        public void ProcessOperationVB(VNCCA.Types.SearchTreeCommand searchTreeCommand)
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
@@ -141,7 +141,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
                         VNCCA.SearchTreeCommandConfiguration searchTreeCommandConfiguration = new VNCCA.SearchTreeCommandConfiguration();
 
-                        searchTreeCommandConfiguration.ConfigurationOptions = _configurationOptionsViewModel.CodeAnalysisOptions.Model;
+                        searchTreeCommandConfiguration.CodeAnalysisOptions = _configurationOptionsViewModel.CodeAnalysisOptions.Model;
 
                         searchTreeCommandConfiguration.Results = sbFileResults;
                         searchTreeCommandConfiguration.SyntaxTree = tree;
@@ -226,7 +226,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public void ProcessCSOperation(VNCCA.Types.SearchTreeCommand searchTreeCommand)
+        public void ProcessOperationCS(VNCCA.Types.SearchTreeCommand searchTreeCommand)
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
@@ -272,7 +272,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
                         VNCCA.SearchTreeCommandConfiguration searchTreeCommandConfiguration = new VNCCA.SearchTreeCommandConfiguration();
 
-                        searchTreeCommandConfiguration.ConfigurationOptions = _configurationOptionsViewModel.CodeAnalysisOptions.Model;
+                        searchTreeCommandConfiguration.CodeAnalysisOptions = _configurationOptionsViewModel.CodeAnalysisOptions.Model;
 
                         searchTreeCommandConfiguration.Results = sbFileResults;
                         searchTreeCommandConfiguration.SyntaxTree = tree;

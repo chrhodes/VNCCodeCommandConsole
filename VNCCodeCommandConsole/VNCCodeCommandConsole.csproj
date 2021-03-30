@@ -26,6 +26,7 @@
    </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\VNC\VNC.CodeAnalysis\VNC.CodeAnalysis\VNC.CodeAnalysis.csproj" />
     <ProjectReference Include="..\CCC.CodeChecks\CCC.CodeChecks.csproj" />
     <ProjectReference Include="..\CCC.FindSyntax\CCC.FindSyntax.csproj" />
     <ProjectReference Include="..\CCC.ModifySyntax\CCC.ModifySyntax.csproj" />

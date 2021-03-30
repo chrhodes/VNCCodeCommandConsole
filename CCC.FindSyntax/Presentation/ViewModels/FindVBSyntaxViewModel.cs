@@ -50,8 +50,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             ModuleStatementWalkerCommand = new DelegateCommand(
                 ModuleStatementWalkerExecute, ModuleStatementWalkerCanExecute);
 
-            SyntaxWalkerCommand = new DelegateCommand(
-    WalkerExecute, WalkerCanExecute);
+            SyntaxWalkerCommand = new DelegateCommand<string>(
+                WalkerExecute, WalkerCanExecute);
 
             // TODO(crhodes)
             // Either add the methods or write something reflective on the tag
@@ -131,183 +131,201 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-    #endregion
+        #endregion
 
-    #region Enums
+        #region Enums
 
-
-    #endregion
-
-    #region Structures
-
-
-    #endregion
-
-    #region Fields and Properties
-
-    private string _namespaceStatementRegEx;
-    private bool _namespaceStatementUseRegEx;
-
-    public string NamespaceStatementRegEx
-    {
-        get => _namespaceStatementRegEx;
-        set
-        {
-            if (_namespaceStatementRegEx == value)
-                return;
-            _namespaceStatementRegEx = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public bool NamespaceStatementUseRegEx
-    {
-        get => _namespaceStatementUseRegEx;
-        set
-        {
-            if (_namespaceStatementUseRegEx == value)
-                return;
-            _namespaceStatementUseRegEx = value;
-            OnPropertyChanged();
-        }
-    }
-
-    private bool _importsStatementUseRegEx;
-        private string _importsStatementRegEx = ".*";
-
-        public string ImportsStatementRegEx
-        {
-            get => _importsStatementRegEx;
-            set
-            {
-                if (_importsStatementRegEx == value)
-                    return;
-                _importsStatementRegEx = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool ImportsStatementUseRegEx
-        {
-            get => _importsStatementUseRegEx;
-            set
-            {
-                if (_importsStatementUseRegEx == value)
-                    return;
-                _importsStatementUseRegEx = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _importsStatementRegEx2 = "99";
-
-        public string ImportsStatementRegEx2
-        {
-            get => _importsStatementRegEx2;
-            set
-            {
-                if (_importsStatementRegEx2 == value)
-                    return;
-                _importsStatementRegEx2 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _moduleStatementRegEx;
-    private bool _moduleStatementUseRegEx;
-
-    public string ModuleStatementRegEx
-    {
-        get => _moduleStatementRegEx;
-        set
-        {
-            if (_moduleStatementRegEx == value)
-                return;
-            _moduleStatementRegEx = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public bool ModuleStatementUseRegEx
-    {
-        get => _moduleStatementUseRegEx;
-        set
-        {
-            if (_moduleStatementUseRegEx == value)
-                return;
-            _moduleStatementUseRegEx = value;
-            OnPropertyChanged();
-        }
-    }
-
-    private bool _expressionStatementUseRegEx;
-        private string _expressionStatementRegEx = ".*";
-
-        public string ExpressionStatementRegEx
-        {
-            get => _expressionStatementRegEx;
-            set
-            {
-                if (_expressionStatementRegEx == value)
-                    return;
-                _expressionStatementRegEx = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool ExpressionStatementUseRegEx
-        {
-            get => _expressionStatementUseRegEx;
-            set
-            {
-                if (_expressionStatementUseRegEx == value)
-                    return;
-                _expressionStatementUseRegEx = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool _handlesClauseUseRegEx;
-        private string _handlesClauseRegEx = ".*";
-
-        public string HandlesClauseRegEx
-        {
-            get => _handlesClauseRegEx;
-            set
-            {
-                if (_handlesClauseRegEx == value)
-                    return;
-                _handlesClauseRegEx = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool HandlesClauseUseRegEx
-        {
-            get => _handlesClauseUseRegEx;
-            set
-            {
-                if (_handlesClauseUseRegEx == value)
-                    return;
-                _handlesClauseUseRegEx = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _message = "Initial Message";
-        public string Message
-        {
-            get => _message;
-            set
-            {
-                if (_message == value)
-                    return;
-                _message = value;
-                OnPropertyChanged();
-            }
-        }
 
         #endregion
+
+        #region Structures
+
+
+        #endregion
+
+        #region Fields and Properties
+
+
+        private string _namespaceStatementRegEx;
+        private bool _namespaceStatementUseRegEx;
+
+        public string NamespaceStatementRegEx
+        {
+            get => _namespaceStatementRegEx;
+            set
+            {
+                if (_namespaceStatementRegEx == value)
+                    return;
+                _namespaceStatementRegEx = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool NamespaceStatementUseRegEx
+        {
+            get => _namespaceStatementUseRegEx;
+            set
+            {
+                if (_namespaceStatementUseRegEx == value)
+                    return;
+                _namespaceStatementUseRegEx = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // This does not work.  Needs to be a property.
+        //WalkerPattern ImportsStatementWalker = new WalkerPattern();
+
+        private WalkerPattern _importsStatementWalker = new WalkerPattern("Find ImportsStatement Syntax", "ImportsStatement Walker");
+
+        public WalkerPattern ImportsStatementWalker
+        {
+            get => _importsStatementWalker;
+            set
+            {
+                if (_importsStatementWalker == value)
+                    return;
+                _importsStatementWalker = value;
+                OnPropertyChanged();
+            }
+        }
+
+        //private string _importsStatementRegEx = ".*";
+
+        //public string ImportsStatementRegEx
+        //{
+        //    get => _importsStatementRegEx;
+        //    set
+        //    {
+        //        if (_importsStatementRegEx == value)
+        //            return;
+        //        _importsStatementRegEx = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        //private bool _importsStatementUseRegEx;
+        //public bool ImportsStatementUseRegEx
+        //{
+        //    get => _importsStatementUseRegEx;
+        //    set
+        //    {
+        //        if (_importsStatementUseRegEx == value)
+        //            return;
+        //        _importsStatementUseRegEx = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        //private string _importsStatementRegEx2 = "FVB-VM .*";
+
+        //public string ImportsStatementRegEx2
+        //{
+        //    get => _importsStatementRegEx2;
+        //    set
+        //    {
+        //        if (_importsStatementRegEx2 == value)
+        //            return;
+        //        _importsStatementRegEx2 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        private string _moduleStatementRegEx;
+        private bool _moduleStatementUseRegEx;
+
+        public string ModuleStatementRegEx
+        {
+            get => _moduleStatementRegEx;
+            set
+            {
+                if (_moduleStatementRegEx == value)
+                    return;
+                _moduleStatementRegEx = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool ModuleStatementUseRegEx
+        {
+            get => _moduleStatementUseRegEx;
+            set
+            {
+                if (_moduleStatementUseRegEx == value)
+                    return;
+                _moduleStatementUseRegEx = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _expressionStatementUseRegEx;
+            private string _expressionStatementRegEx = ".*";
+
+            public string ExpressionStatementRegEx
+            {
+                get => _expressionStatementRegEx;
+                set
+                {
+                    if (_expressionStatementRegEx == value)
+                        return;
+                    _expressionStatementRegEx = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            public bool ExpressionStatementUseRegEx
+            {
+                get => _expressionStatementUseRegEx;
+                set
+                {
+                    if (_expressionStatementUseRegEx == value)
+                        return;
+                    _expressionStatementUseRegEx = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private bool _handlesClauseUseRegEx;
+            private string _handlesClauseRegEx = ".*";
+
+            public string HandlesClauseRegEx
+            {
+                get => _handlesClauseRegEx;
+                set
+                {
+                    if (_handlesClauseRegEx == value)
+                        return;
+                    _handlesClauseRegEx = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            public bool HandlesClauseUseRegEx
+            {
+                get => _handlesClauseUseRegEx;
+                set
+                {
+                    if (_handlesClauseUseRegEx == value)
+                        return;
+                    _handlesClauseUseRegEx = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private string _message = "FVB-Initial Message";
+            public string Message
+            {
+                get => _message;
+                set
+                {
+                    if (_message == value)
+                        return;
+                    _message = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            #endregion
 
         #region Event Handlers
 
@@ -325,17 +343,18 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         #region Private Methods
 
-        public DelegateCommand SyntaxWalkerCommand { get; set; }
+        public DelegateCommand<string> SyntaxWalkerCommand { get; set; }
 
-        public void WalkerExecute()
+        public void WalkerExecute(string tag)
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             //Helper.ProcessOperation(DisplayImportsStatementWalkerVB, CodeExplorer, CodeExplorerContext, CodeExplorer.configurationOptions);
 
-            Message = $"Time is {DateTime.Now}";
-            var foo = ImportsStatementRegEx2;
+            //Message = $"FVB-VM-WE {DateTime.Now.ToLongTimeString()} RegEx2:({ImportsStatementRegEx2}) tag:({tag})";
 
+            EventAggregator.GetEvent<InvokeVBSyntaxWalkerEvent>().Publish(DisplayImportsStatementWalkerVB);
+            Message = tag;
             //EventAggregator.GetEvent<InvokeVBSyntaxWalkerEvent>().Publish(SearchTreeCommand);
 
             //EventAggregator.GetEvent<SyntaxWalkerResultEvent>().Publish("Syntax Walker Result from ImportsStatementWalker");
@@ -356,7 +375,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool WalkerCanExecute()
+        public bool WalkerCanExecute(string tag)
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -384,7 +403,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             //Helper.ProcessOperation(DisplayImportsStatementWalkerVB, CodeExplorer, CodeExplorerContext, CodeExplorer.configurationOptions);
 
-            var foo = ImportsStatementRegEx2;
+            //Message = $"FVB-VM-ISWE {DateTime.Now.ToLongTimeString()} RegEx2:({ImportsStatementRegEx2})";
             EventAggregator.GetEvent<InvokeVBSyntaxWalkerEvent>().Publish(DisplayImportsStatementWalkerVB);
 
             //EventAggregator.GetEvent<SyntaxWalkerResultEvent>().Publish("Syntax Walker Result from ImportsStatementWalker");
@@ -440,8 +459,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             var walker = new VNCSW.VB.NamespaceStatement();
 
-            commandConfiguration.UseRegEx = NamespaceStatementUseRegEx;
-            commandConfiguration.RegEx = NamespaceStatementRegEx;
+            commandConfiguration.WalkerPattern.UseRegEx = NamespaceStatementUseRegEx;
+            commandConfiguration.WalkerPattern.RegEx = NamespaceStatementRegEx;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 
@@ -476,8 +495,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             var walker = new VNCSW.VB.ModuleStatement();
 
-            commandConfiguration.UseRegEx = ModuleStatementUseRegEx;
-            commandConfiguration.RegEx = ModuleStatementRegEx;
+            commandConfiguration.WalkerPattern.UseRegEx = ModuleStatementUseRegEx;
+            commandConfiguration.WalkerPattern.RegEx = ModuleStatementRegEx;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 
@@ -494,10 +513,10 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             var walker = new VNCSW.VB.ImportsStatement();
 
-            commandConfiguration.UseRegEx = ImportsStatementUseRegEx;
-            commandConfiguration.RegEx = ImportsStatementRegEx;
+            //commandConfiguration.WalkerPattern.UseRegEx = ImportsStatementUseRegEx;
+            //commandConfiguration.WalkerPattern.RegEx = ImportsStatementRegEx;
 
-            commandConfiguration.RegEx = ImportsStatementRegEx;
+            commandConfiguration.WalkerPattern = ImportsStatementWalker;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 
@@ -523,8 +542,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             var walker = new VNCSW.VB.ExpressionStatement();
 
-            commandConfiguration.UseRegEx = ExpressionStatementUseRegEx;
-            commandConfiguration.RegEx = ExpressionStatementRegEx;
+            commandConfiguration.WalkerPattern.UseRegEx = ExpressionStatementUseRegEx;
+            commandConfiguration.WalkerPattern.RegEx = ExpressionStatementRegEx;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 
@@ -537,8 +556,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
             var walker = new VNCSW.VB.HandlesClause();
 
-            commandConfiguration.UseRegEx = HandlesClauseUseRegEx;
-            commandConfiguration.RegEx = HandlesClauseRegEx;
+            commandConfiguration.WalkerPattern.UseRegEx = HandlesClauseUseRegEx;
+            commandConfiguration.WalkerPattern.RegEx = HandlesClauseRegEx;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 

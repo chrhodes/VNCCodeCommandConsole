@@ -65,7 +65,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
         private Types.SearchTreeCommand _searchTreeCommand;
 
         private bool _useRegEx;
-        private string _regEx = ".*";
+        private string _regEx = "RESW-VM.*";
 
         public string RegEx
         {
@@ -90,7 +90,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-        private string _message = "Initial Message";
+        private string _message = "RESW-VM-Initial Message";
         public string Message
         {
             get => _message;
@@ -114,8 +114,6 @@ namespace CCC.FindSyntax.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-        
-
 
         public Types.SearchTreeCommand SearchTreeCommand
         {
@@ -169,7 +167,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             //Helper.ProcessOperation(DisplayImportsStatementWalkerVB, CodeExplorer, CodeExplorerContext, CodeExplorer.configurationOptions);
 
-            Message = $"Time is {DateTime.Now}";
+            Message = $"VM-{DateTime.Now.ToLongTimeString()}";
 
             //EventAggregator.GetEvent<InvokeVBSyntaxWalkerEvent>().Publish(SearchTreeCommand);
 
