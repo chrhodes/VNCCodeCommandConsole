@@ -31,7 +31,14 @@
 >
     <!--xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"-->
     <UserControl.Resources>
-
+        <Style x:Key="reStatementWalker" TargetType="views:RegExSyntaxWalker">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="Lavender" />
+        </Style>
+        <Style x:Key="reBlockStatementWalker" TargetType="views:RegExBlockSyntaxWalker">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="#FFE8FAE6" />
+        </Style>        
     </UserControl.Resources>
     
     <!-- NOTE(crhodes)
@@ -39,190 +46,54 @@
     -->
     <dxlc:LayoutControl Orientation="Vertical" MinWidth="300">
 
-        <dxlc:LayoutGroup Header="Find ImportsStatement Syntax" 
-        	View="GroupBox"
-            Orientation="Vertical"
-            IsCollapsible="True" IsCollapsed="True">
-
-            <dxlc:LayoutGroup
-                Orientation="Vertical">
-                <!--<dxlc:LayoutItem>
-                    <dxe:CheckEdit Content="Use Regular Expressions"
-                                    IsChecked="{Binding ImportsStatementUseRegEx}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Imports">
-                    <dxe:TextEdit Text="{Binding ImportsStatementRegEx}"                                      
-                                    IsEnabled="{cb:Binding 
-                                        ElementName=ceImportsStatementUseRegEx, 
-                                        Path=IsChecked, Mode=OneWay}"
-                                    ToolTip="Supports Regular Expressions"/>
-                </dxlc:LayoutItem>-->
-
-                <dxlc:LayoutItem>
-                    <dxe:CheckEdit Content="Use Regular Expressions"
-                                    IsChecked="{Binding ImportsStatementWalker.UseRegEx}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Imports">
-                    <dxe:TextEdit Text="{Binding ImportsStatementWalker.RegEx}"                                      
-                                    IsEnabled="{cb:Binding 
-                                        ElementName=ceImportsStatementUseRegEx, 
-                                        Path=IsChecked, Mode=OneWay}"
-                                    ToolTip="Supports Regular Expressions"/>
-                </dxlc:LayoutItem>
-
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutItem>
-
-                <Button Content="ImportsStatement Walker" 
-                        Style="{StaticResource SyntaxQueryButton}"
-                        Command="{Binding ImportsStatementWalkerCommand}" 
-                        Tag="ImportsStatementWalker" />
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>
-
-        <views:RegExSyntaxWalker x:Name="cImportsStatement" 
-                                 Background="LightBlue" VerticalAlignment="Top"
-                                 ControlHeader="{Binding ImportsStatementWalker.ControlHeader, Mode=TwoWay}"
-                                 ButtonContent="{Binding ImportsStatementWalker.ButtonContent, Mode=TwoWay}"
-                                 CommandParameter="{Binding ImportsStatementWalker.CommandParameter, Mode=TwoWay}"
-                                 RegEx="{Binding ImportsStatementWalker.RegEx, Mode=TwoWay}"
-                                 UseRegEx="{Binding ImportsStatementWalker.UseRegEx, Mode=TwoWay}"/>
-
-        <dxlc:LayoutItem Label="Message">
+        <!-- NOTE(crhodes)
+         This is for debugging
+        -->
+        <dxlc:LayoutItem Label="CommandParameter" LabelPosition="Top">
             <dxe:TextEdit 
-                Text="{Binding Message}" TextWrapping="Wrap">
+            Text="{Binding Message}" TextWrapping="Wrap">
             </dxe:TextEdit>
         </dxlc:LayoutItem>
+        
+        <views:RegExSyntaxWalker x:Name="cImportsStatement"
+                Style="{StaticResource reStatementWalker}"
+                ControlHeader="FIND FRIEND CONTEXT"
+                ButtonContent="{Binding ImportsStatementWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding ImportsStatementWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="FOOBAR"
+                RegEx="{Binding ImportsStatementWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding ImportsStatementWalker.UseRegEx, Mode=TwoWay}"/>
 
-        <!--<dxlc:LayoutItem Label="ImportsStatementRegEx2">
-            <dxe:TextEdit
-        		Text="{Binding ImportsStatementRegEx2}" TextWrapping="Wrap">
-            </dxe:TextEdit>
-        </dxlc:LayoutItem>-->
+        <views:RegExSyntaxWalker x:Name="cNamespaceStatementWalker" 
+                Style="{StaticResource reStatementWalker}"
+                ControlHeader="{Binding NamespaceStatementWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding NamespaceStatementWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding NamespaceStatementWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="{Binding NamespaceStatementWalker.RegExLabel, Mode=TwoWay}"                                 
+                RegEx="{Binding NamespaceStatementWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding NamespaceStatementWalker.UseRegEx, Mode=TwoWay}"/>
 
-        <dxlc:LayoutGroup Header="Find NamespaceStatement Syntax" 
-        	View="GroupBox"
-            Orientation="Vertical"
-            IsCollapsible="True" IsCollapsed="False">
+        <views:RegExBlockSyntaxWalker x:Name="cClassStatementWalker" 
+                Style="{StaticResource reBlockStatementWalker}"
+                ControlHeader="{Binding ClassStatementWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding ClassStatementWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding ClassStatementWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="{Binding ClassStatementWalker.RegExLabel, Mode=TwoWay}"                                 
+                RegEx="{Binding ClassStatementWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding ClassStatementWalker.UseRegEx, Mode=TwoWay}"
+                DisplayBlock="{Binding ClassStatementWalker.DisplayBlock, Mode=TwoWay}"
+                DisplayBlockLabel="{Binding ClassStatementWalker.DisplayBlockLabel, Mode=TwoWay}" />
 
-            <!--<dxlc:LayoutGroup
-            	Orientation="Horizontal">-->
+        <views:RegExBlockSyntaxWalker x:Name="cModuleStatement" 
+                Style="{StaticResource reBlockStatementWalker}" 
+                ControlHeader="{Binding ModuleStatementWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding ModuleStatementWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding ModuleStatementWalker.CommandParameter, Mode=TwoWay}"
+                RegEx="{Binding ModuleStatementWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding ModuleStatementWalker.UseRegEx, Mode=TwoWay}" 
+			    DisplayBlock="{Binding ModuleStatementWalker.DisplayBlock, Mode=TwoWay}"
+			    DisplayBlockLabel="{Binding ModuleStatementWalker.DisplayBlockLabel, Mode=TwoWay}" />
 
-                <dxlc:LayoutGroup
-                	Orientation="Vertical">
-                    <dxlc:LayoutItem>
-                        <dxe:CheckEdit Content="Use Regular Expressions"
-                                       IsChecked="False"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="Namespaces">
-                        <dxe:TextEdit x:Name="teNamespaceStatementRegEx" Text=".*"
-                                      IsEnabled="{cb:Binding ElementName=ceNamespaceStatementUseRegEx, Path=IsChecked, Mode=OneWay}"
-                                      ToolTip="Supports Regular Expressions"/>
-                    </dxlc:LayoutItem>
-
-                </dxlc:LayoutGroup>
-
-            <!--</dxlc:LayoutGroup>-->
-
-            <dxlc:LayoutItem>
-                <Button Content="NamespaceStatement Walker" 
-                        Style="{StaticResource SyntaxQueryButton}"
-                        Command="{Binding NamespaceStatementWalkerCommand}" 
-                        Tag="NamespaceStatementWalker" />
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>
-
-        <dxlc:LayoutGroup Header="Find ClassStatement Syntax" 
-        	View="GroupBox"
-            Orientation="Vertical"
-            IsCollapsible="True" IsCollapsed="True">
-
-            <dxlc:LayoutGroup
-            	Orientation="Horizontal">
-
-                <dxlc:LayoutGroup
-                	Orientation="Vertical">
-                    <dxlc:LayoutItem>
-                        <dxe:CheckEdit Content="Use Regular Expressions"
-                                       IsChecked="False"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="Classes">
-                        <dxe:TextEdit Text=".*"
-                                      IsEnabled="{cb:Binding ElementName=ceClassStatementUseRegEx, Path=IsChecked, Mode=OneWay}"
-                                      ToolTip="Supports Regular Expressions"/>
-                    </dxlc:LayoutItem>
-
-                </dxlc:LayoutGroup>
-
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutItem>
-                <dxe:CheckEdit Content="Show Class Block" IsChecked="False"
-                               EditValueChanged="ceShowClassBlock_EditValueChanged"/>
-            </dxlc:LayoutItem>
-
-            <!-- TODO(crhodes)
-             THis needs work
-            -->
-            <dxlc:LayoutItem>
-                <!--<Button  Style="{StaticResource SyntaxQueryButton}"
-                         Click="btnClassStatementWalker_Click">
-                    <TextBlock x:Name="teWalk_ClassStatement"
-                                   TextWrapping="Wrap" 
-                                   TextAlignment="Center">ClassStatement Walker</TextBlock>
-                </Button>
-                <Button Content="NamespaceStatement Walker" 
-                        Style="{StaticResource SyntaxQueryButton}"
-                        Command="{Binding NamespaceStatementWalkerCommand}" 
-                        Tag="NamespaceStatementWalker" />-->                
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>
-
-        <dxlc:LayoutGroup Header="Find ModuleStatement Syntax" 
-        	View="GroupBox"
-            Orientation="Vertical"
-            IsCollapsible="True" IsCollapsed="True">
-
-            <dxlc:LayoutGroup
-            	Orientation="Horizontal">
-
-                <dxlc:LayoutGroup
-                	Orientation="Vertical">
-                    <dxlc:LayoutItem>
-                        <dxe:CheckEdit Content="Use Regular Expressions"
-                                       IsChecked="False"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="Modules">
-                        <dxe:TextEdit Text=".*"
-                                      IsEnabled="{cb:Binding ElementName=ceModuleStatementUseRegEx, Path=IsChecked, Mode=OneWay}"
-                                      ToolTip="Supports Regular Expressions"/>
-                    </dxlc:LayoutItem>
-
-                </dxlc:LayoutGroup>
-
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutItem>
-                <dxe:CheckEdit Content="Show Module Block" IsChecked="False" />
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutItem>
-                <Button Content="ModuleStatement Walker" 
-                        Style="{StaticResource SyntaxQueryButton}"
-                        Command="{Binding ModuleStatementWalkerCommand}" 
-                        Tag="ModuleStatementWalker" />
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Find FieldDeclaration Syntax" 
         	View="GroupBox"
@@ -278,6 +149,28 @@
 
         </dxlc:LayoutGroup>
 
+        <views:RegExBlockSyntaxWalker x:Name="cPropertyStatement" 
+                Style="{StaticResource reBlockStatementWalker}" 
+                ControlHeader="{Binding PropertyStatementWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding PropertyStatementWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding PropertyStatementWalker.CommandParameter, Mode=TwoWay}"
+                RegEx="{Binding PropertyStatementWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding PropertyStatementWalker.UseRegEx, Mode=TwoWay}" 
+        		DisplayBlock="{Binding PropertyStatementWalker.DisplayBlock, Mode=TwoWay}"
+        		DisplayBlockLabel="{Binding PropertyStatementWalker.DisplayBlockLabel, Mode=TwoWay}" />
+
+
+        <views:RegExBlockSyntaxWalker x:Name="cMethodStatementWalker" 
+                Style="{StaticResource reBlockStatementWalker}" 
+                ControlHeader="{Binding MethodStatementWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding MethodStatementWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding MethodStatementWalker.CommandParameter, Mode=TwoWay}"
+                RegEx="{Binding MethodStatementWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding MethodStatementWalker.UseRegEx, Mode=TwoWay}"
+                DisplayBlock="{Binding MethodStatementWalker.DisplayBlock, Mode=TwoWay}"
+                DisplayBlockLabel="{Binding MethodStatementWalker.DisplayBlockLabel, Mode=TwoWay}" />
+
+        
         <dxlc:LayoutGroup Header="Find PropertyStatement Syntax" 
         	View="GroupBox"
             Orientation="Vertical"
@@ -1132,6 +1025,8 @@
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
+
+
 
     </dxlc:LayoutControl>
 

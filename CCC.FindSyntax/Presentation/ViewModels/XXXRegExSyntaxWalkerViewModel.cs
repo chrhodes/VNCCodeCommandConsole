@@ -16,12 +16,12 @@ using VNCSW = VNC.CodeAnalysis.SyntaxWalkers;
 
 namespace CCC.FindSyntax.Presentation.ViewModels
 {
-    public class RegExSyntaxWalkerViewModel : EventViewModelBase, IInstanceCountVM
+    public class XXXRegExSyntaxWalkerViewModel : EventViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
 
-        public RegExSyntaxWalkerViewModel(
+        public XXXRegExSyntaxWalkerViewModel(
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {

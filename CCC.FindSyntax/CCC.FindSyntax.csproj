@@ -43,6 +43,9 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Presentation\Views\RegExBlockSyntaxWalker.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DomainServices\Interfaces\" />
