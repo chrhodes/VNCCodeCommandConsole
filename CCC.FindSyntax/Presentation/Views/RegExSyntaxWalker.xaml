@@ -27,7 +27,7 @@
         x:Name="lgHeader" Header="DEFAULT HEADER" 
         View="GroupBox"
         Orientation="Vertical"
-        IsCollapsible="True" IsCollapsed="False">
+        IsCollapsible="True" IsCollapsed="True">
 
         <dxlc:LayoutGroup
             x:Name="lgRegularExpression"
