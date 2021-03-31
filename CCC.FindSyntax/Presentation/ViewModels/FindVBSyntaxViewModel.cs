@@ -341,6 +341,96 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
+        private WalkerPattern _variableDeclaratorWalker = new WalkerPattern(
+            controlHeader: "Find VariableDeclarator Syntax",
+            buttonContent: "VariableDeclarator Walker",
+            commandParameter: "VariableDeclaratorWalker",
+            regExLabel: "<RegExLabel>");
+
+        public WalkerPattern VariableDeclaratorWalker
+        {
+            get => _variableDeclaratorWalker;
+            set
+            {
+                if (_variableDeclaratorWalker == value)
+                    return;
+                _variableDeclaratorWalker = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private WalkerPattern _objectCreationExpressionWalker = new WalkerPattern(
+            controlHeader: "Find ObjectCreationExpression Syntax",
+            buttonContent: "ObjectCreationExpression Walker",
+            commandParameter: "ObjectCreationExpressionWalker",
+            regExLabel: "<RegExLabel>");
+
+        public WalkerPattern ObjectCreationExpressionWalker
+        {
+            get => _objectCreationExpressionWalker;
+            set
+            {
+                if (_objectCreationExpressionWalker == value)
+                    return;
+                _objectCreationExpressionWalker = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private WalkerPattern _binaryExpressionWalker = new WalkerPattern(
+            controlHeader: "Find BinaryExpression Syntax",
+            buttonContent: "BinaryExpression Walker",
+            commandParameter: "BinaryExpressionWalker",
+            regExLabel: "<RegExLabel>");
+
+        public WalkerPattern BinaryExpressionWalker
+        {
+            get => _binaryExpressionWalker;
+            set
+            {
+                if (_binaryExpressionWalker == value)
+                    return;
+                _binaryExpressionWalker = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private WalkerPattern _asNewClauseWalker = new WalkerPattern(
+            controlHeader: "Find AsNewClause Syntax",
+            buttonContent: "AsNewClause Walker",
+            commandParameter: "AsNewClauseWalker",
+            regExLabel: "<RegExLabel>");
+
+        public WalkerPattern AsNewClauseWalker
+        {
+            get => _asNewClauseWalker;
+            set
+            {
+                if (_asNewClauseWalker == value)
+                    return;
+                _asNewClauseWalker = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private WalkerPattern _simpleAsClauseWalker = new WalkerPattern(
+            controlHeader: "Find SimpleAsClause Syntax",
+            buttonContent: "SimpleAsClause Walker",
+            commandParameter: "SimpleAsClauseWalker",
+            regExLabel: "<RegExLabel>");
+
+        public WalkerPattern SimpleAsClauseWalker
+        {
+            get => _simpleAsClauseWalker;
+            set
+            {
+                if (_simpleAsClauseWalker == value)
+                    return;
+                _simpleAsClauseWalker = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _message;
 
         public string Message
@@ -612,7 +702,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
         }
 
-        public StringBuilder DisplayInvocationExpressionWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
+        public StringBuilder DisplayInvocationExpressionWalkerVB(SearchTreeCommandConfiguration commandConfiguration)
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
@@ -625,7 +715,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
         }
 
-        public StringBuilder DisplayMemberAccessExpressionWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
+        public StringBuilder DisplayMemberAccessExpressionWalkerVB(SearchTreeCommandConfiguration commandConfiguration)
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
@@ -638,13 +728,76 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
         }
 
-        public StringBuilder DisplayArgumentListWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
+        public StringBuilder DisplayArgumentListWalkerVB(SearchTreeCommandConfiguration commandConfiguration)
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             var walker = new VNCSW.VB.ArgumentList();
 
             commandConfiguration.WalkerPattern = ArgumentListWalker;
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
+        public StringBuilder DisplayVariableDeclaratorWalkerVB(SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            var walker = new VNCSW.VB.VariableDeclarator();
+
+            commandConfiguration.WalkerPattern = VariableDeclaratorWalker;
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
+        public StringBuilder DisplayObjectCreationExpressionWalkerVB(SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            var walker = new VNCSW.VB.ObjectCreationExpression();
+
+            commandConfiguration.WalkerPattern = ObjectCreationExpressionWalker;
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
+        public StringBuilder DisplayBinaryExpressiontWalkerVB(SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            var walker = new VNCSW.VB.BinaryExpression();
+
+            commandConfiguration.WalkerPattern = BinaryExpressionWalker;
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
+        public StringBuilder DisplayAsNewClauseVB(SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            var walker = new VNCSW.VB.AsNewClause();
+
+            commandConfiguration.WalkerPattern = AsNewClauseWalker;
+
+            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
+        public StringBuilder DisplaySimpleAsClauseWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
+        {
+
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+            var walker = new VNCSW.VB.SimpleAsClause();
+
+            commandConfiguration.WalkerPattern = SimpleAsClauseWalker;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 
@@ -695,46 +848,6 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
         }
 
-        public StringBuilder DisplayAsNewClauseVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
-        {
-            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
-
-            var walker = new VNCSW.VB.AsNewClause();
-
-            //commandConfiguration.UseRegEx = (bool)ceAsNewClauseUseRegEx.IsChecked;
-            //commandConfiguration.RegEx = teAsNewClauseRegEx.Text;
-
-            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
-        }
-
-        public StringBuilder DisplaySimpleAsClauseWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
-        {
-
-            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
-            var walker = new VNCSW.VB.SimpleAsClause();
-
-            //commandConfiguration.UseRegEx = (bool)ceSimpleAsClauseUseRegEx.IsChecked;
-            //commandConfiguration.RegEx = teSimpleAsClauseRegEx.Text;
-
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
-
-            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
-        }
-
-        public StringBuilder DisplayObjectCreationExpressionWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
-        {
-            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
-
-            var walker = new VNCSW.VB.ObjectCreationExpression();
-
-            //commandConfiguration.UseRegEx = (bool)ceObjectCreationExpressionUseRegEx.IsChecked;
-            //commandConfiguration.RegEx = teObjectCreationExpressionRegEx.Text;
-
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
-
-            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
-        }
-
         public StringBuilder DisplaySyntaxTriviaWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
@@ -749,19 +862,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
         }
 
-        public StringBuilder DisplayBinaryExpressiontWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
-        {
-            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
-            var walker = new VNCSW.VB.BinaryExpression();
-
-            //commandConfiguration.UseRegEx = (bool)ceBinaryExpressionUseRegEx.IsChecked;
-            //commandConfiguration.RegEx = teBinaryExpressionRegEx.Text;
-
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
-
-            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
-        }
 
         public StringBuilder DisplayAssignmentStatementWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
         {
@@ -807,21 +908,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
         }
 
-        public StringBuilder DisplayVariableDeclaratorWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
-        {
-            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
-            var walker = new VNCSW.VB.VariableDeclarator();
-
-            //walker.HasAttributes = (bool)CodeExplorer.configurationOptions.ceHasAttributes.IsChecked;
-
-            //commandConfiguration.UseRegEx = (bool)ceVariableDeclaratorUseRegEx.IsChecked;
-            //commandConfiguration.RegEx = teVariableDeclaratorRegEx.Text;
-
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
-
-            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
-        }
 
         public StringBuilder DisplayFieldDeclarationWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
         {

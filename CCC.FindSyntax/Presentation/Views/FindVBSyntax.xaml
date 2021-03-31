@@ -96,6 +96,9 @@
 			    DisplayBlockLabel="{Binding ModuleStatementWalker.DisplayBlockLabel, Mode=TwoWay}" />
 
 
+        <!-- TODO(crhodes)
+         Handle this
+        -->
         <dxlc:LayoutGroup Header="Find FieldDeclaration Syntax" 
         	View="GroupBox"
             Orientation="Vertical"
@@ -161,7 +164,6 @@
         		DisplayBlock="{Binding PropertyStatementWalker.DisplayBlock, Mode=TwoWay}"
         		DisplayBlockLabel="{Binding PropertyStatementWalker.DisplayBlockLabel, Mode=TwoWay}" />
 
-
         <views:RegExBlockSyntaxWalker x:Name="cMethodStatementWalker" 
                 Style="{StaticResource reBlockStatementWalker}" 
                 ControlHeader="{Binding MethodStatementWalker.ControlHeader, Mode=TwoWay}"
@@ -173,6 +175,9 @@
                 DisplayBlock="{Binding MethodStatementWalker.DisplayBlock, Mode=TwoWay}"
                 DisplayBlockLabel="{Binding MethodStatementWalker.DisplayBlockLabel, Mode=TwoWay}" />
      
+        <!-- TODO(crhodes)
+         Handle this
+        -->
         <dxlc:LayoutGroup Header="Find StructureBlock Syntax" 
         	View="GroupBox" Orientation="Vertical"
             IsCollapsible="True" IsCollapsed="True"                          >
@@ -257,127 +262,80 @@
                 UseRegEx="{Binding LocalDeclarationStatementWalker.UseRegEx, Mode=TwoWay}"/>
 
         <views:RegExSyntaxWalker x:Name="cMultiLineLambdaExpressionWalker" 
-                    Style="{StaticResource reStatementWalker}" 
-                    ControlHeader="{Binding MultiLineLambdaExpressionWalker.ControlHeader, Mode=TwoWay}"
-                    ButtonContent="{Binding MultiLineLambdaExpressionWalker.ButtonContent, Mode=TwoWay}"
-                    CommandParameter="{Binding MultiLineLambdaExpressionWalker.CommandParameter, Mode=TwoWay}"
-                    RegExLabel="{Binding MultiLineLambdaExpressionWalker.RegExLabel, Mode=TwoWay}" 
-                    RegEx="{Binding MultiLineLambdaExpressionWalker.RegEx, Mode=TwoWay}"
-                    UseRegEx="{Binding MultiLineLambdaExpressionWalker.UseRegEx, Mode=TwoWay}"/>
+                Style="{StaticResource reStatementWalker}" 
+                ControlHeader="{Binding MultiLineLambdaExpressionWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding MultiLineLambdaExpressionWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding MultiLineLambdaExpressionWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="{Binding MultiLineLambdaExpressionWalker.RegExLabel, Mode=TwoWay}" 
+                RegEx="{Binding MultiLineLambdaExpressionWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding MultiLineLambdaExpressionWalker.UseRegEx, Mode=TwoWay}"/>
 
         <views:RegExSyntaxWalker x:Name="cSingleLineLambdaExpressionWalker" 
-            Style="{StaticResource reStatementWalker}" 
-            ControlHeader="{Binding SingleLineLambdaExpressionWalker.ControlHeader, Mode=TwoWay}"
-            ButtonContent="{Binding SingleLineLambdaExpressionWalker.ButtonContent, Mode=TwoWay}"
-            CommandParameter="{Binding SingleLineLambdaExpressionWalker.CommandParameter, Mode=TwoWay}"
-            RegExLabel="{Binding SingleLineLambdaExpressionWalker.RegExLabel, Mode=TwoWay}" 
-            RegEx="{Binding SingleLineLambdaExpressionWalker.RegEx, Mode=TwoWay}"
-            UseRegEx="{Binding SingleLineLambdaExpressionWalker.UseRegEx, Mode=TwoWay}"/>
+                Style="{StaticResource reStatementWalker}" 
+                ControlHeader="{Binding SingleLineLambdaExpressionWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding SingleLineLambdaExpressionWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding SingleLineLambdaExpressionWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="{Binding SingleLineLambdaExpressionWalker.RegExLabel, Mode=TwoWay}" 
+                RegEx="{Binding SingleLineLambdaExpressionWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding SingleLineLambdaExpressionWalker.UseRegEx, Mode=TwoWay}"/>
 
         <views:RegExSyntaxWalker x:Name="cExpressionStatement" 
-            Style="{StaticResource reStatementWalker}" 
-            ControlHeader="{Binding ExpressionStatementWalker.ControlHeader, Mode=TwoWay}"
-            ButtonContent="{Binding ExpressionStatementWalker.ButtonContent, Mode=TwoWay}"
-            CommandParameter="{Binding ExpressionStatementWalker.CommandParameter, Mode=TwoWay}"
-            RegExLabel="{Binding ExpressionStatementWalker.RegExLabel, Mode=TwoWay}" 
-            RegEx="{Binding ExpressionStatementWalker.RegEx, Mode=TwoWay}"
-            UseRegEx="{Binding ExpressionStatementWalker.UseRegEx, Mode=TwoWay}"/>
+                Style="{StaticResource reStatementWalker}" 
+                ControlHeader="{Binding ExpressionStatementWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding ExpressionStatementWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding ExpressionStatementWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="{Binding ExpressionStatementWalker.RegExLabel, Mode=TwoWay}" 
+                RegEx="{Binding ExpressionStatementWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding ExpressionStatementWalker.UseRegEx, Mode=TwoWay}"/>
 
         <views:RegExSyntaxWalker x:Name="cInvocationExpression" 
-            Style="{StaticResource reStatementWalker}" 
-            ControlHeader="{Binding InvocationExpressionWalker.ControlHeader, Mode=TwoWay}"
-            ButtonContent="{Binding InvocationExpressionWalker.ButtonContent, Mode=TwoWay}"
-            CommandParameter="{Binding InvocationExpressionWalker.CommandParameter, Mode=TwoWay}"
-            RegExLabel="{Binding InvocationExpressionWalker.RegExLabel, Mode=TwoWay}" 
-            RegEx="{Binding InvocationExpressionWalker.RegEx, Mode=TwoWay}"
-            UseRegEx="{Binding InvocationExpressionWalker.UseRegEx, Mode=TwoWay}"/>
+                Style="{StaticResource reStatementWalker}" 
+                ControlHeader="{Binding InvocationExpressionWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding InvocationExpressionWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding InvocationExpressionWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="{Binding InvocationExpressionWalker.RegExLabel, Mode=TwoWay}" 
+                RegEx="{Binding InvocationExpressionWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding InvocationExpressionWalker.UseRegEx, Mode=TwoWay}"/>
 
         <views:RegExSyntaxWalker x:Name="cMemberAccessExpression" 
-                    Style="{StaticResource reStatementWalker}" 
-                    ControlHeader="{Binding MemberAccessExpressionWalker.ControlHeader, Mode=TwoWay}"
-                    ButtonContent="{Binding MemberAccessExpressionWalker.ButtonContent, Mode=TwoWay}"
-                    CommandParameter="{Binding MemberAccessExpressionWalker.CommandParameter, Mode=TwoWay}"
-                    RegExLabel="{Binding MemberAccessExpressionWalker.RegExLabel, Mode=TwoWay}" 
-                    RegEx="{Binding MemberAccessExpressionWalker.RegEx, Mode=TwoWay}"
-                    UseRegEx="{Binding MemberAccessExpressionWalker.UseRegEx, Mode=TwoWay}"/>
+                Style="{StaticResource reStatementWalker}" 
+                ControlHeader="{Binding MemberAccessExpressionWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding MemberAccessExpressionWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding MemberAccessExpressionWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="{Binding MemberAccessExpressionWalker.RegExLabel, Mode=TwoWay}" 
+                RegEx="{Binding MemberAccessExpressionWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding MemberAccessExpressionWalker.UseRegEx, Mode=TwoWay}"/>
         
-
         <views:RegExSyntaxWalker x:Name="cArgumentList" 
-                    Style="{StaticResource reStatementWalker}" 
-                    ControlHeader="{Binding ArgumentListWalker.ControlHeader, Mode=TwoWay}"
-                    ButtonContent="{Binding ArgumentListWalker.ButtonContent, Mode=TwoWay}"
-                    CommandParameter="{Binding ArgumentListWalker.CommandParameter, Mode=TwoWay}"
-                    RegExLabel="{Binding ArgumentListWalker.RegExLabel, Mode=TwoWay}" 
-                    RegEx="{Binding ArgumentListWalker.RegEx, Mode=TwoWay}"
-                    UseRegEx="{Binding ArgumentListWalker.UseRegEx, Mode=TwoWay}"/>
+                Style="{StaticResource reStatementWalker}" 
+                ControlHeader="{Binding ArgumentListWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding ArgumentListWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding ArgumentListWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="{Binding ArgumentListWalker.RegExLabel, Mode=TwoWay}" 
+                RegEx="{Binding ArgumentListWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding ArgumentListWalker.UseRegEx, Mode=TwoWay}"/>
         
+        <views:RegExSyntaxWalker x:Name="cVariableDeclarator" 
+                Style="{StaticResource reStatementWalker}" 
+                ControlHeader="{Binding VariableDeclaratorWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding VariableDeclaratorWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding VariableDeclaratorWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="{Binding VariableDeclaratorWalker.RegExLabel, Mode=TwoWay}" 
+                RegEx="{Binding VariableDeclaratorWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding VariableDeclaratorWalker.UseRegEx, Mode=TwoWay}"/>
 
-        <dxlc:LayoutGroup Header="Find VariableDeclarator Syntax" 
-        	View="GroupBox" Orientation="Vertical"
-            IsCollapsible="True" IsCollapsed="True">
+        <views:RegExSyntaxWalker x:Name="cObjectCreationExpressionWalker" 
+            Style="{StaticResource reStatementWalker}" 
+            ControlHeader="{Binding ObjectCreationExpressionWalker.ControlHeader, Mode=TwoWay}"
+            ButtonContent="{Binding ObjectCreationExpressionWalker.ButtonContent, Mode=TwoWay}"
+            CommandParameter="{Binding ObjectCreationExpressionWalker.CommandParameter, Mode=TwoWay}"
+            RegExLabel="{Binding ObjectCreationExpressionWalker.RegExLabel, Mode=TwoWay}" 
+            RegEx="{Binding ObjectCreationExpressionWalker.RegEx, Mode=TwoWay}"
+            UseRegEx="{Binding ObjectCreationExpressionWalker.UseRegEx, Mode=TwoWay}"/>
 
-            <dxlc:LayoutGroup
-            	Orientation="Horizontal">
-
-                <dxlc:LayoutGroup
-                	Orientation="Vertical">
-                    <dxlc:LayoutItem>
-                        <dxe:CheckEdit Content="Use Regular Expressions"
-                                       IsChecked="False"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="Variables">
-                        <dxe:TextEdit Text=".*"
-                                      IsEnabled="{cb:Binding ElementName=ceVariableDeclaratorUseRegEx, Path=IsChecked, Mode=OneWay}"
-                                      ToolTip="Supports Regular Expressions"/>
-                    </dxlc:LayoutItem>
-
-                </dxlc:LayoutGroup>
-
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutItem>
-                <Button Content="VariableDeclarator Walker" 
-                        Style="{StaticResource SyntaxQueryButton}"
-                        Command="{Binding VariableDeclaratorWalkerCommand}" 
-                        Tag="VariableDeclaratorWalker" />
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>
-
-        <dxlc:LayoutGroup Header="Find ObjectCreationExpression Syntax" 
-        	View="GroupBox" Orientation="Vertical"
-            IsCollapsible="True" IsCollapsed="True">
-
-            <dxlc:LayoutGroup
-            	Orientation="Horizontal">
-
-                <dxlc:LayoutGroup
-                	Orientation="Vertical">
-                    <dxlc:LayoutItem>
-                        <dxe:CheckEdit Content="Use Regular Expressions"
-                                       IsChecked="False"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="Assignments">
-                        <dxe:TextEdit Text=".*"
-                                      IsEnabled="{cb:Binding ElementName=ceObjectCreationExpressionUseRegEx, Path=IsChecked, Mode=OneWay}"
-                                      ToolTip="Supports Regular Expressions"/>
-                    </dxlc:LayoutItem>
-
-                </dxlc:LayoutGroup>
-
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutItem>
-                <Button Content="ObjectCreationExpression Walker" 
-                        Style="{StaticResource SyntaxQueryButton}"
-                        Command="{Binding ObjectCreationExpressionWalkerCommand}" 
-                        Tag="ObjectCreationExpressionWalker" />
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>
-
+        <!-- TODO(crhodes)
+         Handle THis
+        -->
         <dxlc:LayoutGroup Header="Find AssignmentStatement Syntax" 
         	View="GroupBox" Orientation="Vertical"
             IsCollapsible="True" IsCollapsed="True">
@@ -423,104 +381,35 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Header="Find BinaryExpression Syntax" 
-        	View="GroupBox" Orientation="Vertical"
-            IsCollapsible="True" IsCollapsed="True">
+        <views:RegExSyntaxWalker x:Name="cBinaryExpression" 
+                    Style="{StaticResource reStatementWalker}" 
+                    ControlHeader="{Binding BinaryExpressionWalker.ControlHeader, Mode=TwoWay}"
+                    ButtonContent="{Binding BinaryExpressionWalker.ButtonContent, Mode=TwoWay}"
+                    CommandParameter="{Binding BinaryExpressionWalker.CommandParameter, Mode=TwoWay}"
+                    RegExLabel="{Binding BinaryExpressionWalker.RegExLabel, Mode=TwoWay}" 
+                    RegEx="{Binding BinaryExpressionWalker.RegEx, Mode=TwoWay}"
+                    UseRegEx="{Binding BinaryExpressionWalker.UseRegEx, Mode=TwoWay}"/>
+        
 
-            <dxlc:LayoutGroup
-            	Orientation="Horizontal">
+        <views:RegExSyntaxWalker x:Name="cAsNewClause" 
+                    Style="{StaticResource reStatementWalker}" 
+                    ControlHeader="{Binding AsNewClauseWalker.ControlHeader, Mode=TwoWay}"
+                    ButtonContent="{Binding AsNewClauseWalker.ButtonContent, Mode=TwoWay}"
+                    CommandParameter="{Binding AsNewClauseWalker.CommandParameter, Mode=TwoWay}"
+                    RegExLabel="{Binding AsNewClauseWalker.RegExLabel, Mode=TwoWay}" 
+                    RegEx="{Binding AsNewClauseWalker.RegEx, Mode=TwoWay}"
+                    UseRegEx="{Binding AsNewClauseWalker.UseRegEx, Mode=TwoWay}"/>
+        
+        <views:RegExSyntaxWalker x:Name="cSimpleAsClause" 
+            Style="{StaticResource reStatementWalker}" 
+            ControlHeader="{Binding SimpleAsClauseWalker.ControlHeader, Mode=TwoWay}"
+            ButtonContent="{Binding SimpleAsClauseWalker.ButtonContent, Mode=TwoWay}"
+            CommandParameter="{Binding SimpleAsClauseWalker.CommandParameter, Mode=TwoWay}"
+            RegExLabel="{Binding SimpleAsClauseWalker.RegExLabel, Mode=TwoWay}" 
+            RegEx="{Binding SimpleAsClauseWalker.RegEx, Mode=TwoWay}"
+            UseRegEx="{Binding SimpleAsClauseWalker.UseRegEx, Mode=TwoWay}"/>
 
-                <dxlc:LayoutGroup
-                	Orientation="Vertical">
-                    <dxlc:LayoutItem>
-                        <dxe:CheckEdit Content="Use Regular Expressions"
-                                       IsChecked="False"/>
-                    </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Assignments">
-                        <dxe:TextEdit Text=".*"
-                                      IsEnabled="{cb:Binding ElementName=ceBinaryExpressionUseRegEx, Path=IsChecked, Mode=OneWay}"
-                                      ToolTip="Supports Regular Expressions"/>
-                    </dxlc:LayoutItem>
-
-                </dxlc:LayoutGroup>
-
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutItem>
-                <Button Content="BinaryExpression Walker" 
-                        Style="{StaticResource SyntaxQueryButton}"
-                        Command="{Binding BinaryExpressionWalkerCommand}" 
-                        Tag="BinaryExpressionWalker" />
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>
-
-        <dxlc:LayoutGroup Header="Find AsNewClause Syntax" 
-        	View="GroupBox" Orientation="Vertical"
-            IsCollapsible="True" IsCollapsed="True">
-
-            <dxlc:LayoutGroup
-            	Orientation="Horizontal">
-
-                <dxlc:LayoutGroup
-                	Orientation="Vertical">
-                    <dxlc:LayoutItem>
-                        <dxe:CheckEdit Content="Use Regular Expressions"
-                                       IsChecked="False"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="AsClause">
-                        <dxe:TextEdit Text=".*"
-                                      IsEnabled="{cb:Binding ElementName=ceAsNewClauseUseRegEx, Path=IsChecked, Mode=OneWay}"
-                                      ToolTip="Supports Regular Expressions"/>
-                    </dxlc:LayoutItem>
-
-                </dxlc:LayoutGroup>
-
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutItem>
-                <Button Content="AsNewClause Walker" 
-                        Style="{StaticResource SyntaxQueryButton}"
-                        Command="{Binding AsNewClauseWalkerCommand}" 
-                        Tag="AsNewClauseWalker" />
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>
-
-        <dxlc:LayoutGroup Header="Find SimpleAsClause Syntax" 
-        	View="GroupBox" Orientation="Vertical"
-            IsCollapsible="True" IsCollapsed="True">
-
-            <dxlc:LayoutGroup
-            	Orientation="Horizontal">
-
-                <dxlc:LayoutGroup
-                	Orientation="Vertical">
-                    <dxlc:LayoutItem>
-                        <dxe:CheckEdit Content="Use Regular Expressions"
-                                       IsChecked="False"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="AsClause">
-                        <dxe:TextEdit Text=".*"
-                                      IsEnabled="{cb:Binding ElementName=ceSimpleAsClauseUseRegEx, Path=IsChecked, Mode=OneWay}"
-                                      ToolTip="Supports Regular Expressions"/>
-                    </dxlc:LayoutItem>
-
-                </dxlc:LayoutGroup>
-
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutItem>
-                <Button Content="SimpleAsClause Walker" 
-                        Style="{StaticResource SyntaxQueryButton}"
-                        Command="{Binding SimpleAsClauseWalkerCommand}" 
-                        Tag="SimpleAsClauseWalker" />
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Find StopOrEndStatement Syntax" 
         	View="GroupBox" Orientation="Vertical"
@@ -636,8 +525,6 @@
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
-
-
 
     </dxlc:LayoutControl>
 
