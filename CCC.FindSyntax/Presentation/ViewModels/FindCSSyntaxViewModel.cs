@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Text;
 
 using Prism.Commands;
@@ -10,6 +11,8 @@ using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
 using VNCCodeCommandConsole.Core.Events;
+
+using static VNC.CodeAnalysis.Types;
 
 using VNCCA = VNC.CodeAnalysis;
 using VNCSW = VNC.CodeAnalysis.SyntaxWalkers;
@@ -41,25 +44,9 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             InstanceCountVM++;
 
-            UsingDirectiveWalkerCommand = new DelegateCommand(
-                UsingDirectiveWalkerExecute, UsingDirectiveWalkerCanExecute);
-
-            NamespaceDeclarationWalkerCommand = new DelegateCommand(
-                NamespaceDeclarationWalkerExecute, NamespaceDeclarationWalkerCanExecute);
-
-            ClassDeclarationWalkerCommand = new DelegateCommand(
-                ClassDeclarationWalkerExecute, ClassDeclarationWalkerCanExecute);
-
-            FieldDeclarationWalkerCommand = new DelegateCommand(
-                FieldDeclarationWalkerExecute, FieldDeclarationWalkerCanExecute);
-
-
-
-
-
-
-
-        Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+            SyntaxWalkerCommand = new DelegateCommand<string>(
+                WalkerExecute, WalkerCanExecute);
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -76,128 +63,75 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _declarationLocation;
-        private string _usingDirectiveRegEx = ".*";
-        private bool _usingDirectiveUseRegEx;
+        private WalkerPattern _usingDirectiveWalker = new WalkerPattern(
+            controlHeader: "Find UsingDirective Syntax",
+            buttonContent: "UsingDirective Walker",
+            commandParameter: "UsingDirectiveWalker",
+            regExLabel: "RegEx");
 
-        public string UsingDirectiveRegEx
+        public WalkerPattern UsingDirectiveWalker
         {
-            get => _usingDirectiveRegEx;
+            get => _usingDirectiveWalker;
             set
             {
-                if (_usingDirectiveRegEx == value)
+                if (_usingDirectiveWalker == value)
                     return;
-                _usingDirectiveRegEx = value;
+                _usingDirectiveWalker = value;
                 OnPropertyChanged();
             }
         }
 
-        public bool UsingDirectiveUseRegEx
+        private WalkerPattern _namespaceDeclarationWalker = new WalkerPattern(
+            controlHeader: "Find NamespaceDeclaration Syntax",
+            buttonContent: "NamespaceDeclaration Walker",
+            commandParameter: "NamespaceDeclarationWalker",
+            regExLabel: "RegEx");
+
+        public WalkerPattern NamespaceDeclarationWalker
         {
-            get => _usingDirectiveUseRegEx;
+            get => _namespaceDeclarationWalker;
             set
             {
-                if (_usingDirectiveUseRegEx == value)
+                if (_namespaceDeclarationWalker == value)
                     return;
-                _usingDirectiveUseRegEx = value;
+                _namespaceDeclarationWalker = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _namespaceDeclarationRegEx = ".*";
-        private bool _namespaceDeclarationUseRegEx;
+        private BlockWalkerPattern _classDeclarationWalker = new BlockWalkerPattern(
+            controlHeader: "Find ClassDeclaration Syntax",
+            buttonContent: "ClassDeclaration Walker",
+            commandParameter: "ClassDeclarationWalker",
+            regExLabel: "RegEx",
+            displayBlockLabel: "Display Class Block");
 
-        public string NamespaceDeclarationRegEx
+        public BlockWalkerPattern ClassDeclarationWalker
         {
-            get => _namespaceDeclarationRegEx;
+            get => _classDeclarationWalker;
             set
             {
-                if (_namespaceDeclarationRegEx == value)
+                if (_classDeclarationWalker == value)
                     return;
-                _namespaceDeclarationRegEx = value;
+                _classDeclarationWalker = value;
                 OnPropertyChanged();
             }
         }
 
-        public bool NamespaceDeclarationUseRegEx
+        private string _message;
+
+        public string Message
         {
-            get => _namespaceDeclarationUseRegEx;
+            get => _message;
             set
             {
-                if (_namespaceDeclarationUseRegEx == value)
+                if (_message == value)
                     return;
-                _namespaceDeclarationUseRegEx = value;
+                _message = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _classDeclarationRegEx = ".*";
-        private bool _classDeclarationUseRegEx;
-
-        public string ClassDeclarationRegEx
-        {
-            get => _classDeclarationRegEx;
-            set
-            {
-                if (_classDeclarationRegEx == value)
-                    return;
-                _classDeclarationRegEx = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool ClassDeclarationUseRegEx
-        {
-            get => _classDeclarationUseRegEx;
-            set
-            {
-                if (_classDeclarationUseRegEx == value)
-                    return;
-                _classDeclarationUseRegEx = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _fieldDeclarationRegEx;
-        private bool _fieldDeclarationUseRegEx;
-
-        public string FieldDeclarationRegEx
-        {
-            get => _fieldDeclarationRegEx;
-            set
-            {
-                if (_fieldDeclarationRegEx == value)
-                    return;
-                _fieldDeclarationRegEx = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool FieldDeclarationUseRegEx
-        {
-            get => _fieldDeclarationUseRegEx;
-            set
-            {
-                if (_fieldDeclarationUseRegEx == value)
-                    return;
-                _fieldDeclarationUseRegEx = value;
-                OnPropertyChanged();
-            }
-        }
-
-        
-        public string DeclarationLocation
-        {
-            get => _declarationLocation;
-            set
-            {
-                if (_declarationLocation == value)
-                    return;
-                _declarationLocation = value;
-                OnPropertyChanged();
-            }
-        }
-        
         #endregion
 
         #region Event Handlers
@@ -217,160 +151,97 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         #region Private Methods
 
-        #region ClassDeclaration Walker
+        public DelegateCommand<string> SyntaxWalkerCommand { get; set; }
 
-        public DelegateCommand ClassDeclarationWalkerCommand { get; set; }
-
-        public void ClassDeclarationWalkerExecute()
+        public void WalkerExecute(string walkerPropertyName)
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<InvokeCSSyntaxWalkerEvent>().Publish(DisplayClassDeclarationWalkerCS);
+            // NOTE(crhodes)
+            // Use walkerPropertyName and Reflection on this class
+            // to find the method to pass.  This allows us to have one method
+            // to handle all the walkers that use the RegExSyntaxWalker
+
+            // First get the CommandParameter property value
+            // from the WalkerPattern property that correspondes to the walkerPropertyName
+
+            PropertyInfo walkerPropertyInfo = this.GetType().GetProperty(walkerPropertyName);
+            var walkerProperty = walkerPropertyInfo.GetValue(this);
+            var commandParameter = ((WalkerPattern)walkerProperty).CommandParameter;
+
+            Message = commandParameter;
+
+            // Second use the commandParameter to find the appropriate Method
+            // to pass as a delegate in the published event
+
+            var methodName = $"Display{commandParameter}CS";
+
+            // NOTE(crhodes)
+            // This expects the method to be public.  Research how to find private methods
+            MethodInfo displayWalkerMethod = this.GetType().GetMethod(methodName);
+            SearchTreeCommand walkerMethodDelegate = (SearchTreeCommand)displayWalkerMethod.CreateDelegate(typeof(SearchTreeCommand), this);
+            EventAggregator.GetEvent<InvokeCSSyntaxWalkerEvent>().Publish(walkerMethodDelegate);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool ClassDeclarationWalkerCanExecute()
+        public bool WalkerCanExecute(string tag)
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
             return true;
         }
 
-        private StringBuilder DisplayClassDeclarationWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
-        {
-            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
-
-            var walker = new VNCSW.CS.ClassDeclaration();
-
-            commandConfiguration.WalkerPattern.UseRegEx = ClassDeclarationUseRegEx;
-            commandConfiguration.WalkerPattern.RegEx = ClassDeclarationRegEx;
-
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
-
-            return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
-        }
-
-        #endregion
-
-        // Begin Cut 3
-        // Put this in Commands, typically Private or Public Methods
-
-        #region FieldDeclaration Walker
-
-        public DelegateCommand FieldDeclarationWalkerCommand { get; set; }
-
-        public void FieldDeclarationWalkerExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<InvokeCSSyntaxWalkerEvent>().Publish(DisplayFieldDeclarationWalkerCS);
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public bool FieldDeclarationWalkerCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            return true;
-        }
-
-        private StringBuilder DisplayFieldDeclarationWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
-        {
-            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
-
-            VNCCA.SyntaxNode.FieldDeclarationLocation fieldDeclarationLocation = VNCCA.SyntaxNode.FieldDeclarationLocation.Class;
-
-            // TODO(crhodes)
-            // Look at VB Code
-
-            var walker = new VNCSW.CS.FieldDeclaration(fieldDeclarationLocation);
-
-            commandConfiguration.WalkerPattern.UseRegEx = FieldDeclarationUseRegEx;
-            commandConfiguration.WalkerPattern.RegEx = FieldDeclarationRegEx;
-
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
-
-            return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
-        }
-
-        #endregion
-
-        // End Cut 3
-        #region NamespaceDeclaration Walker
-
-        public DelegateCommand NamespaceDeclarationWalkerCommand { get; set; }
-
-        public void NamespaceDeclarationWalkerExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<InvokeCSSyntaxWalkerEvent>().Publish(DisplayNamespaceDeclarationWalkerCS);
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public bool NamespaceDeclarationWalkerCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            return true;
-        }
-
-        private StringBuilder DisplayNamespaceDeclarationWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
-        {
-            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
-
-            var walker = new VNCSW.CS.NamespaceDeclaration();
-
-            commandConfiguration.WalkerPattern.UseRegEx = NamespaceDeclarationUseRegEx;
-            commandConfiguration.WalkerPattern.RegEx = NamespaceDeclarationRegEx;
-
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
-
-            return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
-        }
-
-        #endregion
-
-        #region UsingStatementWalker
-
-        public DelegateCommand UsingDirectiveWalkerCommand { get; set; }
-
-
-        public void UsingDirectiveWalkerExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<InvokeCSSyntaxWalkerEvent>().Publish(DisplayUsingDirectiveWalkerCS);
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public bool UsingDirectiveWalkerCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            return true;
-        }
-
-        private StringBuilder DisplayUsingDirectiveWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
+        public StringBuilder DisplayUsingDirectiveWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             var walker = new VNCSW.CS.UsingDirective();
 
-            commandConfiguration.WalkerPattern.UseRegEx = UsingDirectiveUseRegEx;
-            commandConfiguration.WalkerPattern.RegEx = UsingDirectiveRegEx;
+            commandConfiguration.WalkerPattern = UsingDirectiveWalker;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 
             return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
         }
 
-        #endregion
+        public StringBuilder DisplayNamespaceDeclarationWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
+            var walker = new VNCSW.CS.NamespaceDeclaration();
+
+            commandConfiguration.WalkerPattern = NamespaceDeclarationWalker;
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
+        public StringBuilder DisplayClassDeclarationWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            VNCSW.CS.VNCCSSyntaxWalkerBase walker = new VNCSW.CS.ClassDeclaration();
+
+            commandConfiguration.WalkerPattern = ClassDeclarationWalker;
+
+            // TODO(crhodes)
+            // Figure this out  Does this matter in CS?
+
+            //if (ClassDeclarationWalker.DisplayBlock)
+            //{
+            //    walker = new VNCSW.CS.ClassBlock();
+            //}
+            //else
+            //{
+            //    walker = new VNCSW.CS.ClassStatement();
+            //}
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
 
         #endregion
 
