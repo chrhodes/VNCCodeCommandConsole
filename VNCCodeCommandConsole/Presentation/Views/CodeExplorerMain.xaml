@@ -373,7 +373,7 @@
                             
                         </dxdo:LayoutPanel>-->
 
-                        <dxdo:LayoutPanel x:Name="lp_Commands_Quality" Caption="Quality" 
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Quality" Caption="Quality Checks" 
                                           ItemWidth="300" MinWidth="275" MaxWidth="325">
 
                             <!--<uiuc:wucCommandsQuality x:Name="wucCommandsQuality" />-->
@@ -382,7 +382,7 @@
 
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel x:Name="lp_Commands_Design" Caption="Design" 
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Design" Caption="Design Checks" 
                                           ItemWidth="300" MinWidth="275" MaxWidth="325">
 
 
@@ -392,7 +392,7 @@
 
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel x:Name="lp_Commands_Performance" Caption="Performance" 
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Performance" Caption="Performance Checks" 
                                           ItemWidth="300" MinWidth="275" MaxWidth="325">
 
                             <!--<uiuc:wucCommandsPerformance x:Name="wucCommandsPerformance" />-->

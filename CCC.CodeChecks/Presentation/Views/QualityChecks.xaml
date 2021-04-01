@@ -7,6 +7,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 
+    xmlns:cb="clr-namespace:CalcBinding;assembly=CalcBinding" 
+    
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"     
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     xmlns:local="clr-namespace:CCC.CodeChecks.Presentation.Views"
     
@@ -17,34 +27,135 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     
     mc:Ignorable="d"
-    d:DesignHeight="100" d:DesignWidth="200"
+
     d:DesignStyle="{StaticResource vncDesignStyle}"
 >
+    <!--d:DesignHeight="100" d:DesignWidth="200"-->
     <!--xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"-->
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        
-        <StackPanel>
-            <TextBlock Text="Quality Checks" />
-            <TextBlock Text="{Binding Message}" />
-            <Button Content="Say Hello" 
-                    Command="{Binding SayHelloCommand}" />
-        </StackPanel>
+    <UserControl.Resources>
+        <!--<Style x:Key="reStatementWalker" TargetType="views:RegExSyntaxWalker">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="Lavender" />
+        </Style>
+        <Style x:Key="reBlockStatementWalker" TargetType="views:RegExBlockSyntaxWalker">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="#FFE8FAE6" />
+        </Style>-->
+    </UserControl.Resources>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" >
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <Label Content="V:" />
-                <Label Content="{Binding ElementName=thisQualityChecks, Path=InstanceCountV}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <Label Content="VM:" />
-                <Label Content="{Binding InstanceCountVM}" />
-            </StackPanel>
-        </StackPanel>
-    </Grid>
-    
+    <!-- NOTE(crhodes)
+     Put in LayoutControl to get vertical scrolling
+    -->
+    <dxlc:LayoutControl Orientation="Vertical" MinWidth="300">
+
+        <!-- NOTE(crhodes)
+         This is for debugging
+        -->
+        <dxlc:LayoutItem Label="CommandParameter" LabelPosition="Top">
+            <dxe:TextEdit 
+            Text="{Binding Message}" TextWrapping="Wrap">
+            </dxe:TextEdit>
+        </dxlc:LayoutItem>
+        
+        <dx:GroupFrame Header="Language" VerticalAlignment="Top" >
+            <dxe:ListBoxEdit Name="lbeCommandsQuality_Language" 
+                            ValueMember="Content" 
+                            SelectedIndex="0"                                                         
+                            ShowBorder="False" Background="{x:Null}">
+                <dxe:ListBoxEdit.StyleSettings>
+                    <dxe:RadioListBoxEditStyleSettings />
+                </dxe:ListBoxEdit.StyleSettings>
+                <dxe:ListBoxEdit.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </dxe:ListBoxEdit.ItemsPanel>
+                <dxe:ListBoxEdit.Items>
+                    <dxe:ListBoxEditItem Content="VB" />
+                    <dxe:ListBoxEditItem Content="CS" />
+                </dxe:ListBoxEdit.Items>
+            </dxe:ListBoxEdit>
+        </dx:GroupFrame>
+
+        <dxlc:LayoutItem>
+            <!--<Button Content="Display Code-to-Comment Ratio" 
+                    Click="btnCallTagTarget" Tag="CodeToCommentRatio"/>-->
+
+            <Button Content="Code-to-Comment Ratio" 
+                    Style="{StaticResource SyntaxQueryButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="CodeToCommentRatio" />
+        </dxlc:LayoutItem>
+
+        <!--<dxlc:LayoutItem>
+            <Button Content="Has Control Flags" 
+                    Click="btnCallTagTarget" Tag="ControlFlags"/>
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Has Fragmented Conditions" 
+                    Click="btnCallTagTarget" Tag="FragmentedConditions"/>
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Has GoTo Labels" 
+                    Click="btnCallTagTarget" Tag="GoToLabels"/>
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Has Hungarian Variable Names"
+                    Click="btnCallTagTarget" Tag="HungarianVariableNames"/>
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Has Ladder If Statements"
+                    Click="btnCallTagTarget" Tag="LadderIfStatements"/>
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Is a Large Class" 
+                    Click="btnCallTagTarget" Tag="LargeClass"/>
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Display Lines of Code" 
+                    Click="btnCallTagTarget" Tag="LinesOfCode"/>
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Has Long Parameter Lists" 
+                    Click="btnCallTagTarget" Tag="LongParameterList"/>
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Has Lots of Local Variables" 
+                    Click="btnCallTagTarget" Tag="LotsOfLocalVariables"/>
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Has Magic Numbers in Condition" 
+                    Click="btnCallTagTarget" Tag="MagicNumbersInCondition"/>
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Has Magic Numbers in Index" 
+                    Click="btnCallTagTarget" Tag="MagicNumbersInIndex"/>
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Has Magic Numbers in Math" 
+                    Click="btnCallTagTarget" Tag="MagicNumbersInMath"/>
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Has Multiple Return Statements" 
+                    Click="btnCallTagTarget" Tag="MultipleReturnStatements"/>
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Has Unused Method Parameters" 
+                    Click="btnCallTagTarget" Tag="UnusedMethodParameters"/>
+        </dxlc:LayoutItem>-->
+    </dxlc:LayoutControl>
+
 </vncmvvm:ViewBase>

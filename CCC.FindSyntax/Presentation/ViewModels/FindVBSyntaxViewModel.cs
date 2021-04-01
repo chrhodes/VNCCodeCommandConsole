@@ -67,6 +67,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
         // This does not work.  Needs to be a property.
         //WalkerPattern ImportsStatementWalker = new WalkerPattern();
 
+        private bool _checkIfDone;
+        private bool _checkIf;
         private WalkerPattern _importsStatementWalker = new WalkerPattern(
             controlHeader: "Find ImportsStatement Syntax",
             buttonContent: "ImportsStatement Walker",

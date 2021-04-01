@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -11,6 +13,8 @@ using VNC;
 using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
+
+using VNCCodeCommandConsole.Core.Events;
 
 namespace CCC.CodeChecks.Presentation.ViewModels
 {
@@ -42,8 +46,8 @@ namespace CCC.CodeChecks.Presentation.ViewModels
             // TODO(crhodes)
             //
 
-            SayHelloCommand = new DelegateCommand(
-                SayHello, SayHelloCanExecute);
+            CallCodeCheckCommand = new DelegateCommand<string>(
+                CallCodeCheck, CallCodeCheckCanExecute);
 
             Message = "QualityChecksViewModel says hello";
 
@@ -64,8 +68,9 @@ namespace CCC.CodeChecks.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public ICommand SayHelloCommand { get; private set; }
+        public DelegateCommand<string> CallCodeCheckCommand { get; private set; }
 
+        private string _language = "CS";
         private string _message;
 
         public string Message
@@ -79,6 +84,20 @@ namespace CCC.CodeChecks.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        
+        public string Language
+        {
+            get => _language;
+            set
+            {
+                if (_language == value)
+                    return;
+                _language = value;
+                OnPropertyChanged();
+            }
+        }
+        
 
         #endregion
 
@@ -99,16 +118,46 @@ namespace CCC.CodeChecks.Presentation.ViewModels
 
         #region Private Methods
 
-        private bool SayHelloCanExecute()
+        private bool CallCodeCheckCanExecute(string codeCheckMethod)
         {
             return true;
         }
 
-        void SayHello()
+        void CallCodeCheck(string codeCheckMethod)
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Message = "Hello";
+            string targetName = codeCheckMethod;
+
+            string language = Language;
+
+            ////Boolean includeTrivia = ceStructuresIncludeTrivia.IsChecked.Value;
+            ////Boolean statementsOnly = ceStructuresStatementsOnly.IsChecked.Value;
+
+            StringBuilder sb = new StringBuilder();
+
+            var sourceCode = "";
+
+            //using (var sr = new StreamReader(CodeExplorerContext.teSourceFile.Text))
+            //{
+            //    sourceCode = sr.ReadToEnd();
+            //}
+
+            string metricClass = $"VNC.CodeAnalysis.QualityMetrics.{language}.{targetName},VNC.CodeAnalysis";
+
+            // NOTE(crhodes)
+            // I think we can just pass the metricClass in the event
+
+            EventAggregator.GetEvent<InvokeCodeCheckEvent>().Publish(metricClass);
+            Message = metricClass;
+
+            //Type metricType = Type.GetType(metricClass);
+            //MethodInfo metricMethod = metricType.GetMethod("Check");
+            //object[] parametersArray = new object[] { sourceCode };
+
+            //sb = (StringBuilder)metricMethod.Invoke(null, parametersArray);
+
+            //CodeExplorer.teSourceCode.Text = sb.ToString();
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }

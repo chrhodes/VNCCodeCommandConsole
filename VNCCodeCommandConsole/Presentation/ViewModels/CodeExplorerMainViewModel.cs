@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 using Microsoft.CodeAnalysis;
@@ -86,6 +87,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             EventAggregator.GetEvent<SyntaxWalkerResultEvent>().Subscribe(DisplayResults);
             EventAggregator.GetEvent<InvokeCSSyntaxWalkerEvent>().Subscribe(ProcessOperationCS);
             EventAggregator.GetEvent<InvokeVBSyntaxWalkerEvent>().Subscribe(ProcessOperationVB);
+            EventAggregator.GetEvent<InvokeCodeCheckEvent>().Subscribe(ProcessCodeCheck);
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -93,6 +95,73 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
         private void DisplayResults(string obj)
         {
             Summary = obj;
+        }
+
+        private void ProcessCodeCheck(string metricClass)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            StringBuilder sb = new StringBuilder();
+
+            ClearPreviousResults();
+
+            var filesToProcess = _codeExplorerContextViewModel.GetFilesToProcess();
+
+            if (filesToProcess.Count > 0)
+            {
+                if ((Boolean)_configurationOptionsViewModel.ListImpactedFilesOnly)
+                {
+                    sb.AppendLine("Would Search these files ....");
+                }
+
+                foreach (string filePath in filesToProcess)
+                {
+                    if ((Boolean)_configurationOptionsViewModel.ListImpactedFilesOnly)
+                    {
+                        sb.AppendLine(string.Format("  {0}", filePath));
+                    }
+                    else
+                    {
+                        StringBuilder sbFileResults = new StringBuilder();
+
+                        var sourceCode = "";
+
+                        using (var sr = new System.IO.StreamReader(filePath))
+                        {
+                            sourceCode = sr.ReadToEnd();
+                        }
+
+                        // 
+                        // This is where the action happens
+                        //
+
+                        // TODO(crhodes)
+                        // Might be able to pull this out of the loop
+
+                        Type metricType = Type.GetType(metricClass);
+                        MethodInfo metricMethod = metricType.GetMethod("Check");
+                        object[] parametersArray = new object[] { sourceCode };
+
+                        sbFileResults = (StringBuilder)metricMethod.Invoke(null, parametersArray);
+
+                        if ((bool)_configurationOptionsViewModel.AlwaysDisplayFileName || (sbFileResults.Length > 0))
+                        {
+                            sb.AppendLine("Searching " + filePath);
+                        }
+
+                        sb.Append(sbFileResults.ToString());
+                    }
+                }
+            }
+            else
+            {
+                sb.AppendLine("No files selected to process");
+            }
+
+
+            Summary = sb.ToString();
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public void ProcessOperationVB(VNCCA.Types.SearchTreeCommand searchTreeCommand)

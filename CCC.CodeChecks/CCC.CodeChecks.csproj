@@ -1,52 +1,53 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-  
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-  </PropertyGroup>
-  
-  <ItemGroup>
-   <PackageReference Include="DevExpress.Wpf.Core" Version="20.2.5" />
-   <PackageReference Include="DevExpress.Wpf.Grid" Version="20.2.5" />
-   <PackageReference Include="DevExpress.Wpf.Layout" Version="20.2.5" />
-   <PackageReference Include="DevExpress.Wpf.Navigation" Version="20.2.5" />
-   <PackageReference Include="EntityFramework" Version="6.4.4" />
-   <PackageReference Include="Prism.Unity" Version="8.0.0.1909" />
-   <PackageReference Include="VNC.Core" Version="1.0.0" />
-   </ItemGroup>
-   
-  <ItemGroup>
-    <ProjectReference Include="..\VNCCodeCommandConsole.Core\VNCCodeCommandConsole.Core.csproj" />
-  </ItemGroup>
-  
-  <!--<ItemGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CalcBinding" Version="2.5.2" />
+        <PackageReference Include="DevExpress.Wpf.Core" Version="20.2.5" />
+        <PackageReference Include="DevExpress.Wpf.Grid" Version="20.2.5" />
+        <PackageReference Include="DevExpress.Wpf.Layout" Version="20.2.5" />
+        <PackageReference Include="DevExpress.Wpf.Navigation" Version="20.2.5" />
+        <PackageReference Include="EntityFramework" Version="6.4.4" />
+        <PackageReference Include="Prism.Unity" Version="8.0.0.1909" />
+        <PackageReference Include="VNC.Core" Version="1.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\VNC\VNC.CodeAnalysis\VNC.CodeAnalysis\VNC.CodeAnalysis.csproj" />
+        <ProjectReference Include="..\VNCCodeCommandConsole.Core\VNCCodeCommandConsole.Core.csproj" />
+    </ItemGroup>
+
+    <!--<ItemGroup>
     <ProjectReference Include="..\..\vnc\VNC.Core\VNC.Core.csproj" />
     <ProjectReference Include="..\..\vnc\VNC.Logging\VNC.Logging\VNC.Logging.csproj" />
   </ItemGroup>-->
-  <ItemGroup>
-    <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
-    <Reference Include="System.Web" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Presentation\Views\DesignChecks.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Presentation\Views\QualityChecks.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DomainServices\Interfaces\" />
-  </ItemGroup>
-
+    <ItemGroup>
+        <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
+        <Reference Include="System.Web" />
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Presentation\Views\DesignChecks.xaml">
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Presentation\Views\QualityChecks.xaml">
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="DomainServices\Interfaces\" />
+    </ItemGroup>
 </Project>
