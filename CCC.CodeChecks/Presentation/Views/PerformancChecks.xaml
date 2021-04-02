@@ -83,77 +83,77 @@
 
         <dxlc:LayoutItem>
             <Button Content="AvoidBoxing" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="AvoidBoxing" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Avoid Excessive Local Variables" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding AvoidExcessiveLocalVariables}"             
                     CommandParameter="AvoidExcessiveLocalVariables" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Avoid Unnecessary Projections" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="AvoidUnnecessaryProjections" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Avoid Using Dynamic by Default" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="AvoidUsingDynamicByDefault" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Avoid Volatile Declarations" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="AvoidVolatileDeclarations" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Do Not Return Array From Property" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="DoNotReturnArrayFromProperty" />
         </dxlc:LayoutItem>
         
         <dxlc:LayoutItem>
             <Button Content="Do Not Use Object Array In Params" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="DoNotUseObjectArrayInParams" />
         </dxlc:LayoutItem>
         
         <dxlc:LayoutItem>
             <Button Content="Do Not Use ThreadAbort Or ThreadSuspend" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="DoNotUseThreadAbortOrThreadSuspend" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Prefer Jagged Arrays Over Multi-dimensional Arrays" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="PreferJaggedArraysOverMultidimensionalArrays" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="PreferLiteralsOverEvaluation" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="PreferLiteralsOverEvaluation" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Value Types Should Override Equals and GetHashCode" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="ValueTypesShouldOverrideEqualsAndGetHashCode" />
         </dxlc:LayoutItem>

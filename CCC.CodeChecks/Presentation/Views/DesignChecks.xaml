@@ -83,98 +83,98 @@
 
         <dxlc:LayoutItem>
             <Button Content="AbstractTypesWithConstructors" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="AbstractTypesWithConstructors" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="DataClasses" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="DataClasses" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="DeeplyNestedIfBlocks" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="DeeplyNestedIfBlocks" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="DeeplyNestedLoops" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="DeeplyNestedLoops" />
         </dxlc:LayoutItem>
         
         <dxlc:LayoutItem>
             <Button Content="EmptyInterfaces" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="EmptyInterfaces" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="LocalClasses" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="LocalClasses" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="LongListOfSwitches" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="LongListOfSwitches" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="LotsOfMethodOverloads" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="LotsOfMethodOverloads" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="ObjectObsession" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="ObjectObsession" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="OutParameters" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="OutParameters" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="RefusedBequest" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="RefusedBequest" />
         </dxlc:LayoutItem>
        
         <dxlc:LayoutItem>
             <Button Content="SealedClassAndProtectedMembers" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="SealedClassAndProtectedMembers" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="StaticMembersOnGenericTypes" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="StaticMembersOnGenericTypes" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="TooManyParametersOnGenericTypes" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="TooManyParametersOnGenericTypes" />
         </dxlc:LayoutItem>
