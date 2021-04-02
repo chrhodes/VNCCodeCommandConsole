@@ -7,6 +7,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 
+    xmlns:cb="clr-namespace:CalcBinding;assembly=CalcBinding" 
+    
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"     
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     xmlns:local="clr-namespace:CCC.CodeChecks.Presentation.Views"
     
@@ -17,34 +27,137 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     
     mc:Ignorable="d"
-    d:DesignHeight="100" d:DesignWidth="200"
     d:DesignStyle="{StaticResource vncDesignStyle}"
 >
+    <!--d:DesignHeight="100" d:DesignWidth="200"-->
     <!--xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"-->
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        
-        <StackPanel>
-            <TextBlock Text="PerformanceChecks" />
-            <TextBlock Text="{Binding Message}" />
-            <Button Content="Say Hello" 
-                    Command="{Binding SayHelloCommand}" />
-        </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" >
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <Label Content="V:" />
-                <Label Content="{Binding ElementName=thisPerformanceChecks, Path=InstanceCountV}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <Label Content="VM:" />
-                <Label Content="{Binding InstanceCountVM}" />
-            </StackPanel>
-        </StackPanel>
-    </Grid>
-    
+    <UserControl.Resources>
+        <!--<Style x:Key="reStatementWalker" TargetType="views:RegExSyntaxWalker">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="Lavender" />
+        </Style>
+        <Style x:Key="reBlockStatementWalker" TargetType="views:RegExBlockSyntaxWalker">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="#FFE8FAE6" />
+        </Style>-->
+    </UserControl.Resources>
+
+    <!-- NOTE(crhodes)
+     Put in LayoutControl to get vertical scrolling
+    -->
+    <dxlc:LayoutControl Orientation="Vertical" MinWidth="300">
+
+        <!-- NOTE(crhodes)
+         This is for debugging
+        -->
+        <dxlc:LayoutItem Label="CommandParameter" LabelPosition="Top">
+            <dxe:TextEdit 
+            Text="{Binding Message}" TextWrapping="Wrap">
+            </dxe:TextEdit>
+        </dxlc:LayoutItem>
+
+        <dx:GroupFrame Header="Language" VerticalAlignment="Top" >
+            <dxe:ListBoxEdit 
+                    ValueMember="Content" 
+                    SelectedIndex="0"
+                    EditValue="{ Binding
+                        Path=Language,
+                        Mode=TwoWay,
+                        UpdateSourceTrigger=PropertyChanged }"
+                    ShowBorder="False" Background="{x:Null}">
+                <dxe:ListBoxEdit.StyleSettings>
+                    <dxe:RadioListBoxEditStyleSettings />
+                </dxe:ListBoxEdit.StyleSettings>
+                <dxe:ListBoxEdit.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </dxe:ListBoxEdit.ItemsPanel>
+                <dxe:ListBoxEdit.Items>
+                    <dxe:ListBoxEditItem Content="CS" />
+                    <dxe:ListBoxEditItem Content="VB" />
+                </dxe:ListBoxEdit.Items>
+            </dxe:ListBoxEdit>
+        </dx:GroupFrame>
+
+        <dxlc:LayoutItem>
+            <Button Content="AvoidBoxing" 
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="AvoidBoxing" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Avoid Excessive Local Variables" 
+                    Style="{StaticResource SyntaxQueryButton}"
+                    Command="{Binding AvoidExcessiveLocalVariables}"             
+                    CommandParameter="AvoidExcessiveLocalVariables" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Avoid Unnecessary Projections" 
+                    Style="{StaticResource SyntaxQueryButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="AvoidUnnecessaryProjections" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Avoid Using Dynamic by Default" 
+                    Style="{StaticResource SyntaxQueryButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="AvoidUsingDynamicByDefault" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Avoid Volatile Declarations" 
+                    Style="{StaticResource SyntaxQueryButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="AvoidVolatileDeclarations" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Do Not Return Array From Property" 
+                    Style="{StaticResource SyntaxQueryButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="DoNotReturnArrayFromProperty" />
+        </dxlc:LayoutItem>
+        
+        <dxlc:LayoutItem>
+            <Button Content="Do Not Use Object Array In Params" 
+                    Style="{StaticResource SyntaxQueryButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="DoNotUseObjectArrayInParams" />
+        </dxlc:LayoutItem>
+        
+        <dxlc:LayoutItem>
+            <Button Content="Do Not Use ThreadAbort Or ThreadSuspend" 
+                    Style="{StaticResource SyntaxQueryButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="DoNotUseThreadAbortOrThreadSuspend" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Prefer Jagged Arrays Over Multi-dimensional Arrays" 
+                    Style="{StaticResource SyntaxQueryButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="PreferJaggedArraysOverMultidimensionalArrays" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="PreferLiteralsOverEvaluation" 
+                    Style="{StaticResource SyntaxQueryButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="PreferLiteralsOverEvaluation" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Value Types Should Override Equals and GetHashCode" 
+                    Style="{StaticResource SyntaxQueryButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="ValueTypesShouldOverrideEqualsAndGetHashCode" />
+        </dxlc:LayoutItem>
+
+    </dxlc:LayoutControl>
+
 </vncmvvm:ViewBase>

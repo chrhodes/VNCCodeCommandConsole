@@ -58,10 +58,14 @@
         </dxlc:LayoutItem>
         
         <dx:GroupFrame Header="Language" VerticalAlignment="Top" >
-            <dxe:ListBoxEdit Name="lbeCommandsQuality_Language" 
-                            ValueMember="Content" 
-                            SelectedIndex="0"                                                         
-                            ShowBorder="False" Background="{x:Null}">
+            <dxe:ListBoxEdit 
+                    ValueMember="Content" 
+                    SelectedIndex="0"
+                    EditValue="{ Binding
+                        Path=Language,
+                        Mode=TwoWay,
+                        UpdateSourceTrigger=PropertyChanged }"
+                    ShowBorder="False" Background="{x:Null}">
                 <dxe:ListBoxEdit.StyleSettings>
                     <dxe:RadioListBoxEditStyleSettings />
                 </dxe:ListBoxEdit.StyleSettings>
@@ -71,91 +75,131 @@
                     </ItemsPanelTemplate>
                 </dxe:ListBoxEdit.ItemsPanel>
                 <dxe:ListBoxEdit.Items>
-                    <dxe:ListBoxEditItem Content="VB" />
                     <dxe:ListBoxEditItem Content="CS" />
+                    <dxe:ListBoxEditItem Content="VB" />
                 </dxe:ListBoxEdit.Items>
             </dxe:ListBoxEdit>
         </dx:GroupFrame>
 
         <dxlc:LayoutItem>
-            <!--<Button Content="Display Code-to-Comment Ratio" 
-                    Click="btnCallTagTarget" Tag="CodeToCommentRatio"/>-->
-
             <Button Content="Code-to-Comment Ratio" 
-                    Style="{StaticResource SyntaxQueryButton}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="CodeToCommentRatio" />
         </dxlc:LayoutItem>
 
-        <!--<dxlc:LayoutItem>
-            <Button Content="Has Control Flags" 
-                    Click="btnCallTagTarget" Tag="ControlFlags"/>
+        <dxlc:LayoutItem>
+            <Button Content="Has ControlFlags" 
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="ControlFlags" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Has Fragmented Conditions" 
-                    Click="btnCallTagTarget" Tag="FragmentedConditions"/>
+            <Button Content="Has FragmentedConditions" 
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="FragmentedConditions" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Has GoTo Labels" 
-                    Click="btnCallTagTarget" Tag="GoToLabels"/>
+            <Button Content="Has GoToLabels" 
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="GoToLabels" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Has Hungarian Variable Names"
-                    Click="btnCallTagTarget" Tag="HungarianVariableNames"/>
+            <Button Content="Has HungarianVariableNames" 
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="HungarianVariableNames" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Has Ladder If Statements"
-                    Click="btnCallTagTarget" Tag="LadderIfStatements"/>
+            <Button Content="Has LadderIfStatements" 
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="LadderIfStatements" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Has Hungarian Variable Names" 
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="HungarianVariableNames" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button Content="Has Ladder If Statements" 
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="LadderIfStatements" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Is a Large Class" 
-                    Click="btnCallTagTarget" Tag="LargeClass"/>
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="LargeClass" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Display Lines of Code" 
-                    Click="btnCallTagTarget" Tag="LinesOfCode"/>
+            <Button Content="Display Lines Of Code" 
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="LinesOfCode" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Has Long Parameter Lists" 
-                    Click="btnCallTagTarget" Tag="LongParameterList"/>
+            <Button Content="Has Long Parameter List" 
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="LongParameterList" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Has Lots of Local Variables" 
-                    Click="btnCallTagTarget" Tag="LotsOfLocalVariables"/>
+            <Button Content="Has Lots Of Local Variables" 
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="LotsOfLocalVariables" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Has Magic Numbers in Condition" 
-                    Click="btnCallTagTarget" Tag="MagicNumbersInCondition"/>
+            <Button Content="Has Magic Numbers In Condition" 
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="MagicNumbersInCondition" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Has Magic Numbers in Index" 
-                    Click="btnCallTagTarget" Tag="MagicNumbersInIndex"/>
+            <Button Content="Has Magic Numbers In Index" 
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="MagicNumbersInIndex" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Has Magic Numbers in Math" 
-                    Click="btnCallTagTarget" Tag="MagicNumbersInMath"/>
+            <Button Content="Has Magic Numbers In Math" 
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="MagicNumbersInMath" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Has Multiple Return Statements" 
-                    Click="btnCallTagTarget" Tag="MultipleReturnStatements"/>
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="MultipleReturnStatements" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Has Unused Method Parameters" 
-                    Click="btnCallTagTarget" Tag="UnusedMethodParameters"/>
-        </dxlc:LayoutItem>-->
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="UnusedMethodParameters" />
+        </dxlc:LayoutItem>
+
     </dxlc:LayoutControl>
 
 </vncmvvm:ViewBase>

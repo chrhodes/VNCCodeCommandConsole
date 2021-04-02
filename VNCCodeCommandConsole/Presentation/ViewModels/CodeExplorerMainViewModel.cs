@@ -107,6 +107,12 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
             var filesToProcess = _codeExplorerContextViewModel.GetFilesToProcess();
 
+            // TODO(crhodes)
+            // Might be able to pull this out of the loop
+
+            Type metricType = Type.GetType(metricClass);
+            MethodInfo metricMethod = metricType.GetMethod("Check");
+
             if (filesToProcess.Count > 0)
             {
                 if ((Boolean)_configurationOptionsViewModel.ListImpactedFilesOnly)
@@ -135,11 +141,11 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                         // This is where the action happens
                         //
 
-                        // TODO(crhodes)
-                        // Might be able to pull this out of the loop
+                        //// TODO(crhodes)
+                        //// Might be able to pull this out of the loop
 
-                        Type metricType = Type.GetType(metricClass);
-                        MethodInfo metricMethod = metricType.GetMethod("Check");
+                        //Type metricType = Type.GetType(metricClass);
+                        //MethodInfo metricMethod = metricType.GetMethod("Check");
                         object[] parametersArray = new object[] { sourceCode };
 
                         sbFileResults = (StringBuilder)metricMethod.Invoke(null, parametersArray);

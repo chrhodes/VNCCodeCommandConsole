@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 using Prism.Commands;
 using Prism.Events;
 
 using VNC;
-using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
@@ -56,12 +49,12 @@ namespace CCC.CodeChecks.Presentation.ViewModels
 
         #endregion
 
-        #region Enums
+        #region Enums (none)
 
 
         #endregion
 
-        #region Structures
+        #region Structures (none)
 
 
         #endregion
@@ -70,7 +63,7 @@ namespace CCC.CodeChecks.Presentation.ViewModels
 
         public DelegateCommand<string> CallCodeCheckCommand { get; private set; }
 
-        private string _language = "CS";
+
         private string _message;
 
         public string Message
@@ -85,7 +78,8 @@ namespace CCC.CodeChecks.Presentation.ViewModels
             }
         }
 
-        
+        private string _language = "CS";
+
         public string Language
         {
             get => _language;
@@ -127,37 +121,15 @@ namespace CCC.CodeChecks.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            string targetName = codeCheckMethod;
-
             string language = Language;
 
-            ////Boolean includeTrivia = ceStructuresIncludeTrivia.IsChecked.Value;
-            ////Boolean statementsOnly = ceStructuresStatementsOnly.IsChecked.Value;
+            // TODO(crhodes)
+            // Update UI to bind to Language.
 
-            StringBuilder sb = new StringBuilder();
-
-            var sourceCode = "";
-
-            //using (var sr = new StreamReader(CodeExplorerContext.teSourceFile.Text))
-            //{
-            //    sourceCode = sr.ReadToEnd();
-            //}
-
-            string metricClass = $"VNC.CodeAnalysis.QualityMetrics.{language}.{targetName},VNC.CodeAnalysis";
-
-            // NOTE(crhodes)
-            // I think we can just pass the metricClass in the event
+            string metricClass = $"VNC.CodeAnalysis.QualityMetrics.{language}.{codeCheckMethod},VNC.CodeAnalysis";
 
             EventAggregator.GetEvent<InvokeCodeCheckEvent>().Publish(metricClass);
             Message = metricClass;
-
-            //Type metricType = Type.GetType(metricClass);
-            //MethodInfo metricMethod = metricType.GetMethod("Check");
-            //object[] parametersArray = new object[] { sourceCode };
-
-            //sb = (StringBuilder)metricMethod.Invoke(null, parametersArray);
-
-            //CodeExplorer.teSourceCode.Text = sb.ToString();
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }

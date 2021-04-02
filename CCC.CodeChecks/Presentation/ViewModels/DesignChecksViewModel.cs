@@ -1,24 +1,18 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
-using CCC.CodeChecks.Presentation.Views;
 
 using Prism.Commands;
 using Prism.Events;
 
 using VNC;
-using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
+
+using VNCCodeCommandConsole.Core.Events;
 
 namespace CCC.CodeChecks.Presentation.ViewModels
 {
     public class DesignChecksViewModel : EventViewModelBase, IDesignChecksViewModel, IInstanceCountVM
     {
-
         #region Constructors, Initialization, and Load
 
         public DesignChecksViewModel(
@@ -41,11 +35,8 @@ namespace CCC.CodeChecks.Presentation.ViewModels
 
             InstanceCountVM++;
 
-            // TODO(crhodes)
-            //
-
-            SayHelloCommand = new DelegateCommand(
-                SayHello, SayHelloCanExecute);
+            CallCodeCheckCommand = new DelegateCommand<string>(
+                CallCodeCheck, CallCodeCheckCanExecute);
 
             Message = "DesignChecksViewModel says hello";
 
@@ -54,19 +45,19 @@ namespace CCC.CodeChecks.Presentation.ViewModels
 
         #endregion
 
-        #region Enums
+        #region Enums (none)
 
 
         #endregion
 
-        #region Structures
+        #region Structures (none)
 
 
         #endregion
 
         #region Fields and Properties
 
-        public ICommand SayHelloCommand { get; private set; }
+        public DelegateCommand<string> CallCodeCheckCommand { get; private set; }
 
         private string _message;
 
@@ -82,41 +73,57 @@ namespace CCC.CodeChecks.Presentation.ViewModels
             }
         }
 
+        private string _language = "CS";
+
+        public string Language
+        {
+            get => _language;
+            set
+            {
+                if (_language == value)
+                    return;
+                _language = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
-        #region Event Handlers
+        #region Event Handlers (none)
 
 
         #endregion
 
-        #region Public Methods
+        #region Public Methods (none)
 
 
         #endregion
 
-        #region Protected Methods
+        #region Protected Methods (none)
 
 
         #endregion
 
         #region Private Methods
 
-        private bool SayHelloCanExecute()
+        private bool CallCodeCheckCanExecute(string codeCheckMethod)
         {
             return true;
         }
 
-        void SayHello()
+        void CallCodeCheck(string codeCheckMethod)
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Message = "Hello";
+            string metricClass = $"VNC.CodeAnalysis.DesignMetrics.{Language}.{codeCheckMethod},VNC.CodeAnalysis";
+
+            EventAggregator.GetEvent<InvokeCodeCheckEvent>().Publish(metricClass);
+            Message = metricClass;
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
-
 
         #region IInstanceCount
 

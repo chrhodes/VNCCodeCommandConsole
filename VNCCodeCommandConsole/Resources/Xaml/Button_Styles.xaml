@@ -3,6 +3,15 @@
                     x:Class="VNCCodeCommandConsole.Resources.Xaml.Button_Styles"
                     xmlns:local="clr-namespace:VNCCodeCommandConsole.Resources.Xaml">
 
+    <Style x:Key="CodeCheckButton" TargetType="{x:Type Button}" >
+        <!--<EventSetter Event="Button.Click" Handler="DisplayUserControlFromTag" />-->
+        <!--<Setter Property="Margin" Value="5" />-->
+        <Setter Property="FontSize" Value="16" />
+        <!--<Setter Property="FontFamily" Value="Arial" />-->
+        <Setter Property="Foreground" Value="#FFB283DE" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+    </Style>
+    
     <Style x:Key="SyntaxQueryButton" TargetType="{x:Type Button}" >
         <!--<EventSetter Event="Button.Click" Handler="DisplayUserControlFromTag" />-->
         <!--<Setter Property="Margin" Value="5" />-->
