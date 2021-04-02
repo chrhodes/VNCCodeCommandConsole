@@ -1,5 +1,7 @@
 # Ignore Folders until ready to commit
 
+.pdf
+
 # Ignore Zip Files
 *.zip
 
