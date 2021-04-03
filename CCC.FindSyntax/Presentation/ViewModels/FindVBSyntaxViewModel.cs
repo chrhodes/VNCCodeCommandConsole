@@ -52,12 +52,12 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         #endregion
 
-        #region Enums
+        #region Enums (none)
 
 
         #endregion
 
-        #region Structures
+        #region Structures (none)
 
 
         #endregion
@@ -500,19 +500,19 @@ namespace CCC.FindSyntax.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-        
-        #endregion
-
-        #region Event Handlers
 
         #endregion
 
-        #region Public Methods
+        #region Event Handlers (none)
+
+        #endregion
+
+        #region Public Methods (none)
 
 
         #endregion
 
-        #region Protected Methods
+        #region Protected Methods (none)
 
 
         #endregion

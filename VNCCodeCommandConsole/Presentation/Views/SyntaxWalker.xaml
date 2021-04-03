@@ -7,47 +7,122 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 
+    xmlns:cb="clr-namespace:CalcBinding;assembly=CalcBinding" 
+    
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"     
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
-    xmlns:local="clr-namespace:VNCCodeCommandConsole.Presentation.Views"
-
-    xmlns:views="clr-namespace:VNCCodeCommandConsole.Presentation.Views"
-    xmlns:viewModels="clr-namespace:VNCCodeCommandConsole.Presentation.ViewModels"
-
-    xmlns:core="clr-namespace:VNCCodeCommandConsole.Core"
+    
+    xmlns:views="clr-namespace:CCC.FindSyntax.Presentation.Views;assembly=CCC.FindSyntax"
+    
+    xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"
     prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
-    d:DesignHeight="100" d:DesignWidth="200"
     d:DesignStyle="{StaticResource vncDesignStyle}"
 >
     <!--xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"-->
 	
     <UserControl.Resources>
-
+        <Style x:Key="reStatementWalker" TargetType="views:RegExSyntaxWalker">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="Lavender" />
+        </Style>
+        <Style x:Key="reBlockStatementWalker" TargetType="views:RegExBlockSyntaxWalker">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="#FFE8FAE6" />
+        </Style>
     </UserControl.Resources>
+    <!-- NOTE(crhodes)
+     Put in LayoutControl to get vertical scrolling
+    -->
+    <dxlc:LayoutControl Orientation="Vertical" MinWidth="300">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+        <!-- NOTE(crhodes)
+         This is for debugging
+        -->
+        <!--<dxlc:LayoutItem Label="CommandParameter" LabelPosition="Top">
+            <dxe:TextEdit 
+            Text="{Binding Message}" TextWrapping="Wrap">
+            </dxe:TextEdit>
+        </dxlc:LayoutItem>-->
+
+        <dx:GroupFrame Header="Language" VerticalAlignment="Top" >
+            <dxe:ListBoxEdit 
+                    ValueMember="Content" 
+                    SelectedIndex="0"
+                    EditValue="{ Binding
+                        Path=Language,
+                        Mode=TwoWay,
+                        UpdateSourceTrigger=PropertyChanged }"
+                    ShowBorder="False" Background="{x:Null}">
+                <dxe:ListBoxEdit.StyleSettings>
+                    <dxe:RadioListBoxEditStyleSettings />
+                </dxe:ListBoxEdit.StyleSettings>
+                <dxe:ListBoxEdit.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </dxe:ListBoxEdit.ItemsPanel>
+                <dxe:ListBoxEdit.Items>
+                    <dxe:ListBoxEditItem Content="CS" />
+                    <dxe:ListBoxEditItem Content="VB" />
+                </dxe:ListBoxEdit.Items>
+            </dxe:ListBoxEdit>
+        </dx:GroupFrame>
+
+        <views:RegExSyntaxWalker x:Name="cSyntaxNode" 
+            Style="{StaticResource reStatementWalker}" 
+            ControlHeader="{Binding SyntaxNodeWalker.ControlHeader, Mode=TwoWay}"
+            ButtonContent="{Binding SyntaxNodeWalker.ButtonContent, Mode=TwoWay}"
+            CommandParameter="{Binding SyntaxNodeWalker.CommandParameter, Mode=TwoWay}"
+            RegExLabel="{Binding SyntaxNodeWalker.RegExLabel, Mode=TwoWay}" 
+            RegEx="{Binding SyntaxNodeWalker.RegEx, Mode=TwoWay}"
+            UseRegEx="{Binding SyntaxNodeWalker.UseRegEx, Mode=TwoWay}"/>
+
+        <views:RegExSyntaxWalker x:Name="cSyntaxToken" 
+            Style="{StaticResource reStatementWalker}" 
+            ControlHeader="{Binding SyntaxTokenWalker.ControlHeader, Mode=TwoWay}"
+            ButtonContent="{Binding SyntaxTokenWalker.ButtonContent, Mode=TwoWay}"
+            CommandParameter="{Binding SyntaxTokenWalker.CommandParameter, Mode=TwoWay}"
+            RegExLabel="{Binding SyntaxTokenWalker.RegExLabel, Mode=TwoWay}" 
+            RegEx="{Binding SyntaxTokenWalker.RegEx, Mode=TwoWay}"
+            UseRegEx="{Binding SyntaxTokenWalker.UseRegEx, Mode=TwoWay}"/>
         
-        <StackPanel>
-            <TextBlock Text="SyntaxWalker" />
-            <TextBlock Text="{Binding Message}" />
-            <Button Content="Say Hello" 
-                    Command="{Binding SayHelloCommand}" />
-        </StackPanel>
+        <views:RegExSyntaxWalker x:Name="cSyntaxTrivia" 
+            Style="{StaticResource reStatementWalker}" 
+            ControlHeader="{Binding SyntaxTriviaWalker.ControlHeader, Mode=TwoWay}"
+            ButtonContent="{Binding SyntaxTriviaWalker.ButtonContent, Mode=TwoWay}"
+            CommandParameter="{Binding SyntaxTriviaWalker.CommandParameter, Mode=TwoWay}"
+            RegExLabel="{Binding SyntaxTriviaWalker.RegExLabel, Mode=TwoWay}" 
+            RegEx="{Binding SyntaxTriviaWalker.RegEx, Mode=TwoWay}"
+            UseRegEx="{Binding SyntaxTriviaWalker.UseRegEx, Mode=TwoWay}"/>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <StackPanel  Orientation="Horizontal" Margin="5">
+        <views:RegExSyntaxWalker x:Name="cStructuredTrivia" 
+            Style="{StaticResource reStatementWalker}" 
+            ControlHeader="{Binding StructuredTriviaWalker.ControlHeader, Mode=TwoWay}"
+            ButtonContent="{Binding StructuredTriviaWalker.ButtonContent, Mode=TwoWay}"
+            CommandParameter="{Binding StructuredTriviaWalker.CommandParameter, Mode=TwoWay}"
+            RegExLabel="{Binding StructuredTriviaWalker.RegExLabel, Mode=TwoWay}" 
+            RegEx="{Binding StructuredTriviaWalker.RegEx, Mode=TwoWay}"
+            UseRegEx="{Binding StructuredTriviaWalker.UseRegEx, Mode=TwoWay}"/>
+        
+    </dxlc:LayoutControl>
+
+    <!--<StackPanel Grid.Row="2" Orientation="Horizontal" >
+            <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="V:" />
-                <Label Content="{Binding ElementName=thisSyntaxWalker, Path=InstanceCountV}" />
+                <Label Content="{Binding ElementName=thisFindVBSyntax, Path=InstanceCountV}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="VM:" />
                 <Label Content="{Binding InstanceCountVM}" />
             </StackPanel>
-        </StackPanel>
-    </Grid>
-	
+        </StackPanel>-->
+
 </vncmvvm:ViewBase>
