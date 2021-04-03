@@ -79,11 +79,15 @@ namespace VNCCodeCommandConsole.Presentation.ModelWrappers
 
         public bool Int64 { get { return GetValue<bool>(); } set { SetValue(value); } }
 
+        public bool Short { get { return GetValue<bool>(); } set { SetValue(value); } }
+
         public bool Integer { get { return GetValue<bool>(); } set { SetValue(value); } }
 
         public bool Long { get { return GetValue<bool>(); } set { SetValue(value); } }
 
         public bool Single { get { return GetValue<bool>(); } set { SetValue(value); } }
+
+        public bool Double { get { return GetValue<bool>(); } set { SetValue(value); } }
 
         public bool String { get { return GetValue<bool>(); } set { SetValue(value); } }
 

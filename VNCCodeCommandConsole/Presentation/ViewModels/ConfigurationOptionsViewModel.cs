@@ -62,7 +62,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
         private bool _displayContext;
         private bool _displayResults = true;
         private bool _displaySummary = true;
-        private int _displaySummaryMinimum;
+        private int _displaySummaryMinimum = 1;
         private bool _listImpactedFilesOnly;
 
         public CodeAnalysisOptionsWrapper CodeAnalysisOptions

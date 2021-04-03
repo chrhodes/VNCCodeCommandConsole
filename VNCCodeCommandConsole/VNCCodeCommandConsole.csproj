@@ -5,6 +5,7 @@
     <TargetFramework>net4.8</TargetFramework>
     <UseWPF>true</UseWPF>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <ApplicationIcon>Resources\Icons\application.ico</ApplicationIcon>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

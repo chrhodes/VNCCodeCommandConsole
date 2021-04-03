@@ -31,7 +31,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
         private string _syntaxTree;
         private string _summaryCRCToFullString;
         private string _summaryCRCToString;
-        private string _sourceCode = "Source Code Output Goes Here";
+        private string _results = "Results from Source Code Output Goes Here";
         private string _title = "VNCCodeCommandConsole - MainWindowDxDockLayoutManager";
 
 
@@ -164,8 +164,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 sb.AppendLine("No files selected to process");
             }
 
-
-            Summary = sb.ToString();
+            Results = sb.ToString();
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -246,7 +245,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 sb.Clear();
             }
 
-            SourceCode = sb.ToString();
+            Results = sb.ToString();
 
             if ((Boolean)_configurationOptionsViewModel.DisplaySummary)
             {
@@ -377,7 +376,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 sb.Clear();
             }
 
-            SourceCode = sb.ToString();
+            Results = sb.ToString();
 
             if ((Boolean)_configurationOptionsViewModel.DisplaySummary)
             {
@@ -426,7 +425,6 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
                     SummaryCRCToString = summary.ToString();
                 }
-
             }
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
@@ -434,29 +432,16 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         private void ClearPreviousResults()
         {
-            // TODO(crhodes)
-            // Create Properties that View can bind to
-
-            SourceCode = "";
-            SyntaxNode = "";
-            SyntaxToken = "";
-            SyntaxTrivia = "";
-            SyntaxStructuredTrivia = "";
+            Results = "";
             Summary = "";
             SummaryCRCToString = "";
             SummaryCRCToFullString = "";
 
-            //teSourceCode.Clear();
-            //teSourceCode.InvalidateVisual();
+            SyntaxNode = "";
+            SyntaxToken = "";
+            SyntaxTrivia = "";
+            SyntaxStructuredTrivia = "";
 
-            //teSyntaxNode.Clear();
-            //teSyntaxToken.Clear();
-            //teSyntaxTrivia.Clear();
-            //teSyntaxStructuredTrivia.Clear();
-
-            //teSummary.Clear();
-            //teSummaryCRCToString.Clear();
-            //teSummaryCRCToFullString.Clear();
         }
 
         private string _summary = "TBD";
@@ -472,18 +457,17 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             }
         }
 
-        public string SourceCode
+        public string Results
         {
-            get => _sourceCode;
+            get => _results;
             set
             {
-                if (_sourceCode == value)
+                if (_results == value)
                     return;
-                _sourceCode = value;
+                _results = value;
                 OnPropertyChanged();
             }
         }
-
 
         public string SummaryCRCToString
         {

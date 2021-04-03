@@ -29,7 +29,7 @@
     prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
 
-    d:DesignWidth="200"
+    d:DesignWidth="250"
     d:DesignStyle="{StaticResource vncDesignStyle}"    
 >
     <!--d:DesignHeight="600"-->
@@ -52,9 +52,13 @@
             -->
             <dx:GroupFrame Header="SyntaxWalkerDepth">
                 <dxe:ListBoxEdit Name="lbeSyntaxWalkerDepth" 
-                             ValueMember="Content" 
-                             SelectedIndex="0"                                                         
-                             ShowBorder="False" Background="{x:Null}">
+                        ValueMember="Content" 
+                        SelectedIndex="0"
+                        EditValue="{ Binding
+                            Path=CodeAnalysisOptions.SyntaxWalkerDepth,
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged }"                               
+                        ShowBorder="False" Background="{x:Null}">
                     <dxe:ListBoxEdit.StyleSettings>
                         <dxe:RadioListBoxEditStyleSettings />
                     </dxe:ListBoxEdit.StyleSettings>
@@ -74,12 +78,12 @@
 
             <dxlc:LayoutItem>
                 <dxe:CheckEdit Content="Display Source Location" 
-                               IsChecked="{Binding DisplaySourceLocation}" />
+                               IsChecked="{Binding CodeAnalysisOptions.DisplaySourceLocation}" />
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem>
                 <dxe:CheckEdit Content="Display CRC32" 
-                               IsChecked="{Binding DisplayCRC32}" />
+                               IsChecked="{Binding CodeAnalysisOptions.DisplayCRC32}" />
             </dxlc:LayoutItem>
 
             <dx:GroupFrame Header="Additional Node Analysis" 
@@ -179,100 +183,99 @@
                                 IsChecked="{Binding CodeAnalysisOptions.AllTypes}" />
             </dxlc:LayoutItem>
 
+            <!-- TODO(crhodes)
+             See if can bind to CheckEdit above and CodeAnalsis.XXX
+            -->
             <dxlc:LayoutGroup
                 View="GroupBox"
                 Orientation="Vertical"
                 Visibility="{cb:Binding ElementName=ceAllTypes, Path=! IsChecked}">
 
-                <dxlc:LayoutItem>
+                <!--<dxlc:LayoutItem>
                     <dxe:CheckEdit x:Name="ceHasAttributes" 
-                                   Content="Has Attributes" 
-                                   IsChecked="{cb:Binding ElementName=ceAllTypes, 
-                                        Path=IsChecked, Mode=OneWay}"/>
+                                   Content="Has Attributes">
+                        <dxe:CheckEdit.IsChecked>
+                            <MultiBinding Converter="">
+                                <Binding />
+                            </MultiBinding>
+                        </dxe:CheckEdit.IsChecked>
+                  
+                    </dxe:CheckEdit>
+                </dxlc:LayoutItem>-->
+
+                <dxlc:LayoutItem>
+                    <dxe:CheckEdit Content="Is Boolean" 
+                                   IsChecked="{Binding CodeAnalysisOptions.Boolean}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
-                    <dxe:CheckEdit x:Name="ceIsBoolean" 
-                                   Content="Is Boolean" 
-                                   IsChecked="{cb:Binding ElementName=ceAllTypes, 
-                                        Path=IsChecked, Mode=OneWay}"/>
+                    <dxe:CheckEdit Content="Is Byte" 
+                                   IsChecked="{Binding CodeAnalysisOptions.Byte}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
-                    <dxe:CheckEdit x:Name="ceIsByte" 
-                                   Content="Is Byte" 
-                                   IsChecked="{cb:Binding ElementName=ceAllTypes, 
-                                        Path=IsChecked, Mode=OneWay}"/>
+                    <dxe:CheckEdit Content="Is DataTable" 
+                                   IsChecked="{Binding CodeAnalysisOptions.DataTable}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
-                    <dxe:CheckEdit x:Name="ceIsDataTable" 
-                                   Content="Is DataTable" 
-                                   IsChecked="{cb:Binding ElementName=ceAllTypes, 
-                                        Path=IsChecked, Mode=OneWay}"/>
+                    <dxe:CheckEdit Content="Is Date" 
+                                   IsChecked="{Binding CodeAnalysisOptions.Date}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
-                    <dxe:CheckEdit x:Name="ceIsDate" 
-                                   Content="Is Date" 
-                                   IsChecked="{cb:Binding ElementName=ceAllTypes, 
-                                        Path=IsChecked, Mode=OneWay}"/>
+                    <dxe:CheckEdit Content="Is DateTime" 
+                                   IsChecked="{Binding CodeAnalysisOptions.DateTime}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
-                    <dxe:CheckEdit x:Name="ceIsDateTime" 
-                                   Content="Is DateTime" 
-                                   IsChecked="{cb:Binding ElementName=ceAllTypes, 
-                                        Path=IsChecked, Mode=OneWay}"/>
+                    <dxe:CheckEdit Content="Is Int16" 
+                                   IsChecked="{Binding CodeAnalysisOptions.Int16}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
-                    <dxe:CheckEdit x:Name="ceIsInt16" 
-                                   Content="Is Int16" 
-                                   IsChecked="{cb:Binding ElementName=ceAllTypes,
-                                        Path=IsChecked, Mode=OneWay}"/>
+                    <dxe:CheckEdit Content="Is Int32" 
+                                   IsChecked="{Binding CodeAnalysisOptions.Int32}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
-                    <dxe:CheckEdit x:Name="ceIsInt32" 
-                                   Content="Is Int32" 
-                                   IsChecked="{cb:Binding ElementName=ceAllTypes, 
-                                        Path=IsChecked, Mode=OneWay}"/>
+                    <dxe:CheckEdit Content="Is Int64" 
+                                   IsChecked="{Binding CodeAnalysisOptions.Int64}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
-                    <dxe:CheckEdit x:Name="ceIsInteger" 
-                                   Content="Is Integer" 
-                                   IsChecked="{cb:Binding ElementName=ceAllTypes, 
-                                        Path=IsChecked, Mode=OneWay}"/>
+                    <dxe:CheckEdit Content="Is Short" 
+                                   IsChecked="{Binding CodeAnalysisOptions.Short}"/>
+                </dxlc:LayoutItem>
+                
+                <dxlc:LayoutItem>
+                    <dxe:CheckEdit Content="Is Integer" 
+                                   IsChecked="{Binding CodeAnalysisOptions.Integer}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
-                    <dxe:CheckEdit x:Name="ceIsLong" 
-                                   Content="Is Long" 
-                                   IsChecked="{cb:Binding ElementName=ceAllTypes,
-                                        Path=IsChecked, Mode=OneWay}"/>
+                    <dxe:CheckEdit Content="Is Long" 
+                                   IsChecked="{Binding CodeAnalysisOptions.Long}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
-                    <dxe:CheckEdit x:Name="ceIsSingle" 
-                                   Content="Is Single" 
-                                   IsChecked="{cb:Binding ElementName=ceAllTypes, 
-                                        Path=IsChecked, Mode=OneWay}"/>
+                    <dxe:CheckEdit Content="Is Single" 
+                                   IsChecked="{Binding CodeAnalysisOptions.Single}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
-                    <dxe:CheckEdit x:Name="ceIsString" 
-                                   Content="Is String" 
-                                   IsChecked="{cb:Binding ElementName=ceAllTypes, 
-                                        Path=IsChecked, Mode=OneWay}"/>
+                    <dxe:CheckEdit Content="Is Double" 
+                                   IsChecked="{Binding CodeAnalysisOptions.Double}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
-                    <dxe:CheckEdit x:Name="ceOtherTypes" 
-                                   Content="Is OtherType" 
-                                   IsChecked="{cb:Binding ElementName=ceAllTypes, 
-                                        Path=IsChecked, Mode=OneWay}"/>
+                    <dxe:CheckEdit Content="Is String" 
+                                   IsChecked="{Binding CodeAnalysisOptions.String}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem>
+                    <dxe:CheckEdit Content="Is OtherType" 
+                                   IsChecked="{Binding CodeAnalysisOptions.OtherTypes}"/>
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
@@ -283,15 +286,14 @@
                           View="GroupBox"
                 	Orientation="Vertical" VerticalAlignment="Top">
 
-
             <dxlc:LayoutItem>
                 <dxe:CheckEdit Content="Display Results" 
                                    IsChecked="{Binding DisplayResults}"/>
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem>
-                <dxe:CheckEdit Content="Display Summary" 
-                                   IsChecked="{Binding DisplaySummary}"/>
+                <dxe:CheckEdit x:Name="ceDisplaySummary" Content="Display Summary" 
+                               IsChecked="{Binding DisplaySummary}"/>
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Display Summary Minimum" 
@@ -318,11 +320,13 @@
             <dxlc:LayoutGroup
             	Orientation="Vertical" VerticalAlignment="Top">
 
-                <dxe:CheckEdit x:Name="ceAddFileSuffix" Content="Add FileSuffix" 
+                <dxe:CheckEdit Content="Add FileSuffix" 
                                IsChecked="{Binding CodeAnalysisOptions.AddFileSuffix}" />
 
-                <dxlc:LayoutItem Label="File Suffix" ToolTip="Added to name of modified file"
-                                 Visibility="{cb:Binding ElementName=ceAddFileSuffix, Path=IsChecked}">
+                <dxlc:LayoutItem Label="File Suffix" 
+                                 ToolTip="Added to name of modified file"
+                                 Visibility="{cb:Binding ElementName=ceAddFileSuffix, 
+                                    Path=IsChecked}">
 
                     <dxe:TextEdit x:Name="teFileSuffix" 
                                   Text="{Binding CodeAnalysisOptions.FileSuffix}"

@@ -67,6 +67,17 @@
 
                     <dxdo:TabbedGroup ItemWidth="300" Name="tg_Left">
 
+                        <dxdo:LayoutPanel Name="lp_CommandsFindCSSyntax" Caption="Find CS Syntax"
+                                          AllowFloat="False" AllowClose="False" 
+                                          AllowDock="False" AllowHide="False"
+                                          Style="{StaticResource FixedLayoutPanelMedium}" >
+
+                            <!--<pv:FindCSSyntax x:Name="FindCSSyntax" />-->
+                            <!--<TextBlock Text="TODO: pv:FindCSSyntax" />-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.FindCSSyntaxRegion}" />
+
+                        </dxdo:LayoutPanel>
+                        
                         <dxdo:LayoutPanel Name="lp_CommandsFindVBSyntax" Caption="Find VB Syntax"
                                           AllowFloat="False" AllowClose="False" AllowDock="False" AllowHide="False"
                                           Style="{StaticResource FixedLayoutPanelMedium}" >
@@ -77,16 +88,7 @@
 
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Name="lp_CommandsFindCSSyntax" Caption="Find CS Syntax"
-                                          AllowFloat="False" AllowClose="False" 
-                                          AllowDock="False" AllowHide="False"
-                                          Style="{StaticResource FixedLayoutPanelMedium}" >
-                            
-                            <!--<pv:FindCSSyntax x:Name="FindCSSyntax" />-->
-                            <!--<TextBlock Text="TODO: pv:FindCSSyntax" />-->
-                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.FindCSSyntaxRegion}" />
 
-                        </dxdo:LayoutPanel>
 
                         <!--<dxdo:LayoutPanel x:Name="lp_Commands_Find" Caption="Find Stuff" 
                                           Style="{StaticResource FixedLayoutPanelMedium}">
@@ -128,9 +130,9 @@
 
                                 </dxlc:LayoutGroup>
 
-                                <dxlc:LayoutGroup Header="Source Code" Name="lg_SourceCode">
+                                <dxlc:LayoutGroup Header="Results" Name="lg_SourceCode">
                                     <dxe:TextEdit x:Name="teSourceCode"
-                                                  Text="{Binding SourceCode}"
+                                                  Text="{Binding Results}"
                                                       FontFamily="Consolas" 
                                                       VerticalAlignment="Stretch"
                                                       VerticalContentAlignment="Stretch"                                                     
@@ -251,6 +253,7 @@
                                           Style="{StaticResource FixedLayoutPanelNarrow}">
 
                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ConfigurationOptionsRegion}" />
+                        
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel x:Name="lp_Commands_Workspace" Caption="Workspace Explorer" >
