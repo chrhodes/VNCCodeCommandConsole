@@ -14,6 +14,10 @@ namespace CCC.FindSyntax.Presentation.Views
 
             // Need to do this so UseRegEx and RegEx fire notification events.
             lgRegularExpression.DataContext = this;
+
+            // Cannot do this as it breaks the button
+            //lgHeader.DataContext = this;
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -24,7 +28,6 @@ namespace CCC.FindSyntax.Presentation.Views
         }
 
         #region Dependency Properties
-
 
         #region ControlHeader
 
@@ -57,7 +60,7 @@ namespace CCC.FindSyntax.Presentation.Views
         #region RegExLabel
 
         public static readonly DependencyProperty RegExLabelProperty = DependencyProperty.Register(
-            "RegExLabel", typeof(string), typeof(RegExSyntaxWalker), 
+            "RegExLabel", typeof(string), typeof(RegExSyntaxWalker),
             new PropertyMetadata("RegEx", new PropertyChangedCallback(OnRegExLabelChanged)));
 
         private static void OnRegExLabelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
@@ -88,7 +91,6 @@ namespace CCC.FindSyntax.Presentation.Views
         public static readonly DependencyProperty RegExProperty = DependencyProperty.Register(
             "RegEx", typeof(string), typeof(RegExSyntaxWalker),
             new PropertyMetadata("RESW-V.*", new PropertyChangedCallback(OnRegExChanged)));
-
 
         private static void OnRegExChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
@@ -171,7 +173,7 @@ namespace CCC.FindSyntax.Presentation.Views
         #region CommandParameter
 
         public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register(
-            "CommandParameter", typeof(string), typeof(RegExSyntaxWalker), 
+            "CommandParameter", typeof(string), typeof(RegExSyntaxWalker),
             new PropertyMetadata("<DEFAULTWALKER>", new PropertyChangedCallback(OnCommandParameterChanged)));
 
         private static void OnCommandParameterChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
@@ -196,6 +198,32 @@ namespace CCC.FindSyntax.Presentation.Views
         }
 
         #endregion
+
+
+        public static readonly DependencyProperty HeaderIsCollapsedProperty = DependencyProperty.Register(
+            "HeaderIsCollapsed", typeof(bool), typeof(RegExSyntaxWalker), 
+            new PropertyMetadata(true, new PropertyChangedCallback(OnHeaderIsCollapsedChanged)));
+
+        private static void OnHeaderIsCollapsedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RegExSyntaxWalker regExSyntaxWalker = o as RegExSyntaxWalker;
+            if (regExSyntaxWalker != null)
+                regExSyntaxWalker.OnHeaderIsCollapsedChanged((bool)e.OldValue, (bool)e.NewValue);
+        }
+
+        protected virtual void OnHeaderIsCollapsedChanged(bool oldValue, bool newValue)
+        {
+            lgHeader.IsCollapsed = newValue;
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        public bool HeaderIsCollapsed
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code,
+            // do not touch the getter and setter inside this dependency property!
+            get => (bool)GetValue(HeaderIsCollapsedProperty);
+            set => SetValue(HeaderIsCollapsedProperty, value);
+        }
 
         #endregion
 

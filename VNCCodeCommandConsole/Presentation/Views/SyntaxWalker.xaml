@@ -22,7 +22,7 @@
     xmlns:views="clr-namespace:CCC.FindSyntax.Presentation.Views;assembly=CCC.FindSyntax"
     
     xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"
-    prism:ViewModelLocator.AutoWireViewModel="False"
+    prism:ViewModelLocator.AutoWireViewModel="true"
     mc:Ignorable="d"
     d:DesignStyle="{StaticResource vncDesignStyle}"
 >
@@ -46,11 +46,11 @@
         <!-- NOTE(crhodes)
          This is for debugging
         -->
-        <!--<dxlc:LayoutItem Label="CommandParameter" LabelPosition="Top">
+        <dxlc:LayoutItem Label="CommandParameter" LabelPosition="Top">
             <dxe:TextEdit 
             Text="{Binding Message}" TextWrapping="Wrap">
             </dxe:TextEdit>
-        </dxlc:LayoutItem>-->
+        </dxlc:LayoutItem>
 
         <dx:GroupFrame Header="Language" VerticalAlignment="Top" >
             <dxe:ListBoxEdit 
@@ -87,7 +87,7 @@
 
         <views:RegExSyntaxWalker x:Name="cSyntaxToken" 
             Style="{StaticResource reStatementWalker}" 
-            ControlHeader="{Binding SyntaxTokenWalker.ControlHeader, Mode=TwoWay}"
+            ControlHeader="{Binding SyntaxTokenWalker.ControlHeader, Mode=TwoWay}"                       
             ButtonContent="{Binding SyntaxTokenWalker.ButtonContent, Mode=TwoWay}"
             CommandParameter="{Binding SyntaxTokenWalker.CommandParameter, Mode=TwoWay}"
             RegExLabel="{Binding SyntaxTokenWalker.RegExLabel, Mode=TwoWay}" 
@@ -96,7 +96,7 @@
         
         <views:RegExSyntaxWalker x:Name="cSyntaxTrivia" 
             Style="{StaticResource reStatementWalker}" 
-            ControlHeader="{Binding SyntaxTriviaWalker.ControlHeader, Mode=TwoWay}"
+            ControlHeader="{Binding SyntaxTriviaWalker.ControlHeader, Mode=TwoWay}"                             
             ButtonContent="{Binding SyntaxTriviaWalker.ButtonContent, Mode=TwoWay}"
             CommandParameter="{Binding SyntaxTriviaWalker.CommandParameter, Mode=TwoWay}"
             RegExLabel="{Binding SyntaxTriviaWalker.RegExLabel, Mode=TwoWay}" 
@@ -105,7 +105,7 @@
 
         <views:RegExSyntaxWalker x:Name="cStructuredTrivia" 
             Style="{StaticResource reStatementWalker}" 
-            ControlHeader="{Binding StructuredTriviaWalker.ControlHeader, Mode=TwoWay}"
+            ControlHeader="{Binding StructuredTriviaWalker.ControlHeader, Mode=TwoWay}"                           
             ButtonContent="{Binding StructuredTriviaWalker.ButtonContent, Mode=TwoWay}"
             CommandParameter="{Binding StructuredTriviaWalker.CommandParameter, Mode=TwoWay}"
             RegExLabel="{Binding StructuredTriviaWalker.RegExLabel, Mode=TwoWay}" 
