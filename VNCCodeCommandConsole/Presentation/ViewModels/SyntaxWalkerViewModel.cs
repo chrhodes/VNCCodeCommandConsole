@@ -66,6 +66,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         #region Fields and Properties
 
+
         private string _message;
 
         public string Message
@@ -94,11 +95,25 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             }
         }
 
+        private bool _headerIsCollapsed = false;
+
+        public bool HeaderIsCollapsed
+        {
+            get => _headerIsCollapsed;
+            set
+            {
+                if (_headerIsCollapsed == value)
+                    return;
+                _headerIsCollapsed = value;
+                OnPropertyChanged();
+            }
+        }
+        
         private WalkerPattern _syntaxNodeWalker = new WalkerPattern(
             controlHeader: "Find SyntaxNode Syntax",
             buttonContent: "SyntaxNode Walker",
             commandParameter: "SyntaxNodeWalker",
-            regExLabel: "RegEx");
+            regExLabel: "RegExNode");
 
         public WalkerPattern SyntaxNodeWalker
         {
@@ -116,7 +131,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             controlHeader: "Find SyntaxToken Syntax",
             buttonContent: "SyntaxToken Walker",
             commandParameter: "SyntaxTokenWalker",
-            regExLabel: "RegEx");
+            regExLabel: "RegExToken");
 
         public WalkerPattern SyntaxTokenWalker
         {
@@ -134,7 +149,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             controlHeader: "Find SyntaxTrivia Syntax",
             buttonContent: "SyntaxTrivia Walker",
             commandParameter: "SyntaxTriviaWalker",
-            regExLabel: "RegEx");
+            regExLabel: "RegExTrivia");
 
         public WalkerPattern SyntaxTriviaWalker
         {
@@ -229,7 +244,6 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 default:
                     break;
             }
-
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

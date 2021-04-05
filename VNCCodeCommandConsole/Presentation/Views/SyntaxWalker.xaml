@@ -46,6 +46,14 @@
         <!-- NOTE(crhodes)
          This is for debugging
         -->
+        <!--<dxlc:LayoutItem Label="Collapse">-->
+            <dxe:CheckEdit x:Name="ceCollapse" Content="Colapse Headers"
+                
+                           VerticalAlignment="Top"
+            	IsChecked="False"
+                EditValueChanged="ceCollapse_EditValueChanged"/>
+        <!--</dxlc:LayoutItem>-->
+        
         <dxlc:LayoutItem Label="CommandParameter" LabelPosition="Top">
             <dxe:TextEdit 
             Text="{Binding Message}" TextWrapping="Wrap">

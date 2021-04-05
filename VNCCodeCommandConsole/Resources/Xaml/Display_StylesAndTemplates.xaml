@@ -8,7 +8,7 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     
     xmlns:local="clr-namespace:VNCCodeCommandConsole"
-
+    
     xmlns:d="http://schemas.microsoft.com/expression/interactivedesigner/2006" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     mc:Ignorable="d" >
@@ -24,7 +24,7 @@
     <Style x:Key="vncDesignStyle" TargetType="UserControl">
         <Setter Property="Background" Value="White" />
     </Style>
-    
+
     <Style TargetType="TextBox">
         <Setter Property="Validation.ErrorTemplate"> 
             <Setter.Value>

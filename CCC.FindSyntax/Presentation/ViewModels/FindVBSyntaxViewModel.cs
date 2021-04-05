@@ -489,6 +489,20 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         private string _message;
 
+        private bool _headerIsCollapsed = true;
+
+        public bool HeaderIsCollapsed
+        {
+            get => _headerIsCollapsed;
+            set
+            {
+                if (_headerIsCollapsed == value)
+                    return;
+                _headerIsCollapsed = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string Message
         {
             get => _message;
@@ -531,7 +545,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             // to handle all the walkers that use the RegExSyntaxWalker
 
             // First get the CommandParameter property value
-            // from the WalkerPattern property that correspondes to the walkerPropertyName
+            // from the WalkerPattern property that corresponds to the walkerPropertyName
 
             PropertyInfo walkerPropertyInfo = this.GetType().GetProperty(walkerPropertyName);
             var walkerProperty = walkerPropertyInfo.GetValue(this);

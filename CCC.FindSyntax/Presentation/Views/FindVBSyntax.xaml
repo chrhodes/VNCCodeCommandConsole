@@ -35,10 +35,11 @@
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Background" Value="Lavender" />
         </Style>
+
         <Style x:Key="reBlockStatementWalker" TargetType="views:RegExBlockSyntaxWalker">
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Background" Value="#FFE8FAE6" />
-        </Style>        
+        </Style>
     </UserControl.Resources>
     
     <!-- NOTE(crhodes)
@@ -49,6 +50,12 @@
         <!-- NOTE(crhodes)
          This is for debugging
         -->
+        <dxlc:LayoutItem Label="Collapse">
+            <dxe:CheckEdit x:Name="ceCollapse"
+            	IsChecked="False"
+                EditValueChanged="ceCollapse_EditValueChanged"/>
+        </dxlc:LayoutItem>    
+        
         <dxlc:LayoutItem Label="CommandParameter" LabelPosition="Top">
             <dxe:TextEdit 
             Text="{Binding Message}" TextWrapping="Wrap">
@@ -66,7 +73,7 @@
 
         <views:RegExSyntaxWalker x:Name="cNamespaceStatementWalker" 
                 Style="{StaticResource reStatementWalker}"
-                ControlHeader="{Binding NamespaceStatementWalker.ControlHeader, Mode=TwoWay}"
+                ControlHeader="{Binding NamespaceStatementWalker.ControlHeader, Mode=TwoWay}"                           
                 ButtonContent="{Binding NamespaceStatementWalker.ButtonContent, Mode=TwoWay}"
                 CommandParameter="{Binding NamespaceStatementWalker.CommandParameter, Mode=TwoWay}"
                 RegExLabel="{Binding NamespaceStatementWalker.RegExLabel, Mode=TwoWay}"                                 
@@ -86,7 +93,7 @@
 
         <views:RegExBlockSyntaxWalker x:Name="cModuleStatement" 
                 Style="{StaticResource reBlockStatementWalker}" 
-                ControlHeader="{Binding ModuleStatementWalker.ControlHeader, Mode=TwoWay}"
+                ControlHeader="{Binding ModuleStatementWalker.ControlHeader, Mode=TwoWay}"                                   
                 ButtonContent="{Binding ModuleStatementWalker.ButtonContent, Mode=TwoWay}"
                 CommandParameter="{Binding ModuleStatementWalker.CommandParameter, Mode=TwoWay}"
                 RegExLabel="{Binding ModuleStatementWalker.RegExLabel, Mode=TwoWay}"                                       
