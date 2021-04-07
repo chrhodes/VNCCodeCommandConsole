@@ -83,7 +83,7 @@
 
         <dxlc:LayoutItem>
             <Button Content="Code-to-Comment Ratio" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="CodeToCommentRatio" />
         </dxlc:LayoutItem>
@@ -188,7 +188,7 @@
 
         <dxlc:LayoutItem>
             <Button Content="Has Multiple Return Statements" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="MultipleReturnStatements" />
         </dxlc:LayoutItem>
