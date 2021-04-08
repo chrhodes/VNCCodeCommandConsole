@@ -50,9 +50,9 @@
         <!-- NOTE(crhodes)
          This is for debugging
         -->
-        <dxlc:LayoutItem Label="Collapse">
-            <dxe:CheckEdit x:Name="ceCollapse"
-            	IsChecked="False"
+        <dxlc:LayoutItem>
+            <dxe:CheckEdit x:Name="ceCollapse" Content="Collapsed Headers"
+            	IsChecked="True"
                 EditValueChanged="ceCollapse_EditValueChanged"/>
         </dxlc:LayoutItem>    
         

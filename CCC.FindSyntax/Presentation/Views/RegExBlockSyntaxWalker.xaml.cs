@@ -197,6 +197,35 @@ namespace CCC.FindSyntax.Presentation.Views
 
         #endregion
 
+        #region HeaderIsCollapsed
+
+        public static readonly DependencyProperty HeaderIsCollapsedProperty = DependencyProperty.Register(
+            "HeaderIsCollapsed", typeof(bool), typeof(RegExBlockSyntaxWalker),
+            new PropertyMetadata(true, new PropertyChangedCallback(OnHeaderIsCollapsedChanged)));
+
+        private static void OnHeaderIsCollapsedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RegExBlockSyntaxWalker regExSyntaxWalker = o as RegExBlockSyntaxWalker;
+            if (regExSyntaxWalker != null)
+                regExSyntaxWalker.OnHeaderIsCollapsedChanged((bool)e.OldValue, (bool)e.NewValue);
+        }
+
+        protected virtual void OnHeaderIsCollapsedChanged(bool oldValue, bool newValue)
+        {
+            lgHeader.IsCollapsed = newValue;
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        public bool HeaderIsCollapsed
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code,
+            // do not touch the getter and setter inside this dependency property!
+            get => (bool)GetValue(HeaderIsCollapsedProperty);
+            set => SetValue(HeaderIsCollapsedProperty, value);
+        }
+
+        #endregion
+
         #region DisplayBlock
 
         public static readonly DependencyProperty DisplayBlockProperty = DependencyProperty.Register(

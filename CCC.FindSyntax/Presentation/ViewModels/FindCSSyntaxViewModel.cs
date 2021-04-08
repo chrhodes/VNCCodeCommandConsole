@@ -118,6 +118,39 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
+        private BlockWalkerPattern _methodDeclarationWalker = new BlockWalkerPattern(
+            controlHeader: "Find MethodDeclaration Syntax",
+            buttonContent: "MethodDeclaration Walker",
+            commandParameter: "MethodDeclarationWalker",
+            regExLabel: "RegEx",
+            displayBlockLabel: "Display Method Block");
+
+        public BlockWalkerPattern MethodDeclarationWalker
+        {
+            get => _methodDeclarationWalker;
+            set
+            {
+                if (_methodDeclarationWalker == value)
+                    return;
+                _methodDeclarationWalker = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _headerIsCollapsed = true;
+
+        public bool HeaderIsCollapsed
+        {
+            get => _headerIsCollapsed;
+            set
+            {
+                if (_headerIsCollapsed == value)
+                    return;
+                _headerIsCollapsed = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _message;
 
         public string Message
@@ -163,7 +196,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             // to handle all the walkers that use the RegExSyntaxWalker
 
             // First get the CommandParameter property value
-            // from the WalkerPattern property that correspondes to the walkerPropertyName
+            // from the WalkerPattern property that corresponds to the walkerPropertyName
 
             PropertyInfo walkerPropertyInfo = this.GetType().GetProperty(walkerPropertyName);
             var walkerProperty = walkerPropertyInfo.GetValue(this);
@@ -225,9 +258,10 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             VNCSW.CS.VNCCSSyntaxWalkerBase walker = new VNCSW.CS.ClassDeclaration();
 
             commandConfiguration.WalkerPattern = ClassDeclarationWalker;
+            commandConfiguration.CodeAnalysisOptions.DisplayStatementBlock = ClassDeclarationWalker.DisplayBlock;
 
             // TODO(crhodes)
-            // Figure this out  Does this matter in CS?
+            // Figure this out Does this matter in CS?
 
             //if (ClassDeclarationWalker.DisplayBlock)
             //{
@@ -237,6 +271,20 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             //{
             //    walker = new VNCSW.CS.ClassStatement();
             //}
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
+        public StringBuilder DisplayMethodDeclarationWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            VNCSW.CS.VNCCSSyntaxWalkerBase walker = new VNCSW.CS.MethodDeclaration();
+
+            commandConfiguration.WalkerPattern = MethodDeclarationWalker;
+            commandConfiguration.CodeAnalysisOptions.DisplayStatementBlock = MethodDeclarationWalker.DisplayBlock;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 

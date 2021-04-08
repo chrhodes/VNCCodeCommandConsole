@@ -54,7 +54,13 @@
             Text="{Binding Message}" TextWrapping="Wrap">
             </dxe:TextEdit>
         </dxlc:LayoutItem>
-        
+
+        <dxlc:LayoutItem>
+            <dxe:CheckEdit x:Name="ceCollapse" Content="Collapsed Headers"
+            	IsChecked="True"
+                EditValueChanged="ceCollapse_EditValueChanged"/>
+        </dxlc:LayoutItem>
+
         <views:RegExSyntaxWalker x:Name="cUsingDirective" 
                 Style="{StaticResource reStatementWalker}" 
                 ControlHeader="{Binding UsingDirectiveWalker.ControlHeader, Mode=TwoWay}"
@@ -84,6 +90,16 @@
 			    DisplayBlock="{Binding ClassDeclarationWalker.DisplayBlock, Mode=TwoWay}"
 			    DisplayBlockLabel="{Binding ClassDeclarationWalker.DisplayBlockLabel, Mode=TwoWay}" />
 
+        <views:RegExBlockSyntaxWalker x:Name="cMethodDeclarationWalker" 
+                Style="{StaticResource reBlockStatementWalker}" 
+                ControlHeader="{Binding MethodDeclarationWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding MethodDeclarationWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding MethodDeclarationWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="{Binding MethodDeclarationWalker.RegExLabel, Mode=TwoWay}" 
+                RegEx="{Binding MethodDeclarationWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding MethodDeclarationWalker.UseRegEx, Mode=TwoWay}"
+                DisplayBlock="{Binding MethodDeclarationWalker.DisplayBlock, Mode=TwoWay}"
+                DisplayBlockLabel="{Binding MethodDeclarationWalker.DisplayBlockLabel, Mode=TwoWay}" />
 
     </dxlc:LayoutControl>
 

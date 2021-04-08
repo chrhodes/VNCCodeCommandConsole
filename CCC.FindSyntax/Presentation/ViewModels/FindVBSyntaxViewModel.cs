@@ -487,8 +487,6 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
-        private string _message;
-
         private bool _headerIsCollapsed = true;
 
         public bool HeaderIsCollapsed
@@ -502,6 +500,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private string _message;
 
         public string Message
         {

@@ -199,6 +199,7 @@ namespace CCC.FindSyntax.Presentation.Views
 
         #endregion
 
+        #region HeaderIsCollapsed
 
         public static readonly DependencyProperty HeaderIsCollapsedProperty = DependencyProperty.Register(
             "HeaderIsCollapsed", typeof(bool), typeof(RegExSyntaxWalker), 
@@ -224,6 +225,8 @@ namespace CCC.FindSyntax.Presentation.Views
             get => (bool)GetValue(HeaderIsCollapsedProperty);
             set => SetValue(HeaderIsCollapsedProperty, value);
         }
+
+        #endregion
 
         #endregion
 
