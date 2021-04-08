@@ -837,7 +837,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
         }
 
-        public StringBuilder DisplayBinaryExpressiontWalkerVB(SearchTreeCommandConfiguration commandConfiguration)
+        public StringBuilder DisplayBinaryExpressionWalkerVB(SearchTreeCommandConfiguration commandConfiguration)
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
@@ -868,6 +868,69 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             var walker = new VNCSW.VB.SimpleAsClause();
 
             commandConfiguration.WalkerPattern = SimpleAsClauseWalker;
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
+        private StringBuilder DisplayStructureBlockWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            var walker = new VNCSW.VB.StructureBlock();
+
+            //walker.ShowFields = (bool)ceStructureShowFields.IsChecked;
+
+            //walker.HasAttributes = (bool)CodeExplorer.configurationOptions.ceHasAttributes.IsChecked;
+
+            //walker.AllFieldTypes = (bool)CodeExplorer.configurationOptions.ceAllTypes.IsChecked;
+            //walker.FieldNames = (bool)ceStructureFieldsUseRegEx.IsChecked ? teStructureFieldsRegEx.Text : ".*";
+            //walker.StructureNames = (bool)ceStructuresUseRegEx.IsChecked ? teStructureRegEx.Text : ".*";
+
+            //commandConfiguration.UseRegEx = (bool)ceStructuresUseRegEx.IsChecked;
+            //commandConfiguration.RegEx = teStructureRegEx.Text;
+
+            // StructureBlock has special (two types) of RegEx.
+            walker.InitializeRegEx();
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
+        public StringBuilder DisplayFieldDeclarationWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            VNCCA.SyntaxNode.FieldDeclarationLocation fieldDeclarationLocation = VNCCA.SyntaxNode.FieldDeclarationLocation.Class;
+
+            // TODO(crhodes)
+            // Go look at EyeOnLife and see how to do this in a cleaner way.
+
+            //switch (lbeFieldDeclarationLocation.EditValue.ToString())
+            //{
+            //    case "Class":
+            //        fieldDeclarationLocation = VNCCA.SyntaxNode.FieldDeclarationLocation.Class;
+            //        break;
+
+            //    case "Module":
+            //        fieldDeclarationLocation = VNCCA.SyntaxNode.FieldDeclarationLocation.Module;
+            //        break;
+
+            //    case "Structure":
+            //        fieldDeclarationLocation = VNCCA.SyntaxNode.FieldDeclarationLocation.Structure;
+            //        break;
+            //}
+
+            VNCSW.VB.VNCVBTypedSyntaxWalkerBase walker = null;
+
+            walker = new VNCSW.VB.FieldDeclaration(fieldDeclarationLocation);
+
+            //walker.HasAttributes = (bool)CodeExplorer.configurationOptions.ceHasAttributes.IsChecked;
+
+            //commandConfiguration.UseRegEx = (bool)ceFieldDeclarationUseRegEx.IsChecked;
+            //commandConfiguration.RegEx = teFieldDeclarationRegEx.Text;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 
@@ -945,72 +1008,6 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
         }
-
-        private StringBuilder DisplayStructureBlockWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
-        {
-            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
-
-            var walker = new VNCSW.VB.StructureBlock();
-
-            //walker.ShowFields = (bool)ceStructureShowFields.IsChecked;
-
-            //walker.HasAttributes = (bool)CodeExplorer.configurationOptions.ceHasAttributes.IsChecked;
-
-            //walker.AllFieldTypes = (bool)CodeExplorer.configurationOptions.ceAllTypes.IsChecked;
-            //walker.FieldNames = (bool)ceStructureFieldsUseRegEx.IsChecked ? teStructureFieldsRegEx.Text : ".*";
-            //walker.StructureNames = (bool)ceStructuresUseRegEx.IsChecked ? teStructureRegEx.Text : ".*";
-
-            //commandConfiguration.UseRegEx = (bool)ceStructuresUseRegEx.IsChecked;
-            //commandConfiguration.RegEx = teStructureRegEx.Text;
-
-            // StructureBlock has special (two types) of RegEx.
-            walker.InitializeRegEx();
-
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
-
-            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
-        }
-
-        public StringBuilder DisplayFieldDeclarationWalkerVB(VNCCA.SearchTreeCommandConfiguration commandConfiguration)
-        {
-            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
-
-            VNCCA.SyntaxNode.FieldDeclarationLocation fieldDeclarationLocation = VNCCA.SyntaxNode.FieldDeclarationLocation.Class;
-
-            // TODO(crhodes)
-            // Go look at EyeOnLife and see how to do this in a cleaner way.
-
-            //switch (lbeFieldDeclarationLocation.EditValue.ToString())
-            //{
-            //    case "Class":
-            //        fieldDeclarationLocation = VNCCA.SyntaxNode.FieldDeclarationLocation.Class;
-            //        break;
-
-            //    case "Module":
-            //        fieldDeclarationLocation = VNCCA.SyntaxNode.FieldDeclarationLocation.Module;
-            //        break;
-
-            //    case "Structure":
-            //        fieldDeclarationLocation = VNCCA.SyntaxNode.FieldDeclarationLocation.Structure;
-            //        break;
-            //}
-
-            VNCSW.VB.VNCVBTypedSyntaxWalkerBase walker = null;
-
-            walker = new VNCSW.VB.FieldDeclaration(fieldDeclarationLocation);
-
-            //walker.HasAttributes = (bool)CodeExplorer.configurationOptions.ceHasAttributes.IsChecked;
-
-            //commandConfiguration.UseRegEx = (bool)ceFieldDeclarationUseRegEx.IsChecked;
-            //commandConfiguration.RegEx = teFieldDeclarationRegEx.Text;
-
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
-
-            return VNCCA.Helpers.VB.InvokeVNCSyntaxWalker(walker, commandConfiguration);
-        }
-
-
-
 
         #endregion
 

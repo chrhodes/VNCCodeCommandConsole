@@ -137,6 +137,25 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
+        private BlockWalkerPattern _propertyDeclarationWalker = new BlockWalkerPattern(
+            controlHeader: "Find PropertyDeclaration Syntax",
+            buttonContent: "PropertyDeclaration Walker",
+            commandParameter: "PropertyDeclarationWalker",
+            regExLabel: "RegEx",
+            displayBlockLabel: "Display Property Block");
+
+        public BlockWalkerPattern PropertyDeclarationWalker
+        {
+            get => _propertyDeclarationWalker;
+            set
+            {
+                if (_propertyDeclarationWalker == value)
+                    return;
+                _propertyDeclarationWalker = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool _headerIsCollapsed = true;
 
         public bool HeaderIsCollapsed
@@ -290,6 +309,21 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
         }
+
+        public StringBuilder DisplayPropertyDeclarationWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            VNCSW.CS.VNCCSSyntaxWalkerBase walker = new VNCSW.CS.PropertyDeclaration();
+
+            commandConfiguration.WalkerPattern = PropertyDeclarationWalker;
+            commandConfiguration.CodeAnalysisOptions.DisplayStatementBlock = PropertyDeclarationWalker.DisplayBlock;
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
 
         #endregion
 

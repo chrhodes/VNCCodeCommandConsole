@@ -397,7 +397,6 @@
                 RegEx="{Binding BinaryExpressionWalker.RegEx, Mode=TwoWay}"
                 UseRegEx="{Binding BinaryExpressionWalker.UseRegEx, Mode=TwoWay}"/>
         
-
         <views:RegExSyntaxWalker x:Name="cAsNewClause" 
                 Style="{StaticResource reStatementWalker}" 
                 ControlHeader="{Binding AsNewClauseWalker.ControlHeader, Mode=TwoWay}"
@@ -432,7 +431,9 @@
 
         </dxlc:LayoutGroup>
 
-        <views:RegExSyntaxWalker x:Name="cSyntaxNode" 
+        <!--These seem redundant with SyntaxWalker UI-->
+        
+        <!--<views:RegExSyntaxWalker x:Name="cSyntaxNode" 
                 Style="{StaticResource reStatementWalker}" 
                 ControlHeader="{Binding SyntaxNodeWalker.ControlHeader, Mode=TwoWay}"
                 ButtonContent="{Binding SyntaxNodeWalker.ButtonContent, Mode=TwoWay}"
@@ -457,7 +458,7 @@
                     CommandParameter="{Binding SyntaxTriviaWalker.CommandParameter, Mode=TwoWay}"
                     RegExLabel="{Binding SyntaxTriviaWalker.RegExLabel, Mode=TwoWay}" 
                     RegEx="{Binding SyntaxTriviaWalker.RegEx, Mode=TwoWay}"
-                    UseRegEx="{Binding SyntaxTriviaWalker.UseRegEx, Mode=TwoWay}"/>
+                    UseRegEx="{Binding SyntaxTriviaWalker.UseRegEx, Mode=TwoWay}"/>-->
 
     </dxlc:LayoutControl>
 
