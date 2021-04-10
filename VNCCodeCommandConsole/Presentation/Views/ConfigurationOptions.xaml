@@ -137,6 +137,10 @@
                                IsChecked="{Binding CodeAnalysisOptions.DisplayNodeParent}" />
             </dxlc:LayoutItem>
 
+            <dxlc:LayoutItem>
+                <dxe:CheckEdit Content="Display Node Kind" 
+                               IsChecked="{Binding CodeAnalysisOptions.DisplayNodeKind}" />
+            </dxlc:LayoutItem>
 
             <dxlc:LayoutItem>
                 <dxe:CheckEdit Content="Display Context" x:Name="ceDisplayContext"

@@ -39,6 +39,14 @@
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Background" Value="#FFE8FAE6" />
         </Style>
+        <Style x:Key="reStructStatementWalker" TargetType="views:RegExStructSyntaxWalker">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="#FFF7EBD0" />
+        </Style>
+        <Style x:Key="reFieldStatementWalker" TargetType="views:RegExFieldSyntaxWalker">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="#FFD0F7F4" />
+        </Style>
     </UserControl.Resources>
 
     <!-- NOTE(crhodes)
@@ -100,128 +108,48 @@
                 UseRegEx="{Binding MethodDeclarationWalker.UseRegEx, Mode=TwoWay}"
                 DisplayBlock="{Binding MethodDeclarationWalker.DisplayBlock, Mode=TwoWay}"
                 DisplayBlockLabel="{Binding MethodDeclarationWalker.DisplayBlockLabel, Mode=TwoWay}" />
-
-        <dxlc:LayoutGroup Header="Find FieldDeclaration Syntax" 
-        	View="GroupBox"
-            Orientation="Vertical"
-            IsCollapsible="True" IsCollapsed="True">
-
-            <dxlc:LayoutGroup
-            	Orientation="Horizontal">
-
-                <dxlc:LayoutGroup
-                	Orientation="Vertical">
-                    <dxlc:LayoutItem>
-                        <dxe:CheckEdit Content="Use Regular Expressions"
-                                       IsChecked="False"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="Fields">
-                        <dxe:TextEdit Text=".*"
-                                      IsEnabled="{cb:Binding ElementName=ceFieldDeclarationUseRegEx, Path=IsChecked, Mode=OneWay}"
-                                      ToolTip="Supports Regular Expressions"/>
-                    </dxlc:LayoutItem>
-
-                    <dx:GroupFrame Header="FieldDeclaration Location" VerticalAlignment="Top">
-                        <dxe:ListBoxEdit Name="lbeFieldDeclarationLocation" 
-                             ValueMember="Content" 
-                             SelectedIndex="0"                                                         
-                             ShowBorder="False" Background="{x:Null}">
-                            <dxe:ListBoxEdit.StyleSettings>
-                                <dxe:RadioListBoxEditStyleSettings />
-                            </dxe:ListBoxEdit.StyleSettings>
-                            <dxe:ListBoxEdit.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical" />
-                                </ItemsPanelTemplate>
-                            </dxe:ListBoxEdit.ItemsPanel>
-                            <dxe:ListBoxEdit.Items>
-                                <dxe:ListBoxEditItem Content="Class" />
-                                <dxe:ListBoxEditItem Content="Module" />
-                                <dxe:ListBoxEditItem Content="Structure" />
-                            </dxe:ListBoxEdit.Items>
-                        </dxe:ListBoxEdit>
-                    </dx:GroupFrame>
-                </dxlc:LayoutGroup>
-
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutItem>
-                <Button Content="FieldDeclaration Walker" 
-                        Style="{StaticResource SyntaxQueryButton}"
-                        Command="{Binding FieldDeclarationWalkerCommand}" 
-                        Tag="FieldDeclarationWalker" />
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>
-        
+ 
         <views:RegExBlockSyntaxWalker x:Name="cPropertyDeclaration" 
-                    Style="{StaticResource reBlockStatementWalker}" 
-                    ControlHeader="{Binding PropertyDeclarationWalker.ControlHeader, Mode=TwoWay}"
-                    ButtonContent="{Binding PropertyDeclarationWalker.ButtonContent, Mode=TwoWay}"
-                    CommandParameter="{Binding PropertyDeclarationWalker.CommandParameter, Mode=TwoWay}"
-                    RegExLabel="{Binding PropertyDeclarationWalker.RegExLabel, Mode=TwoWay}" 
-                    RegEx="{Binding PropertyDeclarationWalker.RegEx, Mode=TwoWay}"
-                    UseRegEx="{Binding PropertyDeclarationWalker.UseRegEx, Mode=TwoWay}" 
-        			DisplayBlock="{Binding PropertyDeclarationWalker.DisplayBlock, Mode=TwoWay}"
-        			DisplayBlockLabel="{Binding PropertyDeclarationWalker.DisplayBlockLabel, Mode=TwoWay}" />
+                Style="{StaticResource reBlockStatementWalker}" 
+                ControlHeader="{Binding PropertyDeclarationWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding PropertyDeclarationWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding PropertyDeclarationWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="{Binding PropertyDeclarationWalker.RegExLabel, Mode=TwoWay}" 
+                RegEx="{Binding PropertyDeclarationWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding PropertyDeclarationWalker.UseRegEx, Mode=TwoWay}" 
+        		DisplayBlock="{Binding PropertyDeclarationWalker.DisplayBlock, Mode=TwoWay}"
+        		DisplayBlockLabel="{Binding PropertyDeclarationWalker.DisplayBlockLabel, Mode=TwoWay}" />
 
-        <dxlc:LayoutGroup Header="Find StructureBlock Syntax" 
-        	View="GroupBox" Orientation="Vertical"
-            IsCollapsible="True" IsCollapsed="True"                          >
+        <views:RegExStructSyntaxWalker x:Name="cStructDeclaration" 
+                Style="{StaticResource reStructStatementWalker}" 
+                ControlHeader="{Binding StructDeclarationWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding StructDeclarationWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding StructDeclarationWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="{Binding StructDeclarationWalker.RegExLabel, Mode=TwoWay}" 
+                RegEx="{Binding StructDeclarationWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding StructDeclarationWalker.UseRegEx, Mode=TwoWay}" 
+        		DisplayFields="{Binding StructDeclarationWalker.DisplayFields, Mode=TwoWay}"    
+                RegExFields="{Binding StructDeclarationWalker.RegExFields, Mode=TwoWay}"
+                UseRegExFields="{Binding StructDeclarationWalker.UseRegExFields, Mode=TwoWay}" />
 
-            <dxlc:LayoutGroup
-            	Orientation="Horizontal">
+        <views:RegExFieldSyntaxWalker x:Name="cFieldDeclaration"
+                Style="{StaticResource reFieldStatementWalker}" 
+                ControlHeader="{Binding FieldDeclarationWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding FieldDeclarationWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding FieldDeclarationWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="{Binding FieldDeclarationWalker.RegExLabel, Mode=TwoWay}" 
+                RegEx="{Binding FieldDeclarationWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding FieldDeclarationWalker.UseRegEx, Mode=TwoWay}"/>
 
-                <dxlc:LayoutGroup
-                	Orientation="Vertical">
-                    <dxlc:LayoutItem>
-                        <dxe:CheckEdit Content="Use Regular Expressions"
-                                       IsChecked="False" />
-                    </dxlc:LayoutItem>
+<views:RegExSyntaxWalker x:Name="clocalDeclarationStatement" 
+            Style="{StaticResource reStatementWalker}" 
+            ControlHeader="{Binding LocalDeclarationStatementWalker.ControlHeader, Mode=TwoWay}"
+            ButtonContent="{Binding LocalDeclarationStatementWalker.ButtonContent, Mode=TwoWay}"
+            CommandParameter="{Binding LocalDeclarationStatementWalker.CommandParameter, Mode=TwoWay}"
+            RegExLabel="{Binding LocalDeclarationStatementWalker.RegExLabel, Mode=TwoWay}" 
+            RegEx="{Binding LocalDeclarationStatementWalker.RegEx, Mode=TwoWay}"
+            UseRegEx="{Binding LocalDeclarationStatementWalker.UseRegEx, Mode=TwoWay}"/>
 
-                    <dxlc:LayoutItem Label="Structures">
-                        <dxe:TextEdit Text=".*"
-                                      IsEnabled="{cb:Binding ElementName=ceStructuresUseRegEx, Path=IsChecked, Mode=OneWay}"
-                                      ToolTip="Supports Regular Expressions"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem>
-                        <dxe:CheckEdit x:Name="ceStructureShowFields" 
-                                   Content="ShowFields" 
-                                   IsChecked="True"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutGroup
-                    	Orientation="Vertical"
-                        Visibility="{cb:Binding ElementName=ceStructureShowFields, Path=IsChecked}" >
-
-                        <dxlc:LayoutItem>
-                            <dxe:CheckEdit Content="Use Regular Expressions"
-                                       IsChecked="False" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Fields" >
-                            <dxe:TextEdit Text=".*" 
-                                    IsEnabled="{cb:Binding ElementName=ceStructureFieldsUseRegEx, Path=IsChecked, Mode=OneWay}"
-                                    ToolTip="Supports Regular Expressions"/>
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
-
-                </dxlc:LayoutGroup>
-
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutItem>
-                <Button Content="FindStructureBlock Walker" 
-                        Style="{StaticResource SyntaxQueryButton}"
-                        Command="{Binding FindStructureBlockWalkerCommand}" 
-                        Tag="FindStructureBlockWalker" />
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>
-        
     </dxlc:LayoutControl>
     
     <!--<StackPanel Grid.Row="2" Orientation="Horizontal" >

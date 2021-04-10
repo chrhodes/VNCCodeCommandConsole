@@ -99,14 +99,14 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
-        private BlockWalkerPattern _classDeclarationWalker = new BlockWalkerPattern(
+        private WalkerPatternBlock _classDeclarationWalker = new WalkerPatternBlock(
             controlHeader: "Find ClassDeclaration Syntax",
             buttonContent: "ClassDeclaration Walker",
             commandParameter: "ClassDeclarationWalker",
             regExLabel: "RegEx",
             displayBlockLabel: "Display Class Block");
 
-        public BlockWalkerPattern ClassDeclarationWalker
+        public WalkerPatternBlock ClassDeclarationWalker
         {
             get => _classDeclarationWalker;
             set
@@ -118,14 +118,14 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
-        private BlockWalkerPattern _methodDeclarationWalker = new BlockWalkerPattern(
+        private WalkerPatternBlock _methodDeclarationWalker = new WalkerPatternBlock(
             controlHeader: "Find MethodDeclaration Syntax",
             buttonContent: "MethodDeclaration Walker",
             commandParameter: "MethodDeclarationWalker",
             regExLabel: "RegEx",
             displayBlockLabel: "Display Method Block");
 
-        public BlockWalkerPattern MethodDeclarationWalker
+        public WalkerPatternBlock MethodDeclarationWalker
         {
             get => _methodDeclarationWalker;
             set
@@ -137,14 +137,32 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
-        private BlockWalkerPattern _propertyDeclarationWalker = new BlockWalkerPattern(
+        private WalkerPattern _fieldDeclarationWalker = new WalkerPattern(
+            controlHeader: "Find FieldDeclaration Syntax",
+            buttonContent: "FieldDeclaration Walker",
+            commandParameter: "FieldDeclarationWalker",
+            regExLabel: "RegEx");
+
+        public WalkerPattern FieldDeclarationWalker
+        {
+            get => _fieldDeclarationWalker;
+            set
+            {
+                if (_fieldDeclarationWalker == value)
+                    return;
+                _fieldDeclarationWalker = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private WalkerPatternBlock _propertyDeclarationWalker = new WalkerPatternBlock(
             controlHeader: "Find PropertyDeclaration Syntax",
             buttonContent: "PropertyDeclaration Walker",
             commandParameter: "PropertyDeclarationWalker",
             regExLabel: "RegEx",
             displayBlockLabel: "Display Property Block");
 
-        public BlockWalkerPattern PropertyDeclarationWalker
+        public WalkerPatternBlock PropertyDeclarationWalker
         {
             get => _propertyDeclarationWalker;
             set
@@ -152,6 +170,42 @@ namespace CCC.FindSyntax.Presentation.ViewModels
                 if (_propertyDeclarationWalker == value)
                     return;
                 _propertyDeclarationWalker = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private WalkerPatternStruct _structDeclarationWalker = new WalkerPatternStruct(
+            controlHeader: "Find StructDeclaration Syntax",
+            buttonContent: "StructDeclaration Walker",
+            commandParameter: "StructDeclarationWalker",
+            regExLabel: "RegEx");
+
+        public WalkerPatternStruct StructDeclarationWalker
+        {
+            get => _structDeclarationWalker;
+            set
+            {
+                if (_structDeclarationWalker == value)
+                    return;
+                _structDeclarationWalker = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private WalkerPattern _localDeclarationStatementWalker = new WalkerPattern(
+            controlHeader: "Find LocalDeclarationStatement Syntax",
+            buttonContent: "LocalDeclarationStatement Walker",
+            commandParameter: "LocalDeclarationStatementWalker",
+            regExLabel: "RegEx");
+
+        public WalkerPattern LocalDeclarationStatementWalker
+        {
+            get => _localDeclarationStatementWalker;
+            set
+            {
+                if (_localDeclarationStatementWalker == value)
+                    return;
+                _localDeclarationStatementWalker = value;
                 OnPropertyChanged();
             }
         }
@@ -310,6 +364,22 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
         }
 
+        public StringBuilder DisplayFieldDeclarationWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            // TODO(crhodes)
+            // Update this from UI selections
+
+            VNCSW.CS.VNCCSSyntaxWalkerBase walker = new VNCSW.CS.FieldDeclaration(VNCCA.SyntaxNode.FieldDeclarationLocation.Class);
+
+            commandConfiguration.WalkerPattern = FieldDeclarationWalker;
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
         public StringBuilder DisplayPropertyDeclarationWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
@@ -324,6 +394,32 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
         }
 
+        public StringBuilder DisplayStructDeclarationWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            VNCSW.CS.VNCCSSyntaxWalkerBase walker = new VNCSW.CS.StructDeclaration();
+
+            commandConfiguration.WalkerPattern = StructDeclarationWalker;
+            commandConfiguration.CodeAnalysisOptions.DisplayFields = StructDeclarationWalker.DisplayFields;
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
+        public StringBuilder DisplayLocalDeclarationStatementWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            VNCSW.CS.VNCCSSyntaxWalkerBase walker = new VNCSW.CS.LocalDeclarationStatement();
+
+            commandConfiguration.WalkerPattern = LocalDeclarationStatementWalker;
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
 
         #endregion
 

@@ -105,14 +105,14 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
-        private BlockWalkerPattern _classStatementWalker = new BlockWalkerPattern(
+        private WalkerPatternBlock _classStatementWalker = new WalkerPatternBlock(
             controlHeader: "Find ClassStatement Syntax",
             buttonContent: "ClassStatement Walker",
             commandParameter: "ClassStatementWalker",
             regExLabel: "Class",
             displayBlockLabel: "Display Class Block");
 
-        public BlockWalkerPattern ClassStatementWalker
+        public WalkerPatternBlock ClassStatementWalker
         {
             get => _classStatementWalker;
             set
@@ -124,14 +124,14 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
-        private BlockWalkerPattern _moduleStatementWalker = new BlockWalkerPattern(
+        private WalkerPatternBlock _moduleStatementWalker = new WalkerPatternBlock(
             controlHeader: "Find ModuleStatement Syntax",
             buttonContent: "ModuleStatement Walker",
             commandParameter: "ModuleStatementWalker",
             regExLabel: "Module",
             displayBlockLabel: "Display Module Block");
 
-        public BlockWalkerPattern ModuleStatementWalker
+        public WalkerPatternBlock ModuleStatementWalker
         {
             get => _moduleStatementWalker;
             set
@@ -143,14 +143,14 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
-        private BlockWalkerPattern _methodStatementWalker = new BlockWalkerPattern(
+        private WalkerPatternBlock _methodStatementWalker = new WalkerPatternBlock(
             controlHeader: "Find MethodStatement Syntax",
             buttonContent: "MethodStatement Walker",
             commandParameter: "MethodStatementWalker",
             regExLabel: "Method",
             displayBlockLabel: "Display Method Block");
 
-        public BlockWalkerPattern MethodStatementWalker
+        public WalkerPatternBlock MethodStatementWalker
         {
             get => _methodStatementWalker;
             set
@@ -162,14 +162,14 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
-        private BlockWalkerPattern _propertyStatementWalker = new BlockWalkerPattern(
+        private WalkerPatternBlock _propertyStatementWalker = new WalkerPatternBlock(
             controlHeader: "Find PropertyStatement Syntax",
             buttonContent: "PropertyStatement Walker",
             commandParameter: "PropertyStatementWalker",
             regExLabel: "Property",
             displayBlockLabel: "Display Property Block");
 
-        public BlockWalkerPattern PropertyStatementWalker
+        public WalkerPatternBlock PropertyStatementWalker
         {
             get => _propertyStatementWalker;
             set

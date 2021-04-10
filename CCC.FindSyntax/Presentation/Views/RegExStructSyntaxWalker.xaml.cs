@@ -6,21 +6,20 @@ using VNC.Core.Mvvm;
 
 namespace CCC.FindSyntax.Presentation.Views
 {
-    public partial class RegExSyntaxWalker : VNC.Core.Mvvm.ViewBase, IInstanceCountV, INotifyPropertyChanged
+    public partial class RegExStructSyntaxWalker : VNC.Core.Mvvm.ViewBase, IInstanceCountV, INotifyPropertyChanged
     {
-        public RegExSyntaxWalker()
+        public RegExStructSyntaxWalker()
         {
             InitializeComponent();
 
             // Need to do this so UseRegEx and RegEx fire notification events.
             lgRegularExpression.DataContext = this;
-
-            // Cannot do this as it breaks the button
-            //lgHeader.DataContext = this;
-
+            lgRegularExpressionFields.DataContext = this;
+            ceShowFields.DataContext = this;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -32,14 +31,14 @@ namespace CCC.FindSyntax.Presentation.Views
         #region ControlHeader
 
         public static readonly DependencyProperty ControlHeaderProperty = DependencyProperty.Register(
-            "ControlHeader", typeof(string), typeof(RegExSyntaxWalker),
+            "ControlHeader", typeof(string), typeof(RegExStructSyntaxWalker),
             new PropertyMetadata("<HEADER>", new PropertyChangedCallback(OnControlHeaderChanged)));
 
         private static void OnControlHeaderChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RegExSyntaxWalker regExSyntaxWalker = o as RegExSyntaxWalker;
-            if (regExSyntaxWalker != null)
-                regExSyntaxWalker.OnControlHeaderChanged((string)e.OldValue, (string)e.NewValue);
+            RegExStructSyntaxWalker RegExStructSyntaxWalker = o as RegExStructSyntaxWalker;
+            if (RegExStructSyntaxWalker != null)
+                RegExStructSyntaxWalker.OnControlHeaderChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         protected virtual void OnControlHeaderChanged(string oldValue, string newValue)
@@ -60,14 +59,14 @@ namespace CCC.FindSyntax.Presentation.Views
         #region RegExLabel
 
         public static readonly DependencyProperty RegExLabelProperty = DependencyProperty.Register(
-            "RegExLabel", typeof(string), typeof(RegExSyntaxWalker),
+            "RegExLabel", typeof(string), typeof(RegExStructSyntaxWalker),
             new PropertyMetadata("RegEx", new PropertyChangedCallback(OnRegExLabelChanged)));
 
         private static void OnRegExLabelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RegExSyntaxWalker regExSyntaxWalker = o as RegExSyntaxWalker;
-            if (regExSyntaxWalker != null)
-                regExSyntaxWalker.OnRegExLabelChanged((string)e.OldValue, (string)e.NewValue);
+            RegExStructSyntaxWalker RegExStructSyntaxWalker = o as RegExStructSyntaxWalker;
+            if (RegExStructSyntaxWalker != null)
+                RegExStructSyntaxWalker.OnRegExLabelChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         protected virtual void OnRegExLabelChanged(string oldValue, string newValue)
@@ -89,14 +88,15 @@ namespace CCC.FindSyntax.Presentation.Views
         #region RegEx
 
         public static readonly DependencyProperty RegExProperty = DependencyProperty.Register(
-            "RegEx", typeof(string), typeof(RegExSyntaxWalker),
-            new PropertyMetadata(".*", new PropertyChangedCallback(OnRegExChanged)));
+            "RegEx", typeof(string), typeof(RegExStructSyntaxWalker),
+            new PropertyMetadata("RESW-V.*", new PropertyChangedCallback(OnRegExChanged)));
+
 
         private static void OnRegExChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RegExSyntaxWalker regExSyntaxWalker = o as RegExSyntaxWalker;
-            if (regExSyntaxWalker != null)
-                regExSyntaxWalker.OnRegExChanged((string)e.OldValue, (string)e.NewValue);
+            RegExStructSyntaxWalker RegExStructSyntaxWalker = o as RegExStructSyntaxWalker;
+            if (RegExStructSyntaxWalker != null)
+                RegExStructSyntaxWalker.OnRegExChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         protected virtual void OnRegExChanged(string oldValue, string newValue)
@@ -116,14 +116,14 @@ namespace CCC.FindSyntax.Presentation.Views
         #region UseRegEx
 
         public static readonly DependencyProperty UseRegExProperty = DependencyProperty.Register("UseRegEx",
-            typeof(bool), typeof(RegExSyntaxWalker),
+            typeof(bool), typeof(RegExStructSyntaxWalker),
             new PropertyMetadata(false, new PropertyChangedCallback(OnUseRegExChanged)));
 
         private static void OnUseRegExChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RegExSyntaxWalker regExSyntaxWalker = o as RegExSyntaxWalker;
-            if (regExSyntaxWalker != null)
-                regExSyntaxWalker.OnUseRegExChanged((bool)e.OldValue, (bool)e.NewValue);
+            RegExStructSyntaxWalker RegExStructSyntaxWalker = o as RegExStructSyntaxWalker;
+            if (RegExStructSyntaxWalker != null)
+                RegExStructSyntaxWalker.OnUseRegExChanged((bool)e.OldValue, (bool)e.NewValue);
         }
 
         protected virtual void OnUseRegExChanged(bool oldValue, bool newValue)
@@ -144,14 +144,14 @@ namespace CCC.FindSyntax.Presentation.Views
         #region ButtonContent
 
         public static readonly DependencyProperty ButtonContentProperty = DependencyProperty.Register(
-            "ButtonContent", typeof(string), typeof(RegExSyntaxWalker),
+            "ButtonContent", typeof(string), typeof(RegExStructSyntaxWalker),
             new PropertyMetadata("<DEFAULT BUTTON>", new PropertyChangedCallback(OnButtonContentChanged)));
 
         private static void OnButtonContentChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RegExSyntaxWalker regExSyntaxWalker = o as RegExSyntaxWalker;
-            if (regExSyntaxWalker != null)
-                regExSyntaxWalker.OnButtonContentChanged((string)e.OldValue, (string)e.NewValue);
+            RegExStructSyntaxWalker RegExStructSyntaxWalker = o as RegExStructSyntaxWalker;
+            if (RegExStructSyntaxWalker != null)
+                RegExStructSyntaxWalker.OnButtonContentChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         protected virtual void OnButtonContentChanged(string oldValue, string newValue)
@@ -173,14 +173,14 @@ namespace CCC.FindSyntax.Presentation.Views
         #region CommandParameter
 
         public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register(
-            "CommandParameter", typeof(string), typeof(RegExSyntaxWalker),
+            "CommandParameter", typeof(string), typeof(RegExStructSyntaxWalker),
             new PropertyMetadata("<DEFAULTWALKER>", new PropertyChangedCallback(OnCommandParameterChanged)));
 
         private static void OnCommandParameterChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RegExSyntaxWalker regExSyntaxWalker = o as RegExSyntaxWalker;
-            if (regExSyntaxWalker != null)
-                regExSyntaxWalker.OnCommandParameterChanged((string)e.OldValue, (string)e.NewValue);
+            RegExStructSyntaxWalker RegExStructSyntaxWalker = o as RegExStructSyntaxWalker;
+            if (RegExStructSyntaxWalker != null)
+                RegExStructSyntaxWalker.OnCommandParameterChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         protected virtual void OnCommandParameterChanged(string oldValue, string newValue)
@@ -202,12 +202,12 @@ namespace CCC.FindSyntax.Presentation.Views
         #region HeaderIsCollapsed
 
         public static readonly DependencyProperty HeaderIsCollapsedProperty = DependencyProperty.Register(
-            "HeaderIsCollapsed", typeof(bool), typeof(RegExSyntaxWalker), 
+            "HeaderIsCollapsed", typeof(bool), typeof(RegExStructSyntaxWalker),
             new PropertyMetadata(true, new PropertyChangedCallback(OnHeaderIsCollapsedChanged)));
 
         private static void OnHeaderIsCollapsedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RegExSyntaxWalker regExSyntaxWalker = o as RegExSyntaxWalker;
+            RegExStructSyntaxWalker regExSyntaxWalker = o as RegExStructSyntaxWalker;
             if (regExSyntaxWalker != null)
                 regExSyntaxWalker.OnHeaderIsCollapsedChanged((bool)e.OldValue, (bool)e.NewValue);
         }
@@ -224,6 +224,85 @@ namespace CCC.FindSyntax.Presentation.Views
             // do not touch the getter and setter inside this dependency property!
             get => (bool)GetValue(HeaderIsCollapsedProperty);
             set => SetValue(HeaderIsCollapsedProperty, value);
+        }
+
+        #endregion
+
+        public static readonly DependencyProperty DisplayFieldsProperty = DependencyProperty.Register(
+            "DisplayFields", typeof(bool), typeof(RegExStructSyntaxWalker), 
+            new PropertyMetadata(false, new PropertyChangedCallback(OnDisplayFieldsChanged)));
+
+        private static void OnDisplayFieldsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RegExStructSyntaxWalker regExStructSyntaxWalker = o as RegExStructSyntaxWalker;
+            if (regExStructSyntaxWalker != null)
+                regExStructSyntaxWalker.OnDisplayFieldsChanged((bool)e.OldValue, (bool)e.NewValue);
+        }
+
+        protected virtual void OnDisplayFieldsChanged(bool oldValue, bool newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        public bool DisplayFields
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (bool)GetValue(DisplayFieldsProperty);
+            set => SetValue(DisplayFieldsProperty, value);
+        }
+
+        #region RegExFields
+
+        public static readonly DependencyProperty RegExFieldsProperty = DependencyProperty.Register(
+            "RegExFields", typeof(string), typeof(RegExStructSyntaxWalker),
+            new PropertyMetadata(".*", new PropertyChangedCallback(OnRegExFieldsChanged)));
+
+
+        private static void OnRegExFieldsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RegExStructSyntaxWalker RegExStructSyntaxWalker = o as RegExStructSyntaxWalker;
+            if (RegExStructSyntaxWalker != null)
+                RegExStructSyntaxWalker.OnRegExFieldsChanged((string)e.OldValue, (string)e.NewValue);
+        }
+
+        protected virtual void OnRegExFieldsChanged(string oldValue, string newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        public string RegExFields
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (string)GetValue(RegExFieldsProperty);
+            set => SetValue(RegExFieldsProperty, value);
+        }
+
+        #endregion
+
+        #region UseRegExFields
+
+        public static readonly DependencyProperty UseRegExFieldsProperty = DependencyProperty.Register(
+            "UseRegExFields", typeof(bool), typeof(RegExStructSyntaxWalker),
+            new PropertyMetadata(false, new PropertyChangedCallback(OnUseRegExFieldsChanged)));
+
+        private static void OnUseRegExFieldsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RegExStructSyntaxWalker RegExStructSyntaxWalker = o as RegExStructSyntaxWalker;
+            if (RegExStructSyntaxWalker != null)
+                RegExStructSyntaxWalker.OnUseRegExFieldsChanged((bool)e.OldValue, (bool)e.NewValue);
+        }
+
+        protected virtual void OnUseRegExFieldsChanged(bool oldValue, bool newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        public bool UseRegExFields
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code,
+            // do not touch the getter and setter inside this dependency property!
+            get => (bool)GetValue(UseRegExFieldsProperty);
+            set => SetValue(UseRegExFieldsProperty, value);
         }
 
         #endregion

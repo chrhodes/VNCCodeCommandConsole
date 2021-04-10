@@ -87,7 +87,7 @@ namespace CCC.FindSyntax.Presentation.Views
 
         public static readonly DependencyProperty RegExProperty = DependencyProperty.Register(
             "RegEx", typeof(string), typeof(RegExBlockSyntaxWalker),
-            new PropertyMetadata("RESW-V.*", new PropertyChangedCallback(OnRegExChanged)));
+            new PropertyMetadata(".*", new PropertyChangedCallback(OnRegExChanged)));
 
 
         private static void OnRegExChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)

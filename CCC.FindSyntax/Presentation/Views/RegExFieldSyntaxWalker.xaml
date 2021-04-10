@@ -1,5 +1,5 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="CCC.FindSyntax.Presentation.Views.RegExBlockSyntaxWalker"
+    x:Class="CCC.FindSyntax.Presentation.Views.RegExFieldSyntaxWalker"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -51,15 +51,6 @@
             </dxlc:LayoutItem>
             
         </dxlc:LayoutGroup>
-
-        <dxlc:LayoutItem>
-            <!--<dxe:CheckEdit 
-                x:Name="ceShowBlock" Content="Show Block" 
-                IsChecked="{Binding DisplayBlock, Mode=TwoWay}" />-->            
-            <dxe:CheckEdit 
-                x:Name="ceShowBlock" Content="{Binding DisplayBlockLabel, Mode=TwoWay}" 
-                IsChecked="{Binding DisplayBlock, Mode=TwoWay}" />
-        </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             
