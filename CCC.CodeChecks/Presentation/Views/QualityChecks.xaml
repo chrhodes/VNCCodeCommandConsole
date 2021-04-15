@@ -90,7 +90,7 @@
 
         <dxlc:LayoutItem>
             <Button Content="Has ControlFlags" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="ControlFlags" />
         </dxlc:LayoutItem>
@@ -104,14 +104,14 @@
 
         <dxlc:LayoutItem>
             <Button Content="Has GoToLabels" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="GoToLabels" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Has HungarianVariableNames" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="HungarianVariableNames" />
         </dxlc:LayoutItem>
@@ -174,7 +174,7 @@
 
         <dxlc:LayoutItem>
             <Button Content="Has Magic Numbers In Index" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="MagicNumbersInIndex" />
         </dxlc:LayoutItem>
