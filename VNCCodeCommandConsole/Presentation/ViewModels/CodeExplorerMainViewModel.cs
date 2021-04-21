@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -211,6 +212,9 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                         // 
                         // This is where the action happens
                         //
+                        // TODO(crhodes)
+                        // Figure out how to call - at least - searchTreeCommand Async
+                        // so UI runs (and clears)
 
                         SyntaxTree tree = CSharpSyntaxTree.ParseText(sourceCode);
 
@@ -442,7 +446,6 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             SyntaxToken = "";
             SyntaxTrivia = "";
             SyntaxStructuredTrivia = "";
-
         }
 
         private string _summary = "TBD";

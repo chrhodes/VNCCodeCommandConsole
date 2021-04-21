@@ -51,7 +51,6 @@ namespace VNCCodeCommandConsole.Presentation.Converters
                             // and are trying to pick something else
                             // or clear the selection.
                         }
-
                     }
                 }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
 using Prism.Commands;
 using Prism.Events;
@@ -732,7 +733,6 @@ namespace CCC.FindSyntax.Presentation.ViewModels
         #endregion
 
         #region THIS IS BEING TESTED
-
         public StringBuilder DisplayMultiLineLambdaExpressionVB(SearchTreeCommandConfiguration commandConfiguration)
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);

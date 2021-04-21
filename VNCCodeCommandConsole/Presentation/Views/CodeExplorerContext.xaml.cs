@@ -217,36 +217,46 @@ namespace VNCCodeCommandConsole.Presentation.Views
 
         private void lbeContextMode3_EditValueChanged(object sender, EditValueChangedEventArgs e)
         {
-            var foo = e;
-            var fooV = foo.NewValue;
-            var bar = (ListBoxEdit)sender;
+            //var foo = e;
+            //var fooV = foo.NewValue;
+            //var bar = (ListBoxEdit)sender;
 
-            var barI = bar.SelectedItem;
-            var barT = barI.GetType();
-            //var bar2 = (DevExpress.Mvvm.EnumMemberInfo)barI;
+            //var barI = bar.SelectedItem;
+            //var barT = barI.GetType();
+            ////var bar2 = (DevExpress.Mvvm.EnumMemberInfo)barI;
 
-            //var foo2 = e.NewValue;
-            //var fooT = e.GetType();
+            ////var foo2 = e.NewValue;
+            ////var fooT = e.GetType();
 
 
             switch (e.NewValue.ToString())
             {
                 case "SolutionProject":
-                    lgContextDemo.IsCollapsed = true;
                     lgContextSolutionProject.IsCollapsed = false;
                     lgContextXmlConfig.IsCollapsed = true;
+                    lgContextFile.IsCollapsed = true;
+                    lgContextDemo.IsCollapsed = true;
                     break;
 
                 case "XmlConfig":
-                    lgContextDemo.IsCollapsed = true;
                     lgContextSolutionProject.IsCollapsed = true;
                     lgContextXmlConfig.IsCollapsed = false;
+                    lgContextFile.IsCollapsed = true;
+                    lgContextDemo.IsCollapsed = true;
+                    break;
+
+                case "File":
+                    lgContextSolutionProject.IsCollapsed = true;
+                    lgContextXmlConfig.IsCollapsed = true;
+                    lgContextFile.IsCollapsed = false;
+                    lgContextDemo.IsCollapsed = true;
                     break;
 
                 case "Demo":
-                    lgContextDemo.IsCollapsed = false;
                     lgContextSolutionProject.IsCollapsed = true;
                     lgContextXmlConfig.IsCollapsed = true;
+                    lgContextFile.IsCollapsed = true;
+                    lgContextDemo.IsCollapsed = false;
                     break;
 
                 default:

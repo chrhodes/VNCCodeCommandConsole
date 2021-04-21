@@ -23,6 +23,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
     {
         SolutionProject,
         XmlConfig,
+        File,
         Demo
     }
 
@@ -50,19 +51,14 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
             InstanceCountVM++;
 
-            // TODO(crhodes)
-            //
-
-            SayHelloCommand = new DelegateCommand(SayHello, SayHelloCanExecute);
-
             BrowseForFileCommand = new DelegateCommand(BrowseForFile, BrowseForFileCanExecute);
             ClearFileCommand = new DelegateCommand(ClearFile, ClearFileCanExecute);
 
             Message = "CodeExplorerContextViewModel says hello";
 
             // TODO(crhodes)
-            // For now, default to demo.  Later switch to Project/Solution
-            ContextModeValue = ContextMode.Demo;
+            // For now, default to XmlConfig.  Later switch to Project/Solution
+            ContextModeValue = ContextMode.XmlConfig;
 
             PopulateContextFromXmlFile();
 
@@ -91,7 +87,6 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             foreach (var branch in sourceBranches.Elements())
             {
                 Branches.Add(branch);
-                //Branches.Add(branch.Attribute("Name").Value);
             }
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
@@ -182,7 +177,6 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-        
 
         public bool IsContextModeDemo
         {
@@ -293,8 +287,6 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             }
         }
 
-        public ICommand SayHelloCommand { get; private set; }
-
         public string SolutionFile
         {
             get => _solutionFile;
@@ -354,7 +346,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
                 Repository = _selectedBranch.Attribute("Repository").Value;
                 Branch = _selectedBranch.Attribute("Name").Value;
-                RepositoryPath = $"{_selectedBranch.Attribute("SourcePath").Value}\\{Repository}";
+                RepositoryPath = $"{_selectedBranch.Attribute("RepositoryPath").Value}";
 
                 var solutions = _selectedBranch.Elements("Solution");
 
@@ -672,21 +664,19 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 {
                     string fileName = projectElement.Attribute("FileName").Value;
                     string folderPath = projectElement.Attribute("FolderPath").Value;
-                    string sourcePath = RepositoryPath + "\\" + folderPath;
+
+                    string sourcePath = RepositoryPath + (folderPath != "" ? "\\" + folderPath : "");
                     string projectPath = "";
 
                     projectPath = fileName != "" ? sourcePath + "\\" + fileName : "";
 
                     if (projectPath == "")
                     {
-                        // No project file exists, so look across all the SourceFile elements
+                        // No project file exists, add the selected files
 
-                        foreach (XElement sourceFile in projectElement.Elements("SourceFile"))
+                        foreach (XElement file in SelectedSourceFiles)
                         {
-                            // NB. The file names are added manually so we don't have to exclude any.
-                            string fileFullPath = sourcePath + "\\" + GetFilePath(sourceFile);
-
-                            filesToProcess.Add(fileFullPath);
+                            filesToProcess.Add($"{sourcePath}\\{GetFilePath(file)}");
                         }
                     }
                     else
@@ -711,9 +701,11 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 }
             }
 
-            var filesToCheck = filesToProcess.ToList();
+            // Before we run, verify all the files exist.  Remove any bad file paths
+            // This is probably only needed for the XmlConfig Source Files.
+            // If there is a Project file, we have already opened it.
 
-            foreach (string filePath in filesToCheck)
+            foreach (string filePath in filesToProcess.ToList())
             {
                 if (!File.Exists(filePath))
                 {
@@ -721,11 +713,13 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
                     if (!Directory.Exists(fileInfo.DirectoryName))
                     {
-                        MessageBox.Show(string.Format("Directory\n\n{0}\n\ndoes not exist", fileInfo.DirectoryName), "Check Path or Config File");
+                        MessageBox.Show($"Directory\n\n{fileInfo.DirectoryName}\n\ndoes not exist",
+                            "Check Path or Config File");
                     }
                     else
                     {
-                        MessageBox.Show(string.Format("File\n\n{0}\nin\n\n{1}\n\ndoes not exist", fileInfo.Name, fileInfo.DirectoryName), "Check Path or Config File");
+                        MessageBox.Show($"File\n\n{fileInfo.Name}\nin\n\n{fileInfo.DirectoryName}\n\ndoes not exist",
+                            "Check Path or Config File");
                     }
 
                     filesToProcess.Remove(filePath);
@@ -737,24 +731,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             return filesToProcess;
         }
 
-        /// <returns></returns>
-
-
         #region Private Methods
-
-        private void SayHello()
-        {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            Message = "Hello";
-
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private bool SayHelloCanExecute()
-        {
-            return true;
-        }
 
         #endregion Private Methods
 

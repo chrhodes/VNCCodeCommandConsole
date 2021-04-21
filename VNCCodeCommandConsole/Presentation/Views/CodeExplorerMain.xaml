@@ -53,10 +53,18 @@
 
         </dxlc:LayoutControl.AvailableItems>
 
-        <dxlc:LayoutGroup Name="lg_Header"
+        <dxlc:LayoutGroup  Header="Code Explorer Context" x:Name="lg_CodeExplorerContext" 
+                           View="GroupBox" 
+                           IsCollapsible="True" IsCollapsed="False" >
+
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CodeExplorerContextRegion}" />
+
+        </dxlc:LayoutGroup>
+        
+        <!--<dxlc:LayoutGroup Name="lg_Header"
                         VerticalAlignment="Top">
             <Label Content="lg_Header Stuff Goes Here" />
-        </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>-->
 
         <dxlc:LayoutGroup Name="lg_Body" >
 
@@ -118,11 +126,11 @@
 
                                 <!-- Individual LayoutGroups go here (if you want tabs or groups)-->
 
-                                <dxlc:LayoutGroup  Header="Code Context" x:Name="lg_CodeExplorerContext"  >
+                                <!--<dxlc:LayoutGroup  Header="Code Context" x:Name="lg_CodeExplorerContext"  >
 
                                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CodeExplorerContextRegion}" />
 
-                                </dxlc:LayoutGroup>
+                                </dxlc:LayoutGroup>-->
 
                                 <dxlc:LayoutGroup Header="Results" Name="lg_SourceCode">
                                     <dxe:TextEdit x:Name="teSourceCode"
