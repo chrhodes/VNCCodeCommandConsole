@@ -22,7 +22,7 @@
     xmlns:views="clr-namespace:CCC.FindSyntax.Presentation.Views;assembly=CCC.FindSyntax"
     
     xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"
-    prism:ViewModelLocator.AutoWireViewModel="true"
+    prism:ViewModelLocator.AutoWireViewModel="false"
     mc:Ignorable="d"
     d:DesignStyle="{StaticResource vncDesignStyle}"
 >
@@ -119,18 +119,18 @@
             RegExLabel="{Binding StructuredTriviaWalker.RegExLabel, Mode=TwoWay}" 
             RegEx="{Binding StructuredTriviaWalker.RegEx, Mode=TwoWay}"
             UseRegEx="{Binding StructuredTriviaWalker.UseRegEx, Mode=TwoWay}"/>
-        
-    </dxlc:LayoutControl>
 
-    <!--<StackPanel Grid.Row="2" Orientation="Horizontal" >
+        <StackPanel Grid.Row="2" Orientation="Horizontal" >
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="V:" />
-                <Label Content="{Binding ElementName=thisFindVBSyntax, Path=InstanceCountV}" />
+                <Label Content="{Binding ElementName=thisSyntaxWalker, Path=InstanceCountV}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="VM:" />
                 <Label Content="{Binding InstanceCountVM}" />
             </StackPanel>
-        </StackPanel>-->
+        </StackPanel>
+        
+    </dxlc:LayoutControl>
 
 </vncmvvm:ViewBase>

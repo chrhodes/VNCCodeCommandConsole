@@ -179,6 +179,17 @@
                     CommandParameter="TooManyParametersOnGenericTypes" />
         </dxlc:LayoutItem>
 
+        <StackPanel Orientation="Horizontal" >
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="V:" />
+                <Label Content="{Binding ElementName=thisDesignChecks, Path=InstanceCountV}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="VM:" />
+                <Label Content="{Binding InstanceCountVM}" />
+            </StackPanel>
+        </StackPanel>
+
     </dxlc:LayoutControl>
 
 </vncmvvm:ViewBase>

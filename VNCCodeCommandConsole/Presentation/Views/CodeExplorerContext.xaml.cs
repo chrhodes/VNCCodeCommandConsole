@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+
 using System.Xml.Linq;
 
 using DevExpress.Xpf.Editors;
 
 using VNC;
 using VNC.Core.Mvvm;
+
+using VNCCodeCommandConsole.Presentation.ViewModels;
 
 namespace VNCCodeCommandConsole.Presentation.Views
 {
@@ -110,6 +113,146 @@ namespace VNCCodeCommandConsole.Presentation.Views
 #if TRACE
             Log.PRESENTATION("End", Common.LOG_CATEGORY, startTicks);
 #endif
+        }
+
+        private void lbeContextMode_EditValueChanged(object sender, EditValueChangedEventArgs e)
+        {
+            var foo = e;
+            var bar = (ListBoxEdit)sender;
+
+            var barI = (ListBoxEditItem)bar.SelectedItem;
+
+            switch (barI.Tag)
+            {
+                case "S":
+                    lgContextDemo.IsCollapsed = true;
+                    lgContextSolutionProject.IsCollapsed = false;
+                    lgContextXmlConfig.IsCollapsed = true;
+                    break;
+
+                case "X":
+                    lgContextDemo.IsCollapsed = true;
+                    lgContextSolutionProject.IsCollapsed = true;
+                    lgContextXmlConfig.IsCollapsed = false;
+                    break;
+
+                case "D":
+                    lgContextDemo.IsCollapsed = false;
+                    lgContextSolutionProject.IsCollapsed = true;
+                    lgContextXmlConfig.IsCollapsed = true;
+                    break;
+
+                default:
+                    throw new ArgumentException($"lbeContextMode: Unexpected tag ({bar.Tag})");
+            }
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            var foo = e;
+            var bar = (System.Windows.Controls.RadioButton)sender;
+
+            switch (bar.Tag)
+            {
+                case "S":
+                    lgContextDemo.IsCollapsed = true;
+                    lgContextSolutionProject.IsCollapsed = false;
+                    lgContextXmlConfig.IsCollapsed = true;
+                    break;
+
+                case "X":
+                    lgContextDemo.IsCollapsed = true;
+                    lgContextSolutionProject.IsCollapsed = true;
+                    lgContextXmlConfig.IsCollapsed = false;
+                    break;
+
+                case "D":
+                    lgContextDemo.IsCollapsed = false;
+                    lgContextSolutionProject.IsCollapsed = true;
+                    lgContextXmlConfig.IsCollapsed = true;
+                    break;
+
+                default:
+                    throw new ArgumentException($"lbeContextMode: Unexpected tag ({bar.Tag})");
+            }
+        }
+
+        private void lbeContextMode2_EditValueChanged(object sender, EditValueChangedEventArgs e)
+        {
+            var foo = e;
+            var fooV = foo.NewValue;
+            var bar = (ListBoxEdit)sender;
+
+            var barI = bar.SelectedItem;
+            var barT = barI.GetType();
+            var bar2 = (DevExpress.Mvvm.EnumMemberInfo)barI;
+
+            var foo2 = e.NewValue;
+            var fooT = e.GetType();
+
+            switch (e.NewValue.ToString())
+            {
+                case "SolutionProject":
+                    lgContextDemo.IsCollapsed = true;
+                    lgContextSolutionProject.IsCollapsed = false;
+                    lgContextXmlConfig.IsCollapsed = true;
+                    break;
+
+                case "XmlConfig":
+                    lgContextDemo.IsCollapsed = true;
+                    lgContextSolutionProject.IsCollapsed = true;
+                    lgContextXmlConfig.IsCollapsed = false;
+                    break;
+
+                case "Demo":
+                    lgContextDemo.IsCollapsed = false;
+                    lgContextSolutionProject.IsCollapsed = true;
+                    lgContextXmlConfig.IsCollapsed = true;
+                    break;
+
+                default:
+                    throw new ArgumentException($"lbeContextMode2: Unexpected value ({e.NewValue})");
+            }
+
+        }
+
+        private void lbeContextMode3_EditValueChanged(object sender, EditValueChangedEventArgs e)
+        {
+            var foo = e;
+            var fooV = foo.NewValue;
+            var bar = (ListBoxEdit)sender;
+
+            var barI = bar.SelectedItem;
+            var barT = barI.GetType();
+            //var bar2 = (DevExpress.Mvvm.EnumMemberInfo)barI;
+
+            //var foo2 = e.NewValue;
+            //var fooT = e.GetType();
+
+
+            switch (e.NewValue.ToString())
+            {
+                case "SolutionProject":
+                    lgContextDemo.IsCollapsed = true;
+                    lgContextSolutionProject.IsCollapsed = false;
+                    lgContextXmlConfig.IsCollapsed = true;
+                    break;
+
+                case "XmlConfig":
+                    lgContextDemo.IsCollapsed = true;
+                    lgContextSolutionProject.IsCollapsed = true;
+                    lgContextXmlConfig.IsCollapsed = false;
+                    break;
+
+                case "Demo":
+                    lgContextDemo.IsCollapsed = false;
+                    lgContextSolutionProject.IsCollapsed = true;
+                    lgContextXmlConfig.IsCollapsed = true;
+                    break;
+
+                default:
+                    throw new ArgumentException($"lbeContextMode2: Unexpected value ({e.NewValue})");
+            }
         }
     }
 }

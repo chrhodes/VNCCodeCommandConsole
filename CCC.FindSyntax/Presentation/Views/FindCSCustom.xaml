@@ -14,7 +14,7 @@
     xmlns:viewModels="clr-namespace:CCC.FindSyntax.Presentation.ViewModels"
     xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"
     
-    prism:ViewModelLocator.AutoWireViewModel="True"
+    prism:ViewModelLocator.AutoWireViewModel="false"
     mc:Ignorable="d"
     d:DesignHeight="100" d:DesignWidth="200"
     d:DesignStyle="{StaticResource vncDesignStyle}"

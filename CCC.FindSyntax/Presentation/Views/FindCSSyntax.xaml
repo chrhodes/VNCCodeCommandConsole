@@ -24,7 +24,7 @@
     xmlns:viewModels="clr-namespace:CCC.FindSyntax.Presentation.ViewModels"
     
     xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"
-    prism:ViewModelLocator.AutoWireViewModel="True"
+    prism:ViewModelLocator.AutoWireViewModel="false"
     
     mc:Ignorable="d"
     d:DesignStyle="{StaticResource vncDesignStyle}"
@@ -141,18 +141,16 @@
                 RegEx="{Binding FieldDeclarationWalker.RegEx, Mode=TwoWay}"
                 UseRegEx="{Binding FieldDeclarationWalker.UseRegEx, Mode=TwoWay}"/>
 
-<views:RegExSyntaxWalker x:Name="clocalDeclarationStatement" 
-            Style="{StaticResource reStatementWalker}" 
-            ControlHeader="{Binding LocalDeclarationStatementWalker.ControlHeader, Mode=TwoWay}"
-            ButtonContent="{Binding LocalDeclarationStatementWalker.ButtonContent, Mode=TwoWay}"
-            CommandParameter="{Binding LocalDeclarationStatementWalker.CommandParameter, Mode=TwoWay}"
-            RegExLabel="{Binding LocalDeclarationStatementWalker.RegExLabel, Mode=TwoWay}" 
-            RegEx="{Binding LocalDeclarationStatementWalker.RegEx, Mode=TwoWay}"
-            UseRegEx="{Binding LocalDeclarationStatementWalker.UseRegEx, Mode=TwoWay}"/>
+        <views:RegExSyntaxWalker x:Name="clocalDeclarationStatement" 
+                Style="{StaticResource reStatementWalker}" 
+                ControlHeader="{Binding LocalDeclarationStatementWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding LocalDeclarationStatementWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding LocalDeclarationStatementWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="{Binding LocalDeclarationStatementWalker.RegExLabel, Mode=TwoWay}" 
+                RegEx="{Binding LocalDeclarationStatementWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding LocalDeclarationStatementWalker.UseRegEx, Mode=TwoWay}"/>
 
-    </dxlc:LayoutControl>
-    
-    <!--<StackPanel Grid.Row="2" Orientation="Horizontal" >
+        <StackPanel Orientation="Horizontal" >
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="V:" />
                 <Label Content="{Binding ElementName=thisFindVBSyntax, Path=InstanceCountV}" />
@@ -161,5 +159,9 @@
                 <Label Content="VM:" />
                 <Label Content="{Binding InstanceCountVM}" />
             </StackPanel>
-        </StackPanel>-->
+        </StackPanel>
+        
+    </dxlc:LayoutControl>
+    
+
 </vncmvvm:ViewBase>

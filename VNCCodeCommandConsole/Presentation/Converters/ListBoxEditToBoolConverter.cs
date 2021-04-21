@@ -11,7 +11,7 @@ namespace VNCCodeCommandConsole.Presentation.Converters
     /// <summary>
     /// Converts to and from a MultiItem Select ComboBox Control
     /// </summary>
-    public class SelectedItemsToListOfStringConverter : MarkupExtension, IValueConverter
+    public class ListBoxEditToBoolConverter : MarkupExtension, IValueConverter
     {
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -30,18 +30,19 @@ namespace VNCCodeCommandConsole.Presentation.Converters
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            List<string> result = new List<string>();
-            var enumerable = (List<object>)value;
+            return true;
+            //List<string> result = new List<string>();
+            //var enumerable = (List<object>)value;
 
-            if (enumerable != null)
-            {
-                foreach (object item in enumerable)
-                {
-                    result.Add((string)item);
-                }
-            }
+            //if (enumerable != null)
+            //{
+            //    foreach (object item in enumerable)
+            //    {
+            //        result.Add((string)item);
+            //    }
+            //}
 
-            return result;
+            //return result;
         }
     }
 }

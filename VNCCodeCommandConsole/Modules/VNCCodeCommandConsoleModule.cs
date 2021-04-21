@@ -59,7 +59,7 @@ namespace VNCCodeCommandConsole
             containerRegistry.Register<IMain, CodeExplorerMain>();
 
             containerRegistry.Register<ICombinedMainViewModel, CombinedMainViewModel>();
-            containerRegistry.RegisterSingleton<ICombinedMain, CombinedMain>();
+            containerRegistry.Register<ICombinedMain, CombinedMain>();
 
             containerRegistry.Register<ICombinedNavigationViewModel, CombinedNavigationViewModel>();
             containerRegistry.RegisterSingleton<ICombinedNavigation, CombinedNavigation>();
@@ -74,8 +74,11 @@ namespace VNCCodeCommandConsole
             containerRegistry.Register<IViewABCViewModel, ViewABCViewModel>();
             containerRegistry.Register<IViewABC, ViewABC>();
 
-            containerRegistry.Register<ICodeExplorerContextViewModel, CodeExplorerContextViewModel>();
+            containerRegistry.RegisterSingleton<ICodeExplorerContextViewModel, CodeExplorerContextViewModel>();
             containerRegistry.Register<ICodeExplorerContext, CodeExplorerContext>();
+
+            //containerRegistry.Register<CodeExplorerContextViewModel>();
+            //containerRegistry.Register<CodeExplorerContext>();
 
             containerRegistry.Register<ISyntaxWalkerViewModel, SyntaxWalkerViewModel>();
             containerRegistry.Register<ISyntaxWalker, SyntaxWalker>();
@@ -88,8 +91,6 @@ namespace VNCCodeCommandConsole
 
             containerRegistry.RegisterSingleton<IConfigurationOptionsViewModel, ConfigurationOptionsViewModel>();
             containerRegistry.RegisterSingleton<IConfigurationOptions, ConfigurationOptions>();
-
-
 
             // Figure out how to use one Type
 
@@ -106,11 +107,10 @@ namespace VNCCodeCommandConsole
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
+            _regionManager.RegisterViewWithRegion(RegionNames.CodeExplorerContextRegion, typeof(ICodeExplorerContext));
+
             _regionManager.RegisterViewWithRegion(RegionNames.RibbonRegion, typeof(IRibbon));
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(IMain));
-
-            //This loads CombinedMain into the Shell loaded in App.Xaml.cs
-            _regionManager.RegisterViewWithRegion(RegionNames.CombinedMainRegion, typeof(ICombinedMain));
 
             // These load into CombinedMain.xaml
             _regionManager.RegisterViewWithRegion(RegionNames.CombinedNavigationRegion, typeof(ICombinedNavigation));
@@ -121,8 +121,11 @@ namespace VNCCodeCommandConsole
             _regionManager.RegisterViewWithRegion(RegionNames.SyntaxWalkerRegion, typeof(ISyntaxWalker));
             _regionManager.RegisterViewWithRegion(RegionNames.WorkspaceExplorerRegion, typeof(IWorkspaceExplorer));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.CodeExplorerContextRegion, typeof(ICodeExplorerContext));
+  
+            //_regionManager.RegisterViewWithRegion(RegionNames.CodeExplorerContextRegion, typeof(CodeExplorerContext));
 
+            //This loads CombinedMain into the Shell loaded in App.Xaml.cs
+            _regionManager.RegisterViewWithRegion(RegionNames.CombinedMainRegion, typeof(ICombinedMain));
             // This is for Main and AutoWireViewModel demo
 
             _regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(IViewABC));

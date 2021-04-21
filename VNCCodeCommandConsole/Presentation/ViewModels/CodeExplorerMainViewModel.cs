@@ -62,7 +62,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
         //public IMaterialDataService _materialDataService { get; set; }
         public CodeExplorerMainViewModel(
             IConfigurationOptionsViewModel configurationOptionsViewModel,
-            CodeExplorerContextViewModel codeExplorerContextViewModel,
+            ICodeExplorerContextViewModel codeExplorerContextViewModel,
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
@@ -72,7 +72,8 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             // Should add what we need to IConfigurationOptionsViewModel
 
             _configurationOptionsViewModel = (ConfigurationOptionsViewModel)configurationOptionsViewModel;
-            _codeExplorerContextViewModel = codeExplorerContextViewModel;
+            _codeExplorerContextViewModel = (CodeExplorerContextViewModel)codeExplorerContextViewModel;
+
             InitializeViewModel();
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);

@@ -24,7 +24,7 @@
     xmlns:viewModels="clr-namespace:CCC.CodeChecks.Presentation.ViewModels"
     
     xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"
-    prism:ViewModelLocator.AutoWireViewModel="True"
+    prism:ViewModelLocator.AutoWireViewModel="false"
     
     mc:Ignorable="d"
 
@@ -199,6 +199,17 @@
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="UnusedMethodParameters" />
         </dxlc:LayoutItem>
+
+        <StackPanel Orientation="Horizontal" >
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="V:" />
+                <Label Content="{Binding ElementName=thisQualityChecks, Path=InstanceCountV}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="VM:" />
+                <Label Content="{Binding InstanceCountVM}" />
+            </StackPanel>
+        </StackPanel>
 
     </dxlc:LayoutControl>
 

@@ -15,7 +15,7 @@
     
     xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"
     
-    prism:ViewModelLocator.AutoWireViewModel="True"
+    prism:ViewModelLocator.AutoWireViewModel="false"
     mc:Ignorable="d"
     d:DesignHeight="100" d:DesignWidth="200"
     d:DesignStyle="{StaticResource vncDesignStyle}"
@@ -33,7 +33,6 @@
             <Button Content="Say Hello" 
                     Command="{Binding SayHelloCommand}" />            
         </StackPanel>
-
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" >
             <StackPanel Orientation="Horizontal" Margin="5">

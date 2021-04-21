@@ -19,6 +19,13 @@ using VNCCodeCommandConsole.Core.Events;
 
 namespace VNCCodeCommandConsole.Presentation.ViewModels
 {
+    public enum ContextMode2
+    {
+        SolutionProject,
+        XmlConfig,
+        Demo
+    }
+
     public class CodeExplorerContextViewModel : EventViewModelBase, ICodeExplorerContextViewModel, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
@@ -52,6 +59,10 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             ClearFileCommand = new DelegateCommand(ClearFile, ClearFileCanExecute);
 
             Message = "CodeExplorerContextViewModel says hello";
+
+            // TODO(crhodes)
+            // For now, default to demo.  Later switch to Project/Solution
+            ContextModeValue = ContextMode.Demo;
 
             PopulateContextFromXmlFile();
 
@@ -88,9 +99,29 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         #endregion Constructors, Initialization, and Load
 
+        #region Enums
+
+        public enum ContextMode
+        {
+            SolutionProject,
+            XmlConfig,
+            Demo
+        }
+
+        #endregion
+
+        #region Structures (none)
+
+
+        #endregion
+
         #region Fields and Properties
 
 
+        private ContextMode2 _contextMode2Value;
+        private ContextMode2 _contextMode3Value;
+        private string _contextModeEditValue;
+        private ContextMode _contextModeValue;
         private string _selectedSourceFile;
         private string _selectedProject;
 
@@ -102,6 +133,106 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
         private string _solutionFile;
         private string _sourceFile;
         private string _sourcePath;
+
+        public ContextMode ContextModeValue
+        {
+            get => _contextModeValue;
+            set
+            {
+                if (_contextModeValue == value)
+                    return;
+                _contextModeValue = value;
+                OnPropertyChanged();
+            }
+        }
+
+        
+        public ContextMode2 ContextMode2Value
+        {
+            get => _contextMode2Value;
+            set
+            {
+                if (_contextMode2Value == value)
+                    return;
+                _contextMode2Value = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ContextMode2 ContextMode3Value
+        {
+            get => _contextMode3Value;
+            set
+            {
+                if (_contextMode3Value == value)
+                    return;
+                _contextMode3Value = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public string ContextModeEditValue
+        {
+            get => _contextModeEditValue;
+            set
+            {
+                if (_contextModeEditValue == value)
+                    return;
+                _contextModeEditValue = value;
+                OnPropertyChanged();
+            }
+        }
+        
+
+        public bool IsContextModeDemo
+        {
+            get
+            {
+                return ContextModeValue == ContextMode.Demo;
+            }
+            set
+            {
+                if (value)
+                {
+                    ContextModeValue = ContextMode.Demo;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public bool IsContextModeSolutionProject
+        {
+            get
+            {
+                return ContextModeValue == ContextMode.SolutionProject;
+            }
+            set
+            {
+                if (value)
+                {
+                    ContextModeValue = ContextMode.SolutionProject;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public bool IsContextModeXmlConfig
+        {
+            get
+            {
+                return ContextModeValue == ContextMode.XmlConfig;
+            }
+            set
+            {
+                if (value)
+                {
+                    ContextModeValue = ContextMode.XmlConfig;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public string Branch
         {
@@ -420,11 +551,39 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
         // TODO(crhodes)
         // This should be calling a DOMAIN/APPLICATION Service
 
-        /// <summary>
-        /// Returns list of files to process based on selections
-        /// </summary>
-        /// <returns></returns>
         public List<String> GetFilesToProcess()
+        {
+            long startTicks = Log.PRESENTATION("Enter", Common.LOG_CATEGORY);
+
+            List<String> filesToProcess;
+
+            var foo2 = ContextMode2Value;
+            var foo3 = ContextMode3Value;
+
+            switch (ContextMode3Value)
+            {
+                case ContextMode2.Demo:
+                    filesToProcess = GetDemoFiles();
+                    break;
+
+                case ContextMode2.SolutionProject:
+                    filesToProcess = GetSolutionFIles();
+                    break;
+
+                case ContextMode2.XmlConfig:
+                    filesToProcess = GetXmlFiles();
+                    break;
+
+                default:
+                    throw new ArgumentException("GetFilesToProcess: Unexpected ContextMode2");
+            }
+
+            Log.PRESENTATION("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return filesToProcess;
+        }
+
+        private List<string> GetDemoFiles()
         {
             long startTicks = Log.PRESENTATION("Enter", Common.LOG_CATEGORY);
 
@@ -449,6 +608,33 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTreeBasics.cs");
             filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-CodeQuality.cs");
             filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTree.cs");
+
+            Log.PRESENTATION($"Exit: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
+
+            return filesToProcess;
+        }
+
+        private List<string> GetSolutionFIles()
+        {
+            long startTicks = Log.PRESENTATION("Enter", Common.LOG_CATEGORY);
+
+            List<String> filesToProcess = new List<string>();
+
+            MessageBox.Show("SolutionFiles Not Implemented Yet");
+
+            Log.PRESENTATION($"Exit: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
+
+            return filesToProcess;
+        }
+
+        private List<string> GetXmlFiles()
+        {
+            long startTicks = Log.PRESENTATION("Enter", Common.LOG_CATEGORY);
+
+            List<String> filesToProcess = new List<string>();
+
+            MessageBox.Show("XmlFiles Not Implemented Yet");
+
 
             //// This  method returns a list of files to process.
             //// If a specific SourceFile is specified, return it
@@ -538,11 +724,14 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             //        filesToProcess.Remove(filePath);
             //    }
             //}
-
-            Log.PRESENTATION($"End: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
+            Log.PRESENTATION($"Exit: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
 
             return filesToProcess;
         }
+
+        /// <returns></returns>
+
+
         #region Private Methods
 
         private void SayHello()

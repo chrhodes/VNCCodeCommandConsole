@@ -37,9 +37,9 @@ namespace CCC.CodeChecks
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             //containerRegistry.Register<DesignChecksViewModel>();
-            containerRegistry.Register<IDesignChecksViewModel, DesignChecksViewModel>();
-
             //containerRegistry.Register<DesignChecks>();
+
+            containerRegistry.Register<IDesignChecksViewModel, DesignChecksViewModel>();
             containerRegistry.Register<IDesignChecks, DesignChecks>();
 
             containerRegistry.Register<PerformanceChecksViewModel>();

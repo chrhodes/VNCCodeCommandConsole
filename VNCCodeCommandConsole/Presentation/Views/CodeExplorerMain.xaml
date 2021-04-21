@@ -72,8 +72,6 @@
                                           AllowDock="False" AllowHide="False"
                                           Style="{StaticResource FixedLayoutPanelMedium}" >
 
-                            <!--<pv:FindCSSyntax x:Name="FindCSSyntax" />-->
-                            <!--<TextBlock Text="TODO: pv:FindCSSyntax" />-->
                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.FindCSSyntaxRegion}" />
 
                         </dxdo:LayoutPanel>
@@ -82,8 +80,6 @@
                                           AllowFloat="False" AllowClose="False" AllowDock="False" AllowHide="False"
                                           Style="{StaticResource FixedLayoutPanelMedium}" >
 
-                            <!--<uiuc:wucCommandsFindVBSyntax x:Name="wucCommandsFindVBSyntax" />-->
-                            <!--<TextBlock Text="TODO: uiuc:wucCommandsFindVBSyntax" />-->
                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.FindVBSyntaxRegion}" />
 
                         </dxdo:LayoutPanel>
@@ -124,8 +120,6 @@
 
                                 <dxlc:LayoutGroup  Header="Code Context" x:Name="lg_CodeExplorerContext"  >
 
-                                    <!--<uiuc:wucCodeExplorerContext x:Name="wucCodeExplorerContext" />-->
-                                    <!--<TextBlock Text="TODO: uiuc:wucCodeExplorerContext" />-->
                                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CodeExplorerContextRegion}" />
 
                                 </dxlc:LayoutGroup>

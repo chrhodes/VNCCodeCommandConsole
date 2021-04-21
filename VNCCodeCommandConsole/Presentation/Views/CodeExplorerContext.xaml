@@ -7,13 +7,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 
+    xmlns:cb="clr-namespace:CalcBinding;assembly=CalcBinding" 
+    
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"     
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
     xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
-    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"   
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
     
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     xmlns:local="clr-namespace:VNCCodeCommandConsole.Presentation.Views"
@@ -30,7 +33,7 @@
     prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
  
-    d:DesignHeight="450" d:DesignWidth="800"
+
     d:DesignStyle="{StaticResource vncDesignStyle}"
 >
     <UserControl.Resources>
@@ -57,18 +60,9 @@
         <converters:SolutionConverter x:Key="solutionConverter" />
         <converters:ProjectConverter x:Key="projectConverter" />
         <converters:SourceFileConverter x:Key="sourceFileConverter" />
-        <converters:SelectedItemsToListofStringConverter x:Key="selectedItemsToListofStringConverter" />
+        <converters:SelectedItemsToListOfStringConverter x:Key="selectedItemsToListOfStringConverter" />
     </UserControl.Resources>
     
-    <!--<Grid>
-        <StackPanel>
-            <TextBlock Text="CodeExplorerContext" />
-            <TextBlock Text="{Binding Message}" />
-            <Button Content="Say Hello" 
-                    Command="{Binding SayHelloCommand}" />
-        </StackPanel>
-    </Grid>-->
-
     <dxlc:LayoutControl Name="lc_Root" 
                       Orientation="Vertical"
                       Background="Transparent" >
@@ -78,10 +72,124 @@
             <dxlc:LayoutControl x:Name="layoutItems" 
                                 Orientation="Vertical" >
 
+                <!--This is DevExpress support for binding to Enums-->
+                <!--<GroupBox Header="Mode2" VerticalAlignment="Top" >
+                    <dxe:ListBoxEdit x:Name="lbeContextMode2"
+                        EditValue="{ Binding
+                            Path=ContextMode2Value,
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged }"
+                        EditValueChanged="lbeContextMode2_EditValueChanged">
+                        <dxmvvm:Interaction.Behaviors>
+                            <dxmvvm:EnumItemsSourceBehavior EnumType="{x:Type viewModels:ContextMode2}"/>
+                        </dxmvvm:Interaction.Behaviors>
+                        <dxe:ListBoxEdit.StyleSettings>
+                            <dxe:RadioListBoxEditStyleSettings />
+                        </dxe:ListBoxEdit.StyleSettings>
+                        <dxe:ListBoxEdit.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </dxe:ListBoxEdit.ItemsPanel>
+                    </dxe:ListBoxEdit>
+                </GroupBox>-->
+                
+                <GroupBox Header="Context Mode" VerticalAlignment="Top" >
+                    <dxe:ListBoxEdit x:Name="lbeContextMode3"
+                        EditValue="{ Binding
+                            Path=ContextMode3Value,
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged }"
+                        EditValueChanged="lbeContextMode3_EditValueChanged"
+                        ItemsSource="{Binding Source={local:EnumBindingSource {x:Type viewModels:ContextMode2}}}">
+                        <dxe:ListBoxEdit.StyleSettings>
+                            <dxe:RadioListBoxEditStyleSettings />
+                        </dxe:ListBoxEdit.StyleSettings>
+                        <dxe:ListBoxEdit.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </dxe:ListBoxEdit.ItemsPanel>
+                    </dxe:ListBoxEdit>
+                </GroupBox>
+
+                <!--<GroupBox Header="Mode" VerticalAlignment="Top" >
+                    <dxe:ListBoxEdit x:Name="lbeContextMode"
+
+                    SelectedIndex="0"
+                    EditValue="{ Binding
+                        Path=ContextModeEditValue,
+                        Mode=TwoWay,
+                        UpdateSourceTrigger=PropertyChanged }"
+                    ShowBorder="False" Background="{x:Null}" 
+                    EditValueChanged="lbeContextMode_EditValueChanged">
+                        <dxe:ListBoxEdit.StyleSettings>
+                            <dxe:RadioListBoxEditStyleSettings />
+                        </dxe:ListBoxEdit.StyleSettings>
+                        <dxe:ListBoxEdit.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </dxe:ListBoxEdit.ItemsPanel>
+                        <dxe:ListBoxEdit.Items>
+                            <dxe:ListBoxEditItem Content="Solution/Project File" Tag="S"/>
+                            <dxe:ListBoxEditItem Content="Xml Config File" Tag="X"/>
+                            <dxe:ListBoxEditItem Content="Demo" Tag="D" />
+                        </dxe:ListBoxEdit.Items>
+                    </dxe:ListBoxEdit>
+                </GroupBox>-->
+
+                <!--<CheckBox Content="EnumValue == Enum2.Value1" IsChecked="{c:Binding 'EnumValue==local:Enum2.Value1'}" IsEnabled="False"  Margin="0,4,0,0"/>-->
+                
+                <!--<StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                    <RadioButton Content="Solution / Project File" 
+                                 IsChecked="{Binding IsContextModeSolutionProject, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 Margin="4,4,0,0" Checked="RadioButton_Checked" Tag="S"
+                                 /> 
+                    <RadioButton Content="Xml Config File" 
+                                 IsChecked="{Binding IsContextModeXmlConfig, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 Margin="4,4,0,0" Checked="RadioButton_Checked" Tag="X"/>
+                    
+                    <RadioButton Content="Demo" 
+                                 IsChecked="{Binding IsContextModeDemo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                 Margin="4,4,0,0" Checked="RadioButton_Checked" Tag="D"/>
+                </StackPanel>-->
+                
+                <dxlc:LayoutGroup Header="Demo Context" x:Name="lgContextDemo"
+                                  View="GroupBox"
+                                  Orientation="Vertical"
+                                  IsCollapsible="True" IsCollapsed="True" >
+                    <TextBlock Text="Demo Controls Go Here"/>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="Solution/Project File Context" x:Name="lgContextSolutionProject"
+                                  View="GroupBox"
+                                  Orientation="Vertical"
+                                  IsCollapsible="True" IsCollapsed="True">
+                    <TextBlock Text="Solution/Project Controls Go Here"/>                    
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="XmlConfig Context" x:Name="lgContextXmlConfig" 
+                                  View="GroupBox"
+                                  Orientation="Vertical" 
+                                  IsCollapsible="True" IsCollapsed="True">
+
+                <!--<dxlc:LayoutGroup Header="Demo Context" 
+                                  View="GroupBox"
+                                  Orientation="Vertical" 
+                                  IsCollapsible="True" IsCollapsed="{cb:Binding '!(ContextModeValue == ContextMode.Demo)'}">
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="Solution/Project File Context" 
+                                  View="GroupBox"
+                                  Orientation="Vertical" 
+                                  IsCollapsible="True" IsCollapsed="{cb:Binding '!(ContextModeValue == ContextMode.SolutionProject)'}">
+                </dxlc:LayoutGroup>
+
                 <dxlc:LayoutGroup Header="CodeExplorer Context" 
                                   View="GroupBox"
                                   Orientation="Vertical" 
-                                  IsCollapsed="False" IsCollapsible="True">
+                                  IsCollapsible="True" IsCollapsed="{cb:Binding '!(ContextModeValue == ContextMode.XmlConfig)'}">-->
 
                     <dxlc:LayoutItem Label="Select Branch"
                                      LabelPosition="Top">
