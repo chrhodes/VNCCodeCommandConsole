@@ -8,22 +8,22 @@ namespace VNCCodeCommandConsole.Presentation.Converters
 {
     public class SolutionConverter : IValueConverter
     {
-            public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value != null)
             {
-                ObservableCollection<XElement> e = (ObservableCollection<XElement>)value;
+                ObservableCollection<XElement> collection = (ObservableCollection<XElement>)value;
 
-                return value;
-                //return e.Attribute("FileName").Value;
-                //return "Convert value is not null";
-                //List<object> collection = value as List<object>;
-                //if (collection.Count == 0)
-                //    return "no selection";
+                string result = "";
 
-                //if (collection.Contains("Su") && collection.Contains("Sa"))
-                //    return "Weekends";
-                //else return "Week days";
+                foreach (var item in collection)
+                {
+                    string name = item.Attribute("FileName").Value;
+
+                    result += result == "" ? name : $"; {name}";
+                }
+
+                return result;
             }
             else
             {
@@ -33,7 +33,6 @@ namespace VNCCodeCommandConsole.Presentation.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            //return value;
             if (value != null)
             {
                 ObservableCollection<XElement> collection = new ObservableCollection<XElement>();
@@ -42,21 +41,20 @@ namespace VNCCodeCommandConsole.Presentation.Converters
                 {
                     if (item as string != "")
                     {
-                        collection.Add(XElement.Parse(item.ToString()));
+                        try
+                        {
+                            collection.Add(XElement.Parse(item.ToString()));
+                        }
+                        catch (System.Xml.XmlException ex)
+                        {
+                            // This happens after we have picked something
+                            // and are trying to pick something else
+                            // or clear the selection.
+                        }
+
                     }
                 }
 
-                //ObservableCollection<XElement> collection = value as ObservableCollection<XElement>;
-
-                //return (System.Collections.Generic.List<Object>)value;
-                //return "ConvertBack value is not null";
-                //List<object> collection = value as List<object>;
-                //if (collection is null)
-                //    return "no selection";
-
-                //if (collection.Contains("Su") && collection.Contains("Sa"))
-                //    return "Weekends";
-                //else return "Week days";
                 return collection;
             }
             else

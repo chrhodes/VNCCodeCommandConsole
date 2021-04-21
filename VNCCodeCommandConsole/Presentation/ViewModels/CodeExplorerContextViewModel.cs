@@ -122,17 +122,17 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
         private ContextMode2 _contextMode3Value;
         private string _contextModeEditValue;
         private ContextMode _contextModeValue;
-        private string _selectedSourceFile;
-        private string _selectedProject;
+        private string _selectedSourceFile = "";
+        private string _selectedProject = "";
 
-        private string _branch;
+        private string _branch = "";
         private string _message;
-        private string _projectFile;
-        private string _repository;
-        private string _repositoryPath;
-        private string _solutionFile;
-        private string _sourceFile;
-        private string _sourcePath;
+        private string _projectFile = "";
+        private string _repository = "";
+        private string _repositoryPath = "";
+        private string _solutionFile = "";
+        private string _sourceFile = "";
+        private string _sourcePath = "";
 
         public ContextMode ContextModeValue
         {
@@ -145,7 +145,6 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
         
         public ContextMode2 ContextMode2Value
         {
@@ -346,10 +345,18 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 _selectedBranch = value;
 
                 SolutionFiles.Clear();
-                ProjectFiles.Clear();
-                SourceFiles.Clear();
+                //ProjectFiles.Clear();
+                //SourceFiles.Clear();
 
-                var solutions = _selectedBranch.Descendants("Solution");
+                SelectedSolutionFiles.Clear();
+                SelectedProjectFiles.Clear();
+                SelectedSourceFiles.Clear();
+
+                Repository = _selectedBranch.Attribute("Repository").Value;
+                Branch = _selectedBranch.Attribute("Name").Value;
+                RepositoryPath = $"{_selectedBranch.Attribute("SourcePath").Value}\\{Repository}";
+
+                var solutions = _selectedBranch.Elements("Solution");
 
                 SolutionFiles.AddRange(solutions);
 
@@ -372,7 +379,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
                 ProjectFiles.Clear();
 
-                var projects = _selectedSolutionFiles.Descendants("Project");
+                var projects = _selectedSolutionFiles.Elements("Project");
                 ProjectFiles.AddRange(projects);
 
                 OnPropertyChanged();
@@ -553,7 +560,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         public List<String> GetFilesToProcess()
         {
-            long startTicks = Log.PRESENTATION("Enter", Common.LOG_CATEGORY);
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             List<String> filesToProcess;
 
@@ -578,153 +585,154 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                     throw new ArgumentException("GetFilesToProcess: Unexpected ContextMode2");
             }
 
-            Log.PRESENTATION("Exit", Common.LOG_CATEGORY, startTicks);
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 
             return filesToProcess;
         }
 
         private List<string> GetDemoFiles()
         {
-            long startTicks = Log.PRESENTATION("Enter", Common.LOG_CATEGORY);
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             List<String> filesToProcess = new List<string>();
 
             // HACK(crhodes)
             // Just hard code a couple of files for now till we sort through this
+            // Maybe load this from Config File.
 
-            //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AML.vb");
-            //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AppConfig.vb");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AML.vb");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AppConfig.vb");
 
-            //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE1.vb");
-            //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE2.vb");
-            //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE3.vb");
-            //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE4.vb");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE1.vb");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE2.vb");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE3.vb");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE4.vb");
 
-            //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VB.cs");
-            //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\CS.cs");
-            //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCCSSyntaxWalkerBase.cs");
-            //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCVBSyntaxWalkerBase.cs");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VB.cs");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\CS.cs");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCCSSyntaxWalkerBase.cs");
+            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCVBSyntaxWalkerBase.cs");
 
             filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTreeBasics.cs");
             filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-CodeQuality.cs");
             filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTree.cs");
 
-            Log.PRESENTATION($"Exit: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
+            Log.VIEWMODEL($"Exit: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
 
             return filesToProcess;
         }
 
         private List<string> GetSolutionFIles()
         {
-            long startTicks = Log.PRESENTATION("Enter", Common.LOG_CATEGORY);
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             List<String> filesToProcess = new List<string>();
 
             MessageBox.Show("SolutionFiles Not Implemented Yet");
 
-            Log.PRESENTATION($"Exit: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
+            Log.VIEWMODEL($"Exit: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
 
             return filesToProcess;
         }
 
         private List<string> GetXmlFiles()
         {
-            long startTicks = Log.PRESENTATION("Enter", Common.LOG_CATEGORY);
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             List<String> filesToProcess = new List<string>();
 
-            MessageBox.Show("XmlFiles Not Implemented Yet");
+            //MessageBox.Show("XmlFiles Not Implemented Yet");
 
+            // This  method returns a list of files to process.
+            // If a specific SourceFile is specified, return it
+            //
+            // If multiple SolutionFiles are selected, the user must select
+            //  one or more project files.  Handle as multiple project files
+            //
+            // If multiple ProjectFiles are selected, 
+            //  Loop across <Project> elements 
+            //      and add files from project
+            //      and add files listed in <Project> elements
+            //
+            // If a ProjectFile is available, use it to get the list of files
+            // Otherwise return the files selected in cbeSourceFiles.
 
-            //// This  method returns a list of files to process.
-            //// If a specific SourceFile is specified, return it
-            ////
-            //// If multiple SolutionFiles are selected, the user must select
-            ////  one or more project files.  Handle as multiple project files
-            ////
-            //// If multiple ProjectFiles are selected, 
-            ////  Loop across <Project> elements 
-            ////      and add files from project
-            ////      and add files listed in <Project> elements
-            ////
-            //// If a ProjectFile is available, use it to get the list of files
-            //// Otherwise return the files selected in cbeSourceFiles.
+            string solutionFullPath = SolutionFile;
+            string projectFullPath = ProjectFile;
 
-            //string solutionFullPath = SolutionFile;
-            //string projectFullPath = ProjectFile;
+            if (SourceFile != "")
+            {
+                // TODO(crhodes)
+                // Add check for existence
+                filesToProcess.Add(SourceFile);
+            }
+            else if (SelectedProjectFiles.Count >= 1)
+            {
+                foreach (XElement projectElement in SelectedProjectFiles)
+                {
+                    string fileName = projectElement.Attribute("FileName").Value;
+                    string folderPath = projectElement.Attribute("FolderPath").Value;
+                    string sourcePath = RepositoryPath + "\\" + folderPath;
+                    string projectPath = "";
 
-            //if (SourceFile != "")
-            //{
-            //    // TODO(crhodes)
-            //    // Add check for existence
-            //    filesToProcess.Add(SourceFile);
-            //}
-            //else if (SelectedProjectFiles.Count > 1)
-            //{
-            //    foreach (XElement projectElement in SelectedProjectFiles)
-            //    {
-            //        string fileName = projectElement.Attribute("FileName").Value;
-            //        string folderPath = projectElement.Attribute("FolderPath").Value;
-            //        string sourcePath = RepositoryPath + "\\" + folderPath;
-            //        string projectPath = "";
+                    projectPath = fileName != "" ? sourcePath + "\\" + fileName : "";
 
-            //        projectPath = fileName != "" ? sourcePath + "\\" + fileName : "";
+                    if (projectPath == "")
+                    {
+                        // No project file exists, so look across all the SourceFile elements
 
-            //        if (projectPath == "")
-            //        {
-            //            // No project file exists, so look across all the SourceFile elements
+                        foreach (XElement sourceFile in projectElement.Elements("SourceFile"))
+                        {
+                            // NB. The file names are added manually so we don't have to exclude any.
+                            string fileFullPath = sourcePath + "\\" + GetFilePath(sourceFile);
 
-            //            foreach (XElement sourceFile in projectElement.Elements("SourceFile"))
-            //            {
-            //                // NB. The file names are added manually so we don't have to exclude any.
-            //                string fileFullPath = sourcePath + "\\" + GetFilePath(sourceFile);
+                            filesToProcess.Add(fileFullPath);
+                        }
+                    }
+                    else
+                    {
+                        filesToProcess.AddRange(VNC.CodeAnalysis.Workspace.Helper.GetSourceFilesToProcessFromVSProject(projectPath));
+                    }
+                }
+            }
+            else if (projectFullPath != "")
+            {
+                filesToProcess = VNC.CodeAnalysis.Workspace.Helper.GetSourceFilesToProcessFromVSProject(projectFullPath);
+            }
+            else if (SelectedSourceFiles.Count > 0)
+            {
+                string sourcePath = SourcePath;
 
-            //                filesToProcess.Add(fileFullPath);
-            //            }
-            //        }
-            //        else
-            //        {
-            //            filesToProcess.AddRange(VNC.CodeAnalysis.Workspace.Helper.GetSourceFilesToProcessFromVSProject(projectPath));
-            //        }
-            //    }
-            //}
-            //else if (projectFullPath != "")
-            //{
-            //    filesToProcess = VNC.CodeAnalysis.Workspace.Helper.GetSourceFilesToProcessFromVSProject(projectFullPath);
-            //}
-            //else if (SelectedSourceFiles.Count > 0)
-            //{
-            //    string sourcePath = SourcePath;
+                foreach (XElement sourceFile in SelectedSourceFiles)
+                {
+                    string fileFullPath = sourcePath + "\\" + GetFilePath(sourceFile);
 
-            //    foreach (XElement sourceFile in SelectedSourceFiles)
-            //    {
-            //        string fileFullPath = sourcePath + "\\" + GetFilePath(sourceFile);
+                    filesToProcess.Add(fileFullPath);
+                }
+            }
 
-            //        filesToProcess.Add(fileFullPath);
-            //    }
-            //}
+            var filesToCheck = filesToProcess.ToList();
 
-            //var filesToCheck = filesToProcess.ToList();
+            foreach (string filePath in filesToCheck)
+            {
+                if (!File.Exists(filePath))
+                {
+                    FileInfo fileInfo = new FileInfo(filePath);
 
-            //foreach (string filePath in filesToCheck)
-            //{
-            //    if (!File.Exists(filePath))
-            //    {
-            //        FileInfo fileInfo = new FileInfo(filePath);
+                    if (!Directory.Exists(fileInfo.DirectoryName))
+                    {
+                        MessageBox.Show(string.Format("Directory\n\n{0}\n\ndoes not exist", fileInfo.DirectoryName), "Check Path or Config File");
+                    }
+                    else
+                    {
+                        MessageBox.Show(string.Format("File\n\n{0}\nin\n\n{1}\n\ndoes not exist", fileInfo.Name, fileInfo.DirectoryName), "Check Path or Config File");
+                    }
 
-            //        if (!Directory.Exists(fileInfo.DirectoryName))
-            //        {
-            //            MessageBox.Show(string.Format("Directory\n\n{0}\n\ndoes not exist", fileInfo.DirectoryName), "Check Path or Config File");
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show(string.Format("File\n\n{0}\nin\n\n{1}\n\ndoes not exist", fileInfo.Name, fileInfo.DirectoryName), "Check Path or Config File");
-            //        }
+                    filesToProcess.Remove(filePath);
+                }
+            }
 
-            //        filesToProcess.Remove(filePath);
-            //    }
-            //}
-            Log.PRESENTATION($"Exit: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
+            Log.VIEWMODEL($"Exit: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
 
             return filesToProcess;
         }

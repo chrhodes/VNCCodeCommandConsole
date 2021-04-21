@@ -33,7 +33,6 @@
     prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
  
-
     d:DesignStyle="{StaticResource vncDesignStyle}"
 >
     <UserControl.Resources>
@@ -41,7 +40,7 @@
             <StackPanel Orientation="Horizontal">
                 <Label Content="{Binding Path=Attribute[Name].Value}" />
                 <Label Content=" - " />
-                <Label Content="{Binding Path=Attribute[SourcePath].Value}" />
+                <Label Content="{Binding Path=Attribute[FileName].Value}" />
             </StackPanel>
         </DataTemplate>
 
@@ -57,6 +56,7 @@
             </StackPanel>
         </DataTemplate>
 
+        <converters:BranchConverter x:Key="branchConverter" />
         <converters:SolutionConverter x:Key="solutionConverter" />
         <converters:ProjectConverter x:Key="projectConverter" />
         <converters:SourceFileConverter x:Key="sourceFileConverter" />
@@ -172,7 +172,7 @@
                 <dxlc:LayoutGroup Header="XmlConfig Context" x:Name="lgContextXmlConfig" 
                                   View="GroupBox"
                                   Orientation="Vertical" 
-                                  IsCollapsible="True" IsCollapsed="True">
+                                  IsCollapsible="True" IsCollapsed="False">
 
                 <!--<dxlc:LayoutGroup Header="Demo Context" 
                                   View="GroupBox"
@@ -201,7 +201,8 @@
                             EditValue="{ Binding
                                 Path=SelectedBranch,
                                 Mode=TwoWay,
-                                UpdateSourceTrigger=PropertyChanged }" >
+                                UpdateSourceTrigger=PropertyChanged,
+                                Converter={StaticResource branchConverter }}" >
                             <dxe:ComboBoxEdit.StyleSettings>
                                 <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
                                 <!--<dxe:CheckedComboBoxStyleSettings/>-->
@@ -363,41 +364,41 @@
 
                     </dxlc:LayoutItem>
 
-                </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Vertical">
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutItem Label="Repository"  LabelPosition="Top">
+                                <dxe:TextEdit Text="{Binding Repository}" />
+                            </dxlc:LayoutItem>
 
-                <dxlc:LayoutGroup Orientation="Vertical">
-                    <dxlc:LayoutGroup Orientation="Horizontal">
-                        <dxlc:LayoutItem Label="Repository"  LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Repository}" />
-                        </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Branch"  LabelPosition="Top">
+                                <dxe:TextEdit Text="{Binding Branch}" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
 
-                        <dxlc:LayoutItem Label="Branch"  LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Branch}" />
+                        <dxlc:LayoutItem Label="RepositoryPath" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding RepositoryPath}" />
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutItem Label="RepositoryPath" LabelPosition="Top">
-                        <dxe:TextEdit Text="{Binding RepositoryPath}" />
+                    <dxlc:LayoutItem Label="SolutionFile"  LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding SolutionFile}" />
                     </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="ProjectFile"  LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding ProjectFile}" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="SourcePath"  LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding SourcePath}" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="SourceFile"  LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding SourceFile}" />
+                    </dxlc:LayoutItem>
+                    
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutItem Label="SolutionFile"  LabelPosition="Top">
-                    <dxe:TextEdit Text="{Binding SolutionFile}" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="ProjectFile"  LabelPosition="Top">
-                    <dxe:TextEdit Text="{Binding ProjectFile}" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="SourcePath"  LabelPosition="Top">
-                    <dxe:TextEdit Text="{Binding SourcePath}" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="SourceFile"  LabelPosition="Top">
-                    <dxe:TextEdit Text="{Binding SourceFile}" />
-                </dxlc:LayoutItem>
-
-                <TextBlock Text="{Binding Message}" />
+                <!--<TextBlock Text="{Binding Message}" VerticalAlignment="Bottom" />-->
             </dxlc:LayoutControl>
 
         </dxlc:LayoutGroup>

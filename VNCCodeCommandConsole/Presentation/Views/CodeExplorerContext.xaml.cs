@@ -50,7 +50,6 @@ namespace VNCCodeCommandConsole.Presentation.Views
 
         #endregion
 
-
         private void cbeSolutionFile_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
         {
 #if TRACE
