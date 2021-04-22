@@ -73,6 +73,8 @@ namespace CCC.CodeChecks.Presentation.ViewModels
             }
         }
 
+        // TODO(crhodes)
+        // Switch this to an Enum
         private string _language = "CS";
 
         public string Language

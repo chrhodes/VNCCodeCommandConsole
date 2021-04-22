@@ -12,6 +12,7 @@ using Microsoft.CodeAnalysis.VisualBasic;
 using Prism.Events;
 
 using VNC;
+using VNC.CodeAnalysis;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
@@ -109,11 +110,37 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
             var filesToProcess = _codeExplorerContextViewModel.GetFilesToProcess();
 
-            // TODO(crhodes)
-            // Might be able to pull this out of the loop
-
             Type metricType = Type.GetType(metricClass);
+
+            // NOTE(crhodes)
+            // All of this was an attempt to update base class.
+
+            var metricTypeB = metricType.BaseType;
+
+            if ((object)metricTypeB is CodeCheckBase metricBase)
+            {
+                metricBase._codeCheckOptions.ParameterCount = 5;
+                metricBase._codeCheckOptions.VariableCount = 5;
+            }
+
+            //CodeCheckBase metricTypeBase = (CodeCheckBase)metricType;
+
+            //CodeCheckBase metricType = Type.GetType(metricClass) as CodeCheckBase;
+
+            CodeCheckOptions newCCO = new CodeCheckOptions();
+
+            // TODO(crhodes)
+            // Update UI to provide these numbers.  Maybe on CodeCheck UI or maybe on Options.
+            newCCO.ParameterCount = 2;
+            newCCO.VariableCount = 4;
+
+            FieldInfo metricField = metricType.GetField("_codeCheckOptions");
+
+            //metricField.SetValue(metricType, newCCO);
+            //metricType._codeCheckOptions.ParameterCount = 3;
+
             MethodInfo metricMethod = metricType.GetMethod("Check");
+
 
             if (filesToProcess.Count > 0)
             {
@@ -143,12 +170,20 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                         // This is where the action happens
                         //
 
-                        //// TODO(crhodes)
-                        //// Might be able to pull this out of the loop
+                        object[] parametersArray;
 
-                        //Type metricType = Type.GetType(metricClass);
-                        //MethodInfo metricMethod = metricType.GetMethod("Check");
-                        object[] parametersArray = new object[] { sourceCode };
+                        // TODO(crhodes)
+                        // Get fancy and see if Method takes one or two args
+                        // In time we might pass two to all calls.
+
+                        if (metricMethod.GetParameters().Count() > 1)
+                        {
+                            parametersArray = new object[] { sourceCode, newCCO };
+                        }
+                        else
+                        {
+                            parametersArray = new object[] { sourceCode };
+                        }
 
                         sbFileResults = (StringBuilder)metricMethod.Invoke(null, parametersArray);
 

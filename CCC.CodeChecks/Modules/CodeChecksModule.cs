@@ -42,7 +42,7 @@ namespace CCC.CodeChecks
             containerRegistry.Register<IDesignChecksViewModel, DesignChecksViewModel>();
             containerRegistry.Register<IDesignChecks, DesignChecks>();
 
-            containerRegistry.Register<PerformanceChecksViewModel>();
+            containerRegistry.Register<IPerformanceChecksViewModel, PerformanceChecksViewModel>();
             containerRegistry.Register<PerformanceChecks>();
 
             containerRegistry.Register<QualityChecksViewModel>();

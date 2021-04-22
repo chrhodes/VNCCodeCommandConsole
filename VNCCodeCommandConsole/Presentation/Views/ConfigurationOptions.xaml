@@ -19,7 +19,7 @@
     
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     xmlns:vncxe="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
-    xmlns:vncca="clr-namespace:VNC.CodeAnalysis.SyntaxNode;assembly=VNC.CodeAnalysis"
+    xmlns:vnccasn="clr-namespace:VNC.CodeAnalysis.SyntaxNode;assembly=VNC.CodeAnalysis"
     xmlns:local="clr-namespace:VNCCodeCommandConsole.Presentation.Views"
 
     xmlns:views="clr-namespace:VNCCodeCommandConsole.Presentation.Views"
@@ -95,7 +95,7 @@
                      Need to bind to something
                     -->
                     <dxe:ComboBoxEdit Name="lbeAdditionalNodes" 
-                                 ItemsSource="{Binding Source={vncxe:EnumBindingSource {x:Type vncca:AdditionalNodes}}}"
+                                 ItemsSource="{Binding Source={vncxe:EnumBindingSource {x:Type vnccasn:AdditionalNodes}}}"
                                  SelectedIndex="0"                                                         
                                  ShowBorder="False" Background="{x:Null}">
                     </dxe:ComboBoxEdit>

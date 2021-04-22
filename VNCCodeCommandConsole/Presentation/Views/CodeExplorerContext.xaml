@@ -19,6 +19,7 @@
     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
     
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncca="clr-namespace:VNC.CodeAnalysis;assembly=VNC.CodeAnalysis"
     xmlns:local="clr-namespace:VNCCodeCommandConsole.Presentation.Views"
     
     xmlns:converters="clr-namespace:VNCCodeCommandConsole.Presentation.Converters"    
@@ -346,10 +347,28 @@
                 </dxlc:LayoutGroup>
                 
                 <dxlc:LayoutGroup Header="Demo Context" x:Name="lgContextDemo"
-                                            View="GroupBox"
-                                            Orientation="Vertical"
+                                  View="GroupBox"
+                                  Orientation="Vertical"
                                   VerticalAlignment="Top"
-                                            IsCollapsible="True" IsCollapsed="False" >
+                                  IsCollapsible="True" IsCollapsed="False" >
+                    <dx:GroupFrame Header="Language" VerticalAlignment="Top" >
+
+                        <dxe:ListBoxEdit
+                                EditValue="{ Binding
+                                    Path=Language,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged }"
+                                ItemsSource="{Binding Source={local:EnumBindingSource {x:Type vncca:SyntaxLanguage}}}">
+                            <dxe:ListBoxEdit.StyleSettings>
+                                <dxe:RadioListBoxEditStyleSettings />
+                            </dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical" />
+                                </ItemsPanelTemplate>
+                            </dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dx:GroupFrame>
                     <TextBlock Text="Demo Controls Go Here - Likely just Language Selector"/>
                 </dxlc:LayoutGroup>
                         

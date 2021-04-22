@@ -18,17 +18,17 @@ namespace CCC.CodeChecks.Presentation.Views
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        //public PerformanceChecks(ViewModels.IChecksViewModel viewModel)
-        //{
-        //    Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+        public PerformanceChecks(ViewModels.IPerformanceChecksViewModel viewModel)
+        {
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
-        //  _instanceCountV++;
-        //    InitializeComponent();
+            _instanceCountV++;
+            InitializeComponent();
 
-        //    ViewModel = viewModel;
+            ViewModel = viewModel;
 
-        //    Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
         #region IInstanceCount
 

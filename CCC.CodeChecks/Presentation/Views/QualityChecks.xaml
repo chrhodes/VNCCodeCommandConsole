@@ -90,7 +90,7 @@
 
         <dxlc:LayoutItem>
             <Button Content="Has ControlFlags" 
-                    Style="{StaticResource CodeCheckButton}"
+                    Style="{StaticResource CodeCheckButtonNA}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="ControlFlags" />
         </dxlc:LayoutItem>
@@ -139,28 +139,28 @@
 
         <dxlc:LayoutItem>
             <Button Content="Is a Large Class" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="LargeClass" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Display Lines Of Code" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="LinesOfCode" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Has Long Parameter List" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="LongParameterList" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Has Lots Of Local Variables" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="LotsOfLocalVariables" />
         </dxlc:LayoutItem>
@@ -195,7 +195,7 @@
 
         <dxlc:LayoutItem>
             <Button Content="Has Unused Method Parameters" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="UnusedMethodParameters" />
         </dxlc:LayoutItem>

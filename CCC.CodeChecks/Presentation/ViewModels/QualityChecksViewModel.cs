@@ -11,7 +11,7 @@ using VNCCodeCommandConsole.Core.Events;
 
 namespace CCC.CodeChecks.Presentation.ViewModels
 {
-    public class QualityChecksViewModel : EventViewModelBase, IInstanceCountVM
+    public class QualityChecksViewModel : EventViewModelBase, IQualityChecksViewModel, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load

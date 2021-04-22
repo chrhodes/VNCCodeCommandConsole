@@ -12,6 +12,7 @@ using Prism.Commands;
 using Prism.Events;
 
 using VNC;
+using VNC.CodeAnalysis;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
@@ -58,7 +59,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
             // TODO(crhodes)
             // For now, default to XmlConfig.  Later switch to Project/Solution
-            ContextModeValue = ContextMode.XmlConfig;
+            ContextMode3Value = ContextMode2.XmlConfig;
 
             PopulateContextFromXmlFile();
 
@@ -112,7 +113,6 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         #region Fields and Properties
 
-
         private ContextMode2 _contextMode2Value;
         private ContextMode2 _contextMode3Value;
         private string _contextModeEditValue;
@@ -128,6 +128,20 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
         private string _solutionFile = "";
         private string _sourceFile = "";
         private string _sourcePath = "";
+
+        private SyntaxLanguage _language = SyntaxLanguage.CS;
+
+        public SyntaxLanguage Language
+        {
+            get => _language;
+            set
+            {
+                if (_language == value)
+                    return;
+                _language = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ContextMode ContextModeValue
         {
@@ -592,22 +606,32 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             // Just hard code a couple of files for now till we sort through this
             // Maybe load this from Config File.
 
-            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AML.vb");
-            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AppConfig.vb");
+            switch (Language)
+            {
+                case SyntaxLanguage.CS:
+                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VB.cs");
+                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\CS.cs");
+                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCCSSyntaxWalkerBase.cs");
+                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCVBSyntaxWalkerBase.cs");
 
-            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE1.vb");
-            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE2.vb");
-            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE3.vb");
-            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE4.vb");
+                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTreeBasics.cs");
+                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-CodeQuality.cs");
+                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTree.cs");
+                    break;
 
-            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VB.cs");
-            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\CS.cs");
-            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCCSSyntaxWalkerBase.cs");
-            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCVBSyntaxWalkerBase.cs");
+                case SyntaxLanguage.VB:
+                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AML.vb");
+                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AppConfig.vb");
 
-            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTreeBasics.cs");
-            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-CodeQuality.cs");
-            filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTree.cs");
+                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE1.vb");
+                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE2.vb");
+                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE3.vb");
+                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE4.vb");
+                    break;
+
+                default:
+                    throw new ArgumentException("GetDemoFiles: Unexpected Language");
+            }
 
             Log.VIEWMODEL($"Exit: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
 
