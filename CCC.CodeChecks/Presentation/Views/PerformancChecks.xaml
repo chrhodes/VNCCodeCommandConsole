@@ -91,7 +91,7 @@
         <dxlc:LayoutItem>
             <Button Content="Avoid Excessive Local Variables" 
                     Style="{StaticResource CodeCheckButtonNA}"
-                    Command="{Binding AvoidExcessiveLocalVariables}"             
+                    Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="AvoidExcessiveLocalVariables" />
         </dxlc:LayoutItem>
 
