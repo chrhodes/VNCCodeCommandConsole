@@ -145,6 +145,13 @@
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
+            <Button Content="Class has Lots of Fields" 
+                    Style="{StaticResource CodeCheckButton}"
+                    Command="{Binding CallCodeCheckCommand}"             
+                    CommandParameter="LotsOfFields" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
             <Button Content="Display Lines Of Code" 
                     Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             

@@ -75,6 +75,9 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             ProjectFiles = new ObservableCollection<XElement>();
             SourceFiles = new ObservableCollection<XElement>();
 
+            FilesDemoCS = new ObservableCollection<string>();
+            FilesDemoVB = new ObservableCollection<string>();
+
             SelectedSolutionFiles = new ObservableCollection<XElement>();
             SelectedProjectFiles = new ObservableCollection<XElement>();
             SelectedSourceFiles = new ObservableCollection<XElement>();
@@ -88,6 +91,20 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             foreach (var branch in sourceBranches.Elements())
             {
                 Branches.Add(branch);
+            }
+
+            foreach (var file in xDocument.Descendants("DemoFiles")
+                .Elements("File")
+                .Where(df => df.Attribute("Language").Value == "CS"))
+            {
+                FilesDemoCS.Add(file.Attribute("FullPath").Value);
+            }
+
+            foreach (var file in xDocument.Descendants("DemoFiles")
+                .Elements("File")
+                .Where(df => df.Attribute("Language").Value == "VB"))
+            {
+                FilesDemoVB.Add(file.Attribute("FullPath").Value);
             }
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
@@ -442,6 +459,10 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
         }
 
         public ObservableCollection<XElement> SourceFiles { get; set; }
+        public ObservableCollection<string> FilesDemoCS { get; set; }
+        public List<string> SelectedFilesDemoCS { get; set; }
+        public ObservableCollection<string> FilesDemoVB { get; set; }
+        public List<string> SelectedFilesDemoVB { get; set; }
 
         ObservableCollection<XElement> _selectedSourceFiles;
 
@@ -575,16 +596,20 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
             switch (ContextMode3Value)
             {
-                case ContextMode2.Demo:
-                    filesToProcess = GetDemoFiles();
-                    break;
-
                 case ContextMode2.SolutionProject:
-                    filesToProcess = GetSolutionFIles();
+                    filesToProcess = GetFilesSolutionProject();
                     break;
 
                 case ContextMode2.XmlConfig:
-                    filesToProcess = GetXmlFiles();
+                    filesToProcess = GetFilesXmlConfig();
+                    break;
+
+                case ContextMode2.File:
+                    filesToProcess = GetFilesFile();
+                    break;
+
+                case ContextMode2.Demo:
+                    filesToProcess = GetFilesDemo();
                     break;
 
                 default:
@@ -596,11 +621,16 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             return filesToProcess;
         }
 
-        private List<string> GetDemoFiles()
+        private List<string> GetFilesFile()
+        {
+            throw new NotImplementedException();
+        }
+
+        private List<string> GetFilesDemo()
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
-            List<String> filesToProcess = new List<string>();
+            List<String> filesToProcess;
 
             // HACK(crhodes)
             // Just hard code a couple of files for now till we sort through this
@@ -609,28 +639,30 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             switch (Language)
             {
                 case SyntaxLanguage.CS:
-                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VB.cs");
-                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\CS.cs");
-                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCCSSyntaxWalkerBase.cs");
-                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCVBSyntaxWalkerBase.cs");
+                    filesToProcess = SelectedFilesDemoCS;
+                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VB.cs");
+                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\CS.cs");
+                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCCSSyntaxWalkerBase.cs");
+                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCVBSyntaxWalkerBase.cs");
 
-                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTreeBasics.cs");
+                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTreeBasics.cs");
 
-                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-CodeDesignChecks.cs");
-                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-CodePerformanceChecks.cs");
-                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-CodeQualityChecks.cs");
+                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-CodeDesignChecks.cs");
+                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-CodePerformanceChecks.cs");
+                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-CodeQualityChecks.cs");
 
-                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTree.cs");
+                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTree.cs");
                     break;
 
                 case SyntaxLanguage.VB:
-                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AML.vb");
-                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AppConfig.vb");
+                    filesToProcess = SelectedFilesDemoVB;
+                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AML.vb");
+                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AppConfig.vb");
 
-                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE1.vb");
-                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE2.vb");
-                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE3.vb");
-                    filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE4.vb");
+                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE1.vb");
+                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE2.vb");
+                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE3.vb");
+                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE4.vb");
                     break;
 
                 default:
@@ -642,7 +674,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             return filesToProcess;
         }
 
-        private List<string> GetSolutionFIles()
+        private List<string> GetFilesSolutionProject()
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
@@ -655,7 +687,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             return filesToProcess;
         }
 
-        private List<string> GetXmlFiles()
+        private List<string> GetFilesXmlConfig()
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 

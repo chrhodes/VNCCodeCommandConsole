@@ -83,14 +83,14 @@
 
         <dxlc:LayoutItem>
             <Button Content="AvoidBoxing" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="AvoidBoxing" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Avoid Excessive Local Variables" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="AvoidExcessiveLocalVariables" />
         </dxlc:LayoutItem>
