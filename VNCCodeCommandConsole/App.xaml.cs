@@ -34,7 +34,7 @@ namespace VNCCodeCommandConsole
 
             Thread.Sleep(150);
 
-            Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY, startTicks);
+            startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY, startTicks);
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
