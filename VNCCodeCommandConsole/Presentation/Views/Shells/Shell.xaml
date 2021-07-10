@@ -1,19 +1,67 @@
-﻿<Window 
+﻿<Window
     x:Class="VNCCodeCommandConsole.Presentation.Views.Shell"
+    x:Name="thisShell"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-    mc:Ignorable="d" 
-    
-    xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"    
-    xmlns:prism="http://prismlibrary.com/"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d"
 
-    prism:ViewModelLocator.AutoWireViewModel="True"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:views="clr-namespace:VNCCodeCommandConsole.Presentation.Views"
+    xmlns:viewModels="clr-namespace:VNCCodeCommandConsole.Presentation.ViewModels"
+
+    xmlns:core="clr-namespace:VNCCodeCommandConsole.Core;assembly=VNCCodeCommandConsole.Core"
+
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="False"
+
     Title="{Binding Title}"
-    d:DesignHeight="800" d:DesignWidth="1200"
+    Background="{StaticResource ShellBackground}"
+
+    d:DesignWidth="1200" d:DesignHeight="800" 
+    d:DesignStyle="{StaticResource vncDesignStyleW}"
  >
+    <!-- <d:DesignerProperties.DesignStyle> -->
+    <!-- <Style TargetType="Window"> -->
+    <!-- <Setter Property="Background" Value="White" /> -->
+    <!-- </Style> -->
+    <!-- </d:DesignerProperties.DesignStyle> -->
+
+    <!-- d:DesignWidth="1200" d:DesignHeight="800" -->
+
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" />
+
+        <!-- This is useful for debugging V VM constructor issues -->
+
+        <DockPanel Grid.Row="1" >
+
+            <StackPanel Orientation="Horizontal" Margin="5" DockPanel.Dock="Right" >
+                <Label Content=".NET Runtime: " />
+                <Label Content="{Binding RuntimeVersion}" />
+            </StackPanel>
+
+            <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="V:" />
+                    <Label Content="{Binding ElementName=thisShell, Path=InstanceCountV}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="VM:" />
+
+                    <Label Content="{Binding InstanceCountVM}" />
+                </StackPanel>
+            </StackPanel>
+
+        </DockPanel>
+
     </Grid>
+
 </Window>
+

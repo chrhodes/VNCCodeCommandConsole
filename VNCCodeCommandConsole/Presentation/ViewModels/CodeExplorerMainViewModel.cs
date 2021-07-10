@@ -10,6 +10,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.VisualBasic;
 
 using Prism.Events;
+using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.CodeAnalysis;
@@ -66,7 +67,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             IConfigurationOptionsViewModel configurationOptionsViewModel,
             ICodeExplorerContextViewModel codeExplorerContextViewModel,
             IEventAggregator eventAggregator,
-            IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
+            IDialogService dialogService) : base(eventAggregator, dialogService)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

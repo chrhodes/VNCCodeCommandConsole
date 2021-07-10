@@ -7,12 +7,19 @@ using System.Threading.Tasks;
 
 namespace VNCCodeCommandConsole
 {
-    public class Common
+    public static class Common
     {
         public const string APPLICATION_NAME = "VNCCodeCommandConsole";
         public const string LOG_CATEGORY = "VNCCodeCommandConsole";
 
         public const string cCONFIG_FILE = @"C:\temp\VNCCodeCommandConsole_Config.xml";
+
+        private static string _runtimeVersion;
+        public static string RuntimeVersion
+        {
+            get => _runtimeVersion;
+            set => _runtimeVersion = value;
+        }
 
         public static event EventHandler AutoHideGroupSpeedChanged;
 

@@ -13,6 +13,8 @@ using Prism.Regions;
 using Prism.Unity;
 
 using VNC;
+using VNC.Core.Presentation.ViewModels;
+using VNC.Core.Presentation.Views;
 using VNC.Core.Services;
 
 using VNCCodeCommandConsole.Presentation.Views;
@@ -99,8 +101,11 @@ namespace VNCCodeCommandConsole
             //containerRegistry.RegisterSingleton<IAddressDataService, AddressDataService>();
             // AddressDataService2 has a constructor that takes a CustomPoolAndSpaDbContext.
 
-            //containerRegistry.RegisterSingleton<ICatLookupDataService, CatLookupDataService>();
-            containerRegistry.Register<IMessageDialogService, MessageDialogService>();
+            // Common Dialogs used my most applications.
+
+            containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>("NotificationDialog");
+            containerRegistry.RegisterDialog<OkCancelDialog, OkCancelDialogViewModel>("OkCancelDialog");
+
 
             // Add the new UI elements
 
@@ -126,8 +131,8 @@ namespace VNCCodeCommandConsole
             Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             //NOTE(crhodes)
-            // Order matters here.  Application depends on types in Cat
-            moduleCatalog.AddModule(typeof(CatModule));
+            // Order matters here.  
+
             moduleCatalog.AddModule(typeof(CodeChecksModule));
             moduleCatalog.AddModule(typeof(FindSyntaxModule));
             moduleCatalog.AddModule(typeof(ModifySyntaxModule));
@@ -229,106 +234,12 @@ namespace VNCCodeCommandConsole
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-
             long startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
 
             try
             {
-
                 VerifyApplicationPrerequisites();
-                // HACK(crhodes)
-                // Commented all this out for now.
 
-                //AppDomain.CurrentDomain.UnhandledException +=
-                //              new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
-
-                //Common.CurrentUser = new WindowsPrincipal(WindowsIdentity.GetCurrent());
-
-                //if (Data.Config.ADBypass)
-                //{
-                //    Common.IsAdministrator = true;
-                //    Common.IsBetaUser = true;
-                //}
-                //else
-                //{
-                //    if (!Data.Config.AD_Users_AllowAll)
-                //    {
-
-                //        bool isAuthorizedUser = VNC.ActiveDirectory.Helper.CheckGroupMembership(
-                //            //"maward", 
-                //            Common.CurrentUser.Identity.Name,
-                //            Data.Config.ADGroup_Users,
-                //            Data.Config.AD_Domain);
-
-                //        if (!isAuthorizedUser)
-                //        {
-                //            MessageBox.Show(string.Format("You must be a member of {0}\\{1} to run this application.",
-                //                Data.Config.AD_Domain, Data.Config.ADGroup_Users));
-                //            return;
-                //        }
-                //    }
-
-                //    Common.IsAdministrator = VNC.ActiveDirectory.Helper.CheckDirectGroupMembership(
-                //        Common.CurrentUser.Identity.Name,
-                //        Data.Config.ADGroup_Administrators,
-                //        Data.Config.AD_Domain);
-
-                //    Common.IsBetaUser = VNC.ActiveDirectory.Helper.CheckDirectGroupMembership(
-                //        Common.CurrentUser.Identity.Name,
-                //        Data.Config.ADGroup_BetaUsers,
-                //        Data.Config.AD_Domain);
-
-                //    Common.IsDeveloper = Common.CurrentUser.Identity.Name.Contains("crhodes") ? true : false;
-
-                //    // Next lines are for testing UI only.  Comment out for normal operation.
-                //    //Common.IsAdministrator = false;   
-                //    //Common.IsBetaUser = false; 
-                //    //Common.IsDeveloper = false;
-                //}
-
-                // Cannot do here as the Common.ApplicationDataSet has not been loaded.  Need to move here or do later.
-                // For now this is in DXRibbonWindowMain();
-
-                //var eventMessage = "Started";
-                //SQLInformation.Helper.IndicateApplicationUsage(LOG_CATEGORY, DateTime.Now, currentUser.Identity.Name, eventMessage);
-
-                // Launch the main window.
-
-
-
-                // TODO(crhodes)
-                // Would be cool to start this with a Window specified in the App.Config file
-
-                //User_Interface.Windows.SplashScreen _window1 = new User_Interface.Windows.SplashScreen();
-
-
-                // HACK(crhodes)
-                // COmmented this out for now
-
-                //User_Interface.Windows.DXRibbonWindowMain _window1 = new User_Interface.Windows.DXRibbonWindowMain();
-
-                //User_Interface.Windows.About _window1 = new User_Interface.Windows.About();
-
-                //String windowArgs = string.Empty;
-                // Check for arguments; if there are some build the path to the package out of the args.
-                //if (args.Args.Length > 0 && args.Args[0] != null)
-                //{
-                //    for (int i = 0; i < args.Args.Length; ++i)
-                //    {
-                //        windowArgs = args.Args[i];
-                //        switch (i)
-                //        {
-                //            case 0: // Patient Id
-                //                //patientId = windowArgs;
-                //                break;
-                //        }
-                //    }
-                //}
-
-                // HACK(crhodes)
-                // Commented this out for now
-
-                //_window1.Show();
             }
             catch (Exception ex)
             {
@@ -338,23 +249,38 @@ namespace VNCCodeCommandConsole
 
             Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        
+
         private void VerifyApplicationPrerequisites()
         {
             if (! File.Exists(Common.cCONFIG_FILE))
             {
                 throw new FileNotFoundException($"Cannot find {Common.cCONFIG_FILE} - Aborting");
             }
-            else
-            {
-                // TODO(crhodes)
-                // Maybe some basic checks that file valid, contains what we need, etc.
-            }
+
+            var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
+
+            Common.RuntimeVersion = versionInfo.FileVersion;
+
+            //var v = versionInfo.Comments;
+            //var v1 = versionInfo.CompanyName;
+            //var v2 = versionInfo.FileDescription;
+            //var v3 = versionInfo.FileName;
+            //var v4 = versionInfo.FileVersion;
+            //var v5 = versionInfo.ProductVersion;
+            //var v6 = versionInfo.ProductName;
+        }
+        private void Application_Activated(object sender, EventArgs e)
+        {
+            long startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
+
+
+            Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
+        private void Application_Deactivated(object sender, EventArgs e)
         {
-            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY );
+            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY);
+
 
             Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -363,12 +289,14 @@ namespace VNCCodeCommandConsole
         {
             long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY);
 
+
             Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void Application_Deactivated(object sender, EventArgs e)
+        private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
         {
-            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY);
+            long startTicks = Log.APPLICATION_END($"Enter: ReasonSessionEnding:({e.ReasonSessionEnding})", Common.LOG_CATEGORY);
+
 
             Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -384,6 +312,7 @@ namespace VNCCodeCommandConsole
 
             e.Handled = true;
         }
+
 
         #endregion
 

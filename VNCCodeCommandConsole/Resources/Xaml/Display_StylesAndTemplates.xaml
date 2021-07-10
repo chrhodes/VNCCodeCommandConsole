@@ -13,12 +13,23 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     mc:Ignorable="d" >
 
-    <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+    <!-- This is used to make the design experience better -->
+    <Style x:Key="vncDesignStyleUC" TargetType="UserControl">
+        <Setter Property="Background" Value="White" />
+    </Style>
+
+    <Style x:Key="vncDesignStyleW" TargetType="Window">
+        <Setter Property="Background" Value="White" />
+    </Style>
     
-    <SolidColorBrush x:Key="FriendMainBackground" Color="#F04040" />
-    <SolidColorBrush x:Key="FriendNavigationBackground" Color="#F08040" />
-    <SolidColorBrush x:Key="FriendMeetingDetailBackground" Color="#F0C040" />
-    <SolidColorBrush x:Key="FriendDetailBackground" Color="#F0E040" />
+    <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+
+    <SolidColorBrush x:Key="CombinedMainBackground" Color="#00E0F0" />
+    <SolidColorBrush x:Key="CombinedNavigationBackground" Color="#90FFFF" />
+
+    <SolidColorBrush x:Key="ShellBackground" Color="#C0C0C0" />
+    <SolidColorBrush x:Key="RibbonBackground" Color="#A0A0A0" />
+    <SolidColorBrush x:Key="MainBackground" Color="#E0E0E0" />
 
     <!-- This is used to make the design experience better -->
     <Style x:Key="vncDesignStyle" TargetType="UserControl">

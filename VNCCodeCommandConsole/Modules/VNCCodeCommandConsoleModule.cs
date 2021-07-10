@@ -58,21 +58,7 @@ namespace VNCCodeCommandConsole
             //containerRegistry.Register<IMain, MainDxLayout>();
             containerRegistry.Register<IMain, CodeExplorerMain>();
 
-            containerRegistry.Register<ICombinedMainViewModel, CombinedMainViewModel>();
-            containerRegistry.Register<ICombinedMain, CombinedMain>();
 
-            containerRegistry.Register<ICombinedNavigationViewModel, CombinedNavigationViewModel>();
-            containerRegistry.RegisterSingleton<ICombinedNavigation, CombinedNavigation>();
-
-            containerRegistry.Register<IToyDetailViewModel, ToyDetailViewModel>();
-            containerRegistry.RegisterSingleton<IToyDetail, ToyDetail>();
-
-            containerRegistry.RegisterSingleton<IToyDataService, ToyDataService>();
-            containerRegistry.RegisterSingleton<IToyLookupDataService, ToyLookupDataService>();
-
-            // This shows the AutoWire ViewModel in action. 
-            containerRegistry.Register<IViewABCViewModel, ViewABCViewModel>();
-            containerRegistry.Register<IViewABC, ViewABC>();
 
             containerRegistry.RegisterSingleton<ICodeExplorerContextViewModel, CodeExplorerContextViewModel>();
             containerRegistry.Register<ICodeExplorerContext, CodeExplorerContext>();

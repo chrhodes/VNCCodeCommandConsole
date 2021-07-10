@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 using Prism.Commands;
 using Prism.Events;
+using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.CodeAnalysis;
@@ -27,7 +28,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         public FindVBSyntaxViewModel(
             IEventAggregator eventAggregator,
-            IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
+            IDialogService dialogService) : base(eventAggregator, dialogService)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

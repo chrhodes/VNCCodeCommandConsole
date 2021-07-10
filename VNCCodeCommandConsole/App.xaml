@@ -11,11 +11,13 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"    
     
     xmlns:prism="http://prismlibrary.com/"
-    DispatcherUnhandledException="Application_DispatcherUnhandledException"
-    Startup="Application_Startup" 
-    SessionEnding="Application_SessionEnding" 
-    Exit="Application_Exit" 
-    Deactivated="Application_Deactivated"      
+    
+    Startup="Application_Startup"
+    Activated="Application_Activated"    
+    Deactivated="Application_Deactivated"
+    Exit="Application_Exit"
+    SessionEnding="Application_SessionEnding"
+    DispatcherUnhandledException="Application_DispatcherUnhandledException"   
 >
     <Application.Resources>
         
