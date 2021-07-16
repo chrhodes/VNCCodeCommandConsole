@@ -13,6 +13,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     mc:Ignorable="d" >
 
+    <!-- These are used to make the design experience better -->
+    <Style x:Key="vncDesignStyleUC" TargetType="UserControl">
+        <Setter Property="Background" Value="White" />
+    </Style>
+
+    <Style x:Key="vncDesignStyleW" TargetType="Window">
+        <Setter Property="Background" Value="White" />
+    </Style>
+    
     <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
     
     <SolidColorBrush x:Key="FriendMainBackground" Color="#F04040" />

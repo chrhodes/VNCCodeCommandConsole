@@ -13,7 +13,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     mc:Ignorable="d" >
 
-    <!-- This is used to make the design experience better -->
+    <!-- These are used to make the design experience better -->
     <Style x:Key="vncDesignStyleUC" TargetType="UserControl">
         <Setter Property="Background" Value="White" />
     </Style>

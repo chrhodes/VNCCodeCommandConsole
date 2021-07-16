@@ -17,7 +17,6 @@ namespace CCC.FindSyntax.Presentation.Views
 
             // Cannot do this as it breaks the button
             //lgHeader.DataContext = this;
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

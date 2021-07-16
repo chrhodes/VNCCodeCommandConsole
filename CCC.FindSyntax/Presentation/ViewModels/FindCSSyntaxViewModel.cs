@@ -241,17 +241,17 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         #endregion
 
-        #region Event Handlers
+        #region Event Handlers (none)
 
 
         #endregion
 
-        #region Public Methods
+        #region Public Methods (none)
 
 
         #endregion
 
-        #region Protected Methods
+        #region Protected Methods (none)
 
 
         #endregion
