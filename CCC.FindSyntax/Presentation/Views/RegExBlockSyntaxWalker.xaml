@@ -17,14 +17,16 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
 
-    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
->
-    <d:DesignerProperties.DesignStyle>
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core" 
+
+ >
+    <!--<d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
             <Setter Property="Background" Value="White" />
         </Style>
-    </d:DesignerProperties.DesignStyle> 
-    
+    </d:DesignerProperties.DesignStyle>-->
+    <!--Style="{StaticResource vncDesignStyleUC}"-->
+
     <!--DataContext="{Binding RelativeSource={RelativeSource Self}}"-->
 
     <dxlc:LayoutGroup
@@ -57,9 +59,7 @@
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutItem>
-            <!--<dxe:CheckEdit 
-                x:Name="ceShowBlock" Content="Show Block" 
-                IsChecked="{Binding DisplayBlock, Mode=TwoWay}" />-->            
+         
             <dxe:CheckEdit 
                 x:Name="ceShowBlock" Content="{Binding DisplayBlockLabel, Mode=TwoWay}" 
                 IsChecked="{Binding DisplayBlock, Mode=TwoWay}" />

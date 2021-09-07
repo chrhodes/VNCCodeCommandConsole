@@ -104,7 +104,8 @@ namespace CCC.FindSyntax.Presentation.Views
 
         public string RegEx
         {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code,
+            // do not touch the getter and setter inside this dependency property!
             get => (string)GetValue(RegExProperty);
             set => SetValue(RegExProperty, value);
         }
