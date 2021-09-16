@@ -37,7 +37,19 @@ namespace foo
 		}
 	}
 
-	internal class ClassInternal
+    protected internal class ClassProtectedInternal
+    {
+        public ClassProtectedInternal()
+        {
+        }
+
+        protected void Method1()
+        {
+
+        }
+    }
+
+    internal class ClassInternal
 	{
 		public ClassInternal()
 		{

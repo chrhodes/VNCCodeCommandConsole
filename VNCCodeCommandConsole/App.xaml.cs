@@ -15,7 +15,6 @@ using Prism.Unity;
 using VNC;
 using VNC.Core.Presentation.ViewModels;
 using VNC.Core.Presentation.Views;
-using VNC.Core.Services;
 
 using VNCCodeCommandConsole.Presentation.Views;
 
