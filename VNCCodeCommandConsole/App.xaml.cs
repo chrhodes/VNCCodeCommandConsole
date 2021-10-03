@@ -7,6 +7,8 @@ using CCC.CodeChecks;
 using CCC.FindSyntax;
 using CCC.ModifySyntax;
 
+using Microsoft.Build.Locator;
+
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -195,6 +197,8 @@ namespace VNCCodeCommandConsole
         protected override void InitializeShell(Window shell)
         {
             Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            MSBuildLocator.RegisterDefaults();
 
             base.InitializeShell(shell);
 
