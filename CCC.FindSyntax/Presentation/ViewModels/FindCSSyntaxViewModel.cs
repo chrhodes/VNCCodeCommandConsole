@@ -304,7 +304,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             var walker = new VNCSW.CS.UsingDirective();
-
+            
             commandConfiguration.WalkerPattern = UsingDirectiveWalker;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
