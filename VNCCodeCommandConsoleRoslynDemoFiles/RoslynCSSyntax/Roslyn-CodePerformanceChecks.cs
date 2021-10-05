@@ -1,7 +1,10 @@
 ﻿// From Source Code Analysis with Roslyn -
 
 using System;
-using System.Runtime.Serialization;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Threading;
 
 public class AvoidBoxing
 {
@@ -10,8 +13,8 @@ public class AvoidBoxing
         int x = 32;
         Point p = new Point(10, 10);
         object box = p;
-        p.x = 20;
-        Console.Write(((Point)box).x);
+        p.X = 20;
+        Console.Write(((Point)box).X);
         object o = x;
     }
 }
@@ -27,7 +30,7 @@ public class AvoidUsingDynamic
     }
 }
 
-public class AvoidExcissiveLocalVariables
+public class AvoidExcessiveLocalVariables
 {
     void fun()
     {
@@ -43,10 +46,12 @@ public class PreferLiteralsOverEvaluation
 {
     public string fun()
     {
-        int x = ""EDGE"".Length;
-        string s = ""Edge"".Substring(1, 4);
-        return ""EDGE"".ToLower();
-        ""234"".TryParse();
+        int x = "EDGE".Length;
+        string s = "Edge".Substring(1, 4);
+
+        //"234".TryParse();
+        return "EDGE".ToLower();
+
     }
 
     public string GetRep(string upper)
@@ -68,16 +73,23 @@ public class NoObjectArraysInParameters
 {
     bool someSearchWithObjParams(params object[] searchTerms)
     {
+        return false;
     }
-    bool someSearch(params objectsome[] searchCriteria)
-    {
-        //Do some search
-    }
+
+    //bool someSearch(params objectsome[] searchCriteria)
+    //{
+    //    //Do some search
+    //    return true;
+    //}
+
     bool search(int a, int b, params string[] arra)
     {
+        return false;
     }
+
     bool search(string code, int length)
     {
+        return true;
     }
 }
 
@@ -129,13 +141,13 @@ public class ValueTypesOverrideEqualsAndGetHashCode
 
 public class AvoidEmptyStringsToFindZeroLength
 {
-    string s1 = ""test"";
+    string s1 = "test";
     public void EqualsTest()
     {
-        if (s1 == """")
+        if (s1 == "")
         {
-            Console.WriteLine(@""s1 equals empty
-            string."");
+            Console.WriteLine(@"s1 equals empty
+            string.");
         }
     }
 
@@ -143,7 +155,7 @@ public class AvoidEmptyStringsToFindZeroLength
     {
         if (s1 != null && s1.Length == 0)
         {
-            Console.WriteLine(""s1.Length == 0."");
+            Console.WriteLine("s1.Length == 0.");
         }
     }
 
@@ -151,8 +163,8 @@ public class AvoidEmptyStringsToFindZeroLength
     {
         if (!String.IsNullOrEmpty(s1))
         {
-            Console.WriteLine(""s1 != null and
-            s1.Length != 0."");
+            Console.WriteLine(@"s1 != null and
+            s1.Length != 0.");
         }
     }
 }
@@ -185,7 +197,7 @@ public class DoNotReturnArrayFromProperty
         nameValues = new string[100];
         for (int i = 0; i < 100; i++)
         {
-            nameValues[i] = ""Sample"";
+            nameValues[i] = "Sample";
         }
     }
 
@@ -204,16 +216,17 @@ public class DoNotReturnArrayFromProperty
         // One copy is made each time the loop executes,
         // and one copy is made each time the condition is
         // tested.
-        Test t = new DoNotReturnArrayFromProperty();
+        //Test t = new DoNotReturnArrayFromProperty();
 
-        for (int i = 0; i < t.Names.Length; i++)
-        {
-            if (t.Names[i] == (""SomeName""))
-            {
-            // Perform some operation.
-        }
+        //for (int i = 0; i < t.Names.Length; i++)
+        //{
+        //    if (t.Names[i] == ("SomeName"))
+        //    {
+        //        // Perform some operation.
+        //    }
+        //}
     }
-}
+
 }
 
 public class DoNotUseThreadAbortOrThreadSuspend
@@ -225,10 +238,15 @@ public class DoNotUseThreadAbortOrThreadSuspend
         newThread.Start();
         Thread.Sleep(1000);
         // Abort newThread.
-        Console.WriteLine(""Main aborting new thread."");
-        newThread.Abort(""Information from Main."");
+        Console.WriteLine("Main aborting new thread.");
+        newThread.Abort("Information from Main.");
         // Wait for the thread to terminate.
         newThread.Join();
-        Console.WriteLine(@""New thread terminated – Main exiting."");
+        Console.WriteLine(@"New thread terminated – Main exiting.");
+    }
+
+    private static void TestMethod()
+    {
+
     }
 }

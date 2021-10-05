@@ -52,12 +52,12 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
         #endregion
 
-        #region Enums
+        #region Enums (none)
 
 
         #endregion
 
-        #region Structures
+        #region Structures (none)
 
 
         #endregion
@@ -266,7 +266,8 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             // NOTE(crhodes)
             // Use walkerPropertyName and Reflection on this class
-            // to find the method to pass.  This allows us to have one method
+            // to find the method to pass.
+            // This allows us to have one method
             // to handle all the walkers that use the RegExSyntaxWalker
 
             // First get the CommandParameter property value

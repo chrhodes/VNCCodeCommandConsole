@@ -50,15 +50,8 @@ namespace VNCCodeCommandConsole
             // Pick one of these for the MainRegion
             // Use Main to see the AutoWireViewModel in action.
 
-            //containerRegistry.Register<IMainViewModel, MainViewModel>();            
-            //containerRegistry.Register<IMainDxLayout, MainDxLayoutViewModel>();
             containerRegistry.Register<ICodeExplorerMainViewModel, CodeExplorerMainViewModel>();
-
-            //containerRegistry.Register<IMain, Main>();            
-            //containerRegistry.Register<IMain, MainDxLayout>();
             containerRegistry.Register<IMain, CodeExplorerMain>();
-
-
 
             containerRegistry.RegisterSingleton<ICodeExplorerContextViewModel, CodeExplorerContextViewModel>();
             containerRegistry.Register<ICodeExplorerContext, CodeExplorerContext>();
@@ -104,7 +97,7 @@ namespace VNCCodeCommandConsole
             _regionManager.RegisterViewWithRegion(RegionNames.ConfigurationOptionsRegion, typeof(IConfigurationOptions));
 
             _regionManager.RegisterViewWithRegion(RegionNames.SyntaxParserRegion, typeof(ISyntaxParser));
-            _regionManager.RegisterViewWithRegion(RegionNames.SyntaxWalkerRegion, typeof(ISyntaxWalker));
+            _regionManager.RegisterViewWithRegion(RegionNames.FindSyntaxRegion, typeof(ISyntaxWalker));
             _regionManager.RegisterViewWithRegion(RegionNames.WorkspaceExplorerRegion, typeof(IWorkspaceExplorer));
 
   

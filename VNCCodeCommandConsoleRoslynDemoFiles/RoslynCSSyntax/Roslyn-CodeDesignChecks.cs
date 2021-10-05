@@ -1,12 +1,16 @@
 ﻿// From Source Code Analysis with Roslyn -
 
 using System;
+using System.Collections.Generic;
+using System.Reflection.Metadata;
 using System.Runtime.Serialization;
 
 public class DeeplyNestedLoops
 {
     void fun2(int x)
     {
+        List<int> list = new List<int>();
+
         for (int i = 0; i < 10; i++)
         {
             for (int j = 0; j < 10; j++)
@@ -16,6 +20,8 @@ public class DeeplyNestedLoops
 
     void fun(int x)
     {
+        List<int> list = new List<int>();
+
         for (int i = 0; i < 10; i++)
         {
             for (int j = 0; j < 10; j++)
@@ -26,30 +32,51 @@ public class DeeplyNestedLoops
         }
     }
 
+    private void doThat(int j)
+    {
+        
+    }
+
     void straightLoop()
     {
         for (int j = 0; j < 10; j++)
             doThat(j);
     }
 
+    private void doSome(int z)
+    {
+        
+    }
     void loopingTheLoopWhile()
     {
+        List<int> Zzz = new List<int>();
+
         while (true)
             for (int x = 0; x < 10; x++)
-                foreach (var z in z[x])
+                foreach (var z in Zzz)
                     doSome(z);
     }
 
     void loopingTheLoop()
     {
+        IEnumerable<object> newItems = null;
+        IEnumerable<object> oldItems = null;
+
         foreach (var m in newItems)
             foreach (var z in oldItems)
-                for (int i = 0; i < z.Items.Count; i++)
+                for (int i = 0; i < 7; i++)
                     doThat(i, z, m);
+    }
+
+    private void doThat(int i, object z, object m)
+    {
+
     }
 
     void fun4(int x)
     {
+        List<int> list = new List<int>();
+
         for (int m = 0; m < 10; m += 2)
             for (int i = 0; i < 10; i++)
             {
@@ -78,10 +105,20 @@ public class OutParameters
 
 public class DeeplyNestedIfBlocks
 {
+    private void doSomeThing()
+    {
+        
+    }
+
     void check(int x)
     {
         if (x < 10)
             doSomeThing();
+    }
+
+    private void doThat()
+    {
+
     }
 
     void fun2(int x, int y)
@@ -91,11 +128,16 @@ public class DeeplyNestedIfBlocks
                 doThat();
     }
 
+    private void doOther()
+    {
+
+    }
+
     void fun(int x)
     {
         //really stupid example
         //but you shall get the point
-        int x = 20;
+
         //Nesting Level 1
         if (x < 10)
         {
@@ -118,6 +160,7 @@ public class LongListOfSwitches
 {
     public void fun(int a)
     {
+        object nothing = null;
         switch (a)
         {
             case 1: print(1); break;
@@ -138,6 +181,8 @@ public class LongListOfSwitches
             case 1: dothat(); break;
             case 2: dothese(); break;
         }
+        object nothing = null;
+        int g = 0;
         switch (g)
         {
             case 1: print(1); break;
@@ -150,6 +195,15 @@ public class LongListOfSwitches
             default: print(nothing); break;
         }
     }
+
+    void print(object o)
+    {
+
+    }
+
+    void dothat() { }
+    void dothese() { }
+
 }
 
 public class DataClasses
@@ -158,7 +212,7 @@ public class DataClasses
     {
         void fun() { }
         void fun1(int a) { }
-        void fun2(int a, int a) { }
+        void fun2(int a, int b) { }
         public int Age { get; set; }
         public string Name { get; set; }
     }
@@ -264,72 +318,82 @@ public class LotsOfMethodOverloads
             return createDocument(name, minPagesCount, false);
         }
 
-        public Document createDocument(String name, int minPagesCount, boolean firstPageBlank)
+        public Document createDocument(String name, int minPagesCount, Boolean firstPageBlank)
         {
             // just calls another method with default value of its parameter
             return createDocument(name, minPagesCount, false, "");
         }
 
-        public Document createDocument(String name, int minPagesCount, boolean firstPageBlank, String title)
+        public Document createDocument(String name, int minPagesCount, Boolean firstPageBlank, String title)
         {
             // here the real work gets done
+            return new Document();
         }
     }
 
     public class EmptyInterfaces
     {
-        namespace DesignLibrary
-{
+//        namespace DesignLibrary
+//{
     public interface IGoodInterface
-    {
-        void funny();
-    }
-    public interface IBadInterface // Violates rule
-    {
-    }
-}
-    }
-
-    public class TooManyParametersOnGenericTypes
-{
-    private static T FromString<T>(string s) where T : struct
-    {
-        if (typeof(T).Equals(typeof(decimal)))
         {
-            var x = (decimal)System.Convert.ToInt32(s) / 100;
-            return (T)Convert.ChangeType(x, typeof(T));
-        }
-        if (typeof(T).Equals(typeof(int)))
-        {
-            var x = System.Convert.ToInt32(s);
-            return (T)Convert.ChangeType(x, typeof(T));
-        }
-        if (typeof(T).Equals(typeof(DateTime)))
-        {
-        }
-        public string name()
-        {
-            return string.Empty;
+            void funny();
         }
 
-        //really a bad idea. Trust me!
-        private static T FromString2<T, T, T>(string s) where T : struct
+        public interface IBadInterface // Violates rule
         {
-            if (typeof(T).Equals(typeof(decimal)))
-            {
-                var x = (decimal)System.Convert.ToInt32(s) / 100;
-                return (T)Convert.ChangeType(x, typeof(T));
-            }
-            if (typeof(T).Equals(typeof(int)))
-            {
-                var x = System.Convert.ToInt32(s);
-                return (T)Convert.ChangeType(x, typeof(T));
-            }
-            if (typeof(T).Equals(typeof(DateTime)))
-            {
-            }
         }
+//}
     }
+
+    //public class TooManyParametersOnGenericTypes
+    //{
+    //    private static T FromString<T>(string s) where T : struct
+    //    {
+    //        if (typeof(T).Equals(typeof(decimal)))
+    //        {
+    //            var x = (decimal)System.Convert.ToInt32(s) / 100;
+    //            return (T)Convert.ChangeType(x, typeof(T));
+    //        }
+
+    //        if (typeof(T).Equals(typeof(int)))
+    //        {
+    //            var x = System.Convert.ToInt32(s);
+    //            return (T)Convert.ChangeType(x, typeof(T));
+    //        }
+
+    //        if (typeof(T).Equals(typeof(DateTime)))
+    //        {
+    //            var x = System.Convert.ToInt32(s);
+    //            return (T)Convert.ChangeType(x, typeof(T));
+    //        }
+
+    //        return typeof(T);
+    //    }
+
+    //    public string name()
+    //    {
+    //        return string.Empty;
+    //    }
+
+    //    //really a bad idea. Trust me!
+    //    private static T FromString2<T, T, T>(string s) where T : struct
+    //    {
+    //        if (typeof(T).Equals(typeof(decimal)))
+    //        {
+    //            var x = (decimal)System.Convert.ToInt32(s) / 100;
+    //            return (T)Convert.ChangeType(x, typeof(T));
+    //        }
+    //        if (typeof(T).Equals(typeof(int)))
+    //        {
+    //            var x = System.Convert.ToInt32(s);
+    //            return (T)Convert.ChangeType(x, typeof(T));
+    //        }
+    //        if (typeof(T).Equals(typeof(DateTime)))
+    //        {
+    //        }
+    //    }
+    //}
 
     public class StaticMembersOnGenericTypes
     {
@@ -353,7 +417,7 @@ public class LotsOfMethodOverloads
         {
             // Add constructor logic here.
         }
-        public abstract void fun() { }
+        //public abstract void fun() { }
     }
 
     public abstract class GoodAbstractClassWithConstructor
@@ -365,10 +429,10 @@ public class LotsOfMethodOverloads
     }
 
 
-        public sealed class SealedClassAndProtectedMembers
-        {
-            protected void ProtectedMethod() { }
-        }
+    public sealed class SealedClassAndProtectedMembers
+    {
+        protected void ProtectedMethod() { }
+    }
 
 
     public class ObjectObSession
@@ -386,3 +450,4 @@ public class LotsOfMethodOverloads
             return one;
         }
     }
+}

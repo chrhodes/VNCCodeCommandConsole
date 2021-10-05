@@ -92,17 +92,13 @@
 
                         </dxdo:LayoutPanel>
 
+                        <dxdo:LayoutPanel x:Name="lp_Commands_Walk" Caption="Find Syntax" 
+                                          AllowFloat="False" AllowClose="False" AllowDock="False" AllowHide="False"
+                                          Style="{StaticResource FixedLayoutPanelMedium}" >
 
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.FindSyntaxRegion}" />
 
-                        <!--<dxdo:LayoutPanel x:Name="lp_Commands_Find" Caption="Find Stuff" 
-                                          Style="{StaticResource FixedLayoutPanelMedium}">
-
-                            --><!--<uiuc:wucCommandsFind x:Name="wucCommandsFind" />-->
-                            <!--<TextBlock Text="TODO: uiuc:wucCommandsFind" />--><!--
-                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.FindRegion}" />
-
-                        </dxdo:LayoutPanel>-->
-
+                        </dxdo:LayoutPanel>
                     </dxdo:TabbedGroup>
 
                     <dxdo:LayoutPanel Name="lg_Body_dlm_lg_lpRoot" FontSize="12" 
@@ -325,12 +321,7 @@
 
                         </dxdo:LayoutPanel>-->
 
-                        <dxdo:LayoutPanel x:Name="lp_Commands_Walk" Caption="Syntax Walker" 
-                                         ItemWidth="300" >
 
-                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.SyntaxWalkerRegion}" />
-
-                        </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel x:Name="lp_Commands_Parse" Caption="Syntax Parser" 
                                           ItemWidth="300" MinWidth="275" MaxWidth="325">

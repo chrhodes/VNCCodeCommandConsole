@@ -15,7 +15,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
-  
+ 
   <ItemGroup>
         <PackageReference Include="DevExpress.Wpf.Core" Version="21.1.4" />
         <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="21.1.4" />

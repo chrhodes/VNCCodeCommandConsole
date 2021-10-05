@@ -20,8 +20,10 @@ namespace VNCCodeCommandConsole.Core
         public static string CatNavigationRegion = "CatNavigationRegion";
         public static string CatDetailRegion = "CatDetailRegion";
 
+
         public static string FindVBSyntaxRegion = "FindVBSyntaxRegion";
         public static string FindCSSyntaxRegion = "FindCSSyntaxRegion";
+        public static string FindSyntaxRegion = "FindSyntaxRegion";
 
         public static string FindCSCustomRegion = "FindCSCustomRegion";
         public static string FindVBCustomRegion = "FindVBCustomRegion";
@@ -45,8 +47,6 @@ namespace VNCCodeCommandConsole.Core
         public static string CommandsParseRegion = "CommandsParseRegion";
 
         public static string SyntaxParserRegion = "SyntaxParserRegion";
-
-        public static string SyntaxWalkerRegion = "SyntaxWalkerRegion";
 
         public static string WorkspaceExplorerRegion = "WorkspaceExplorerRegion";
 

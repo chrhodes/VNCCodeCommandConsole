@@ -1,6 +1,7 @@
 ﻿// From Source Code Analysis with Roslyn -
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 public class MagicNumbersInMathematics
@@ -10,6 +11,7 @@ public class MagicNumbersInMathematics
         int size = 10000;
         g += 23456;//bad code. magic number 23456 is used.
         g += size;
+
         return g / 10;
     }
 
@@ -30,21 +32,22 @@ public class MagicNumbersUsedInIndex
     int fun(int b)
     {
         int x = 323;
+        Dictionary<int, int> dic = new Dictionary<int, int>();
         int z = dic[x] + x + dic[323] + dic[17];
         return z + b;
     }
 
     float funny(float c)
     {
-        int d = 234;
-        Dictionary<float, string> dic = getDic();
+        float d = 234;
+        Dictionary<float, float> dic = getDic();
         float z = dic[d];
         return z;
     }
 
-    Dictionary<float, string> getDic()
+    Dictionary<float, float> getDic()
     {
-        return new Dictionary<float, string>();
+        return new Dictionary<float, float>();
     }
 }
 
@@ -61,11 +64,15 @@ public class MagicNumbersUsedInConditions
 
     int fun()
     {
+        int[] g = new int[1];
+
         return g[x];
     }
 
     bool zun()
     {
+        float z = 9;
+
         if (z > 3.4)
             return false;
         else
@@ -87,9 +94,9 @@ public class LadderIfStatements
             f3();
         if (c1() == 4)
             f4();
-        if (co() == 23)
+        if (c0() == 23)
             f22();
-        if (co() == 24)
+        if (c0() == 24)
             f21();
     }
 
@@ -101,11 +108,28 @@ public class LadderIfStatements
         if (c2() == 34)
             c45();
     }
+
+    public int c0() { return 0; }
+    public int c1() { return 0; }
+
+    public int c2() { return 0; }
+
+    public void f1() { }
+    public void c13() { }
+    public void c45() { }
+    public void f2() { }
+    public void f3() { }
+    public void f4() { }
+    public void f5() { }
+    public void f6() { }
+    public void f21() { }
+    public void f22() { }
+    public void read_that() { }
 }
 
 public class FragmentedConditions
 {
-    int maybe_do_something(...)
+    int maybe_do_something(int something, int somethingelse, int etc)
     {
         if (something != -1)
             return 0;
@@ -117,26 +141,36 @@ public class FragmentedConditions
         return 1;
     }
 
+    public void do_something() { }
+
     int otherFun()
     {
+        int bailIfIEqualZero = 1;
+        string shouldNeverBeEmpty = "";
+
         if (bailIfIEqualZero == 0)
-            return;
+            return 0;
         if (string.IsNullOrEmpty(shouldNeverBeEmpty))
-            return;
-        if (betterNotBeNull == null || betterNotBeNull.RunAwayIfTrue)
-            return;
+            return 0;
+
+        object betterNotBeNull = null;
+        object RunAwayIfTrue = null;
+
+        if (betterNotBeNull == null || betterNotBeNull == RunAwayIfTrue)
+            return 0;
+
         return 1;
     }
 }
 
 public class HungarianNotation
 {
-    float fIntRate = 4.456;
-    float intRate = 4.53;
+    float fIntRate = 4.456F;
+    float intRate = 4.53F;
     long liX = 342;
     bool bCondi = false;
-    string name = ""Sam"";
-	string strTitle = ""Mr"";
+    string name = "Sam";
+	string strTitle = "Mr";
 }
 
 public class LotsOfLocalVariablesInMethods
@@ -166,7 +200,7 @@ public class MethodsNotUsingAllParameters
     double funny(double x)
     {
         return x / 2.13;
-    }";
+    }
 }
 
 public class MultipleReturnStatements
@@ -175,7 +209,7 @@ public class MultipleReturnStatements
     {
         x++;
         if (x == 0)
-            return x
+            return x;
         else
             return x + 2;
     }
@@ -214,6 +248,12 @@ public class GoToLabels
     public void gotoFun()
     {
         // Search:
+        int x = 5;
+        int y = 5;
+        int myNumber = 0;
+
+        int[,] array = new int[2,3];
+
         for (int i = 0; i < x; i++)
         {
             for (int j = 0; j < y; j++)
@@ -224,11 +264,16 @@ public class GoToLabels
                 }
             }
         }
+
+    Found:
+        ;
+
     }
+
     static void Main()
     {
-        Console.WriteLine(@""Coffee sizes: 1 = Small 2 = Medium 3 = Large"");
-        Console.Write(""Please enter your selection: "");
+        Console.WriteLine(@"Coffee sizes: 1 = Small 2 = Medium 3 = Large");
+        Console.Write("Please enter your selection: ");
         string s = Console.ReadLine();
         int n = int.Parse(s);
         int cost = 0;
@@ -244,7 +289,7 @@ public class GoToLabels
                 cost += 50;
                 goto case 1;
             default:
-                Console.WriteLine(""Invalid selection."");
+                Console.WriteLine("Invalid selection.");
                 break;
         }
 
@@ -277,16 +322,16 @@ public class LinesOfCode
         {
             if (i % 3 == 0 && i % 5 == 0)
             {
-                Console.WriteLine(""FizzBuzz"");
+                Console.WriteLine("FizzBuzz");
             }
             //Just a comment
             else if (i % 3 == 0)
             {
-                Console.WriteLine(""Fizz"");
+                Console.WriteLine("Fizz");
             }
             else if (i % 5 == 0)
             {
-                Console.WriteLine(""Buzz"");
+                Console.WriteLine("Buzz");
             }
             else
             {
@@ -302,9 +347,14 @@ public class ControlFlags
 
     void update()
     {
-        if (!flag)
+        if (!cflag)
             if (thatThing())
-                flag = true;
+                cflag = true;
+    }
+
+    bool thatThing()
+    {
+        return true;
     }
 
     void thatOtherThing()
