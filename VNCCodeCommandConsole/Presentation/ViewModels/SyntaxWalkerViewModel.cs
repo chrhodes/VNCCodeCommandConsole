@@ -8,12 +8,13 @@ using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.CodeAnalysis;
+using VNC.CodeAnalysis.SyntaxWalkers;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
 using VNCCodeCommandConsole.Core.Events;
 
-using static VNC.CodeAnalysis.Types;
+using static VNC.CodeAnalysis.CommandTypes;
 
 using VNCCA = VNC.CodeAnalysis;
 using VNCSW = VNC.CodeAnalysis.SyntaxWalkers;

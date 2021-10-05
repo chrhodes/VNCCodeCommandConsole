@@ -207,17 +207,17 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public void ProcessOperationCS(VNCCA.Types.SearchTreeCommand searchTreeCommand)
+        public void ProcessOperationCS(CommandTypes.SearchTreeCommand searchTreeCommand)
         {
             ProcessOperation(searchTreeCommand, typeof(CSharpSyntaxTree));
         }
 
-        public void ProcessOperationVB(VNCCA.Types.SearchTreeCommand searchTreeCommand)
+        public void ProcessOperationVB(CommandTypes.SearchTreeCommand searchTreeCommand)
         {
             ProcessOperation(searchTreeCommand, typeof(VisualBasicSyntaxTree));
         }
 
-        public void ProcessOperation(VNCCA.Types.SearchTreeCommand searchTreeCommand, Type syntaxTreeType)
+        public void ProcessOperation(CommandTypes.SearchTreeCommand searchTreeCommand, Type syntaxTreeType)
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 

@@ -1,7 +1,6 @@
-﻿
-using Prism.Events;
+﻿using Prism.Events;
 
-using static VNC.CodeAnalysis.Types;
+using static VNC.CodeAnalysis.CommandTypes;
 
 namespace VNCCodeCommandConsole.Core.Events
 {

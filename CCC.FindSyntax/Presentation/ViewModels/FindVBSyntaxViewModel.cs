@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 using Prism.Commands;
 using Prism.Events;
@@ -9,12 +8,12 @@ using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.CodeAnalysis;
+using VNC.CodeAnalysis.SyntaxWalkers;
 using VNC.Core.Mvvm;
-using VNC.Core.Services;
 
 using VNCCodeCommandConsole.Core.Events;
 
-using static VNC.CodeAnalysis.Types;
+using static VNC.CodeAnalysis.CommandTypes;
 
 using VNCCA = VNC.CodeAnalysis;
 using VNCSW = VNC.CodeAnalysis.SyntaxWalkers;

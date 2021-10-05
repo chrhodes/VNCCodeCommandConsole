@@ -63,7 +63,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
         #region Fields and Properties
 
         private string _header;
-        private Types.SearchTreeCommand _searchTreeCommand;
+        private CommandTypes.SearchTreeCommand _searchTreeCommand;
 
         private bool _useRegEx;
         private string _regEx = "RESW-VM.*";
@@ -116,7 +116,7 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
-        public Types.SearchTreeCommand SearchTreeCommand
+        public CommandTypes.SearchTreeCommand SearchTreeCommand
         {
             get => _searchTreeCommand;
             set
