@@ -209,138 +209,15 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
         public void ProcessOperationCS(VNCCA.Types.SearchTreeCommand searchTreeCommand)
         {
-            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
-
-            StringBuilder sb = new StringBuilder();
-
-            ClearPreviousResults();
-
-            Dictionary<string, Int32> matches = new Dictionary<string, int>();
-            Dictionary<string, Int32> crcMatchesToString = new Dictionary<string, int>();
-            Dictionary<string, Int32> crcMatchesToFullString = new Dictionary<string, int>();
-
-            var filesToProcess = _codeExplorerContextViewModel.GetFilesToProcess();
-
-            if (filesToProcess.Count > 0)
-            {
-                if ((Boolean)_configurationOptionsViewModel.ListImpactedFilesOnly)
-                {
-                    sb.AppendLine("Would Search these files ....");
-                }
-
-                foreach (string filePath in filesToProcess)
-                {
-                    if ((Boolean)_configurationOptionsViewModel.ListImpactedFilesOnly)
-                    {
-                        sb.AppendLine(string.Format("  {0}", filePath));
-                    }
-                    else
-                    {
-                        StringBuilder sbFileResults = new StringBuilder();
-
-                        var sourceCode = "";
-
-                        using (var sr = new System.IO.StreamReader(filePath))
-                        {
-                            sourceCode = sr.ReadToEnd();
-                        }
-
-                        // 
-                        // This is where the action happens
-                        //
-                        // TODO(crhodes)
-                        // Figure out how to call - at least - searchTreeCommand Async
-                        // so UI runs (and clears)
-
-                        SyntaxTree tree = CSharpSyntaxTree.ParseText(sourceCode);
-
-                        VNCCA.SearchTreeCommandConfiguration searchTreeCommandConfiguration = new VNCCA.SearchTreeCommandConfiguration();
-
-                        searchTreeCommandConfiguration.CodeAnalysisOptions = _configurationOptionsViewModel.CodeAnalysisOptions.Model;
-
-                        searchTreeCommandConfiguration.Results = sbFileResults;
-                        searchTreeCommandConfiguration.SyntaxTree = tree;
-                        searchTreeCommandConfiguration.Matches = matches;
-                        searchTreeCommandConfiguration.CRCMatchesToString = crcMatchesToString;
-                        searchTreeCommandConfiguration.CRCMatchesToFullString = crcMatchesToFullString;
-
-                        sbFileResults = searchTreeCommand(searchTreeCommandConfiguration);
-
-                        if ((bool)_configurationOptionsViewModel.AlwaysDisplayFileName || (sbFileResults.Length > 0))
-                        {
-                            sb.AppendLine("Searching " + filePath);
-                        }
-
-                        sb.Append(sbFileResults.ToString());
-                    }
-                }
-            }
-            else
-            {
-                sb.AppendLine("No files selected to process");
-            }
-
-            if (!(Boolean)_configurationOptionsViewModel.DisplayResults)
-            {
-                // If only want to see the summary ...
-                sb.Clear();
-            }
-
-            Results = sb.ToString();
-
-            if ((Boolean)_configurationOptionsViewModel.DisplaySummary)
-            {
-                StringBuilder summary = new StringBuilder();
-
-                // Add information from the matches dictionary
-                summary.AppendLine("\n*** Summary ***\n");
-
-                foreach (var item in matches.OrderBy(v => v.Key).Select(k => k.Key))
-                {
-                    if (matches[item] >= _configurationOptionsViewModel.DisplaySummaryMinimum)
-                    {
-                        summary.AppendLine(string.Format("Count: {0,3} {1} ", matches[item], item));
-                    }
-                }
-
-                Summary = summary.ToString();
-
-                if ((Boolean)_configurationOptionsViewModel.DisplayCRC32)
-                {
-                    summary.Clear();
-
-                    summary.AppendLine("\n*** CRC ToString Summary *** \n");
-
-                    foreach (var item in crcMatchesToString.OrderBy(v => v.Key).Select(k => k.Key))
-                    {
-                        if (crcMatchesToString[item] >= _configurationOptionsViewModel.DisplaySummaryMinimum)
-                        {
-                            summary.AppendLine(string.Format("Count: {0,3} {1} ", crcMatchesToString[item], item));
-                        }
-                    }
-
-                    SummaryCRCToString = summary.ToString();
-
-                    summary.Clear();
-
-                    summary.AppendLine("\n*** CRC ToFullString Summary ***\n");
-
-                    foreach (var item in crcMatchesToFullString.OrderBy(v => v.Key).Select(k => k.Key))
-                    {
-                        if (crcMatchesToFullString[item] >= _configurationOptionsViewModel.DisplaySummaryMinimum)
-                        {
-                            summary.AppendLine(string.Format("Count: {0,3} {1} ", crcMatchesToFullString[item], item));
-                        }
-                    }
-
-                    SummaryCRCToString = summary.ToString();
-                }
-            }
-
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+            ProcessOperation(searchTreeCommand, typeof(CSharpSyntaxTree));
         }
 
         public void ProcessOperationVB(VNCCA.Types.SearchTreeCommand searchTreeCommand)
+        {
+            ProcessOperation(searchTreeCommand, typeof(VisualBasicSyntaxTree));
+        }
+
+        public void ProcessOperation(VNCCA.Types.SearchTreeCommand searchTreeCommand, Type syntaxTreeType)
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
@@ -369,7 +246,9 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                     }
                     else
                     {
-                        StringBuilder sbFileResults = new StringBuilder();
+                        StringBuilder sbFileResults;
+                        //StringBuilder sbFileResults = new StringBuilder();
+
 
                         var sourceCode = "";
 
@@ -381,14 +260,30 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                         // 
                         // This is where the action happens
                         //
+                        // TODO(crhodes)
+                        // Figure out how to call - at least - searchTreeCommand Async
+                        // so UI runs (and clears)
 
-                        SyntaxTree tree = VisualBasicSyntaxTree.ParseText(sourceCode);
+                        SyntaxTree tree = null;
+
+                        if (syntaxTreeType == typeof(CSharpSyntaxTree))
+                        {
+                            tree = CSharpSyntaxTree.ParseText(sourceCode);
+                        }
+                        else if (syntaxTreeType == typeof(VisualBasicSyntaxTree))
+                        {
+                            tree = VisualBasicSyntaxTree.ParseText(sourceCode);
+                        }
+                        else
+                        {
+                            // Error
+                        }
 
                         VNCCA.SearchTreeCommandConfiguration searchTreeCommandConfiguration = new VNCCA.SearchTreeCommandConfiguration();
 
                         searchTreeCommandConfiguration.CodeAnalysisOptions = _configurationOptionsViewModel.CodeAnalysisOptions.Model;
 
-                        searchTreeCommandConfiguration.Results = sbFileResults;
+                        //searchTreeCommandConfiguration.Results = sbFileResults;
                         searchTreeCommandConfiguration.SyntaxTree = tree;
                         searchTreeCommandConfiguration.Matches = matches;
                         searchTreeCommandConfiguration.CRCMatchesToString = crcMatchesToString;
@@ -465,7 +360,6 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
                     SummaryCRCToString = summary.ToString();
                 }
-
             }
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
