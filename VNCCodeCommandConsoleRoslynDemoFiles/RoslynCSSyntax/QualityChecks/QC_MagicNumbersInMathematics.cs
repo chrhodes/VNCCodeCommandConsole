@@ -2,21 +2,21 @@
 
 public class QC_MagicNumbersInMathematics
 {
-    float fun(int g)
+    float sad(int g)
     {
         int size = 10000;
-        g += 23456;//bad code. magic number 23456 is used.
+        g += 23456; //bad code. magic number 23456 is used.
         g += size;
 
         return g / 10;
     }
 
-    decimal updateRate(decimal rate)
+    decimal sad2(decimal rate)
     {
         return rate / 0.2345M;
     }
 
-    decimal updateRateM(decimal rateM)
+    decimal happy(decimal rateM)
     {
         decimal basis = 0.2345M;
         return rateM / basis;

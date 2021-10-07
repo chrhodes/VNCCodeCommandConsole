@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading;
+using System.Windows;
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -162,9 +163,17 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
                         var sourceCode = "";
 
-                        using (var sr = new System.IO.StreamReader(filePath))
+                        if (System.IO.File.Exists(filePath))
                         {
-                            sourceCode = sr.ReadToEnd();
+                            using (var sr = new System.IO.StreamReader(filePath))
+                            {
+                                sourceCode = sr.ReadToEnd();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show($"File: {filePath} does not exist, check config file.");
+                            continue;
                         }
 
                         // 
@@ -186,7 +195,15 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                             parametersArray = new object[] { sourceCode };
                         }
 
-                        sbFileResults = (StringBuilder)metricMethod.Invoke(null, parametersArray);
+                        try
+                        {
+                            sbFileResults = (StringBuilder)metricMethod.Invoke(null, parametersArray);
+                        }
+                        catch (Exception ex)
+                        {
+                            sb.AppendLine($"Exception while processing file {filePath}.");
+                            //sb.AppendLine($"  Ex: {ex}");
+                        }
 
                         if ((bool)_configurationOptionsViewModel.AlwaysDisplayFileName || (sbFileResults.Length > 0))
                         {

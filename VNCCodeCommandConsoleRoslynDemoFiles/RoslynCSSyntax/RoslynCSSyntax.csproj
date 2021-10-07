@@ -1,13 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <RootNamespace>RoslynCSSyntax</RootNamespace>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="DesignChecks\" />
-    <Folder Include="PerformanceChecks\" />
-  </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="echo &quot;Start Post-build Event&quot;&#xD;&#xA;&#xD;&#xA;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -file $(ProjectDir)\Execute-PostBuild.ps1 $(ConfigurationName) $(PlatformName) $(TargetName) -V&#xD;&#xA;&#xD;&#xA;echo &quot;End Post-Build Event&quot;" />
+  </Target>
 
 </Project>

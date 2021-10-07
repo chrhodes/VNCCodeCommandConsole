@@ -89,50 +89,36 @@
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Has ControlFlags" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+            <Button Content="Has Control Flags" 
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="ControlFlags" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Has FragmentedConditions" 
+            <Button Content="Has Fragmented Conditions" 
                     Style="{StaticResource CodeCheckButtonNA}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="FragmentedConditions" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Has GoToLabels" 
+            <Button Content="Has GoTo Labels" 
                     Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="GoToLabels" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Has HungarianVariableNames" 
+            <Button Content="Has Hungarian Variable Names" 
                     Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="HungarianVariableNames" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Has LadderIfStatements" 
-                    Style="{StaticResource CodeCheckButtonNA}"
-                    Command="{Binding CallCodeCheckCommand}"             
-                    CommandParameter="LadderIfStatements" />
-        </dxlc:LayoutItem>
-
-        <dxlc:LayoutItem>
-            <Button Content="Has Hungarian Variable Names" 
-                    Style="{StaticResource CodeCheckButtonNA}"
-                    Command="{Binding CallCodeCheckCommand}"             
-                    CommandParameter="HungarianVariableNames" />
-        </dxlc:LayoutItem>
-
-        <dxlc:LayoutItem>
             <Button Content="Has Ladder If Statements" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="LadderIfStatements" />
         </dxlc:LayoutItem>
@@ -145,7 +131,7 @@
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
-            <Button Content="Class has Lots of Fields" 
+            <Button Content="Class Has Lots of Fields" 
                     Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="LotsOfFields" />
@@ -174,7 +160,7 @@
 
         <dxlc:LayoutItem>
             <Button Content="Has Magic Numbers In Condition" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButton}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="MagicNumbersInCondition" />
         </dxlc:LayoutItem>

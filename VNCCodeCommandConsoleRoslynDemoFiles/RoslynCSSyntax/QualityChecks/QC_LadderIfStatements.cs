@@ -2,7 +2,7 @@
 
 public class QC_LadderIfStatements
 {
-    void fun()
+    void IsBad()
     {
         //Call a function only once
         if (c1() == 1)
@@ -13,35 +13,35 @@ public class QC_LadderIfStatements
             f3();
         if (c1() == 4)
             f4();
+
         if (c0() == 23)
-            f22();
+            f23();
         if (c0() == 24)
-            f21();
+            f24();
     }
 
-    void funny()
+    void IsGood()
     {
-        read_that();
-        if (c1() == 3)
+        if (c1() == 13)
             c13();
-        if (c2() == 34)
+
+        if (c2() == 45)
             c45();
     }
 
     public int c0() { return 0; }
     public int c1() { return 0; }
-
     public int c2() { return 0; }
 
-    public void f1() { }
     public void c13() { }
     public void c45() { }
+
+    public void f1() { }
     public void f2() { }
     public void f3() { }
     public void f4() { }
-    public void f5() { }
-    public void f6() { }
-    public void f21() { }
-    public void f22() { }
-    public void read_that() { }
+
+    public void f23() { }
+    public void f24() { }
+
 }

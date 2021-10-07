@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeCommandConsole>
+
+  <Applications>
+    <Application Name="App1" />
+    <Application Name="App2" />
+  </Applications>
+
+  <FindPickerDefaults>
+    <FindItem Value="HttpContext.Current.Application" />
+    <FindItem Value="HttpContext.Current.Session" />
+    <FindItem Value="HttpContext.Current.Cache" />
+  </FindPickerDefaults>
+
+  <DemoFiles>
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTree.cs" />
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTreeBasics.cs" />
+    
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-CodeDesignChecks.cs" />
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-CodePerformanceChecks.cs" />
+    
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\QC_CodeToCommentRation.cs" />
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\QC_ControlFlags.cs" />
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\QC_FragmentedConditions.cs" />
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\QC_GotToLabels.cs" />
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\QC_HungarianNotation.cs" />
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\QC_LadderIfStatements.cs" />
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\QC_LinesOfCode.cs" />
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\QC_LongParameterLists.cs" />
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\QC_LotsOfLocalVariablesInMethodes.cs" />
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\QC_MagicNumbersInMathematics.cs" />
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\QC_MagicNumbersUsedInConditions.cs" />
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\QC_MagicNumbersUsedInIndex.cs" />
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\QC_MethodesNotUsingAllParameters.cs" />
+    <File Language="CS" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\QC_MultipleReturnStatements.cs" />
+
+<!-- Use these until we convert the Roslyn stuff to VB -->
+
+    <File Language="VB" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\AML.vb" />
+    <File Language="VB" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\AppConfig.vb" />
+    
+    <File Language="VB" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE1.vb" />
+    <File Language="VB" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE2.vb" />
+    <File Language="VB" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE3.vb" />  
+    <File Language="VB" FullPath="C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE4.vb" />     
+  </DemoFiles>
+
+<!-- Currently we cannot have multiple Repo-Branch in a single session. -->
+<!-- This was not a problem with EASE.  May/May Not want to support -->
+
+  <SourceBranches>
+
+    <Branch Name="master" Repository="LegacyVNCCodeCommandConsole" RepositoryPath="C:\vnc\Git\chrhodes\LegacyVNCCodeCommandConsole">
+          <Solution Name="LegacyVNCCodeCommandConsole" FolderPath="" FileName="LegacyVNCCodeCommandConsole.sln">
+            <Project Name="LegacyVNCCodeCommandConsole" FolderPath="" FileName="LegacyVNCCodeCommandConsole.csproj" />
+          </Solution>
+    </Branch>
+    
+    <Branch Name="master" Repository="VNCCodeCommandConsole" RepositoryPath="C:\vnc\Git\chrhodes\VNCCodeCommandConsole">
+          <Solution Name="VNCCodeCommandConsole" FolderPath="" FileName="VNCCodeCommandConsole.sln">
+            <Project Name="VNCCodeCommandConsole" FolderPath="VNCCodeCommandConsole" FileName="VNCCodeCommandConsole.csproj" />
+            <Project Name="VNCCodeCommandConsole.Core" FolderPath="VNCCodeCommandConsole.Core" FileName="VNCCodeCommandConsole.Core.csproj" />
+            <Project Name="CCC.CodeChecks" FolderPath="CCC.CodeChecks" FileName="CCC.CodeChecks.csproj" />
+            <Project Name="CCC.FindSyntax" FolderPath="CCC.FindSyntax" FileName="CCC.FindSyntax.csproj" />
+            <Project Name="CCC.ModifySyntax" FolderPath="CCC.ModifySyntax" FileName="CCC.ModifySyntax.csproj" />
+          </Solution>
+    </Branch>    
+
+    <Branch Name="master" Repository="EaseWorksApplications"  RepositoryPath="C:\vnc\git\EaseSource\EaseWorksApplications-master">
+
+      <Solution Name="ClientApplications" FolderPath="ClientApps"                   FileName="ClientApplications.sln">
+        <Project Name="AutoUpdate"          FolderPath="ClientApps\AutoUpdate"          FileName="AutoUpdate.vbproj" />
+        <Project Name="ClientEditor"        FolderPath="ClientApps\ClientEditor"        FileName="ClientEditor.vbproj" />
+        <Project Name="DataLoader"          FolderPath="ClientApps\DataLoader"          FileName="DataLoader.vbproj" />
+        <Project Name="EASEBatch"           FolderPath="ClientApps\EASEBatch"           FileName="EASEBatch.vbproj" />
+        <Project Name="ElementGenerator"    FolderPath="ClientApps\ElementGenerator"    FileName="ElementGenerator.vbproj" />
+        <Project Name="EStart"              FolderPath="ClientApps\EStart"              FileName="EStart.vbproj" />
+        <Project Name="MassUpdate"          FolderPath="ClientApps\MassUpdate"          FileName="MassUpdate.vbproj" />
+        <Project Name="MDMEditor"           FolderPath="ClientApps\MDMEditor"           FileName="MDMEditor.vbproj" />
+        <Project Name="ProcessPlan"         FolderPath="ClientApps\ProcessPlan"         FileName="ProcessPlan.vbproj" />
+        <Project Name="TimeDatabase"        FolderPath="ClientApps\TimeDatabase"        FileName="TimeDatabase.vbproj" />
+        <!-- For some reason this cannot be loaded by MSBuildWorkspace -->
+        <Project Name="ToolManagement"      FolderPath="ClientApps\ToolManagement"      FileName="ToolManagement.vbproj" />
+        <Project Name="Update7"             FolderPath="ClientApps\Update7"             FileName="Update7.vbproj" />
+        <Project Name="WordEditor"          FolderPath="ClientApps\WordEditor"          FileName="WordEditor.vbproj" />
+      </Solution>
+
+      <Solution Name="MCR" FolderPath="WebApps\MCR"  FileName="MCR.sln">
+        <Project Name="MCR" FolderPath="WebApps\MCR" FileName="MCR.vbproj" />
+      </Solution>
+
+      <Solution Name="ViewEASE-AML" FolderPath="WebApps\ViewEASE - AML"  FileName="ViewEASE.sln">
+        <Project Name="ViewEASE-AML" FolderPath="WebApps\ViewEASE - AML" FileName="ViewEASE.vbproj" />
+      </Solution>
+
+      <Solution Name="EASEClass7" FolderPath="Common\EASEClass"  FileName="EASEClass7.sln">
+        <Project Name="EaseClass7" FolderPath="Common\EASEClass" FileName="EASEClass7.vbproj" />
+      </Solution>
+
+    </Branch>
+
+    <Branch Name="master"   Repository="MES"    RepositoryPath="C:\vnc\git\EaseSource\MES-master">
+      <Solution Name="EASEWebApp" FolderPath="WebApps\EASEWebApp"  FileName="EASEWebApp.sln">
+        <Project Name="EASEWebApp" FolderPath="WebApps\EASEWebApp" FileName="EASEWebApp.vbproj" />
+      </Solution>
+      <Solution Name="MES7" FolderPath="WebApps\MES7"  FileName="MES7.sln">
+        <Project Name="MES7" FolderPath="WebApps\MES7" FileName="MES7.vbproj" />
+      </Solution>
+      <Solution Name="EASEClass" FolderPath="Common\EASEClass"  FileName="EASEClass7.sln">
+        <Project Name="EaseClass7" FolderPath="Common\EASEClass" FileName="EASEClass7.vbproj" />
+      </Solution>
+    </Branch>
+
+    <Branch Name="MES-Galaxy"   Repository="MES"    RepositoryPath="C:\vnc\git\EaseSource\MES-MES-GALAXY">
+      <Solution Name="EASEWebApp" FolderPath="WebApps\EASEWebApp"  FileName="EASEWebApp.sln">
+        <Project Name="EASEWebApp" FolderPath="WebApps\EASEWebApp" FileName="EASEWebApp.vbproj" />
+      </Solution>
+      <Solution Name="MES7" FolderPath="WebApps\MES7"  FileName="MES7.sln">
+        <Project Name="MES7" FolderPath="WebApps\MES7" FileName="MES7.vbproj" />
+      </Solution>
+      <Solution Name="EASEClass" FolderPath="Common\EASEClass"  FileName="EASEClass7.sln">
+        <Project Name="EaseClass7" FolderPath="Common\EASEClass" FileName="EASEClass7.vbproj" />
+      </Solution>
+    </Branch>
+
+    <Branch Name="master"  Repository="Cummins"    RepositoryPath="C:\vnc\git\EaseSource\Cummins-master">
+      <Solution Name="ClientApplications"   FolderPath="ClientApps"                     FileName="ClientApplications.sln">
+        <Project Name="AutoUpdate"          FolderPath="ClientApps\AutoUpdate"          FileName="AutoUpdate.vbproj" />
+        <Project Name="ClientEditor"        FolderPath="ClientApps\ClientEditor"        FileName="ClientEditor.vbproj" />
+        <Project Name="Config"              FolderPath="ClientApps\Config"              FileName="Config.vbproj" />
+        <Project Name="DataLoader"          FolderPath="ClientApps\DataLoader"          FileName="DataLoader.vbproj" />
+        <Project Name="EASEBatch"           FolderPath="ClientApps\EASEBatch"           FileName="EASEBatch.vbproj" />
+        <Project Name="ElementGenerator"    FolderPath="ClientApps\ElementGenerator"    FileName="ElementGenerator.vbproj" />
+        <Project Name="EStart"              FolderPath="ClientApps\EStart"              FileName="EStart.vbproj" />
+        <Project Name="MDMEditor"           FolderPath="ClientApps\MDMEditor"           FileName="MDMEditor.vbproj" />
+        <Project Name="ProcessPlan"         FolderPath="ClientApps\ProcessPlan"         FileName="ProcessPlan.vbproj" />
+        <Project Name="TimeDatabase"        FolderPath="ClientApps\TimeDatabase"        FileName="TimeDatabase.vbproj" />
+        <!--<Project Name="ToolManagement"      FolderPath="ClientApps\ToolManagement"      FileName="ToolManagement.vbproj" />-->
+        <Project Name="Update7"             FolderPath="ClientApps\Update7"             FileName="Update7.vbproj" />
+        <Project Name="VideoSplit"          FolderPath="ClientApps\VideoSplit"          FileName="VideoSplit.vbproj" />
+        <Project Name="WordEditor"          FolderPath="ClientApps\WordEditor"          FileName="WordEditor.vbproj" />
+      </Solution>
+
+      <Solution Name="ToolManagement"   FolderPath="ClientApps\ToolManagement"        FileName="ToolManagement.sln">
+        <Project Name="ToolManagement"      FolderPath="ClientApps\ToolManagement"      FileName="ToolManagement.vbproj" />
+      </Solution>
+
+      <Solution Name="CumminsWI" FolderPath="WebApps\CumminsWI"  FileName="CumminsWI.sln">
+        <!-- If no project file exists, leave FileName empty and list files -->
+        <Project Name="CumminsWI" FolderPath="WebApps\CumminsWI" FileName="">
+          <SourceFile FolderPath="App_Code" FileName="DatabaseConfiguration.vb" />
+          <SourceFile FolderPath="App_Code" FileName="DaventryQSVLineMergeDetails.vb" />
+          <SourceFile FolderPath="App_Code" FileName="Engine.vb" />
+          <SourceFile FolderPath="App_Code" FileName="Helpers.vb" />
+          <SourceFile FolderPath="App_Code" FileName="IO.vb" />
+          <SourceFile FolderPath="App_Code" FileName="mod_daventry.vb" />
+          <SourceFile FolderPath="App_Code" FileName="mod_GenlFunctions.vb" />
+          <SourceFile FolderPath="App_Code" FileName="mod_PCN.vb" />
+          <SourceFile FolderPath="App_Code" FileName="mod_shared_chart.vb" />
+          <SourceFile FolderPath="App_Code" FileName="mod_shared_menu.vb" />
+          <SourceFile FolderPath="App_Code" FileName="mod_shared1.vb" />
+          <SourceFile FolderPath="App_Code" FileName="mod_shared2.vb" />
+          <SourceFile FolderPath="App_Code" FileName="mod_ShowDocs.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modBanner.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modCDC.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modCPG.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modCummins0.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modCummins1.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modCummins2.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modCummins3.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modCummins4.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modCummins5.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modCummins6.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modCummins7.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modCumminsMRC.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modJEP.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modLDD.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modLegacyCustom.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modMachining.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modNewField.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modRemedyPlan.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modRemedyPlan2.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modRemedyPlan3.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modRemedyPlan-HoustonCoE.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modRPReports.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modSearch.vb" />
+          <SourceFile FolderPath="App_Code" FileName="modSEP.vb" />
+          <SourceFile FolderPath="App_Code" FileName="stdMod1.vb" />
+          <SourceFile FolderPath="App_Code" FileName="stdMod2.vb" />
+          <SourceFile FolderPath="App_Code" FileName="stdMod3.vb" />
+          <SourceFile FolderPath="App_Code" FileName="stdMod4.vb" />
+          <SourceFile FolderPath="App_Code" FileName="SystemConfig.vb" />
+          <SourceFile FolderPath="App_Code" FileName="Word6.vb" />
+
+          <SourceFile FolderPath=""             FileName="about.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="blankscreen.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="default.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="default2.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="Error.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esn.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esnconf.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy2.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy2cdc.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy3.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy4.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy5.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy6.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy7.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy8.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy9.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy10.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy11.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy12.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy13.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy42.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="esndummy72.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmBannerMsgs.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmBannerMsgsEdit.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmBannerMsgsView.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmChartYamazumi.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmClearRPData.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmclose.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmCP.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmCustomLink.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmdefectcategories.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmdefectcategoriesEdit.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmdefectitems.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmdefectreports.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmdefecttrack.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmDevDisplay.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmdeviation.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmDevUpdate.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmDisplayImage.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmdummy.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmelecomments.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmEngineStatus.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmEngineUpdate.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmLineStatus.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmlocdocs.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmMRCEnginesList.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmMRCEnginesListImport.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmMRCEngineStatus.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmpassword.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmPictureComment.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmpoll.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmPrintPreview.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmprogressbar.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRefDocsTreeView.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmrefresh.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmrp_old.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPAdminLogin.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPAudit.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPAuditStation.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPdetails.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPdetailsNonPopup.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmrpdeviation.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPExport.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPExport2.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPFormulaInput.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPIPCList.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPOperator.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPOperatorNonPopup.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPReports.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPReworkSummary.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPSmartIPC.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPSmartIPCFormula.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmRPTabularInput.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmrsupervisor.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmSBM.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmSBMList.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmSBMNote.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmsearch.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmsearchoperation.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmsearchoption.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmServerHitLog.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmShowCustomLink.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmshowdefaultstns.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmstation.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmStationConfig.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmStationConfigEdit.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmstationlist.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmStationMerge.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmsubheader.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmsubheadercdc.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmsubheaderjep.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmSubStation.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmsystemconfig.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmSystemHeaders.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmtools.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmTriggerLog.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="frmViewDoc.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="login.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="logout.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="mes.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="mes2.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="opactivity.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="operator1.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="operatoredit.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="operatorlist.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="opreview.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="pcnreason.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="showdocs.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="showfhistory.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="showfhistorytext.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="showvideo.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="sql.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="stationlogin.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="supervisor.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="team.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="teamedit.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="userlog.aspx.vb" />
+          <SourceFile FolderPath=""             FileName="zadmin.aspx.vb" />
+        </Project>
+      </Solution>
+
+      <Solution Name="EASEClass" FolderPath="Common\EASEClass"  FileName="EASEClass7.sln">
+        <Project Name="EaseClass7" FolderPath="Common\EASEClass" FileName="EASEClass7.vbproj" />
+      </Solution>
+    </Branch>
+
+  </SourceBranches>
+
+</CodeCommandConsole>

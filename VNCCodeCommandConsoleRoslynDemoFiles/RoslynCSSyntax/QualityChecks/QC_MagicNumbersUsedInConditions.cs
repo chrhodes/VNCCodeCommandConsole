@@ -4,11 +4,23 @@ public class QC_MagicNumbersUsedInConditions
 {
     int x = 8;
 
-    bool IsGood(string password)
+    bool IsValidPW(string password)
     {
         if (password.Length < 5)
             return false;
+
+        if (password.Length < x)
+            return false;
+
         return password.Length >= 7;
+    }
+
+    bool IsValidPW2(string password)
+    {
+        if (5 > password.Length)
+            return false;
+
+        return 7 <= password.Length;
     }
 
     int fun()
@@ -26,6 +38,5 @@ public class QC_MagicNumbersUsedInConditions
             return false;
         else
             return true;
-
     }
 }
