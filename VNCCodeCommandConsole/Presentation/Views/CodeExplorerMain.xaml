@@ -23,6 +23,7 @@
     
     prism:ViewModelLocator.AutoWireViewModel="False"
     
+    Background="{StaticResource MainBackground}"
     d:DesignStyle="{StaticResource vncDesignStyle}"
 >
     <!--xmlns:core="clr-namespace:$customAPPLICATON$.Core;assembly=$customAPPLICATON$.Core"-->
@@ -370,19 +371,19 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Name="lg_Footer"
+        <!--<dxlc:LayoutGroup Name="lg_Footer"
                         VerticalAlignment="Top">
             <Label Content="lg_Footer Stuff Goes Here" />
-        </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>-->
         
         <dxlc:LayoutGroup 
         	Orientation="Vertical" VerticalAlignment="Bottom" >
             <StackPanel Orientation="Horizontal" >
-                <StackPanel Orientation="Horizontal" Margin="5">
+                <StackPanel Orientation="Horizontal" >
                     <Label Content="V:" />
                     <Label Content="{Binding ElementName=thisCodeExplorerMain, Path=InstanceCountV}" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5">
+                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
                     <Label Content="VM:" />
                     <Label Content="{Binding InstanceCountVM}" />
                 </StackPanel>

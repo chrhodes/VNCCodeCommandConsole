@@ -59,8 +59,8 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             Message = "CodeExplorerContextViewModel says hello";
 
             // TODO(crhodes)
-            // For now, default to XmlConfig.  Later switch to Project/Solution
-            ContextMode3Value = ContextMode2.XmlConfig;
+            // For now, default to Deno.  Later switch to Project/Solution
+            ContextMode3Value = ContextMode2.Demo;
 
             PopulateContextFromXmlFile();
 
@@ -369,8 +369,6 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
                 _selectedBranch = value;
 
                 SolutionFiles.Clear();
-                //ProjectFiles.Clear();
-                //SourceFiles.Clear();
 
                 SelectedSolutionFiles.Clear();
                 SelectedProjectFiles.Clear();

@@ -40,19 +40,19 @@
 
         <!-- This is useful for debugging V VM constructor issues -->
 
-        <DockPanel Grid.Row="1" >
+        <DockPanel Grid.Row="2" >
 
-            <StackPanel Orientation="Horizontal" Margin="5" DockPanel.Dock="Right" >
+            <StackPanel Orientation="Horizontal" Margin="0,0,5,0" DockPanel.Dock="Right" >
                 <Label Content=".NET Runtime: " />
                 <Label Content="{Binding RuntimeVersion}" />
             </StackPanel>
 
             <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
-                <StackPanel Orientation="Horizontal" Margin="5">
+                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
                     <Label Content="V:" />
                     <Label Content="{Binding ElementName=thisShell, Path=InstanceCountV}" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5">
+                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
                     <Label Content="VM:" />
 
                     <Label Content="{Binding InstanceCountVM}" />
