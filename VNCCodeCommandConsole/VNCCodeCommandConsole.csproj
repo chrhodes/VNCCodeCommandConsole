@@ -45,6 +45,7 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DomainServices\Interfaces\" />
     <Folder Include="StuffToRefactor\" />
   </ItemGroup>
 

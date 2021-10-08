@@ -150,6 +150,17 @@
                 RegEx="{Binding LocalDeclarationStatementWalker.RegEx, Mode=TwoWay}"
                 UseRegEx="{Binding LocalDeclarationStatementWalker.UseRegEx, Mode=TwoWay}"/>
 
+        <views:RegExBlockSyntaxWalker x:Name="cIfStatement" 
+                Style="{StaticResource reBlockStatementWalker}" 
+                ControlHeader="{Binding IfStatementWalker.ControlHeader, Mode=TwoWay}"
+                ButtonContent="{Binding IfStatementWalker.ButtonContent, Mode=TwoWay}"
+                CommandParameter="{Binding IfStatementWalker.CommandParameter, Mode=TwoWay}"
+                RegExLabel="{Binding IfStatementWalker.RegExLabel, Mode=TwoWay}" 
+                RegEx="{Binding IfStatementWalker.RegEx, Mode=TwoWay}"
+                UseRegEx="{Binding IfStatementWalker.UseRegEx, Mode=TwoWay}" 
+			    DisplayBlock="{Binding IfStatementWalker.DisplayBlock, Mode=TwoWay}"
+			    DisplayBlockLabel="{Binding IfStatementWalker.DisplayBlockLabel, Mode=TwoWay}" />
+        
         <StackPanel Orientation="Horizontal" >
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="V:" />

@@ -524,7 +524,7 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            openFileDialog.Filter = "Solutions Files (*.sln)|*.sln|Project Files (*.*proj)|*.*proj|All files (*.*)|*.*";
+            openFileDialog.Filter = "Solutions and Project Files (*.sln, *.*proj)|*.sln;*.*proj|All files (*.*)|*.*";
             openFileDialog.FileName = "";
 
             if (true == openFileDialog.ShowDialog())

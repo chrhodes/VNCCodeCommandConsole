@@ -90,14 +90,14 @@
 
         <dxlc:LayoutItem>
             <Button Content="Has Control Flags" 
-                    Style="{StaticResource CodeCheckButton}"
+                    Style="{StaticResource CodeCheckButtonNeedsWork}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="ControlFlags" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem>
             <Button Content="Has Fragmented Conditions" 
-                    Style="{StaticResource CodeCheckButtonNA}"
+                    Style="{StaticResource CodeCheckButtonNotAvailable}"
                     Command="{Binding CallCodeCheckCommand}"             
                     CommandParameter="FragmentedConditions" />
         </dxlc:LayoutItem>

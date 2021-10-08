@@ -1,7 +1,7 @@
 ﻿// From Source Code Analysis with Roslyn -
 
 using System;
-public class DC_ObjectObSession
+public class DC_ObjectObsession
 {
     //Bad: “a” could have been more specifically typed.
     void fun(object a, int x, float d)

@@ -211,6 +211,26 @@ namespace CCC.FindSyntax.Presentation.ViewModels
             }
         }
 
+
+    private WalkerPatternBlock _ifStatementWalker = new WalkerPatternBlock(
+        controlHeader: "Find IfStatement Syntax",
+        buttonContent: "IfStatement Walker",
+        commandParameter: "IfStatementWalker",
+        regExLabel: "RegEx",
+        displayBlockLabel: "Display IfStatement Block");
+
+        public WalkerPatternBlock IfStatementWalker
+        {
+            get => _ifStatementWalker;
+            set
+            {
+                if (_ifStatementWalker == value)
+                    return;
+                _ifStatementWalker = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool _headerIsCollapsed = true;
 
         public bool HeaderIsCollapsed
@@ -404,6 +424,20 @@ namespace CCC.FindSyntax.Presentation.ViewModels
 
             commandConfiguration.WalkerPattern = StructDeclarationWalker;
             commandConfiguration.CodeAnalysisOptions.DisplayFields = StructDeclarationWalker.DisplayFields;
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return VNCCA.Helpers.CS.InvokeVNCSyntaxWalker(walker, commandConfiguration);
+        }
+
+        public StringBuilder DisplayIfStatementWalkerCS(SearchTreeCommandConfiguration commandConfiguration)
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            VNCSW.CS.VNCCSSyntaxWalkerBase walker = new VNCSW.CS.IfStatement();
+
+            commandConfiguration.WalkerPattern = IfStatementWalker;
+            commandConfiguration.CodeAnalysisOptions.DisplayStatementBlock = IfStatementWalker.DisplayBlock;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 

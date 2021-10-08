@@ -11,19 +11,12 @@ using System.Threading.Tasks;
 using VNC;
 using VNC.Core.DomainServices;
 
-using VNCCodeCommandConsole.Domain;
-
 namespace VNCCodeCommandConsole.Persistence.Data
 {
     public class VNCCodeCommandConsoleDbContext : DbContext, IVNCCodeCommandConsoleDbContext
     {
         // TODO(crhodes)
         // Add additional DbSet<TYPE> as needed.
-
-        public DbSet<Cat> CatsSet { get; set; }
-        public DbSet<CatPhoneNumber> CatPhoneNumbersSet { get; set; }
-
-        public DbSet<Toy> ToysSet { get; set; }
 
         // Name of connection string in Config
 

@@ -97,7 +97,11 @@
                     <dxe:ComboBoxEdit Name="lbeAdditionalNodes" 
                                  ItemsSource="{Binding Source={vncxe:EnumBindingSource {x:Type vnccasn:AdditionalNodes}}}"
                                  SelectedIndex="0"                                                         
-                                 ShowBorder="False" Background="{x:Null}">
+                                 ShowBorder="False" Background="{x:Null}"
+                        EditValue="{Binding
+                            Path=CodeAnalysisOptions.AdditionalNodeAnalysis,
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged }" >
                     </dxe:ComboBoxEdit>
 
                     <dxlc:LayoutItem>

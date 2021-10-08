@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Windows.Input;
 
-using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Core.Services;
 
 using VNCCodeCommandConsole.Presentation.ModelWrappers;
 

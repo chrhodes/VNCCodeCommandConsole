@@ -8,18 +8,28 @@
         <!--<Setter Property="Margin" Value="5" />-->
         <Setter Property="FontSize" Value="12" />
         <!--<Setter Property="FontFamily" Value="Arial" />-->
-        <Setter Property="Foreground" Value="#FFB96EFF" />
+        <!--<Setter Property="Foreground" Value="#FFB96EFF" />-->
+        <Setter Property="Background" Value="LightGreen" />        
         <Setter Property="HorizontalContentAlignment" Value="Left" />
     </Style>
 
-    <Style x:Key="CodeCheckButtonNA" TargetType="{x:Type Button}" >
+    <Style x:Key="CodeCheckButtonNeedsWork" TargetType="{x:Type Button}" >
         <!--<EventSetter Event="Button.Click" Handler="DisplayUserControlFromTag" />-->
         <!--<Setter Property="Margin" Value="5" />-->
         <Setter Property="FontSize" Value="12" />
         <!--<Setter Property="FontFamily" Value="Arial" />-->
         <Setter Property="Foreground" Value="#FF333333" />
-        <Setter Property="Background" Value="#FFE08B8B" />
-        
+        <Setter Property="Background" Value="Yellow" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+    </Style>
+    
+    <Style x:Key="CodeCheckButtonNotAvailable" TargetType="{x:Type Button}" >
+        <!--<EventSetter Event="Button.Click" Handler="DisplayUserControlFromTag" />-->
+        <!--<Setter Property="Margin" Value="5" />-->
+        <Setter Property="FontSize" Value="12" />
+        <!--<Setter Property="FontFamily" Value="Arial" />-->
+        <Setter Property="Foreground" Value="#FF333333" />
+        <Setter Property="Background" Value="OrangeRed" />        
         <Setter Property="HorizontalContentAlignment" Value="Left" />
     </Style>
 
