@@ -56,7 +56,7 @@
 
         <dxlc:LayoutGroup  Header="Code Explorer Context" x:Name="lg_CodeExplorerContext" 
                            View="GroupBox" 
-                           IsCollapsible="True" IsCollapsed="False" >
+                           IsCollapsible="True" IsCollapsed="False" VerticalAlignment="Top" >
 
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CodeExplorerContextRegion}" />
 

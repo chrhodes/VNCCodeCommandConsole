@@ -76,37 +76,6 @@
 
         <dxlc:LayoutGroup Name="lg_Body" Orientation="Horizontal" >
 
-            <!--<dxlc:LayoutControl x:Name="layoutItems" 
-                                Orientation="Horizontal" >-->
-
-                <!--<dxlc:LayoutGroup 
-                	View="Group" Orientation="Horizontal" >-->
-
-                    <!--<dxlc:LayoutGroup 
-                    	View="Group" Orientation="Horizontal" HorizontalAlignment="Left" >-->
-                    
-                        <!--This is DevExpress support for binding to Enums-->
-                        <!--<GroupBox Header="Mode2" VerticalAlignment="Top" >
-                        <dxe:ListBoxEdit x:Name="lbeContextMode2"
-                            EditValue="{ Binding
-                                Path=ContextMode2Value,
-                                Mode=TwoWay,
-                                UpdateSourceTrigger=PropertyChanged }"
-                            EditValueChanged="lbeContextMode2_EditValueChanged">
-                            <dxmvvm:Interaction.Behaviors>
-                                <dxmvvm:EnumItemsSourceBehavior EnumType="{x:Type viewModels:ContextMode2}"/>
-                            </dxmvvm:Interaction.Behaviors>
-                            <dxe:ListBoxEdit.StyleSettings>
-                                <dxe:RadioListBoxEditStyleSettings />
-                            </dxe:ListBoxEdit.StyleSettings>
-                            <dxe:ListBoxEdit.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal" />
-                                </ItemsPanelTemplate>
-                            </dxe:ListBoxEdit.ItemsPanel>
-                        </dxe:ListBoxEdit>
-                        </GroupBox>-->
-
             <dxlc:LayoutGroup 
             	View="Group" HorizontalAlignment="Left" VerticalAlignment="Top" >
                 <dxe:ListBoxEdit x:Name="lbeContextMode3"
@@ -127,59 +96,16 @@
                 </dxe:ListBoxEdit>
             </dxlc:LayoutGroup>
 
-                        <!--<GroupBox Header="Mode" VerticalAlignment="Top" >
-                        <dxe:ListBoxEdit x:Name="lbeContextMode"
-
-                        SelectedIndex="0"
-                        EditValue="{ Binding
-                            Path=ContextModeEditValue,
-                            Mode=TwoWay,
-                            UpdateSourceTrigger=PropertyChanged }"
-                        ShowBorder="False" Background="{x:Null}" 
-                        EditValueChanged="lbeContextMode_EditValueChanged">
-                            <dxe:ListBoxEdit.StyleSettings>
-                                <dxe:RadioListBoxEditStyleSettings />
-                            </dxe:ListBoxEdit.StyleSettings>
-                            <dxe:ListBoxEdit.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal" />
-                                </ItemsPanelTemplate>
-                            </dxe:ListBoxEdit.ItemsPanel>
-                            <dxe:ListBoxEdit.Items>
-                                <dxe:ListBoxEditItem Content="Solution/Project File" Tag="S"/>
-                                <dxe:ListBoxEditItem Content="Xml Config File" Tag="X"/>
-                                <dxe:ListBoxEditItem Content="Demo" Tag="D" />
-                            </dxe:ListBoxEdit.Items>
-                        </dxe:ListBoxEdit>
-                        </GroupBox>-->
-
-                        <!--<CheckBox Content="EnumValue == Enum2.Value1" IsChecked="{c:Binding 'EnumValue==local:Enum2.Value1'}" IsEnabled="False"  Margin="0,4,0,0"/>-->
-
-                        <!--<StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                            <RadioButton Content="Solution / Project File" 
-                                         IsChecked="{Binding IsContextModeSolutionProject, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                         Margin="4,4,0,0" Checked="RadioButton_Checked" Tag="S"
-                                         /> 
-                            <RadioButton Content="Xml Config File" 
-                                         IsChecked="{Binding IsContextModeXmlConfig, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                         Margin="4,4,0,0" Checked="RadioButton_Checked" Tag="X"/>
-                    
-                            <RadioButton Content="Demo" 
-                                         IsChecked="{Binding IsContextModeDemo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-                                         Margin="4,4,0,0" Checked="RadioButton_Checked" Tag="D"/>
-                        </StackPanel>-->
-                    <!--</dxlc:LayoutGroup>-->
-                           
+                          
             <dxlc:LayoutGroup 
                 View="Group" Orientation="Vertical" >
                  
-                <dxlc:LayoutGroup Header="Solution/Project File Context" x:Name="lgContextSolutionProject"
+                <dxlc:LayoutGroup Header="Solution File Context" x:Name="lgContextSolution"
                                     View="GroupBox"
-                                    Orientation="Vertical"
+                                    Orientation="Horizontal"
                                     IsCollapsible="True" IsCollapsed="False">
-                    <TextBlock Text="Solution/Project Controls Go Here"/>
 
-                    <dxlc:LayoutItem Label="Browse for Source File" 
+                    <dxlc:LayoutItem Label="Browse for Solution File" 
                                         LabelPosition="Top">
 
                         <StackPanel Orientation="Horizontal" >
@@ -205,18 +131,64 @@
                         <dxe:TextEdit Text="{Binding SolutionFile}" />
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="ProjectFile"  LabelPosition="Top">
+                    <!--<dxlc:LayoutItem Label="ProjectFile"  LabelPosition="Top">
                         <dxe:TextEdit Text="{Binding ProjectFile}" />
-                    </dxlc:LayoutItem>
+                    </dxlc:LayoutItem>-->
 
-                    <dxlc:LayoutItem Label="SourcePath"  LabelPosition="Top">
+                    <!--<dxlc:LayoutItem Label="SourcePath"  LabelPosition="Top">
                         <dxe:TextEdit Text="{Binding SourcePath}" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="SourceFile"  LabelPosition="Top">
                         <dxe:TextEdit Text="{Binding SourceFile}" />
-                    </dxlc:LayoutItem>
+                    </dxlc:LayoutItem>-->
                     
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="Project File Context" x:Name="lgContextProject"
+                                    View="GroupBox"
+                                    Orientation="Horizontal"
+                                    IsCollapsible="True" IsCollapsed="False">
+                    <!--<TextBlock Text="Solution/Project Controls Go Here"/>-->
+
+                    <dxlc:LayoutItem Label="Browse for Project File" 
+                                        LabelPosition="Top">
+
+                        <StackPanel Orientation="Horizontal" >
+                            <dxlc:LayoutItem>
+                                <Button 
+                            		Command="{Binding BrowseForFileCommand }"
+                            		Content="{Binding BrowseForFileContent, FallbackValue='BrowseForFile' }"
+                            		ToolTip="{Binding BrowseForFileToolTip, FallbackValue='BrowseForFile ToolTip' }" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem>
+                                <Button 
+                        		    Command="{Binding ClearFileCommand }"
+                        		    Content="{Binding ClearFileContent, FallbackValue='ClearFile' }"
+                        		    ToolTip="{Binding ClearFileToolTip, FallbackValue='ClearFile ToolTip' }" />
+                            </dxlc:LayoutItem>
+
+                        </StackPanel>
+
+                    </dxlc:LayoutItem>
+
+                    <!--<dxlc:LayoutItem Label="SolutionFile"  LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding SolutionFile}" />
+                    </dxlc:LayoutItem>-->
+
+                    <dxlc:LayoutItem Label="ProjectFile"  LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding ProjectFile}" />
+                    </dxlc:LayoutItem>
+
+                    <!--<dxlc:LayoutItem Label="SourcePath"  LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding SourcePath}" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="SourceFile"  LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding SourceFile}" />
+                    </dxlc:LayoutItem>-->
+
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="XmlConfig Context" x:Name="lgContextXmlConfig" 
@@ -406,17 +378,18 @@
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup 
-        	Orientation="Vertical"  VerticalAlignment="Bottom">
-            <!--<TextBlock Text="{Binding Message}" VerticalAlignment="Bottom" />-->
-            <StackPanel Orientation="Horizontal" >
-                <StackPanel Orientation="Horizontal" Margin="5">
+        	Orientation="Vertical"  VerticalAlignment="Bottom" >
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" >
                     <Label Content="V:" />
                     <Label Content="{Binding ElementName=thisCodeExplorerContext, Path=InstanceCountV}" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5">
+                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
                     <Label Content="VM:" />
                     <Label Content="{Binding InstanceCountVM}" />
                 </StackPanel>
+                <TextBlock Text="{Binding Message}" HorizontalAlignment="Right" Margin="5,0,0,0"/>
             </StackPanel>
         </dxlc:LayoutGroup>
 

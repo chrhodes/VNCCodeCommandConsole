@@ -8,6 +8,8 @@ using System.Windows.Input;
 using System.Xml;
 using System.Xml.Linq;
 
+using Microsoft.Win32;
+
 using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
@@ -21,9 +23,11 @@ using VNCCodeCommandConsole.Core.Events;
 
 namespace VNCCodeCommandConsole.Presentation.ViewModels
 {
+
     public enum ContextMode2
     {
-        SolutionProject,
+        Solution,
+        Project,
         XmlConfig,
         File,
         Demo
@@ -121,6 +125,8 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             XmlConfig,
             Demo
         }
+
+
 
         #endregion
 
@@ -513,7 +519,34 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called BrowseForFile";
-            EventAggregator.GetEvent<BrowseForFileEvent>().Publish();
+            //EventAggregator.GetEvent<BrowseForFileEvent>().Publish();
+            //List<String> filesToProcess = new List<string>();
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "Solutions Files (*.sln)|*.sln|Project Files (*.*proj)|*.*proj|All files (*.*)|*.*";
+            openFileDialog.FileName = "";
+
+            if (true == openFileDialog.ShowDialog())
+            {
+                string fileName = openFileDialog.FileName;
+                string extension = Path.GetExtension(fileName);
+
+                if (extension == ".sln")
+                {
+                    SolutionFile = fileName;
+                }
+                else if (extension == ".csproj" || extension == ".vbproj")
+                {
+                    ProjectFile = fileName;
+                }
+                else
+                {
+                    MessageBox.Show("Unsupported File Type");
+                    // TODO(crhodes)
+                    // Call Dialog Service
+                }
+            }
 
             // Start Cut Four
 
@@ -595,8 +628,12 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
             switch (ContextMode3Value)
             {
-                case ContextMode2.SolutionProject:
-                    filesToProcess = GetFilesSolutionProject();
+                case ContextMode2.Solution:
+                    filesToProcess = GetFilesSolution();
+                    break;
+
+                case ContextMode2.Project:
+                    filesToProcess = GetFilesProject();
                     break;
 
                 case ContextMode2.XmlConfig:
@@ -620,66 +657,28 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
             return filesToProcess;
         }
 
-        private List<string> GetFilesFile()
-        {
-            throw new NotImplementedException();
-        }
-
-        private List<string> GetFilesDemo()
+        private List<string> GetFilesSolution()
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
-            List<String> filesToProcess;
+            var filesToProcess = new List<string>();
 
             // HACK(crhodes)
-            // Just hard code a couple of files for now till we sort through this
-            // Maybe load this from Config File.
+            // Only support projects for now.
 
-            switch (Language)
-            {
-                case SyntaxLanguage.CS:
-                    filesToProcess = SelectedFilesDemoCS;
-                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VB.cs");
-                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\CS.cs");
-                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCCSSyntaxWalkerBase.cs");
-                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\VNCVBSyntaxWalkerBase.cs");
-
-                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTreeBasics.cs");
-
-                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-CodeDesignChecks.cs");
-                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-CodePerformanceChecks.cs");
-                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-CodeQualityChecks.cs");
-
-                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\Roslyn-SyntaxTree.cs");
-                    break;
-
-                case SyntaxLanguage.VB:
-                    filesToProcess = SelectedFilesDemoVB;
-                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AML.vb");
-                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\AppConfig.vb");
-
-                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE1.vb");
-                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE2.vb");
-                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE3.vb");
-                    //filesToProcess.Add(@"C:\Temp\VNCCodeCommandConsoleTestFiles\modEASE4.vb");
-                    break;
-
-                default:
-                    throw new ArgumentException("GetDemoFiles: Unexpected Language");
-            }
 
             Log.VIEWMODEL($"Exit: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
 
             return filesToProcess;
         }
 
-        private List<string> GetFilesSolutionProject()
+        private List<string> GetFilesProject()
         {
             long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
-            List<String> filesToProcess = new List<string>();
+            var filesToProcess = new List<string>();
 
-            MessageBox.Show("SolutionFiles Not Implemented Yet");
+            filesToProcess.AddRange(VNC.CodeAnalysis.Workspace.Helper.GetSourceFilesToProcessFromVSProject(ProjectFile));
 
             Log.VIEWMODEL($"Exit: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
 
@@ -783,6 +782,40 @@ namespace VNCCodeCommandConsole.Presentation.ViewModels
 
                     filesToProcess.Remove(filePath);
                 }
+            }
+
+            Log.VIEWMODEL($"Exit: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
+
+            return filesToProcess;
+        }
+
+        private List<string> GetFilesFile()
+        {
+            throw new NotImplementedException();
+        }
+
+        private List<string> GetFilesDemo()
+        {
+            long startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            List<String> filesToProcess;
+
+            // HACK(crhodes)
+            // Just hard code a couple of files for now till we sort through this
+            // Maybe load this from Config File.
+
+            switch (Language)
+            {
+                case SyntaxLanguage.CS:
+                    filesToProcess = SelectedFilesDemoCS;
+                    break;
+
+                case SyntaxLanguage.VB:
+                    filesToProcess = SelectedFilesDemoVB;
+                    break;
+
+                default:
+                    throw new ArgumentException("GetDemoFiles: Unexpected Language");
             }
 
             Log.VIEWMODEL($"Exit: filesToProcess.Count {filesToProcess.Count}", Common.LOG_CATEGORY, startTicks);
