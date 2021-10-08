@@ -151,10 +151,14 @@
                                     IsCollapsible="True" IsCollapsed="False">
                     <!--<TextBlock Text="Solution/Project Controls Go Here"/>-->
 
+                    <dxlc:LayoutItem Label="ProjectFile"  LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding ProjectFile}" />
+                    </dxlc:LayoutItem>
+                    
                     <dxlc:LayoutItem Label="Browse for Project File" 
                                         LabelPosition="Top">
 
-                        <StackPanel Orientation="Horizontal" >
+                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left">
                             <dxlc:LayoutItem>
                                 <Button 
                             		Command="{Binding BrowseForFileCommand }"
@@ -177,9 +181,7 @@
                         <dxe:TextEdit Text="{Binding SolutionFile}" />
                     </dxlc:LayoutItem>-->
 
-                    <dxlc:LayoutItem Label="ProjectFile"  LabelPosition="Top">
-                        <dxe:TextEdit Text="{Binding ProjectFile}" />
-                    </dxlc:LayoutItem>
+
 
                     <!--<dxlc:LayoutItem Label="SourcePath"  LabelPosition="Top">
                         <dxe:TextEdit Text="{Binding SourcePath}" />
