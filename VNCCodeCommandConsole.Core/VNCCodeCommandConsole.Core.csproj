@@ -1,18 +1,51 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net5.0-windows;net48</TargetFrameworks>
+        <TargetFrameworks>net6.0-windows</TargetFrameworks>
         <UseWPF>true</UseWPF>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <!--<AssemblyName>CCC.CodeChecks</AssemblyName>
+        <RootNamespace>CCC.CodeChecks</RootNamespace>-->
+        <!--<SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>VNC.snk</AssemblyOriginatorKeyFile>-->
+        <VersionPrefix>1.0.0</VersionPrefix>
+        <VersionSuffix>InDevelopment-1</VersionSuffix>
+        <FileVersion>2024.06.17A</FileVersion>
+        <!--<PackageVersion>1.0.0</PackageVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageProjectUrl>https://github.com/chrhodes/vncdevelopment</PackageProjectUrl>-->
+        <RepositoryUrl>https://github.com/chrhodes/vncdevelopment</RepositoryUrl>
+        <RepositoryType>Git</RepositoryType>
+        <!--<PackageTags></PackageTags>
+        <PackageIcon>VNC.png</PackageIcon>-->
+        <Authors>Christopher Rhodes</Authors>
+        <Company>VNC</Company>
+        <Copyright>Copyright © VNC 2018-2024</Copyright>
+        <!--<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>-->
+        <Description>Need Description</Description>
     </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Prism.Core" Version="8.1.97" />
-      <PackageReference Include="VNC.Core" Version="2.1.2" />
+      <PackageReference Include="VNC.Core" Version="2.1.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\VNC\VNC.CodeAnalysis\VNC.CodeAnalysis\VNC.CodeAnalysis.csproj" />
+      <ProjectReference Include="..\..\VNCDevelopment\VNC.CodeAnalysis\VNC.CodeAnalysis\VNC.CodeAnalysis.csproj" />
   </ItemGroup>
-  
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+    
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+    
 </Project>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31105.61
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCCodeCommandConsole", "VNCCodeCommandConsole\VNCCodeCommandConsole.csproj", "{3E25BA8C-445B-4931-AA7D-92909C63F755}"
 EndProject
@@ -9,15 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCCodeCommandConsole.Core"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCC.FindSyntax", "CCC.FindSyntax\CCC.FindSyntax.csproj", "{F27C838D-FEC7-4BF2-968D-5C0B018A6A83}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.CodeAnalysis", "..\VNC\VNC.CodeAnalysis\VNC.CodeAnalysis\VNC.CodeAnalysis.csproj", "{071F3DA6-2585-4420-9426-617FA2704370}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCC.CodeChecks", "CCC.CodeChecks\CCC.CodeChecks.csproj", "{3213A69E-D3EF-4EDD-B264-FA01CD739FD9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCC.ModifySyntax", "CCC.ModifySyntax\CCC.ModifySyntax.csproj", "{40356000-D99D-4A06-A132-833E1DFF797B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Core", "..\vnc\VNC.Core\VNC.Core.csproj", "{F83D6975-A933-4C40-96C6-18EB4AD21429}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Core", "..\VNCDevelopment\VNC.Core\VNC.Core.csproj", "{F83D6975-A933-4C40-96C6-18EB4AD21429}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.WPF.Presentation", "..\vnc\VNC.WPF.Presentation\VNC.WPF.Presentation.csproj", "{A9DF2089-AD45-488C-B65B-DAB762B9A407}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.WPF.Presentation", "..\VNCDevelopment\VNC.WPF.Presentation\VNC.WPF.Presentation.csproj", "{A9DF2089-AD45-488C-B65B-DAB762B9A407}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.CodeAnalysis", "..\VNCDevelopment\VNC.CodeAnalysis\VNC.CodeAnalysis\VNC.CodeAnalysis.csproj", "{7019A7D0-E7AB-4FE2-B9DD-A5BBDE62BD9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +37,6 @@ Global
 		{F27C838D-FEC7-4BF2-968D-5C0B018A6A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F27C838D-FEC7-4BF2-968D-5C0B018A6A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F27C838D-FEC7-4BF2-968D-5C0B018A6A83}.Release|Any CPU.Build.0 = Release|Any CPU
-		{071F3DA6-2585-4420-9426-617FA2704370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{071F3DA6-2585-4420-9426-617FA2704370}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{071F3DA6-2585-4420-9426-617FA2704370}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{071F3DA6-2585-4420-9426-617FA2704370}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3213A69E-D3EF-4EDD-B264-FA01CD739FD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3213A69E-D3EF-4EDD-B264-FA01CD739FD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3213A69E-D3EF-4EDD-B264-FA01CD739FD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,6 +53,10 @@ Global
 		{A9DF2089-AD45-488C-B65B-DAB762B9A407}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9DF2089-AD45-488C-B65B-DAB762B9A407}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9DF2089-AD45-488C-B65B-DAB762B9A407}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7019A7D0-E7AB-4FE2-B9DD-A5BBDE62BD9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7019A7D0-E7AB-4FE2-B9DD-A5BBDE62BD9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7019A7D0-E7AB-4FE2-B9DD-A5BBDE62BD9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7019A7D0-E7AB-4FE2-B9DD-A5BBDE62BD9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
